@@ -10,14 +10,14 @@ hashtags: "#English"
 jobType: "other"
 logoUrl: "https://jobboard-logos-bucket.s3.eu-central-1.amazonaws.com/mobymax"
 companyWebsite: "https://www.mobymax.com/"
-summary: "Interested in new opportunities and have 1st for the start of each school year? Mobymax has a job opening for an education support tech."
-summaryBackup: "Love #English? Check out this job post!"
-featured: 20
+summary: "Love #English? Check out this job post!"
+summaryBackup: "Interested in new opportunities and have 1st for the start of each school year? Mobymax has a job opening for an education support tech."
+featured: 10
 ---
 
 Description:
 
-MobyMax, creator of the fastest growing K-8 online curriculum in the United States, is looking for new members to join our customer support team. We need smart, speedy workers who can troubleshoot customer concerns with a smile. Our teachers love MobyMax and are happy to talk to us, and we love supporting the transformative work they do! You can learn more by visiting our website, www.mobymax.com.This is a full-time position for ten months every year. Our busiest months of the year are August through May, when schools are in session, so this position requires at least 40 hours a week during those months. That means you have June and July off, just like when you were in school! You return to work August 1st for the start of each school year. Our hours are 7:00 AM to 6:00 PM Eastern, Monday through Friday. Our new hires will work a permanent shift; either 7-4, 8-5, or 9-6 EST. Training will be 8:00 AM to 5:00 PM Eastern, Monday through Friday for 4-6 weeks. The position starts at $17 per hour. We offer paid time off and health insurance coverage. You work from your home office--no travel is necessary.
+MobyMax, creator of the fastest growing K-8 online curriculum in the United States, is looking for new members to join our customer support team. We need smart, speedy workers who can troubleshoot customer concerns with a smile. Our teachers love MobyMax and are happy to talk to us, and we love supporting the transformative work they do! You can learn more by visiting our website, www.mobymax.com. This is a full-time position for ten months every year. Our busiest months of the year are August through May, when schools are in session, so this position requires at least 40 hours a week during those months. That means you have June and July off, just like when you were in school! You return to work August 1st for the start of each school year. Our hours are 7:00 AM to 6:00 PM Eastern, Monday through Friday. Our new hires will work a permanent shift; either 7-4, 8-5, or 9-6 EST. Training will be 8:00 AM to 5:00 PM Eastern, Monday through Friday for 4-6 weeks. The position starts at $17 per hour. We offer paid time off and health insurance coverage. You work from your home office--no travel is necessary.
 
 Your day-to-day duties may include a combination of responding to email questions, answering live chats, and taking phone calls.
 
