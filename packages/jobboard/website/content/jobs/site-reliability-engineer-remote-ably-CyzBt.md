@@ -1,5 +1,5 @@
 ---
-title: "Site Reliability Engineer (remote)"
+title: "Site Reliability Engineer"
 location: "Remote job"
 host: "https://jobs.ably.io/"
 companyName: "Ably"
@@ -12,7 +12,7 @@ logoUrl: "https://jobboard-logos-bucket.s3.eu-central-1.amazonaws.com/ably"
 companyWebsite: "https://www.ably.io/careers"
 summary: "Ably is searching for a site reliability engineer that has depth experience of operating production systems in the public cloud, and a detailed understanding of the full range of cloud services we use."
 summaryBackup: "Ably is looking for a site reliability engineer that has experience in: #operations, #golang, #rubylang."
-featured: 20
+featured: 10
 ---
 
 ## Job description
