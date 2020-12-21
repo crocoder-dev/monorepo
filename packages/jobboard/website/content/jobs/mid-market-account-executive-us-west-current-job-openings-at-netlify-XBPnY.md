@@ -6,7 +6,7 @@ companyName: "Current Job Openings at Netlify"
 url: "https://boards.greenhouse.io/netlify/jobs/5004953002"
 applyUrl: "https://boards.greenhouse.io/netlify/jobs/5004953002#app"
 timestamp: 1608508800000
-hashtags: "#sales,#ui/ux,#git,#management,#marketing,#operations,#figma,#rest"
+hashtags: "#sales,#management,#operations,#figma,#rest"
 jobType: "other"
 
 companyWebsite: "https://boards.greenhouse.io/netlify"
