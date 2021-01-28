@@ -13,6 +13,7 @@ companyWebsite: "http://fond.co/"
 summary: "If you have 2-5 years experience as a QA Engineer, Software Developer or an SDET in a production web application setting, Fond is looking for someone with your skillset."
 summaryBackup: "Love #rubylang, #css, #javascript? Check out this job post!"
 featured: 17
+archived: "true"
 ---
 
 Fond is a SaaS platform that seamlessly consolidates employee rewards and recognition processes into one easy-to-use solution. With Fond, employees and managers can recognize each other, redeem rewards, access exclusive corporate discounts, and measure success so HR departments spend less time managing programs and more time driving results. If you want to be part of the team that delivers industry-leading engagement and recognition capabilities for top companies, Fond is for you!

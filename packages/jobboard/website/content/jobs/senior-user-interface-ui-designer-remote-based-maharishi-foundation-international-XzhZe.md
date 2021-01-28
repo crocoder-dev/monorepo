@@ -13,6 +13,7 @@ companyWebsite: "https://mfi.bamboohr.com/jobs/"
 summary: "Love #ui/ux, #marketing, #branding? Check out this job post!"
 summaryBackup: "Love #ui/ux, #marketing, #branding? Check out this job post!"
 featured: 0
+archived: "true"
 ---
 
 ## About Us

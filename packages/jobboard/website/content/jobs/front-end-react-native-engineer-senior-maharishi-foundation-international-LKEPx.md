@@ -13,6 +13,7 @@ companyWebsite: "https://mfi.bamboohr.com/jobs/"
 summary: "To apply as a front-end react native engineer at Maharishi Foundation International, you preferably need to have 60 years, more than 10 million people worldwide have learned the TM technique through personal instruction by tens of thousands of certified teachers."
 summaryBackup: "Maharishi Foundation International is looking for a front-end react native engineer that has experience in: #reactjs, #typescript, #android."
 featured: 2
+archived: "true"
 ---
 
 ## About Us

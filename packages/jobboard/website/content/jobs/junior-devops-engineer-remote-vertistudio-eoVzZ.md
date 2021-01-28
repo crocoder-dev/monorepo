@@ -13,6 +13,7 @@ companyWebsite: "https://careers.vertistudio.com/"
 summary: "To apply as a junior devops engineer at VertiStudio, you preferably need to have some knowledge of: experience in: #javascript, #docker, #aws."
 summaryBackup: "To apply as a junior devops engineer at VertiStudio, you preferably need to have some knowledge of: #javascript, #css, #html."
 featured: 1
+archived: "true"
 ---
 
 ## What we are looking for?

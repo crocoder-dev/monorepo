@@ -12,6 +12,7 @@ companyWebsite: "https://boards.greenhouse.io/hopin?t=02952e2a3us"
 summary: "Hopin is looking for a vp of Financial Planning & Analysis that has 10-15+ years of relevant experience leading financial planning functions in a high growth environment."
 summaryBackup: "To apply as a vp of fp&a at Hopin, you preferably need to have some knowledge of: #finance, #operations, #css."
 featured: 10
+archived: "true"
 ---
 
 At Hopin, there is a tremendous opportunity for the Head of Financial Planning & Analysis (VP will be considered for the right candidate) to make their mark on a hyper-growth company.  You will be partnering with Finance leadership to build a world-class, global finance team that is on a mission to bring amazing events to anyone in the world.  The role will require ‘getting into the weeds’ while offering a greenfield opportunity to be strategic and build an impactful and critical function within the organization.  A successful candidate will be able to operate in a fast-paced environment and deal with ambiguity but be able to ‘see the big picture’ and grow the function for public market scale.

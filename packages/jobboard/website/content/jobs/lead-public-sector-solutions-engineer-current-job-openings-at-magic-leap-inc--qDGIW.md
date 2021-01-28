@@ -13,6 +13,7 @@ companyWebsite: "https://boards.greenhouse.io/magicleapinc"
 summary: "Magic Leap, Inc. wishes to hire a new lead. If you have 5-7+ years of experience in demonstrating and establishing technical feasibility/wins among Enterprise customers, consider applying."
 summaryBackup: "Excited about #unity, #windows, #content? Check out this job post!"
 featured: 15
+archived: "true"
 ---
 
 ## Public Sector Solutions Engineer

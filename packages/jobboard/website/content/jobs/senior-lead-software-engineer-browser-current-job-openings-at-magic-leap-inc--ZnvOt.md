@@ -13,6 +13,7 @@ companyWebsite: "https://boards.greenhouse.io/magicleapinc"
 summary: "Love #cplusplus, #javascript, #css? Check out this job post!"
 summaryBackup: "Love #ui/ux, #javascript, #css? Check out this job post!"
 featured: 2
+archived: "true"
 ---
 
 Magic Leap is an eclectic group of people who share a magical vision of the future. And we’re growing.

@@ -13,6 +13,7 @@ companyWebsite: "https://boards.greenhouse.io/pleo"
 summary: "Love #kotlin, #typescript, #aws? Check out this job post!"
 summaryBackup: "Love #kotlin, #typescript, #aws? Check out this job post!"
 featured: 10
+archived: "true"
 ---
 
 ![Join us at Pleo!](https://i.imgur.com/BaX4y99.jpg)

@@ -13,6 +13,7 @@ companyWebsite: "http://www.nixa.io/"
 summary: "Nixa.io wishes to hire a new VP of growth. If you have 5+ years of experience and a track record of creating sustainable growth through successful planning and managing of sales and marketing initiatives, consider applying."
 summaryBackup: "Love #marketing, #sales, #management? Check out this job post!"
 featured: 10
+archived: "true"
 ---
 
 ## Description

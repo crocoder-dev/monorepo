@@ -13,6 +13,7 @@ companyWebsite: "https://www.jibble.io/"
 summary: "If you have 1 years of experience as an SDR, you're driven about tech and growth targets, and you have a proven track record, Jibble-group is looking for someone with your knowledge."
 summaryBackup: "Love #sales, #css, #management? Check out this job post!"
 featured: 20
+archived: "true"
 ---
 
 Our MissionTo help businesses save time and money, and unleash their human potential. Our vision is to power and empower millions of businesses with our software.

@@ -13,6 +13,7 @@ companyWebsite: "https://omnipresent.com/"
 summary: "If you have 2+ years customer success, customer experience, support, project management or account management experience in a scaling tech company, consider applying to Omnipresent's job post for a new customer success coordinator."
 summaryBackup: "Love #management, #operations, #marketing? Check out this job post!"
 featured: 20
+archived: "true"
 ---
 
 ## Description

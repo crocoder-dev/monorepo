@@ -13,6 +13,7 @@ companyWebsite: "https://www.friss.com/"
 summary: "Friss is looking for someone to make sure that products they develop and the infrastructure they use, are secure (by design) and compliant with existing laws and regulations."
 summaryBackup: "FRISS is looking for a fight fraud! as cloud security engineer that has experience in: #ui/ux, #scrum, #office."
 featured: 20
+archived: "true"
 ---
 
 ## Job description

@@ -12,6 +12,7 @@ companyWebsite: "https://boards.greenhouse.io/netlify"
 summary: "Netlify wishes to hire a new marketing campaign manager. If you have 5+ years work experience, consider applying."
 summaryBackup: "Excited about #management, #marketing, #sales? Check out this job post!"
 featured: 20
+archived: "true"
 ---
 
 ## Company Overview

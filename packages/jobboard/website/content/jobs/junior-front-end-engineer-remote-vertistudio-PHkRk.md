@@ -13,6 +13,7 @@ companyWebsite: "https://careers.vertistudio.com/"
 summary: "VertiStudio is looking for a junior front-end engineer that has experience in #reactjs and preferably in #php and #wordpress."
 summaryBackup: "Love #reactjs, #javascript, #php? Check out this job post!"
 featured: 15
+archived: "true"
 ---
 
 ## What we are looking for?

@@ -13,6 +13,7 @@ companyWebsite: "https://mav.recruitee.com/"
 summary: "If you have you have previous experience with leading a high performing marketing or demand generation team, Mavenoid is looking for someone with your knowledge."
 summaryBackup: "Mavenoid is looking for a head of demand generation that has experience in: #marketing, #sales, #content."
 featured: 1
+archived: "true"
 ---
 
 ## Job description

@@ -13,6 +13,7 @@ companyWebsite: "https://paperpile.com/"
 summary: "Paperpile is looking for a React developer that has experience and a deep understanding of the underlying web technologies."
 summaryBackup: "Love #reactjs, #javascript, #typescript? Check out this job post!"
 featured: 18
+archived: "true"
 ---
 
 ## Description

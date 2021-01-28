@@ -13,6 +13,7 @@ companyWebsite: "https://www.stickermule.com/"
 summary: "Sticker Mule is looking for a go engineer that has experience in: #docker, #golang, #postgresql."
 summaryBackup: "Love #docker, #branding, #operations? Check out this job post!"
 featured: 20
+archived: "true"
 ---
 
 **About Sticker Mule**
