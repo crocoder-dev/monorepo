@@ -13,6 +13,7 @@ companyWebsite: "http://www.nixa.io/"
 summary: "Nixa.io is looking for a business developer that has 1-3 years of professional experience with sales."
 summaryBackup: "Love #sales, #marketing, #management? Check out this job post!"
 featured: 15
+archived: "true"
 ---
 
 ## Description

@@ -13,6 +13,7 @@ companyWebsite: "https://www.stellar.org/"
 summary: "If you have 4+ years of experience developing software on a team, Stellar Development Foundation is looking for someone with your skillset."
 summaryBackup: "Love #ui/ux, #java, #golang? Check out this job post!"
 featured: 1
+archived: "true"
 ---
 
 Interested in helping us change the world of payments forever? The Stellar Development Foundation (SDF) is looking for a talented, experienced, and hands-on platform engineer to join our team. In this role, you’ll be designing, building, and implementing the tools and services that empower Stellar's ecosystem. By working within the platform team, you'll be working on open source projects that empower developers to use the Stellar network for a wide variety of goals and use cases.

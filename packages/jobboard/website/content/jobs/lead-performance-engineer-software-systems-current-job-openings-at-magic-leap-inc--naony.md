@@ -13,6 +13,7 @@ companyWebsite: "https://boards.greenhouse.io/magicleapinc"
 summary: "Magic Leap, Inc. is looking for a lead performance engineer that has extensive experience with system analysis for embedded systems for latency, system interconnect, throughput and bandwidth problems."
 summaryBackup: "Love #linux, #ui/ux, #analysis? Check out this job post!"
 featured: 15
+archived: "true"
 ---
 
 ## Company Description

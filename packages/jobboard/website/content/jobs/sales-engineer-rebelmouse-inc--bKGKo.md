@@ -13,6 +13,7 @@ companyWebsite: "https://www.rebelmouse.com/"
 summary: "Interested in new opportunities and have 3+ years experience in technical sales and product demonstrations? RebelMouse, Inc. has a job opening for a sales engineer."
 summaryBackup: "RebelMouse, Inc. is looking for a sales engineer that has experience in: #sales, #javascript, #ui/ux."
 featured: 20
+archived: "true"
 ---
 
 ## Job description

@@ -13,6 +13,7 @@ companyWebsite: "https://bitzesty.com/"
 summary: "To apply as a ruby on rails developer at Bit Zesty, you preferably need to have experience of working with live applications including ongoing maintenance."
 summaryBackup: "Love #rails, #rubylang, #reactjs? Check out this job post!"
 featured: 1
+archived: "true"
 ---
 
 ## Description

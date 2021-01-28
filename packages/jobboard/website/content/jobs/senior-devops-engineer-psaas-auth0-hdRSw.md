@@ -13,6 +13,7 @@ companyWebsite: "https://auth0.com/"
 summary: "Auth0 wishes to hire a new senior devops engineer. If you have we care deeply about the experience our customers have when managing and maintaining our product as well as ensuring the quality of the Auth0 service is delivered, consider applying."
 summaryBackup: "Excited about #css, #management, #devsec? Check out this job post!"
 featured: 20
+archived: "true"
 ---
 
 Auth0 is a unicorn that just closed a $120M Series F round of funding, with total capital raised to date of $330M and valuation of nearly $2B. We are growing rapidly and looking for exceptional new team members to add to our exceptional talent pool - and who will help take us to the next level of success. One team, one score. 

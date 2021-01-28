@@ -13,6 +13,7 @@ companyWebsite: "https://www.rebelmouse.com/"
 summary: "If you have 3+ years experience in client-facing roles doing account development and/or sales, consider applying to RebelMouse, Inc.'s job post for a new account development representative."
 summaryBackup: "Love #sales, #management, #office? Check out this job post!"
 featured: 20
+archived: "true"
 ---
 
 ## Job description

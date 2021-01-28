@@ -13,6 +13,7 @@ companyWebsite: "https://kodify.io/"
 summary: "To apply as a site reliability engineer at Kodify, you preferably need to have some knowledge of: #javascript, #reactjs, #nodejs."
 summaryBackup: "To apply as a site reliability engineer at Kodify, you preferably need to have some knowledge of: #javascript, #reactjs, #nodejs."
 featured: 0
+archived: "true"
 ---
 
 ## Job description

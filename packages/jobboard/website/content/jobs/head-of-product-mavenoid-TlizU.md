@@ -13,6 +13,7 @@ companyWebsite: "https://mav.recruitee.com/"
 summary: "If you have ensure consistency and quality in the user experience of the product, Mavenoid is looking for someone with your knowledge."
 summaryBackup: "Love #ui/ux, #branding, #management? Check out this job post!"
 featured: 0
+archived: "true"
 ---
 
 ## Job description

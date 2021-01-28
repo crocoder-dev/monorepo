@@ -13,6 +13,7 @@ companyWebsite: "https://careers.vertistudio.com/"
 summary: "VertiStudio is searching for a technical support internship that has basic experience with WordPress, any previous project with it is an advantage."
 summaryBackup: "Love #wordpress, #css, #javascript? Check out this job post!"
 featured: 20
+archived: "true"
 ---
 
 ## About us:

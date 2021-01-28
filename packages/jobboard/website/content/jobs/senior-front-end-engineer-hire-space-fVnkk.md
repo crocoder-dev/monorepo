@@ -13,6 +13,7 @@ companyWebsite: "https://hire-space.breezy.hr/hirespace.com"
 summary: "Hire Space is searching for a senior front end engineer that has have solid experience in React, and are comfortable working with different react design patterns."
 summaryBackup: "Hire-space is looking for a senior front end engineer that has experience in: #reactjs, #ui/ux, #javascript."
 featured: 20
+archived: "true"
 ---
 
 ## About Hire Space

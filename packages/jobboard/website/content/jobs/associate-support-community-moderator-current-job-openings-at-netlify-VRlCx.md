@@ -13,6 +13,7 @@ companyWebsite: "https://boards.greenhouse.io/netlify"
 summary: "To apply as an associate support community moderator at Netlify, you preferably need to have some knowledge of: experience in: #content, #socialmedia, #management."
 summaryBackup: "Netlify is looking for an associate support community moderator that has experience in: #content, #socialmedia, #management."
 featured: 5
+archived: "true"
 ---
 
 ## Company Overview
