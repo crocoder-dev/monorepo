@@ -13,6 +13,7 @@ companyWebsite: "https://boards.greenhouse.io/customerio"
 summary: "If you have experience with a marketing automation platform, consider applying to Customer.io's job post for a new sales development representative."
 summaryBackup: "To apply as a sales development representative at Customer.io, you preferably need to have some knowledge of: #marketing, #sales, #spring."
 featured: 20
+archived: "true"
 ---
 
 Hi, I’m Lacey, Director of Sales Development at [Customer.io](http://Customer.io). I’m looking for Sales Development Representatives to join our growing Outbound Team.

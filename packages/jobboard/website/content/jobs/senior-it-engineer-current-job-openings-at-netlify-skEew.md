@@ -13,6 +13,7 @@ companyWebsite: "https://boards.greenhouse.io/netlify"
 summary: "Netlify is searching for a senior it engineer that has experience with various SSO services and integration."
 summaryBackup: "Netlify is looking for a senior it engineer that has experience in: #devsec, #operations, #windows."
 featured: 10
+archived: "true"
 ---
 
 ## Company Overview

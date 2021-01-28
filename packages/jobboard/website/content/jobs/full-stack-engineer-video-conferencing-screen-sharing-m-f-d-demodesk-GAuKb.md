@@ -13,6 +13,7 @@ companyWebsite: "http://www.demodesk.com/"
 summary: "To apply as a full-stack engineer video conferencing & screen sharing at Demodesk, you preferably need to have 3 years professional experience in Web Development working with python or ruby."
 summaryBackup: "To apply as a full-stack engineer video conferencing & screen sharing at Demodesk, you preferably need to have some knowledge of: #rubylang, #rails, #python."
 featured: 1
+archived: "true"
 ---
 
 Your Mission:

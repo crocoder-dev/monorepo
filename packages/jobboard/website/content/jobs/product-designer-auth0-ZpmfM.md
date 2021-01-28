@@ -13,6 +13,7 @@ companyWebsite: "https://auth0.com/"
 summary: "Auth0 wishes to hire a new product designer. If you have have experience designing digital products, ideally with experience working with enterprises, consider applying."
 summaryBackup: "Love #ui/ux, #devsec, #management? Check out this job post!"
 featured: 20
+archived: "true"
 ---
 
 Auth0 is a unicorn that just closed a $120M Series F round of funding, with total capital raised to date of $330M and valuation of nearly $2B. We are growing rapidly and looking for exceptional new team members to add to our exceptional talent pool - and who will help take us to the next level of success. One team, one score. 

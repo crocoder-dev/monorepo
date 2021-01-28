@@ -13,6 +13,7 @@ companyWebsite: "https://boards.greenhouse.io/customerio"
 summary: "If you have 1+ years inside or outside sales experience in a technology environment, consider applying to Customer.io's job post for a new market development representative."
 summaryBackup: "Love #sales, #marketing, #spring? Check out this job post!"
 featured: 20
+archived: "true"
 ---
 
 Hi, I’m Lacey, Director of Sales Development at [Customer.io](http://Customer.io), and I’m looking for an Inbound MDR (Market Development Rep) to join our growing team.

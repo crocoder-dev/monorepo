@@ -13,6 +13,7 @@ companyWebsite: "https://hire-space.breezy.hr/hirespace.com"
 summary: "If you have have solid experience in React, and are comfortable working with different react design patterns, consider applying to Hire-space's job post for a new front end engineer."
 summaryBackup: "Hire-space is looking for a front end engineer that has experience in: #reactjs, #ui/ux, #javascript."
 featured: 15
+archived: "true"
 ---
 
 ## About Hire Space

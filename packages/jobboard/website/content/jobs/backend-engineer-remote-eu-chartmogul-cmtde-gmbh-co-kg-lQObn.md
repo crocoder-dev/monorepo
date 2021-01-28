@@ -13,6 +13,7 @@ companyWebsite: "https://chartmogul.com/"
 summary: "If you have you have experience with SQL and at least two programming languages, preferably Rust and Ruby, ChartMogul CMTDE GmbH & Co. KG is looking for someone with your skillset."
 summaryBackup: "To apply as a backend engineer at ChartMogul CMTDE GmbH & Co. KG, you preferably need to have some knowledge of: #rubylang, #ui/ux, #analysis."
 featured: 10
+archived: "true"
 ---
 
 ## Job description

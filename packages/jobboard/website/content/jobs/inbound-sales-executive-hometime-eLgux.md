@@ -13,6 +13,7 @@ companyWebsite: "https://hometime.bamboohr.com/jobs/"
 summary: "To apply as an inbound sales executive at Hometime, you preferably need to have 1-3 years of relevant face-to-face, phone sales or similar experience."
 summaryBackup: "Love #sales, #marketing, #operations? Check out this job post!"
 featured: 20
+archived: "true"
 ---
 
 Hometime is the largest and fastest growing platform and brand for flexible rental providers  in the APAC region. 

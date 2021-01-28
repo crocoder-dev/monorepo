@@ -13,6 +13,7 @@ companyWebsite: "https://www.jibble.io/"
 summary: "Jibble-group is looking for a senior back-end developer that has 5+ years of commercial development experience."
 summaryBackup: "To apply as a senior back-end developer at Jibble-group, you preferably need to have some knowledge of: #ui/ux, #management, #vuejs."
 featured: 20
+archived: "true"
 ---
 
 Our MissionTo help businesses save time and money, and unleash their human potential. Our vision is to power and empower millions of businesses with our software.

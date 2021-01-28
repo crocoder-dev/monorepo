@@ -13,6 +13,7 @@ companyWebsite: "https://hometime.bamboohr.com/jobs/"
 summary: "To apply as a performance marketing manager at Hometime, you preferably need to have 3+ years of relevant performance marketing experience and wanting to take that next step in your career."
 summaryBackup: "To apply as a performance marketing manager at Hometime, you preferably need to have some knowledge of: #marketing, #management, #operations."
 featured: 3
+archived: "true"
 ---
 
 ## About Hometime:

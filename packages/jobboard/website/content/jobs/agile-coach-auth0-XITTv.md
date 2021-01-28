@@ -13,6 +13,7 @@ companyWebsite: "https://auth0.com/"
 summary: "Auth0 wishes to hire a new agile coach. If you have 2 years experience as a servant leader to engineering teams in an agile organization, consider applying."
 summaryBackup: "Auth0 is looking for an agile coach that has experience in: #scrum, #devsec, #ui/ux."
 featured: 1
+archived: "true"
 ---
 
 Auth0 is a unicorn that just closed a $120M Series F round of funding, with total capital raised to date of $330M and valuation of nearly $2B. We are growing rapidly and looking for exceptional new team members to add to our exceptional talent pool - and who will help take us to the next level of success. One team, one score. 

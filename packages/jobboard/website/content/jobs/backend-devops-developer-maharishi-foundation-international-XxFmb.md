@@ -13,6 +13,7 @@ companyWebsite: "https://mfi.bamboohr.com/jobs/"
 summary: "To apply as a backend & devops developer at Maharishi Foundation International, you preferably need to have 3-5 years of testing and deploying code in a large scale production environment."
 summaryBackup: "To apply as a backend & devops developer at Maharishi Foundation International, you preferably need to have some knowledge of: #marketing, #ui/ux, #management."
 featured: 20
+archived: "true"
 ---
 
 ## About Us

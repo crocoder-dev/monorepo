@@ -13,6 +13,7 @@ companyWebsite: "https://auth0.com/"
 summary: "If you have 5+ years of professional software-development experience, consider applying to Auth0's job post for a new senior software engineer."
 summaryBackup: "Excited about #aws, #devsec, #ui/ux? Check out this job post!"
 featured: 16
+archived: "true"
 ---
 
 Auth0 is a unicorn that just closed a $120M Series F round of funding, with total capital raised to date of $330M and valuation of nearly $2B. We are growing rapidly and looking for exceptional new team members to add to our exceptional talent pool - and who will help take us to the next level of success. One team, one score. 

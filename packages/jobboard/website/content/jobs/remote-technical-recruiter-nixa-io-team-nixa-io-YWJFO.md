@@ -13,6 +13,7 @@ companyWebsite: "http://www.nixa.io/"
 summary: "Nixa.io is searching for a remote technical recruiter that has 0-4 years of professional experience."
 summaryBackup: "Love #marketing, #content, #management? Check out this job post!"
 featured: 1
+archived: "true"
 ---
 
 ## Description

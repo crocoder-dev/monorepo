@@ -13,6 +13,7 @@ companyWebsite: "https://omnipresent.com/"
 summary: "Omnipresent intends to hire a new account executive. If you have 2 or 3 years experience as Account Executive, or been in a similar sales/customer service role, consider applying."
 summaryBackup: "Love #sales, #marketing, #management? Check out this job post!"
 featured: 20
+archived: "true"
 ---
 
 ## Description

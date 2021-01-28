@@ -13,6 +13,7 @@ companyWebsite: "https://www.rebelmouse.com/"
 summary: "Interested in new opportunities and have 3+ years of relevant experience? RebelMouse, Inc. has a job opening for a senior python engineer."
 summaryBackup: "RebelMouse, Inc. is looking for a senior python engineer that has experience in: #python, #operations, #wordpress."
 featured: 20
+archived: "true"
 ---
 
 ## Job description
