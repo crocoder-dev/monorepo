@@ -17,15 +17,15 @@ featured: 20
 
 ## Job description
 
-## Looking for a paid internship in Amsterdam, Netherlands? Join our team as a marketing intern!
+**ooking for a paid internship in Amsterdam, Netherlands? Join our team as a marketing intern!**
 
-## Get hands-on B2B and community marketing experience at a fast-growing start-up.
+**Get hands-on B2B and community marketing experience at a fast-growing start-up.**
 
 Headquartered in the Netherlands and with offices in UK and Spain, Riverflex is a start-up on a mission to help organisations and people harness the true power of open talent ecosystem and through our Platform, Consulting and Foundry services. For more information and details about us, check out our website [https://www.riverflex.com](https://www.riverflex.com/%22%20/).
 
 As a marketing intern you will be working with a young, ambitious team, playing a key role in our brand and digital marketing strategies. You will use your communication skills to support the marketing team in creating powerful content and engaging copy across multiple channels such as social media, online campaigns, email marketing, video marketing, blog articles.
 
-## What will you get?
+**What will you get?**
 
 *   Remote position following CET time zone working hours
 *   Be part of a fast-growing start-up with opportunities to develop all-round marketing skills and industry experience
@@ -36,7 +36,7 @@ As a marketing intern you will be working with a young, ambitious team, playing 
 
 ## Job requirements
 
-## What you need to have?
+**What you need to have?**
 
 *   Enthusiastic about marketing, content creation and start-up life
 *   Strong interest in technology, innovation and curiosity about B2B industry
@@ -49,7 +49,7 @@ As a marketing intern you will be working with a young, ambitious team, playing 
 *   Available from February onwards for 3-6 months, fulltime
 *   Eligible to work in the Netherlands / EU citizen
 
-## What you need to know about us?
+**What you need to know about us?**
 
 *   We pursue with purpose – We 'are looking for the right question before we get to the answer. We like to think big and take a stand in ways that create impact and long-term value for our team, our clients, and our consultants. ​
 *   We choose who we work with– It’s true, we are selective. We like to collaborate with top-quality professionals who have deep expertise and share our 'can-do' Riverflex attitude. ​
@@ -63,6 +63,6 @@ Get in touch with hacer.akgun@riverflex.com for any questions and send us:
 *   Recent examples of your copywriting skills and any other work you would like to showcase
 *   Your earliest starting date
 
-## Interested?
+**Interested?**
 
 Great to hear you’d like to join us! We look forward to receiving your application!
