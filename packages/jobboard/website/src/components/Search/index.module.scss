@@ -8,7 +8,7 @@ $tabletLandscapeLimit: 800;
 
 .section {
 
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 
   @include mediaQuery("<=400px") {
     padding-left: 10px;
@@ -89,6 +89,7 @@ $tabletLandscapeLimit: 800;
     display: flex;
     flex-direction: row;
     margin-top: 20px;
+    margin-bottom: 10px;
     max-height: 90px;
 
     &__image {
@@ -109,7 +110,7 @@ $tabletLandscapeLimit: 800;
   }
 
   &__button {
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 0px;
