@@ -103,7 +103,7 @@
   
   .card {
     
-    display: flex;
+    display: grid;
 
     & > :first-child {
       padding: 20px 30px;
