@@ -142,7 +142,7 @@
   }
 
   .post_link {
-    grid-column: 3 / span 1;
+    grid-column: 3 / span 2;
     grid-row: 1 / span 1;
     margin-top: 0;
     @include getFluidFontSize(16, 20);
