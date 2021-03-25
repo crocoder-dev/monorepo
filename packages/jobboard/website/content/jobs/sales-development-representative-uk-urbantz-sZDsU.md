@@ -1,18 +1,18 @@
 ---
-title: "Sales Development Representative UK"
+title: "Sales Development Representative"
 location: "United Kingdom - Remote OK"
 host: "https://urbantz.breezy.hr/"
 companyName: "urbantz"
 url: "https://urbantz.breezy.hr/p/b3f1ed49290f-sales-development-representative-uk"
 applyUrl: "https://urbantz.breezy.hr/p/b3f1ed49290f-sales-development-representative-uk/apply"
 timestamp: 1616630400000
-hashtags: "#sales,#css,#marketing,#windows,#management,#operations,#English"
+hashtags: "#sales,#marketing,#operations,#windows,#management,#css,#English"
 jobType: "other"
 logoUrl: "https://jobboard-logos-bucket.s3.eu-central-1.amazonaws.com/urbantz"
 companyWebsite: "https://urbantz.com/"
-summary: "Interested in new opportunities and have 2-3+ years of prospecting experience , and a a track record of performance in a previous similar role? Urbantz has a job opening for a sales development representative uk."
+summary: "Interested in new opportunities and have at least one experience in SaaS or software selling? Urbantz has a job opening for a Sales Development Representative."
 summaryBackup: "To apply as a sales development representative uk at Urbantz, you preferably need to have some knowledge of: #sales, #css, #marketing."
-featured: 20
+featured: 4
 ---
 
 __Do you want to work to make an impact?__
