@@ -1,8 +1,8 @@
 ---
-title: "Super organiser | directie support"
+title: "Super Organiser"
 location: "Remote job"
 host: "https://startupzcom.recruitee.com/"
-companyName: "Startupz.com"
+companyName: "Startupz"
 url: "https://startupzcom.recruitee.com/o/super-organiser-directie-support"
 applyUrl: "https://startupzcom.recruitee.com/o/super-organiser-directie-support/c/new"
 timestamp: 1618790400000
@@ -10,7 +10,7 @@ hashtags: "#ui/ux,#operations,#management,#sales,#Dutch,#translation,#office,#En
 jobType: "other"
 logoUrl: "https://jobboard-logos-bucket.s3.eu-central-1.amazonaws.com/startupz-com"
 companyWebsite: "http://www.startupz.com/"
-summary: "Startupz.com wishes to hire a new super organiser | directie support. If you have you may have experience in working in an international environment, consider applying."
+summary: "Startupz wishes to hire a new Super Organiser. If you have you may have experience in working in an international environment, consider applying."
 summaryBackup: "To apply as a super organiser | directie support at Startupz.com, you preferably need to have some knowledge of: #ui/ux, #operations, #management."
 featured: 20
 ---
@@ -27,11 +27,15 @@ We will be accepting applications for the next two months and we fill the open p
 
 ## Super organiser
 
-As our super organiseryou will be assigned to work on diverse and advanced administrative tasks to support the sales and management team. You’ll work in a fast-paced, and ever-changing environment where you can really add value. Within our dynamic environment there's always a lot of stuff ongoing where you can jump in!You will be responsible for all the administrative activities and you will bring your passion for organising to handle it all.These are some of the aspects you’ll be working on:- Printing and scanning of documents (e.g. invoices)- Translator withdrawal pay-outs
+As our super organiser you will be assigned to work on diverse and advanced administrative tasks to support the sales and management team. You’ll work in a fast-paced, and ever-changing environment where you can really add value. Within our dynamic environment there's always a lot of stuff ongoing where you can jump in! You will be responsible for all the administrative activities and you will bring your passion for organising to handle it all. 
+
+These are some of the aspects you’ll be working on:- Printing and scanning of documents (e.g. invoices)- Translator withdrawal pay-outs
 
 **About Startupz**
 
-Startupz is a startup studio that develops and launches new companies. We develop innovative products, systems and services,   and then build teams to scale them into companies.Some of the things we do: we work to eliminate language barriers at Tolq.com, protect your privacy at LegalSite.co and make the internet safer at Codekeeper.co. We are remote-first and local in The Hague. We have an open ‘startup-like’ mentality and work inside a larger group of hi-tech web companies. _What else can you expect from us?_
+Startupz is a startup studio that develops and launches new companies. We develop innovative products, systems and services, and then build teams to scale them into companies.Some of the things we do: we work to eliminate language barriers at Tolq.com, protect your privacy at LegalSite.co and make the internet safer at Codekeeper.co. We are remote-first and local in The Hague. We have an open ‘startup-like’ mentality and work inside a larger group of hi-tech web companies. 
+
+_What else can you expect from us?_
 
 *   Enthusiastic and fun colleagues
 *   Startup mentality and possibilities
