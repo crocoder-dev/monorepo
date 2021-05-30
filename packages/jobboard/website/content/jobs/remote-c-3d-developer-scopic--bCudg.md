@@ -6,8 +6,8 @@ companyName: "Scopic"
 url: "https://scopicsoftware.recruiterbox.com/jobs/fk0un4o/"
 applyUrl: "https://scopicsoftware.recruiterbox.com/jobs/fk0un4o/?apply=true"
 timestamp: 1622160000000
-hashtags: "#ui/ux,#English"
-jobType: "other"
+hashtags: "#cplusplus"
+jobType: "software
 logoUrl: "https://jobboard-logos-bucket.s3.eu-central-1.amazonaws.com/scopic"
 companyWebsite: "https://scopicsoftware.com/"
 summary: "To apply as a remote c++ at Scopic, you preferably need to have 3+ years of experience in commercial software development."
