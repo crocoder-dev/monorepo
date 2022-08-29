@@ -1,0 +1,111 @@
+@import "../../styles/main.module.scss";
+
+/**
+  Basic styles all CroCoder buttons should have
+*/
+.button {
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: "Rubik", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 25px 14px 25px;
+
+  &:disabled,
+  &:disabled:hover {
+    cursor: not-allowed;
+    background-color: map-get($contrasts, "gray_12");
+    color: $gray_12;
+    border-color: map-get($contrasts, "gray_12");
+  }
+}
+
+/**
+  Filled buttons go by certain rules that
+  can be easily applied via this mixin.
+**/
+@mixin generateFilledButtonStyle($mainColor, $lightColor, $contrast) {
+  background-color: $mainColor;
+  border-color: $mainColor;
+  color: $contrast;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: $lightColor;
+    border-color: $lightColor;
+  }
+
+  &:not(:disabled) {
+    &:focus {
+      outline: none;
+      background-color: $lightColor;
+      border-color: $contrast;
+    }
+  }
+
+}
+
+// Primary variant
+.primary {
+  @include generateFilledButtonStyle($primary, $primary_light, $contrast);
+}
+
+// Secondary variant
+.secondary {
+  @include generateFilledButtonStyle($secondary, $secondary_light, $contrast);
+}
+
+/**
+  Sneaky variant - for usage with certain UI elements which
+  need to support clickability.
+*/
+.sneaky {
+  background-color: transparent;
+  border-color: transparent;
+  font-size: inherit;
+  font-family: inherit;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    border-color: transparent;
+    outline: none;
+  }
+}
+
+// Pill variant
+.pill {
+  background-color: transparent;
+  border-radius: 50px;
+  border: 1px solid $contrast;
+  outline: none;
+  position: relative;
+  color: $contrast;
+
+  &:focus {
+    padding: 15px 24px 13px 24px;
+    border: 2px solid $green_2;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
+  }
+  
+  &:hover {
+    &:not(:disabled) {
+      box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
+    }
+    &:disabled {
+      background-color: transparent;
+      color: $gray_12;
+      border-color: map-get($contrasts, "gray_12");
+    }
+  }
+
+  &:disabled {
+    background-color: transparent;
+    color: $gray_12;
+    border-color: map-get($contrasts, "gray_12");
+  }
+}

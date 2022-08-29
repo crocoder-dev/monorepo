@@ -1,0 +1,84 @@
+@import '../../styles/main.module.scss';
+
+$twoRowBreakLine: "<=tabletPortrait";
+
+.section {
+  width: 100%;
+  padding-top: 0;
+}
+
+
+.image {
+  flex-basis: 35%;
+  @include mediaQuery(#{$twoRowBreakLine}) {
+    flex-basis: 70%;
+  }
+  @include mediaQuery("<=450px") {
+    flex-basis: 225px;
+  }
+}
+
+.flex {
+  // Fallback for content layout shift - happens because of styled components
+  flex-wrap: nowrap;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  @include mediaQuery(#{$twoRowBreakLine}) {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+}
+
+.text {
+  flex-basis: 65%;
+  padding-left: 7%;
+  box-sizing: border-box;
+
+  @include mediaQuery(#{$twoRowBreakLine}) {
+    margin-top: 30px;
+    padding-left: 0;
+    flex-basis: 100%;
+  }
+
+  b {
+    color: #607A1A; // #647E1B;//not our color;
+    font-weight: 700;
+  }
+  em {
+    font-style: normal;
+    font-weight: 700;
+  }
+}
+
+.title {
+  margin: 0;
+  line-height: 147%;
+  text-transform: capitalize;
+  @include mediaQuery(#{$twoRowBreakLine}) {
+    text-align: center;
+  }
+}
+
+.button {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  margin-top: 25px;
+
+  min-width: 200px;
+
+  @include mediaQuery("<=tabletLandscape") {
+    width: 100%;
+  }
+}
+
+.paragraph {
+  line-height: 180%;
+
+  @include mediaQuery("<=tabletLandscape") {
+    text-align: justify;
+  }
+}
+

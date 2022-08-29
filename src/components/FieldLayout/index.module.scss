@@ -1,0 +1,200 @@
+@import "../../styles/main.module.scss";
+
+$input__padding: 0;
+$padding_bottom: 7px;
+
+$active__color: $gray_1;
+$inactive__color: $gray_2;
+
+.wrapper {
+  font-family: "Rubik", sans-serif;
+  font-weight: lighter;
+  min-height: calc(3em + #{$padding_bottom * 2});
+  color: $active__color;
+  box-sizing: border-box;
+  display: inline-block;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  min-width: 225px;
+  z-index: 0;
+  background-color: $white;
+  position: relative;
+
+  @include mediaQuery("<=360px") {
+    min-width: 190px;
+  }
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: 0; /* Firefox */
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    opacity: 0;
+  }
+
+  ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    opacity: 0;
+  }
+}
+
+.hideLabel {
+  padding-top: 0;
+  min-height: calc(2em + #{$padding_bottom * 2});
+}
+
+// By default, we expect you to style the child
+// so the calculation matches
+.style__child {
+  & > :first-child {
+    // important to have 7px bottom padding
+    // for label display
+    border-bottom: 0 !important;
+    border-top: 0 !important;
+    line-height: 1em !important;
+    padding-bottom: $padding_bottom !important;
+    padding-top: $padding_bottom !important;
+    display: inline-block;
+    background: transparent;
+    z-index:1;
+  }
+}
+
+.includeBorder {
+  border-bottom: 1px solid $inactive__color;
+  &:after {
+    background-color: $green_2;
+    bottom: -1px;
+    content: "";
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    visibility: hidden;
+    transition: left 200ms cubic-bezier(0, 0, 0.2, 1) 75ms,
+      width 200ms cubic-bezier(0, 0, 0.2, 1) 75ms;
+    width: 0%;
+    z-index: 1;
+  }
+
+  &:focus,
+  &:focus-within, &:focus:hover, &:focus-within:focus {
+    border-bottom-color: $green_2;
+
+    &:after {
+      left: 0;
+      visibility: visible;
+      width: 100%;
+    }
+  }
+}
+
+.field {
+  box-sizing: border-box;
+  color: $active__color;
+  font-family: inherit;
+  font-size: 1em;
+  line-height: 1.8;
+  min-height: calc(1em + #{$padding_bottom * 2});
+  padding: $input__padding;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.label {
+  color: $inactive__color;
+  background-color: white;
+  display: block;
+  height: 1em;
+  line-height: 1em;
+  left: 0;
+  bottom:0;
+  position: absolute;
+  text-transform: capitalize;
+  transform: translate(0em, calc(-1em - #{$padding_bottom}));
+  transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    height 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    font-size 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    bottom 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    opacity 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  z-index: 0;
+}
+
+.wrapper:hover {
+  .label {
+    opacity: 1;
+  }
+  .field {
+    border-bottom-color: $active__color;
+  }
+}
+
+.wrapper:focus-within, .wrapper:focus {
+  .label:not(.labelHidden) {
+    color: $green_2;
+  }
+}
+
+.wrapper:focus,
+.wrapper:focus-within, .wrapper:not(.empty) {
+  .labelHidden {
+    opacity: 0;
+  }
+  .label:not(.labelHidden) {
+    font-size: 0.85em;
+    height: 1.17647em;
+    transform: translate(0px, 0px);
+    bottom: calc(100% - 1em - 1px);
+  }
+}
+
+
+.error {
+  .field {
+    border-bottom-color: $red_4;
+    color: $red_4;
+
+    &:focus {
+      color: $active__color;
+    }
+  }
+
+  .label {
+    color: $red_4;
+  }
+
+  &:hover {
+    .label {
+      color: $red_4;
+    }
+
+    .field {
+      border-bottom-color: $red_4;
+      color: $active__color;
+    }
+  }
+
+  &:focus-within {
+    .label {
+      color: $red_4;
+    }
+
+    .field:after {
+      background-color: $red_4;
+    }
+  }
+
+  .message {
+    color: $red_4;
+    display: block;
+    font-size: 0.75em;
+    overflow: hidden;
+    position: absolute;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    cursor: default;
+  }
+}

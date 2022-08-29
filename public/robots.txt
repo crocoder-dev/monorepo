@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /terms/
+Disallow: /privacy_policy/
+
+Sitemap: https://crocoder.dev/sitemap.xml

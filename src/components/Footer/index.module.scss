@@ -1,0 +1,192 @@
+@import "../../styles/main.module.scss";
+
+$limit: 720;
+
+:export {
+  limit: $limit;
+}
+
+.icon {
+  background: $white;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  margin-left: 14px;
+  text-decoration: none;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.crocoderLogo {
+  width: 225px;
+  height: 50px;
+
+  @include mediaQuery(">=0px", "<tabletPortrait") {
+    width: 200px;
+  }
+}
+
+.image {
+  cursor: pointer;
+  height: auto;
+  width: 225px;
+}
+
+.line {
+  grid-column: 1 / span 3;
+  grid-row: 2 / span 1;
+  height: 1px;
+  width: 100%;
+
+  @include mediaQuery(">#{$limit}px", "<desktop") {
+    background-color: rgba(196, 196, 196, 0.15);
+  }
+
+  @include mediaQuery("<=#{$limit}px") {
+    background-color: rgba(196, 196, 196, 0.15);
+    grid-column: 1 / span 2;
+    grid-row: 3 / span 1;
+  }
+}
+
+.copyright {
+  grid-column: 1 / span 1;
+  grid-row: 3 / span 1;
+
+  @include mediaQuery("<=#{$limit}px") {
+    grid-column: 1 / span 1;
+    grid-row: 4 / span 1;
+  }
+}
+
+.footer {
+  background-color: $gray_1;
+  color: $white;
+
+  &__grid {
+    align-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: auto auto auto;
+    justify-content: space-between;
+    margin: auto;
+    max-width: $section__content--max-width;
+    padding: 20px 50px;
+    row-gap: 10px;
+
+    @include mediaQuery(">#{$limit}px", "<desktop") {
+      column-gap: 20px;
+      padding: 20px 30px;
+      row-gap: 20px;
+    }
+
+    @include mediaQuery("<=#{$limit}px") {
+      column-gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      padding: 20px 7px;
+    }
+  }
+
+  &__logo {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    justify-self: start;
+    justify-content: space-between;
+    max-width: 225px;
+    width: 100%;
+
+    @include mediaQuery("<=#{$limit}px") {
+      grid-column: 1 / span 2;
+      justify-self: center;
+    }
+  }
+
+  &__content {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    justify-self: center;
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+
+    @include mediaQuery("<=#{$limit}px") {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /** Footer design requires custom breakpoints */
+    @include mediaQuery(">#{$limit}px", "<desktop") {
+      box-sizing: border-box;
+      grid-column: 2 / span 2;
+      justify-self: end;
+      padding-left: 20px;
+    }
+
+    @include mediaQuery("<=#{$limit}px") {
+      grid-column: 1 / span 2;
+      grid-row: 2 / span 1;
+      justify-self: center;
+      margin-bottom: 20px;
+      min-height: 90px;
+    }
+  }
+
+  &__social_media {
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+
+    > div {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @include mediaQuery(">#{$limit}px", "<desktop") {
+      grid-column: 3 / span 1;
+      grid-row: 3 / span 1;
+    }
+
+    @include mediaQuery("<=#{$limit}px") {
+      grid-column: 2 / span 1;
+      grid-row: 4 / span 1;
+    }
+  }
+}
+
+.line {
+  grid-column: 1 / span 3;
+  grid-row: 2 / span 1;
+  height: 1px;
+  width: 100%;
+
+  @include mediaQuery(">#{$limit}px", "<desktop") {
+    background-color: rgba(196, 196, 196, 0.15);
+  }
+
+  @include mediaQuery("<=#{$limit}px") {
+    background-color: rgba(196, 196, 196, 0.15);
+    grid-column: 1 / span 2;
+    grid-row: 3 / span 1;
+  }
+}
+
+.copyright {
+  color: rgba(196, 196, 196, 0.3);
+  grid-column: 1 / span 1;
+  grid-row: 3 / span 1;
+
+  @include mediaQuery("<=#{$limit}px") {
+    grid-column: 1 / span 1;
+    grid-row: 4 / span 1;
+  }
+}

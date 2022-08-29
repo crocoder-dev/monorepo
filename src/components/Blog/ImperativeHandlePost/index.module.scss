@@ -1,0 +1,6 @@
+.defaultGrid {
+  display: grid;
+  grid-template-rows: auto;
+  place-items: stretch;
+  -webkit-box-align: stretch;
+}

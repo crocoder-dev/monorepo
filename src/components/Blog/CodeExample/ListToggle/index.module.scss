@@ -1,0 +1,44 @@
+.listToggle {
+  width: 100%;
+  margin-bottom: 80px;
+}
+
+.details {
+  & summary {
+    cursor: pointer;
+    user-select: none;
+    .subtitle {
+      color: #424c6d;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      margin-top: 24px;
+    }
+  }
+
+  & summary::marker {
+    content: none;
+  }
+
+  &:not([open]) summary::before {
+    transform: rotate(-90deg);
+  }
+
+  & summary::before {
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 12px solid #424c6d;
+    content: "";
+    display: inline-block;
+    height: 0;
+    margin-bottom: 2px;
+    margin-right: 5px;
+    transition-timing-function: ease;
+    transition: 0.3s;
+    width: 0;
+  }
+}
+
+.content {
+  transition: all 0.3s ease-in;
+}

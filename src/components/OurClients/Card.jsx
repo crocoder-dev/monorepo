@@ -1,0 +1,57 @@
+import React from "react";
+import Typography from "../Typography";
+import { motion } from "framer-motion";
+import * as styles from "./index.module.scss";
+// TODO: Remove - import Image from "next/image";
+
+const item = (delay) => ({
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: delay } },
+});
+
+const Card = ({ url, imageAlt, name, client, image, description, delay }) => (
+  <motion.div
+    transition={{ duration: 0.7 }}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 1.05 }}
+    variants={item(1)}
+    className={styles.card}
+  >
+    <a
+      href={url}
+      target="_blank"
+      rel="noreferrer noopener"
+      className={styles.flex}
+    >
+      <Typography
+        color="gray_2"
+        element="h3"
+        fontSize={26}
+        fontWeight={700}
+        className={styles.customer__name}
+      >
+        {name}
+      </Typography>
+      <div className={`${styles.customer__logo} ${styles[client]}`}>
+        <div className={styles.next__img}>
+          <Image
+            loader={({ src, width, quality }) => src}
+            alt={imageAlt}
+            src={image}
+            layout="fill"
+            objectFit="contain"
+          />
+        </div>
+      </div>
+    </a>
+    <Typography
+      element="p"
+      color="gray_2"
+      fontSize={14}
+      className={styles.customer__description}
+      dangerouslySetInnerHTML={{ __html: description }}
+    />
+  </motion.div>
+);
+
+export default Card;

@@ -1,0 +1,257 @@
+import blogHeader from "../../content/images/blogs/how-to-properly-showcase-your-coding-projects.jpg";
+import Layout from "../../components/Blog/Layout";
+import ComponentLibraryTitle from "../../components/Blog/ComponentLibraryTitle";
+import QuoteCard from "../../components/Blog/QuoteCard";
+import { getTableOfContent, getRecommendedPosts } from "../../lib/blogs";
+import ContentTable from "../../components/Blog/ContentTable";
+
+export async function getStaticProps(context) {
+  const tocs = await getTableOfContent();
+  const recommendedPosts = await getRecommendedPosts(meta.id);
+  return {
+    props: { tocs, recommendedPosts },
+  };
+}
+
+export const meta = {
+  id: "best-react-component-libraries-2022",
+  title: "Best React Component Libraries 2022 (CroCoder's Pick)",
+  description:
+    "We want to invite you all to block your website traffic from Russia and Belarus to show support for the Ukrainian people. the following tutorial will help you to enable CloudFront Geographic Restrictions and block traffic.",
+  category: "AWS",
+  image: blogHeader,
+  date: 1655214677232,
+  updatedAt: 1655214677232,
+  author: "velimirujevic",
+  editor: "velimirujevic",
+  abstract:
+    "Russia invaded Ukraine on the 24th of February 2022. Belarus offers logistic support to the Russian army. This website won't be available in Russia and Belarus until the invasion stops. We don't intend to punish our readers from Russia and Belarus but to show dissatisfaction and disapproval of the political and philosophical stance of the Russian government. Our company and I are strong supporters and believers in individual liberty, free trade, and free association. In addition to being against war, we strongly oppose evil and destructive ideas that support autocracies. Make no mistake, this is not the doing of one man, but a joint effort of individuals who believe it is not you who should be deciding how to live your life. We want to invite you all to block your website traffic from Russia and Belarus to show support for the Ukrainian people. the following tutorial will help you to enable CloudFront Geographic Restrictions and block traffic.",
+};
+
+As a newcomer in the IT sphere, I spend a lot of time researching different topics relating to development. Perhaps it should not be emphasized, but understanding all of the finer workings of this field helps me in doing all of my marketing-related work obligations, i.e. content creation. While exploring the process of building web applications, I realized that there is a seemingly endless sea of open-source React component libraries to pick and choose from. Some of them built for very specific use cases, others intended strictly for web development and many of them adapted for general use. I turned to my team for guidance and taking into consideration factors that are relevant to development such as; use cases, documentation and support, I wanted us to create some sort of guide that can assist developers in pinpointing UIs that suit their various needs. These are the nine component libraries recommended by the CroCoder consultants. Let's explore which of these libraries they suggest using, which are best for specific use case scenarios and what they think about them in general.
+
+<ContentTable headings={props.tocs} id={meta.id} />
+
+<br />
+<br />
+
+<ComponentLibraryTitle id="material-ui">Material UI</ComponentLibraryTitle>
+
+When I first started reading about component libraries, Material UI came up first. The reason being that a large number of mobile and web apps actually use Material Design. Developed in 2014, Google’s MUI is a customizable component library used for building general-purpose React applications while providing a wide range of options for faster and easier web development. They offer a comprehensive suite of UI tools that help you ship new features faster by using their fully-loaded component library, or for bringing your own design systems to their production-ready components. To get a wider perspective on MUI, I consulted Marija, our Senior Web Developer and Stefan, our Junior Software developer respectively.
+
+<QuoteCard direction="right" author-color="#FF8C17" author-name="marijaduvnjak">
+  Because Material UI is developed mobile-first, all of their components are responsive and adaptable to the required
+  screen size.
+</QuoteCard>
+
+<QuoteCard direction="left" author-color="#4E25A3" author-name="stefanskoric">
+  Material UI is the largest collection of ready to use components as well as a massive global community that can
+  provide additional support if needed.
+</QuoteCard>
+
+Not only is MUI built mobile-first, but for every component that was made for web and is not suitable for mobile users with regards to UX, there is an alternative component that was developed solely for mobile UX, for example, Mobile stepper. However, their components are built with tons of animations and there is no simple way to turn them off for mobile users. This means that optimizing your apps for mobile users requires direct interventions in the code.The library is well documented, covering everything from installation, to utility implementation guides. They also offer several free as well as paid single application usage themes that sport a generous set of features. It's worth to mention that they are behind the development of Joy UI, a React component library with aesthetically pleasing designs. As for support, along with paid options, they offer plenty of free options like the Material-UI community active on StackOverflow, Spectrum and GitHub.
+
+<QuoteCard direction="right" author-color="#FF8C17" author-name="marijaduvnjak">
+  The complexity of some of Material UI's animations makes them very resource-heavy for mobile devices. It can
+  negatively influence performance, resulting in higher data usage and faster battery depletion.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#4E25A3" author-name="stefanskoric">
+  If your design system isn’t based on Material Design, it can be somewhat complicated to include MUI components to your
+  project.
+</QuoteCard>
+
+Despite the aforementioned downsides, Material UI is the most used component library and we definitely recommend it to beginners if they are after a slick design.
+
+<ComponentLibraryTitle id="ant-design">Ant Design</ComponentLibraryTitle>
+
+Ant Design or AntD was created by Ant Financial and launched in 2016 as a FinTech orientated design system. They offer a set of more than 50 components for building enterprise-level applications, supporting charts and boasting extensions for charts that use the same design system. This can significantly shorten the development process of web applications related to the field of finance and analytics. While reading about AntD, I noticed that users were commenting about how opinionated their Ant Design is and that it doesn't allow for much UI customization. Although not as in-depth, their documentation is easily understandable, providing examples along with API properties for each component on multiple languages. I asked Ivan and David about Ant Design because they had experience using the library on previous projects.
+
+<QuoteCard direction="right" author-color="#2a85e0" author-name="ivanpenga">
+  Ant Design provides a large amount of components to choose from. If utilized 'as is', it makes for a very smooth
+  experience.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#67a807" author-name="davidabram">
+  With the release of Ant Design V4, among other things, they managed to achieve great form handling.
+</QuoteCard>
+
+If your project requires filling out lots of forms, AntD has your back with loads of basic and some advanced components, for example, upload, Treeselect, Treepicker, just to name a few. Furthermore, all of those components can be incorporated to the AntD form component which has an excellent API. Ant Design might not offer loads of ready-made theme options. However, they do offer an out of the box UI solution for enterprise applications called Ant Design Pro. It comes with templates, components and corresponding design kits. They don’t offer any paid options when it comes to support, but there is a very engaged community active on GitHub, StackOverflow as well as Segmentfault. Likewise, there are loads of resources for self-learning.
+
+<QuoteCard direction="right" author-color="#2a85e0" author-name="ivanpenga">
+  AntD has a limited theme altering toolset, it’s almost impossible to alter anything outside using LESS or webpack
+  configuration.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#67a807" author-name="davidabram">
+  Not all of Ant Design's Typescript types are exposed and they don't follow strict SemVer versioning scheme. Likewise,
+  they use LESS rather than SASS a CSS Pre-processor.
+</QuoteCard>
+
+It is quite disappointing that they are still using LESS instead of SASS because SASS proved to be superior and simpler to use, hence it ended up being more widely used. Also, NPM packages that do not use SemVer can cause issues during package version updates in a project, because NPM, PNPM and YARN don't rely on semantic versioning. That can result in an introduction of a breaking change within a non-major release. In conclusion, I would recommend using AntD, AntD charts and AntD motion to anyone that has a complicated FinTech or analytics project but has no time to edit the details in their design system. You can get loads of complex, out of the box components with a good UX, but the downside is that the component design isn't as customizable.
+
+<ComponentLibraryTitle id="react-bootstrap">React-Bootstrap</ComponentLibraryTitle>
+
+Reading about React-Bootstrap had me confused, because unlike other component libraries I researched for this blog post, this one has an unconventional origin story. Basically, Bootstrap was built by Twitter in 2011, predating React by almost two years. It was initially named Twitter Blueprint and it was conceptualized as an open-source CSS framework for building mobile-first, front-end websites and applications. React-Bootstrap was born after a team of developers on GitHub rebuilt each Bootstrap component from the ground up in React. Likewise, React-Bootstrap removed the Bootstrap JavaScript and CSS, only using the Bootstrap design system. That's why there is little to no difference between their respective components when it comes to design and markup. React-Bootstrap also follows all of Bootstrap's design system changes and for every new major version of Bootstrap, a new major version of React-Bootstrap is made. A decent number of people online believe Bootstrap and React-Bootstrap are maintained by the same team, this is not the case. If by any chance you encounter an issue with React-Bootstrap, you have to make sure if that problem arose within your Bootstrap theme or the React component. Depending on where the aforementioned issue originates, you'll have to create a ticket on one of the two separate repositories, hence the confusion.
+
+<QuoteCard direction="right" author-color="#4E25A3" author-name="stefanskoric">
+  React-Bootstrap's syntax is clear and readable, encapsulating Bootstrap specs into reusable components.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#fa5d2a" author-name="antekoceic">
+  Not only does React-Bootstrap provide examples of code implementation, they also allow access to CodeSandbox examples
+  for you to experiment with before using them in your project.
+</QuoteCard>
+
+Even though they are a quite popular UI, I noticed that designers have a love-hate relationship with Bootstrap. That's because it's easy to modify the Bootstrap design, but no matter how much you customize it, you can never remove all of the Bootstrap elements that will give it away. Although having less than 30 components and skewing towards web development, it can easily accommodate the needs of those familiar with it’s framework. Their themes are built as frameworks from ground up as an extension of Bootstrap and all of them are reviewed against a strict set of guidelines. Because of it's widespread use in web development, there are tons of both free and paid theme options to chose from. All Bootstrap themes can be used with React-Bootstrap, meaning that you can quickly achieve new designs without much effort. They don't offer any official support, however, there are loads of resources available online, along with a massive community active on StackOverflow, Reactiflux Discord and GitHub Issues.
+
+<QuoteCard direction="right" author-color="#4E25A3" author-name="stefanskoric">
+  Since React-Bootstrap implements a vanilla Bootstrap visual style, most projects end up looking the same.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#fa5d2a" author-name="antekoceic">
+  Even though React-Bootstrap provides custom styles, overriding the default styles might prove time consuming.
+</QuoteCard>
+
+The only supported way to change the design is through Bootstrap themes and if you want to expand on the given themes, you have to know how to handle Bootstrap themes. No matter how much you change up a Bootstrap theme, all of the components still end up having that "Bootstrapy" feel from 2012. It's super hard to explain it but if you ever used an app built with Bootstrap, you'll know what I mean. React-Bootstrap, like Bootstrap is very vanilla, simple to use, easy on the eyes, but also very recognizable and somewhat boring when it comes to design.
+
+<ComponentLibraryTitle id="chakra-ui">Chakra UI</ComponentLibraryTitle>
+
+Chakra UI was built by Segun Adebayo in 2019 with a design system for simplifying the process of creating more accessible web applications. Strictly following WAI-ARIA standards, they offer over 50 simple, modular and accessible components with a fresh look and feel as well. There are guides for building your own components and styling sample recipes as well as 12 utility and 2 component hooks for support.
+
+<QuoteCard direction="right" author-color="#2a85e0" author-name="ivanpenga">
+  Chakra UI offers plenty of visually impressive components with a robust documentation. There is a very good changelog
+  where you can clearly see the chronological order of any change that occurred in different versions.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#4E25A3" author-name="stefanskoric">
+  Chakra UI offers exceptionally functional components while not being tied to any design principle, thereby giving you
+  more space when it comes to customization.
+</QuoteCard>
+
+They base their theming on the System UI Theme Specification while having a default theme at the core of Chakra UI which allows for customized themes to be layered on top of it. There is also a component customization framework that uses modifier styles which alter components based on specified properties or state. Most of their components are built with Dark mode in mind and there is also a useColorMode hook provided for easier color mode change. Chakra UI’s documentation is extensive and they offer a wide range of community resources with video materials and blog posts. They also showcase different projects built with Chakra UI, while fostering a strong community on GitHub and Discord for added support.
+
+<QuoteCard direction="right" author-color="#2a85e0" author-name="ivanpenga">
+  Some of Chakra UI's props are abbreviated in a confusing way which negatively effects the readability of the code.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#4E25A3" author-name="stefanskoric">
+  Some theme customization options are not sufficiently explained in the provided Chakra UI documentation. This required
+  some source code digging in order to figure everything out.
+</QuoteCard>
+
+<ComponentLibraryTitle id="next-ui">Next UI</ComponentLibraryTitle>
+
+Even thought it’s still in Beta since 2021, Next UI is a promising new component library created by Junior Garcia and sponsored by Vercel. Their components support cross-browser server-side rendering and are not tied to any visual trends or design principles. With a focus on accessibility, they provide keyboard support with a sensible focus management and follow WAI_ARIA guidelines.
+
+<QuoteCard direction="right" author-color="#FF8C17" author-name="marijaduvnjak">
+  Next UI provides most of your run-of-the-mill components. They have a modern design and there is support for themes as
+  well. The best part is that it supports SSR and Typescript!
+</QuoteCard>
+<QuoteCard direction="left" author-color="#67a807" author-name="davidabram">
+  Next UI is completely compatible with Next.js and it’s ecosystem and it was created to support SSR.
+</QuoteCard>
+
+Their themes are easily customizable and with just a few lines of code, one can quickly apply dark mode. There’s a built-in Stitches library that allows users to customize components via CSS prop, styled function or CSS class names. They aim to improve performance by avoiding unnecessary style props at runtime. As for support, the library has an active community on Discord and GitHub.
+
+<QuoteCard direction="right" author-color="#FF8C17" author-name="marijaduvnjak">
+  As of writing, some of the more basic components are still under construction.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#67a807" author-name="davidabram">
+  Next UI is still heavily under development.
+</QuoteCard>
+
+<ComponentLibraryTitle id="headless-ui">Headless UI</ComponentLibraryTitle>
+
+Build by Tailwind Labs in 2020, Headless UI offers completely unstyled components. This means that the user is responsible for the CSS implementation and if you're in need of one of their components, you will be able to easily include it in your project. Tailwind Labs is also behind Tailwind CSS and it is used to program all of the examples that Headless UI provides. Unlike the aforementioned component libraries , Headless UI doesn't have a large amount of components, but they do offer the ones that usually require more time to implement, and the ones that it is quite hard to make fully accessible like Combobox, Dialog or Listbox for example. Each component comes with basic examples as well as directions on how to customize and style each component part, along with an extensive API for transitions and accessibility notes. Regarding support, there is a thriving community on GitHub and Discord where you can find general assistance and connect with other users.
+
+<QuoteCard direction="right" author-color="#fa5d2a" author-name="antekoceic">
+  Because Headless UI is an unstyled component library, it gives the user more freedom to customize the components to
+  match their design needs.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#2a85e0" author-name="ivanpenga">
+  Headless UI is great for users whose projects are just about finished and are in need of more complex components.
+</QuoteCard>
+
+Headless UI like other unstyled component libraries came as an answer to less customizable libraries like MUI or AntD, giving the user the ability to adapt and external component library to their own design system. Headless UI can be thought of as a collection of components that can be used to solve the complex parts of the UI/UX. If your project is in need of, for example, a Combobox, it can easily added using Headless UI. Furthermore, it's also easy to stylize as well as push to production.
+
+<QuoteCard direction="right" author-color="#fa5d2a" author-name="antekoceic">
+  Although the documentation contains basic examples on how to use the Headless UI components, it is not as interactive.
+  Something like CodeSandbox would be great.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#2a85e0" author-name="ivanpenga">
+  Headless UI seems to be incomplete, without having that many components on offer as well as missing some key ones.
+</QuoteCard>
+
+Headless UI is a project that, at the time of writing, is only two years old and the high number of components as well as robust documentation of some of the component libraries in existence has spoiled some developers. Since Headless UI is still under development, there are almost monthly minor version releases and some are bringing groundbreaking changes. This means that it can be somewhat scary using Headless UI in production and accidentally breaking it in the process. Headless UI is backed up by a corporation that created the beloved Tailwind CSS which looks really promising. If you're building an internal component library from scratch, I would suggest you check out Headless UI's Combobox and Listbox, it can save you from implementation nightmares.
+
+<ComponentLibraryTitle id="ariakit">Ariakit/Reakit</ComponentLibraryTitle>
+
+Created by Diego Haz in 2017 under the MIT License as Reakit before rebranding to Ariakit in 2019. It is a Low level component library for building accessible high level UI libraries, design systems and applications with React. Built with a focus on accessibility, they strictly follow WAI-ARIA 1.1 standards. All components come with proper attributes and keyboard interactions out of the box.
+
+<QuoteCard direction="right" author-color="#ffb818" author-name="danicapivalicaabram">
+  Ariakit offeres uncontrolled components and helper hooks which hide their underlying complex logic, combining them you
+  get a functioning component.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#fa5d2a" author-name="antekoceic">
+  Ariakit was built as an unstyled component library which allows for wider customization options.
+</QuoteCard>
+
+Ariakit's toolkit is built with composition in mind and one can easily leverage any component or hook to create something new. For example, to create a functioning Checkbox, you would need to import a Checkbox component and pass the returned value of useCheckboxState() via props. Unstyled by default, their core library components are highly customizable with each component returning a single HTML element that can accept all HTML props, including className and style. Tiny and fast, each imported component barely adds up to 3kB to your bundle size. They have an active community on GitHub for support.
+
+<QuoteCard direction="right" author-color="#ffb818" author-name="danicapivalicaabram">
+  If Ariakit's documentation is to be trusted, they are still following the ARIA 1.1 standard.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#fa5d2a" author-name="antekoceic">
+  Although Ariakit's components are documented, it feels like the documentation is missing some details and/or props.
+</QuoteCard>
+
+The available documentation online is related to Reakit (Ariakit 1.0) site, but the Rearkit package that can be downloaded on the NPM, at the time of writing this blog post hasn't been updated for eight months. However, Ariakit (Ariakit 2.0) is available on the NPM doesn't provide any documentation. That is why I heard that their documentation is lackluster from other developers that used Ariakit (Ariakit 2.0).
+
+<ComponentLibraryTitle id="radix-ui">Radix UI</ComponentLibraryTitle>
+
+A project of WorkOS released in 2020, Radix UI is an open-source UI component library for building high-quality, accessible design systems and web apps. They offer easily implementable and highly customizable unstyled components, while adhering to the WAI-ARIA design patterns. Radix UI is not your average component library, nor is it fully unstyled as Headless UI. Their Radix Primitives are designed to be adjustable to suit the user’s needs. It is a group of low-level UI components called Primitives with a focus on accessibility and customization. Therefore, Radix UI can be used as a base-layer of a custom component library.
+
+<QuoteCard direction="right" author-color="#FF8C17" author-name="marijaduvnjak">
+  Radix UI is a simple and open-source component library that focuses more on component functionality than style. Along
+  with providing useful components, there is the option of stylizing them according to our wishes.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#ffb818" author-name="danicapivalicaabram">
+  Radix UI focuses on component functionality and accessibility which is great for building something outside of a
+  specific design pattern. Experienced developers can use it to create WAI-ARIA compliant widgets relatively fast. A
+  mature, open-source codebase that is constantly maintained.
+</QuoteCard>
+
+Radix UI handles all of the difficult implementation details in relation to accessibility; ARIA role attributes as well as focus management and keyboard navigation. The nature of their open component architecture provides a granular access to each component part, allowing users to wrap them, add their own event listeners, props, or refs. When it comes to styling, the user is given complete control, with all of the components being CSS compatible. Most of the components can be implemented either as controlled or uncontrolled which allows for a smooth starting experience. Their documentation is decent and they have an active community on GitHub as well as Discord for support.
+
+<QuoteCard direction="right" author-color="#FF8C17" author-name="marijaduvnjak">
+  Unlike some other open-source design systems, Radix UI is missing some components and some of them are still being
+  implemented.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#ffb818" author-name="danicapivalicaabram">
+  Every component is exported in a single package with its own versioning forcing you to install them one at a time.
+  Radix UI has multiple parts extracted as separate components, which can be confusing to unexperienced developers.
+</QuoteCard>
+
+All of the logic behind their Primitives is written within a single file, which is why, for example, Popover, has over five hundred lines of code while all of it's functionality is written in hooks that are contained within a completely different package. It is quite challenging to understand the source code and if there is ever a need to make any changes or debug the code written using Radix UI, one needs to have an expert level of knowledge about these packages. Even though Radix UI provides a large amount of components and has relatively good documentation, developers are telling me that they are having a hard time navigating the code.
+
+<ComponentLibraryTitle id="reach-ui">Reach UI</ComponentLibraryTitle>
+
+Reach UI is a project of React Training workshops, private training and online courses. Released in 2019, they offer 19 components for an accessible foundation of your React-based design systems. While other component libraries build an API for styling and control of their components, Reach UI claims that styling their components feels similar to styling any native element, without any additional abstractions. They don’t offer any themes, but there are some basic styles that make the components usable off-the-shelf. Those can be overridden and added upon by using stylesheets, style components, emotion, or glamor. Animation is achieved by CSS and/or composing with other React components. Their documentation seems a bit lackluster compared to other component libraries in this review. However, they have an active community on GitHub and on Spectrum for support.
+
+<QuoteCard direction="right" author-color="#ffb818" author-name="danicapivalicaabram">
+  Reach UI follows ARIA patterns and claims to have accessibility tested via VoiceOver and similar technologies which is
+  a nice feature if you’re creating an accessible basis for component libraries.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#67a807" author-name="davidabram">
+  Accessibility is one of Reach UI's main priorities and the Reach organization made it their mission to build a more
+  accessible web.
+</QuoteCard>
+
+Reach UI claoms that all of their components are tested with Safari + VoiceOver, Firefox + NVDA, and Edge + JAWS. This is quite a big deal because screenreaders help visually impaired people. Not only that, complex components like Datepickers or Multiselectors are very hard to use for visually impaired people, so it's really good if your Datepicker reads out the selected date in it's entirety, instead of just reading out the number.
+
+<QuoteCard direction="right" author-color="#ffb818" author-name="danicapivalicaabram">
+  As of writing, React v18 has brought about many changes, requiring developers to alter a large amount of code to make
+  their components compatible.
+</QuoteCard>
+<QuoteCard direction="left" author-color="#67a807" author-name="davidabram">
+  Reach UI's codebase is composed in a strange way, making every component a standalone package and containing all of
+  the business logic within a single file.
+</QuoteCard>
+
+React v18 has brought new hooks like react.Suspense, but also started requiring the use of strict more. Unfortunately, strict mode brings more rerenders in the development circles and that can break some of the hooks used in Reach UI. As of writing this blog post, Reach UI is not compatible with React v18, but there is this issue discussion on GitHub where you can follow all of the developments. Similarly to Radix UI, all of the logic of each component is written in a single file and is treated a standalone package. This can make it hard for unexperienced developers to understand the source code. Even though every component is a standalone package, all of the components are released simultaneously and share the same version. This goes against the rules of SemVer because the packages will be published with a new version even though some components might not have been altered after the previous version.
+
+export default ({ children, recommendedPosts }) => <Layout meta={meta} recommendedPosts={recommendedPosts}>{children}</Layout>;

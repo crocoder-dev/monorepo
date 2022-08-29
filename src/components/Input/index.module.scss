@@ -1,0 +1,13 @@
+@import "../../styles/main.module.scss";
+
+$input__padding: 6px 0 7px;
+
+.input {
+  border: none;
+  min-width: 225px;
+
+  &:focus {
+    outline: none;
+  }
+
+}

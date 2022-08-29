@@ -1,0 +1,25 @@
+{
+  "copyrightNotice": "Copyright © CroCoder, Inc. All rights reserved",
+  "socialMedia": [
+    {
+      "icon": "linkedin1",
+      "href": "https://www.linkedin.com/company/crocoderdev",
+      "ariaLabel": "Go to CroCoder Linked In page"
+    },
+    {
+      "icon": "youtube",
+      "href": "https://www.youtube.com/channel/UCWU6cnq4hp4LnunPhP-sAqA",
+      "ariaLabel": "Go to CroCoder YouTube page"
+    }
+  ],
+  "home": {
+    "ariaLabel": "Go to Home",
+    "text": "Home"
+  },
+  "terms": {
+    "text": "Terms of use"
+  },
+  "privacy": {
+    "text": "Privacy policy"
+  }
+}
