@@ -1,4 +1,4 @@
-import classnames from "classnames";
+//TODO: Implement clsx - import classnames from "classnames";
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import * as styles from "./index.module.scss";
 
@@ -107,7 +107,14 @@ const TextArea = ({
         return { resize: manualResize };
       });
     },
-    [heightStyle.previousHeight, lineHeight, minRows, maxRows, fluidHeight, manualResize]
+    [
+      heightStyle.previousHeight,
+      lineHeight,
+      minRows,
+      maxRows,
+      fluidHeight,
+      manualResize,
+    ]
   );
 
   useEffect(() => {
@@ -148,7 +155,10 @@ const TextArea = ({
         placeholder={label}
         maxLength={maximumCharachtersLength}
         className={styles.textarea}
-        style={{height: heightStyle.height, lineHeight: heightStyle.lineHeight}}
+        style={{
+          height: heightStyle.height,
+          lineHeight: heightStyle.lineHeight,
+        }}
         testid={testId}
       />
       <div className={styles.textarea__messages}>

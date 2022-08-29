@@ -1,5 +1,5 @@
 import React from "react";
-import classnames from "classnames";
+//TODO: Implement clsx -  from "classnames";
 import styles from "./index.module.scss";
 
 const Button = ({
@@ -10,7 +10,7 @@ const Button = ({
   onClick,
   title,
   style,
-  variant = 'primary',
+  variant = "primary",
   ...other
 }) => (
   <button

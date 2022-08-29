@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import classnames from "classnames";
+//TODO: Implement clsx - import classnames from "classnames";
 import Button from "../Button";
 import styles from "./index.module.scss";
 import useDevice from "../../hooks/useDevice";

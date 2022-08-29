@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
 import Section from "../../Layout/Section";
-import classnames from "classnames";
+//TODO: Implement clsx - import classnames from "classnames";
 import authorsJSON from "../../../content/authors/authors.json";
 // TODO: Remove - import Image from "next/image";
 
