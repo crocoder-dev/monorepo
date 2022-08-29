@@ -1,0 +1,27 @@
+@import "../../../styles/main.module.scss";
+
+.whiteBackground {
+  background-color: $white;
+
+  div {
+    width: auto !important;
+  }
+}
+
+.green {
+  color: $green_4;
+  font-weight: 600;
+}
+
+.wrapper {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  @include mediaQuery("<=tabletPortrait") {
+    padding-top: 10px;
+    padding-bottom: 0px;
+  }
+  .title {
+    margin: 0;
+    line-height: 1.3;
+  }
+}

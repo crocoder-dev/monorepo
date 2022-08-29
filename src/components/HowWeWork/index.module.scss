@@ -1,0 +1,83 @@
+@import '../../styles/main.module.scss';
+
+.flex {
+  display: flex;
+  align-items: center !important;
+  margin-bottom: 25px;
+  @include mediaQuery("<=tabletPortrait") {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  &__text {
+    flex-basis: 73%;
+    padding-right: 7%;
+    box-sizing: border-box;
+
+    @include mediaQuery(">tabletPortrait", "<=tabletLandscape") {
+      flex-basis: 63%;
+    }
+
+    @include mediaQuery("<=tabletPortrait") {
+      padding-left: 0;
+      flex-basis: 100%;
+      order: 1;
+      padding-right: 0;
+    }
+  }
+
+  &__description {
+    line-height: 180%;
+  }
+
+  &__image {
+    flex-basis: 25%;
+    @include mediaQuery(">tabletPortrait", "<=tabletLandscape") {
+      flex-basis: 35%;
+    }
+    @include mediaQuery("<=tabletPortrait") {
+      flex-basis: 100%;
+      max-width: 300px;
+    }
+  }
+
+  &:nth-child(2) {
+    .flex__text {
+      order: 1;
+      padding-left: 7%;
+      padding-right: 0;
+
+      @include mediaQuery("<=tabletPortrait") {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+  max-width: 1300px;
+  width: 90%;
+  position: relative;
+  top: -80px;
+
+  align-items: stretch;
+
+  @include mediaQuery(">800px", "<=desktop") {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  @include mediaQuery("<=800px") {
+    flex-direction: column;
+    max-width: 400px;
+  }
+
+  @include mediaQuery("<mobile") {
+    max-width: 100vw;
+  }
+}

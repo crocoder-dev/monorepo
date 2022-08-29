@@ -1,0 +1,76 @@
+@import "../../../styles/main.module.scss";
+
+.libraryTitleWrapper {
+  border-bottom: 1.5px solid $gray_4;
+  padding-bottom: 16px;
+  padding-top: 74px;
+  margin-bottom: 28px;
+  .libraryLogo {
+    display: grid;
+    align-items: center;
+    margin: 0 auto;
+    width: 70px;
+    height: 74px;
+  }
+  .libraryTitle {
+    margin: 12px 0 0;
+    border: none;
+    padding-bottom: 0;
+    padding-top: 0;
+    align-self: center;
+    justify-self: start;
+    text-align: center;
+  }
+  .libraryAltTitle {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin: 12px auto 0;
+    color: $gray_2;
+    text-align: center;
+    width: 80%;
+  }
+}
+@include mediaQuery(">=360px", "<=tabletPortrait") {
+  .libraryTitleWrapper {
+    .libraryAltTitle {
+      width: 60%;
+    }
+  }
+}
+@include mediaQuery(">=tabletPortrait") {
+  .libraryTitleWrapper {
+    display: grid;
+    grid-template-columns: 80px auto;
+    grid-template-rows: 42px 42px;
+    padding-bottom: 10px;
+    .libraryTitle,
+    .libraryAltTitle {
+      width: 100%;
+      text-align: left;
+      margin-left: 26px;
+    }
+
+    .libraryLogo {
+      width: 100%;
+      height: 100%;
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+    .libraryTitle {
+      margin-top: 18px;
+    }
+    .libraryAltTitle {
+      grid-column-start: 2;
+    }
+  }
+}
+@include mediaQuery(">=1024px") {
+  .libraryTitleWrapper {
+    grid-template-columns: 100px auto;
+    grid-template-rows: 57px 57px;
+  }
+}

@@ -1,0 +1,240 @@
+import blogHeader from "../../content/images/blogs/dom.png";
+import Row from "../../components/Blog/CodeExample/Row";
+import Column from "../../components/Blog/CodeExample/Column";
+import ListToggle from "../../components/Blog/CodeExample/ListToggle";
+import Demo from "../../components/Blog/CodeExample/Demo";
+import Layout from "../../components/Blog/Layout";
+import NonHSubtitle from "../../components/Blog/NonHSubtitle";
+import { getTableOfContent, getRecommendedPosts } from "../../lib/blogs";
+import ContentTable from "../../components/Blog/ContentTable";
+
+export async function getStaticProps(context) {
+  const tocs = await getTableOfContent();
+  const recommendedPosts = await getRecommendedPosts(meta.id);
+  return {
+    props: { tocs, recommendedPosts },
+  };
+}
+
+export const meta = {
+  id: "the-dom-exercises",
+  title: "The DOM - Code Exercises",
+  description:
+    "The DOM or the Document Object Model of the page is created after the web page is loaded. Learn some DOM manuipulation with these exercises.",
+  category: "Learn JavaScript",
+  image: blogHeader,
+  date: 1619463600000,
+  updatedAt: 1619463600000,
+  author: "davidabram",
+  editor: "velimirujevic",
+  abstract:
+    "It's really hard to test your programming knowledge after you have completed a tutorial or a lecture. We have prepared some exercises to help out beginner devs to solidify their understanding of the DOM. Every exercise has a brief description of the problem, starting code, links to relevant MDN docs, and expected results. Try to solve the problems without taking a peek at the solution.",
+};
+
+It's really hard to test your programming knowledge after you have completed a tutorial or a lecture. We have prepared some exercises to help out beginner devs to solidify their understanding of **the DOM**. Every exercise has a brief description of the problem, starting code, links to relevant MDN docs, and expected results. Try to solve the problems without taking a peek at the solution.
+
+If you need some additional help, you can check out our [The DOM video](https://youtu.be/TWV2qERCPG4) from the **#lockdown learning** series or contact the author of the article directly.
+
+<br />
+<hr />
+<br />
+
+The DOM or the Document Object Model of the page is created after the web page is loaded. It's constructed as a tree of objects, and with it, JavaScript can access and change all the elements of an HTML document.
+
+<br />
+<br />
+
+<ContentTable headings={props.tocs} id={meta.id} title="Exercises" />
+
+<br />
+<br />
+
+## Fruit list
+
+You are given some names of different fruit and an unordered list html element; add a list item for each to the unordered list.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [Document.querySelector()](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+- [Document.createElement()](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+- [Node.appendChild()](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
+- [Array.prototype.forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+
+<Row>
+
+  <Column>
+
+```html
+<ul></ul>
+```
+
+```javascript
+const fruitList = ["apple", "banana", "tomato"];
+```
+
+  </Column>
+
+  <Column>
+
+<Demo>
+  <ul>
+    <li>apple</li>
+    <li>banana</li>
+    <li>tomato</li>
+  </ul>
+</Demo>
+
+  </Column>
+
+</Row>
+
+<ListToggle title="Solution">
+
+```javascript
+const fruitList = ["apple", "banana", "tomato"];
+
+const ulElement = document.querySelector("ul");
+
+fruitList.forEach((fruit) => {
+  const itemElement = document.createElement("li");
+  itemElement.textContent = fruit;
+  ulElement.appendChild(itemElement);
+});
+```
+
+</ListToggle>
+
+## CroCoder logo
+
+Add the CroCoder logo (image element) as a child element to the existing div element.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [Document.querySelector()](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+- [Document.createElement()](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+- [Node.appendChild()](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
+
+<Row>
+
+  <Column>
+
+```html
+<div></div>
+```
+
+```javascript
+const imageSrc = "https://crocoder.dev/icon.png";
+```
+
+  </Column>
+
+  <Column>
+
+<Demo>
+  <div>
+    <img
+      style={{ height: "30%" }}
+      src="https://crocoder.dev/icon.png"
+      alt="Crocoder crocodile"
+    />
+  </div>
+</Demo>
+
+  </Column>
+
+</Row>
+
+<ListToggle title="Solution">
+
+```javascript
+const imageSrc = "https://crocoder.dev/icon.png";
+
+const divElement = document.querySelector("div");
+
+const imgElement = document.createElement("img");
+
+imgElement.src = imageSrc;
+
+divElement.appendChild(imgElement);
+```
+
+</ListToggle>
+
+## Change first and last item from an unordered list
+
+Change the text in the first and the last list item element in every unordered list element on this page. Change it to `'first'` and `'last'`.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [Document.querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll)
+- [Pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
+- [Array.prototype.forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+
+<Row>
+
+  <Column>
+
+```html
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+<ul>
+  <li>a</li>
+  <li>b</li>
+  <li>c</li>
+</ul>
+<ul>
+  <li>👻</li>
+  <li>👽</li>
+  <li>🦁</li>
+</ul>
+```
+
+  </Column>
+
+  <Column>
+
+<Demo>
+  <div>
+    <ul>
+      <li>first</li>
+      <li>2</li>
+      <li>last</li>
+    </ul>
+    <ul>
+      <li>first</li>
+      <li>b</li>
+      <li>last</li>
+    </ul>
+    <ul>
+      <li>first</li>
+      <li>👽</li>
+      <li>last</li>
+    </ul>
+  </div>
+</Demo>
+
+  </Column>
+
+</Row>
+
+<ListToggle title="Solution">
+
+```javascript
+const firstLis = [...document.querySelectorAll("ul > li:first-child")];
+const lastLis = [...document.querySelectorAll("ul > li:last-child")];
+
+firstLis.forEach((li) => (li.textContent = "first"));
+
+lastLis.forEach((li) => (li.textContent = "last"));
+```
+
+</ListToggle>
+
+export default ({ children, recommendedPosts }) => (
+  <Layout meta={meta} recommendedPosts={recommendedPosts}>
+    {children}
+  </Layout>
+);

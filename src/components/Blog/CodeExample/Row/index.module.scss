@@ -1,0 +1,14 @@
+@import "../../../../styles/main.module.scss";
+
+.row {
+  display: flex;
+  width: 100%;
+
+  @include mediaQuery(">tabletPortrait") {
+    flex-direction: row;
+  }
+
+  @include mediaQuery("<=tabletPortrait") {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,27 @@
+.demo {
+  width: 100%;
+  border: 1px solid #c3c3c3;
+  border-radius: 0.3em;
+  position: relative;
+  margin-bottom: 30px;
+  height: 100%;
+  padding: 1em;
+
+  .icon {
+    color:black;
+    width: 8%;
+    max-width: 48px;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .content {
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,156 @@
+import Layout, { contactUsRef, scrollToContactUs } from "../components/Layout";
+import Hero from "../components/Hero";
+import OurClients from "../components/OurClients";
+import HowWeWork from "../components/HowWeWork";
+import ContactUs from "../components/ContactUs";
+import { OrganizationJSONLDHead } from "../components/JSONLD/OrganizationJSONLDHead.jsx";
+// TODO: Remove - import { useRouter } from "next/router";
+
+import heroImage from "../content/images/hero.png";
+import lynesImage from "../content/images/lynes.png";
+import misterspexImage from "../content/images/misterspex.png";
+import searchmetricsImage from "../content/images/searchmetrics.png";
+import skewImage from "../content/images/skew.png";
+import transferheroImage from "../content/images/transferhero.png";
+import technologiesImage from "../content/images/technologies.png";
+import weworkremotelyImage from "../content/images/weworkremotely.png";
+import weworkasmembersofyourteamImage from "../content/images/weworkasmembersofyourteam.png";
+import letsworktogetherImage from "../content/images/letsworktogether.png";
+
+export const meta = {
+  description:
+    "CroCoder - An Experienced Software Development Team For Projects With Big Impact.",
+};
+
+<Hero
+  title="<em><b>Cro</b>Coder</em> - An Experienced Software Development Team For Projects with <b>big impact.</b>"
+  text="Whether you are redesigning your app, improving your website performance, or need help structuring your codebase, we can help you <b>reach your goals.</b>"
+  action="contact us"
+  image={heroImage}
+  scrollToContactUs={scrollToContactUs}
+  imageAlt="CroCoder crocodile in a hoodie holding a laptop"
+/>
+<OurClients
+  scrollToContactUs={scrollToContactUs}
+  title="Our Clients"
+  text="At <em><b>Cro</b>Coder</em>, we’ve worked with various organizations, including enterprises, startups, and small businesses. We’ve built MVPs, helped projects scale up, refactored legacy code, and set up the architecture for transitioning into the world of React/Node. Is there something we can do for you?"
+  lastCard={{
+    text: "Want to be a part of our success stories?",
+    action: "Contact us",
+  }}
+  cards={[
+    {
+      title: "Skew Analytics",
+      text: "We worked on building the whole MVP and were responsible for the complete <em>back-end development</em>, <em>devOps/infrastructure setup</em>, and the <em>front-end development</em>. We implemented the whole authentication system, custom dashboard, and set up the basic component library.",
+      image: skewImage,
+      client: "skew",
+      imageAlt: "Skew Logo",
+      url: "https://skew.com/",
+    },
+    {
+      title: "Searchmetrics",
+      text: "At Searchmetrics, we participated in defining the standards and rules to ease development and reduce development time. We were responsible for the <em>front-end development</em> of new features, worked on <em>improving the developer environment</em> and the <em>front-end CI/CD processes of the shared codebase.</em>",
+      image: searchmetricsImage,
+      client: "searchmetrics",
+      imageAlt: "Searchmetrics Logo",
+      url: "https://www.searchmetrics.com/",
+    },
+    {
+      title: "Lynes",
+      text: "For Lynes, we helped start their new Croatian office, which included finding the right technical talent and providing them with initial mentoring to make sure they had the right technical as well as soft skills. Additionally, we were responsible for <em>designing and implementing a real-time video communication platform</em>.",
+      image: lynesImage,
+      client: "lynes",
+      imageAlt: "Lynes Logo",
+      url: "https://lynes.io/",
+    },
+    {
+      title: "TransferHero",
+      text: "Participating as part of a remote team, we were responsible for <em>the back end and front end of the implemented solution</em>. Additionally, we helped with the initial project <em>DevOps setup</em> and were responsible for the complete <em>user account management</em>, implementing the booking system for transfer reservations, and payment system integration via Stripe.",
+      image: transferheroImage,
+      client: "transferhero",
+      imageAlt: "TransferHero Logo",
+      url: "https://transferhero.eu/",
+    },
+    {
+      title: "Mister Spex",
+      text: "At German-based enterprise Mister Spex, we worked as <em>front-end developers to create a structured shared custom component codebase</em> that can be reused by multiple teams working with different domains. Additionally, we advised on improving the performance and structure of the implemented solution.",
+      image: misterspexImage,
+      client: "misterspex",
+      imageAlt: "Mister Spex Logo",
+      url: "https://www.misterspex.de/",
+    },
+  ]}
+/>
+<HowWeWork
+  title="How We Work"
+  content={[
+    {
+      title: "We Work Remotely",
+      text: "We are a remote-first team with extensive experience in working with distributed and diverse organizations. To efficiently collaborate, we make sure to have at least 6-working-hours overlap with your team members.",
+      image: weworkremotelyImage,
+      imageAlt: "CroCoder crocodile participating in an online video-call",
+    },
+    {
+      title: "We Work as Members of Your Team",
+      text: "We operate as equal members - using the same tools, participating in the same meetings, and using the same workflows and processes your business has set up. We are highly adaptable and able to collaborate with different departments with ease.",
+      image: weworkasmembersofyourteamImage,
+      imageAlt: "CroCoder crocodile talking to a person from his team",
+    },
+    {
+      title: "We Work With React and Node",
+      text: "We specialize in crafting high-quality software using the tools and frameworks in the React.js as well as Node.js ecosystem. We always recommend approaches that are favorable in the long run, however, we are without exception willing to compromise and are open to all kinds of different solutions.",
+      image: technologiesImage,
+      imageAlt:
+        "A group of logo images of technologies the CroCoder team works with",
+    },
+  ]}
+/>
+<ContactUs
+  contactUsRef={contactUsRef}
+  imageAlt="Group of people working on their laptops and collaborating"
+  image={letsworktogetherImage}
+  title="Let’s start working together"
+  description="We are an experienced software development team that specializes in building elegant, performant, and user-friendly web applications."
+  consent="I give consent to <em><b>Cro</b>Coder</em> to use this information to contact me."
+  form={{
+    fullname: {
+      label: "Full name",
+      requiredField: "This is a required field.",
+      minimalLength: "Your name should be at least 3 characters long.",
+    },
+    email: {
+      label: "E-mail",
+      requiredField: "This is a required field.",
+      invalidEmail: "Looks like the email you entered is not valid.",
+    },
+    projectInfo: {
+      label: "Tell us about your project",
+      requiredField: "This is a required field.",
+    },
+    submit: "Submit",
+    captcha:
+      'This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.',
+  }}
+  notification={{
+    title: "Thank you for contacting <em><b>Cro</b>Coder</em>!",
+    text: "Your form has been submitted. We will reach out to you as soon as possible!",
+    errorTitle: "Looks like something went wrong",
+    errorText:
+      "Unfortunately, something happened and we could not submit this form. Would you mind trying again?",
+  }}
+/>
+
+export default ({ children }) => {
+  const router = useRouter();
+  return (
+    <Layout
+      meta={meta}
+      title={meta.title}
+      slug={router?.pathname}
+      description={meta.description}
+    >
+      <OrganizationJSONLDHead />
+      {children}
+    </Layout>
+  );
+};

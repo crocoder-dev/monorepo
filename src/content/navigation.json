@@ -1,0 +1,12 @@
+{
+  "home": {
+    "ariaLabel": "Go to Home",
+    "text": "Home"
+  },
+  "blog": {
+    "text": "Blog"
+  },
+  "contactUs": {
+    "text": "Contact Us"
+  }
+}

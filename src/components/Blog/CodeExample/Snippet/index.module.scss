@@ -1,0 +1,12 @@
+.snippet {
+  width: 100%;
+  position: relative;
+
+  .icon {
+    width: 5%;
+    max-width: 48px;
+    position: absolute;
+    bottom: 48px;
+    right: 16px;
+  }
+}
