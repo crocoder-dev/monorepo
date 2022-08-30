@@ -1,6 +1,5 @@
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
-// TODO: Remove - import Image from "next/image";
 // TODO: Remove - import Link from "next/link";
 
 export const Post = ({ image, category, title, slug }) => {
@@ -9,12 +8,7 @@ export const Post = ({ image, category, title, slug }) => {
       <Link href={slug}>
         <a className={styles.post}>
           <figure>
-            <Image
-              loader={({ src, width }) => src}
-              src={image}
-              alt={title}
-              layout="responsive"
-            />
+            <img src={image} alt={title} />
           </figure>
           <Typography
             fontSize={12}

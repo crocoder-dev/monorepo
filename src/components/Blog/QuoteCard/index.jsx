@@ -4,7 +4,6 @@ import Typography from "../../Typography";
 import Section from "../../Layout/Section";
 //TODO: Implement clsx - import classnames from "classnames";
 import authorsJSON from "../../../content/authors/authors.json";
-// TODO: Remove - import Image from "next/image";
 
 const QuoteCard = ({
   direction,
@@ -28,13 +27,7 @@ const QuoteCard = ({
           className={styles.authorImageWrapper}
         >
           <div className={styles.nextImage}>
-            <Image
-              loader={({ src }) => src}
-              src={authorImage}
-              alt={name}
-              layout="fill"
-              objectFit="cover"
-            />
+            <img src={authorImage} alt={name} />
           </div>
         </div>
         <Typography

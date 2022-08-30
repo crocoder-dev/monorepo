@@ -2,7 +2,6 @@ import React, { createRef, useRef } from "react";
 import Navigation from "../Navigation";
 import "./index.module.scss";
 import Footer from "../Footer";
-// TODO: Remove - import Image from "next/image";
 // TODO: Remove - import Link from "next/link";
 import logoNavigation from "../../content/images/logoNavigation.png";
 // TODO: Remove - import Head from "next/head";
@@ -155,12 +154,11 @@ const Layout = ({ children, title, slug, description }) => {
         Logo={
           <Link href="/">
             <a>
-              <Image
-                loader={({ src, width, quality }) => src}
+              <img
                 src={logoNavigation}
                 alt={navigation.home.ariaLabel}
-                height={51}
-                width={225}
+                /* height={51}
+                width={225} */
               />
             </a>
           </Link>

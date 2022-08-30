@@ -2,7 +2,6 @@ import React from "react";
 import Typography from "../Typography";
 import * as styles from "./index.module.scss";
 import Section from "../Layout/Section";
-// TODO: Remove - import Image from "next/image";
 
 const HowWeWork = ({ title, content }) => (
   <Section as="section" className={styles.section}>
@@ -38,11 +37,7 @@ const HowWeWork = ({ title, content }) => (
             />
           </div>
           <div className={styles.flex__image}>
-            <Image
-              loader={({ src, width, quality }) => src}
-              src={sectionContent.image}
-              alt={sectionContent.imageAlt}
-            />
+            <img src={sectionContent.image} alt={sectionContent.imageAlt} />
           </div>
         </div>
       ))}

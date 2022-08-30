@@ -7,8 +7,6 @@ import TextArea from "../TextArea";
 import styles from "./index.module.scss";
 import Section from "../Layout/Section";
 import { motion, AnimatePresence } from "framer-motion";
-// TODO: Remove - import Image from "next/image";
-// TODO: Remove - import Script from "next/script";
 
 const waitGrecaptchaReady = () => {
   return new Promise((resolve) => {
@@ -373,20 +371,11 @@ const ContactUs = ({
             </div>
           </div>
           <div className={styles.image}>
-            <Image
-              loader={({ src, width, quality }) => src}
-              src={image}
-              alt={imageAlt}
-            />
+            <img src={image} alt={imageAlt} />
           </div>
         </div>
       </div>
     </Section>,
-    <Script
-      key="google-recaptcha"
-      id="google-recaptcha"
-      src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
-    />,
   ];
 };
 

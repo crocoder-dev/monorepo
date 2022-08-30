@@ -3,13 +3,12 @@ import * as styles from "./index.module.scss";
 import Section from "../Layout/Section";
 import Typography from "../Typography";
 import Button from "../Button";
-// TODO: Remove - import Image from "next/image";
 
 const Hero = ({ imageAlt, title, text, action, image, scrollToContactUs }) => (
   <Section as="header" className={styles.section}>
     <div className={styles.flex}>
       <div className={styles.image}>
-        <Image loader={({ src }) => src} alt={imageAlt} src={image} />
+        <img alt={imageAlt} src={image} />
       </div>
       <div className={styles.text}>
         <Typography

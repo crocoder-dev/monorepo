@@ -1,6 +1,5 @@
 import React from "react";
 import * as styles from "./index.module.scss";
-// TODO: Remove - import Image from "next/image";
 import Icon from "../Icon";
 import Typography from "../Typography";
 // TODO: Remove - import Link from "next/link";
@@ -25,12 +24,11 @@ const Footer = ({ scrollToTop }) => {
                 style={{ visibility: "visible" }}
                 aria-hidden="true"
               >
-                <Image
-                  loader={({ src, width, quality }) => src}
+                <img
                   src={logoFooter}
                   alt={footer.home.ariaLabel}
-                  width={225}
-                  height={51}
+                  /* width={225}
+                  height={51} */
                 />
               </div>
             </a>

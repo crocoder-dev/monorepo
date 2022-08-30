@@ -2,7 +2,6 @@ import React from "react";
 import Section from "../../Layout/Section";
 import Typography from "../../Typography";
 import styles from "./index.module.scss";
-// TODO: Remove -import Image from "next/image";
 
 const About = ({ author }) => {
   const authorImage = require(`../../../content/images/authors/${author.id}.png`);
@@ -13,13 +12,7 @@ const About = ({ author }) => {
           className={styles.aboutAvatarWrapper}
           style={{ backgroundColor: `${author.bgColor}` }}
         >
-          <Image
-            loader={({ src }) => src}
-            src={authorImage}
-            alt={author.name}
-            layout="fill"
-            objectFit="cover"
-          />
+          <img src={authorImage} alt={author.name} />
         </div>
         <div className={styles.aboutName}>
           <Typography

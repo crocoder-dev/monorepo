@@ -1,6 +1,5 @@
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
-// TODO: Remove -import Image from "next/image";
 // TODO: Remove -import Link from "next/link";
 import { Post } from "../Posts";
 
@@ -23,12 +22,7 @@ function MostRecent({ featuredPost = {}, posts = [] }) {
           <Link href={featuredPost.slug}>
             <a>
               <figure>
-                <Image
-                  loader={({ src, width }) => src}
-                  src={featuredPost.image}
-                  alt={featuredPost.title}
-                  layout="responsive"
-                />
+                <img src={featuredPost.image} alt={featuredPost.title} />
               </figure>
               <Typography
                 fontSize={14}
