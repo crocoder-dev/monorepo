@@ -1,16 +1,6 @@
 import blogHeader from "../../content/images/blogs/how-to-clone-object-in-javascript.png";
 import Layout from "../../components/Blog/Layout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
-import { getTableOfContent, getRecommendedPosts } from "../../lib/blogs";
-import ContentTable from "../../components/Blog/ContentTable";
-
-export async function getStaticProps(context) {
-  const tocs = await getTableOfContent();
-  const recommendedPosts = await getRecommendedPosts(meta.id);
-  return {
-    props: { tocs, recommendedPosts },
-  };
-}
 
 export const meta = {
   id: "how-to-clone-object-in-javascript",
@@ -452,8 +442,4 @@ console.log(clonedObject);
 
 - [Lodash docs \_.cloneDeep()](https://lodash.com/docs/4.17.15#cloneDeep)
 
-export default ({ children, recommendedPosts }) => (
-  <Layout meta={meta} recommendedPosts={recommendedPosts}>
-    {children}
-  </Layout>
-);
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;

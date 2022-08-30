@@ -5,16 +5,7 @@ import step3 from "../../content/images/blogs/block-russia-using-cloudfront/step
 import step4 from "../../content/images/blogs/block-russia-using-cloudfront/step4.png";
 import Layout from "../../components/Blog/Layout";
 import ResponsiveImage from "../../components/Blog/ResponsiveImage";
-import { getTableOfContent, getRecommendedPosts } from "../../lib/blogs";
 import ContentTable from "../../components/Blog/ContentTable";
-
-export async function getStaticProps(context) {
-  const tocs = await getTableOfContent();
-  const recommendedPosts = await getRecommendedPosts(meta.id);
-  return {
-    props: { tocs, recommendedPosts },
-  };
-}
 
 export const meta = {
   id: "block-russia-using-cloudfront",
@@ -46,6 +37,7 @@ If you are using any other CDN or a different provider, send us an email at [hel
 
 I will show you three ways to block traffic depending on how your CloudFront distribution is provisioned.
 
+<p>{/*TODO: Create ContentTable*/}</p>
 <ContentTable title={null} headings={props.tocs} id={meta.id} />
 
 <br />
@@ -116,8 +108,4 @@ resource "aws_cloudfront_distribution" "website_distribution" {
 
 Thank you for reading. ❤️🇺🇦
 
-export default ({ children, recommendedPosts }) => (
-  <Layout meta={meta} recommendedPosts={recommendedPosts}>
-    {children}
-  </Layout>
-);
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
