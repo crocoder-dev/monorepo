@@ -1,6 +1,5 @@
 import { MDXProvider } from "@mdx-js/react";
 import Typography from "../../Typography/Typography";
-// TODO: Remove -import Link from "next/link";
 import Layout from "../../Layout";
 import Header from "../Content/Header";
 import Body from "../Content/Body";
@@ -54,11 +53,7 @@ const components = {
     <Typography element="p" color="$gray_11" fontFamily="rubik" {...props} />
   ),
   span: (props) => <Typography {...props} />,
-  a: (props) => (
-    <Link href={props.href}>
-      <a {...props}>{props.children}</a>
-    </Link>
-  ),
+  a: (props) => <a {...props}>{props.children}</a>,
 };
 
 const formatDate = (date) => {

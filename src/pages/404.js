@@ -2,7 +2,6 @@ import Layout from "../components/Layout";
 import Typography from "../components/Typography";
 import Section from "../components/Section";
 import Button from "../components/Button";
-// TODO: Remove - import Link from "next/link";
 import notfoundJSON from "../content/notfound.json";
 // TODO: Remove - import { useRouter } from "next/router";
 
@@ -31,9 +30,9 @@ export default function Custom404() {
           {notfoundJSON.subtitle}
         </Typography>
         <Typography element="p">
-          <Link href="/">
+          <a href="/">
             <Button>{notfoundJSON.homepage}</Button>
-          </Link>
+          </a>
         </Typography>
       </Section>
     </Layout>

@@ -2,7 +2,6 @@ import React from "react";
 import Typography from "../Typography";
 import { motion } from "framer-motion";
 import * as styles from "./index.module.scss";
-// TODO: Remove - import Image from "next/image";
 
 const item = (delay) => ({
   hidden: { opacity: 0 },

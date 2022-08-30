@@ -1,4 +1,3 @@
-// TODO: Remove - import Link from "next/link";
 import Typography from "../../Typography/Typography";
 
 export default function ContentTable({ id, headings, title = "Contents" }) {
@@ -21,7 +20,7 @@ export default function ContentTable({ id, headings, title = "Contents" }) {
                 )
                 .map((heading) => (
                   <li key={heading.id}>
-                    <Link href={`#${heading.id}`}>{heading.title}</Link>
+                    <a href={`#${heading.id}`}>{heading.title}</a>
                   </li>
                 ))}
             </ul>

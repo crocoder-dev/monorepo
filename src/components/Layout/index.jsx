@@ -2,7 +2,6 @@ import React, { createRef, useRef } from "react";
 import Navigation from "../Navigation";
 import "./index.module.scss";
 import Footer from "../Footer";
-// TODO: Remove - import Link from "next/link";
 import logoNavigation from "../../content/images/logoNavigation.png";
 // TODO: Remove - import Head from "next/head";
 
@@ -152,35 +151,33 @@ const Layout = ({ children, title, slug, description }) => {
       <Navigation
         topRef={topRef}
         Logo={
-          <Link href="/">
-            <a>
-              <img
-                src={logoNavigation}
-                alt={navigation.home.ariaLabel}
-                /* height={51}
+          <a href="/">
+            <img
+              src={logoNavigation}
+              alt={navigation.home.ariaLabel}
+              /* height={51}
                 width={225} */
-              />
-            </a>
-          </Link>
+            />
+          </a>
         }
       >
         {() => (
           <>
             <li className="link">
-              <Link href="/">
-                <a className="link">{navigation.home.text}</a>
-              </Link>
+              <a href="/" className="link">
+                {navigation.home.text}
+              </a>
             </li>
 
             <li className="link">
-              <Link className="link" href="/blog">
-                <a className="link">{navigation.blog.text}</a>
-              </Link>
+              <a href="/blog" className="link">
+                {navigation.blog.text}
+              </a>
             </li>
             <li className="link">
-              <Link className="link" href="/contact">
-                <a className="link">{navigation.contactUs.text}</a>
-              </Link>
+              <a href="/contact" className="link">
+                {navigation.contactUs.text}
+              </a>
             </li>
           </>
         )}
