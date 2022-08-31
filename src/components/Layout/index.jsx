@@ -3,7 +3,6 @@ import Navigation from "../Navigation";
 import "./index.module.scss";
 import Footer from "../Footer";
 import logoNavigation from "../../content/images/logoNavigation.png";
-// TODO: Remove - import Head from "next/head";
 
 import navigation from "../../content/navigation.json";
 import siteConfig from "../../content/site-config.json";
@@ -24,7 +23,7 @@ const Layout = ({ children, title, slug, description }) => {
 
   return (
     <>
-      <Head>
+      <head>
         <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
         <link href="/manifest.json" rel="manifest" />
         <meta content={siteConfig.themeColor} name="theme-color" />
@@ -147,7 +146,7 @@ const Layout = ({ children, title, slug, description }) => {
           name="msapplication-square310x310"
         />
         {/* Blog stuff */}
-      </Head>
+      </head>
       <Navigation
         topRef={topRef}
         Logo={
