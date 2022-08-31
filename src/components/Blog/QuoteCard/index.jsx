@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
 import Section from "../../Layout/Section";
-//TODO: Implement clsx - import classnames from "classnames";
+import clsx from "clsx";
 import authorsJSON from "../../../content/authors/authors.json";
 
 const QuoteCard = ({
@@ -17,7 +17,7 @@ const QuoteCard = ({
 
   return (
     <Section
-      className={classnames(styles.quoteCard, {
+      className={clsx(styles.quoteCard, {
         [styles.leftDirection]: direction !== "right",
       })}
     >

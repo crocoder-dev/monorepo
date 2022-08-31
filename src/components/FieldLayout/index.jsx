@@ -1,5 +1,5 @@
 import React from "react";
-//TODO: Implement clsx - import classnames from "classnames";
+import clsx from "clsx";
 import * as styles from "./index.module.scss";
 
 /**
@@ -27,7 +27,7 @@ const Field = ({
     <div
       id={id}
       style={style}
-      className={classnames(className, styles.wrapper, {
+      className={clsx(className, styles.wrapper, {
         [styles.error]: error,
         [styles.empty]: empty,
         [styles.hideLabel]: hideLabel,

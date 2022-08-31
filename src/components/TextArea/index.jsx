@@ -1,4 +1,4 @@
-//TODO: Implement clsx - import classnames from "classnames";
+import clsx from "clsx";
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import * as styles from "./index.module.scss";
 
@@ -138,7 +138,7 @@ const TextArea = ({
   return (
     <div
       style={style}
-      className={classnames(className, styles.textarea__wrapper, {
+      className={clsx(className, styles.textarea__wrapper, {
         [styles.error]: error,
         [styles.empty]: empty,
       })}

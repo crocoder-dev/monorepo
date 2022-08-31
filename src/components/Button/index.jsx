@@ -1,5 +1,5 @@
 import React from "react";
-//TODO: Implement clsx -  from "classnames";
+import clsx from "clsx";
 import styles from "./index.module.scss";
 
 const Button = ({
@@ -20,7 +20,7 @@ const Button = ({
     disabled={disabled}
     type={type}
     onClick={onClick}
-    className={classnames(className, styles.button, styles[variant])}
+    className={clsx(className, styles.button, styles[variant])}
   >
     {children}
   </button>
