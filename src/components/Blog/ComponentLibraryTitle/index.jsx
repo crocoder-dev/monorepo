@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
 import librariesJSON from "../../../content/component-libraries/component-libraries.json";
-// TODO: Remove -import Image from "next/image";
+
 const ComponentLibraryTitle = ({ id, children }) => {
   const libraries = librariesJSON.componentLibraries;
   const library = libraries.find((library) => library.id === id);
@@ -12,7 +12,7 @@ const ComponentLibraryTitle = ({ id, children }) => {
   return (
     <div id={id} className={styles.libraryTitleWrapper}>
       <div className={styles.libraryLogo}>
-        <Image loader={({ src }) => src} src={libraryLogo} alt={title} />
+        <img src={libraryLogo} alt={title} />
       </div>
       <Typography className={styles.libraryTitle} element="h2">
         {children}

@@ -2,10 +2,7 @@ import React, { createRef, useRef } from "react";
 import Navigation from "../Navigation";
 import "./index.module.scss";
 import Footer from "../Footer";
-// TODO: Remove - import Image from "next/image";
-// TODO: Remove - import Link from "next/link";
 import logoNavigation from "../../content/images/logoNavigation.png";
-// TODO: Remove - import Head from "next/head";
 
 import navigation from "../../content/navigation.json";
 import siteConfig from "../../content/site-config.json";
@@ -26,7 +23,7 @@ const Layout = ({ children, title, slug, description }) => {
 
   return (
     <>
-      <Head>
+      <head>
         <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
         <link href="/manifest.json" rel="manifest" />
         <meta content={siteConfig.themeColor} name="theme-color" />
@@ -149,40 +146,37 @@ const Layout = ({ children, title, slug, description }) => {
           name="msapplication-square310x310"
         />
         {/* Blog stuff */}
-      </Head>
+      </head>
       <Navigation
         topRef={topRef}
         Logo={
-          <Link href="/">
-            <a>
-              <Image
-                loader={({ src, width, quality }) => src}
-                src={logoNavigation}
-                alt={navigation.home.ariaLabel}
-                height={51}
-                width={225}
-              />
-            </a>
-          </Link>
+          <a href="/">
+            <img
+              src={logoNavigation}
+              alt={navigation.home.ariaLabel}
+              /* height={51}
+                width={225} */
+            />
+          </a>
         }
       >
         {() => (
           <>
             <li className="link">
-              <Link href="/">
-                <a className="link">{navigation.home.text}</a>
-              </Link>
+              <a href="/" className="link">
+                {navigation.home.text}
+              </a>
             </li>
 
             <li className="link">
-              <Link className="link" href="/blog">
-                <a className="link">{navigation.blog.text}</a>
-              </Link>
+              <a href="/blog" className="link">
+                {navigation.blog.text}
+              </a>
             </li>
             <li className="link">
-              <Link className="link" href="/contact">
-                <a className="link">{navigation.contactUs.text}</a>
-              </Link>
+              <a href="/contact" className="link">
+                {navigation.contactUs.text}
+              </a>
             </li>
           </>
         )}

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-//TODO: Implement clsx - import classnames from "classnames";
+import clsx from "clsx";
 import styles from "./index.module.scss";
 
 /* const StyledSection = styled.section`
@@ -31,7 +31,7 @@ const Section = ({
       backgroundColor: backgroundColor ? `${styles[backgroundColor]}` : "",
       color: color ? `${styles[color]}` : "",
     }}
-    className={classnames(styles.section, className, {
+    className={clsx(styles.section, className, {
       [styles.removeMobile]: removeMobilePadding,
       [styles.removeVerticalPadding]: removeVerticalPadding,
     })}

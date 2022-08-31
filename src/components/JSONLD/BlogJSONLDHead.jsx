@@ -15,7 +15,6 @@
 }
 }</script>*/
 
-// TODO: Remove - import Head from "next/head";
 import siteConfig from "../../content/site-config.json";
 
 export const BlogJSONLDHead = ({
@@ -29,7 +28,7 @@ export const BlogJSONLDHead = ({
   instagramLink = siteConfig.social.instagram,
   description,
 }) => (
-  <Head>
+  <head>
     <script type="application/ld+json">
       {JSON.stringify({
         "@context": "http://schema.org",
@@ -50,5 +49,5 @@ export const BlogJSONLDHead = ({
         },
       })}
     </script>
-  </Head>
+  </head>
 );

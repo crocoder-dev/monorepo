@@ -1,13 +1,11 @@
 import { MDXProvider } from "@mdx-js/react";
 import Typography from "../../Typography/Typography";
-// TODO: Remove -import Link from "next/link";
 import Layout from "../../Layout";
 import Header from "../Content/Header";
 import Body from "../Content/Body";
 import About from "../Content/About";
 import BlogPostingJSONLDHead from "../../JSONLD/BlogPostingJSONLDHead";
 import authorsJSON from "../../../content/authors/authors.json";
-// TODO: Remove -import { useRouter } from "next/router";
 import { useRef } from "react";
 import RecommendedPosts from "../Content/RecommendedPosts";
 import styles from "./index.module.scss";
@@ -54,11 +52,7 @@ const components = {
     <Typography element="p" color="$gray_11" fontFamily="rubik" {...props} />
   ),
   span: (props) => <Typography {...props} />,
-  a: (props) => (
-    <Link href={props.href}>
-      <a {...props}>{props.children}</a>
-    </Link>
-  ),
+  a: (props) => <a {...props}>{props.children}</a>,
 };
 
 const formatDate = (date) => {
@@ -75,23 +69,27 @@ const formatDate = (date) => {
   return [year, month, day].join("-");
 };
 
-export default function BlogLayout({ meta, children, recommendedPosts }) {
+export default function BlogLayout({
+  meta,
+  children,
+  recommendedPosts,
+  pathname,
+}) {
   const author = authors.find((author) => author.id === meta.author);
   const editor = authors.find((author) => author.id === meta.editor);
 
-  const router = useRouter();
   const bodyRef = useRef(null);
 
   return (
     <MDXProvider components={components}>
       <Layout
         title={meta.title}
-        slug={router?.pathname}
+        slug={pathname}
         description={meta.description}
         stickyFooter
       >
         <BlogPostingJSONLDHead
-          articleSlug={router?.pathname}
+          articleSlug={pathname}
           articleName={meta.title}
           articleHeadline={meta.title}
           articleBody={bodyRef?.current?.textContent}

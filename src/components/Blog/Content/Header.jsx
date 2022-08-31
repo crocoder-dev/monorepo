@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
 import Section from "../../Layout/Section";
-// TODO: Remove -import Image from "next/image";
 
 const Header = ({ image, title, author, lastUpdatedAt }) => {
   const formatDate = (date) => {
@@ -21,14 +20,7 @@ const Header = ({ image, title, author, lastUpdatedAt }) => {
 
   return (
     <Section blog as="header" className={styles.header}>
-      <Image
-        loader={({ src }) => src}
-        src={image.src}
-        alt={title}
-        layout="responsive"
-        width={image.width}
-        height={image.height}
-      />
+      <img src={image.src} alt={title} />
       <Typography
         element="h1"
         fontSize={50}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-//TODO: Implement clsx - import classnames from "classnames";
+import clsx from "clsx";
 import Button from "../Button";
 import styles from "./index.module.scss";
 import useDevice from "../../hooks/useDevice";
@@ -50,7 +50,7 @@ const Navigation = ({
       ref={topRef}
       {...other}
       style={style}
-      className={classnames(className, styles.header, {
+      className={clsx(className, styles.header, {
         [styles.scroll]: scrolled,
         [styles.closed]: !opened,
         [styles.transparent]: transparentOnZeroScroll && !scrolled && !opened,
@@ -65,7 +65,7 @@ const Navigation = ({
         aria-label="Navigation"
         variant="sneaky"
         onClick={toggleMenu}
-        className={classnames(styles.header__burger, {
+        className={clsx(styles.header__burger, {
           [styles.active]: opened,
         })}
       >

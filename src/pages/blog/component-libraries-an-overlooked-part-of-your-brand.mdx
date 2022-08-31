@@ -4,16 +4,6 @@ import DesignSystemOnMac from "../../content/images/blogs/component-libraries-an
 import StrugglingWithTheUi from "../../content/images/blogs/component-libraries-an-overlooked-part-of-your-brand/struggling-with-the-ui.png";
 import WorkOrganization from "../../content/images/blogs/component-libraries-an-overlooked-part-of-your-brand/work-organization.png";
 import ResponsiveImage from "../../components/Blog/ResponsiveImage";
-import { getTableOfContent, getRecommendedPosts } from "../../lib/blogs";
-import ContentTable from "../../components/Blog/ContentTable";
-
-export async function getStaticProps(context) {
-  const tocs = await getTableOfContent();
-  const recommendedPosts = await getRecommendedPosts(meta.id);
-  return {
-    props: { tocs, recommendedPosts },
-  };
-}
 
 export const meta = {
   id: "component-libraries-an-overlooked-part-of-your-brand",
@@ -36,7 +26,7 @@ The hefty price tag which comes along with high-quality design is a justified ex
 
 Design is also widely regarded as a tool that can facilitate reaching the desired perception of a product, or, in other words, help create and maintain the ever-so-important promise of a brand.
 
-<ContentTable headings={props.tocs} id={meta.id} />
+<p>{/*TODO: Create ContentTable*/}</p>
 
 <br />
 <br />
@@ -105,8 +95,4 @@ If you are spending money on custom UI/UX, you should also be spending money in 
 
 Only by building your own component library will you possess enough flexibility to easily ensure the components used to build your product match the design system specification in a way that does not damage your brand.
 
-export default ({ children, recommendedPosts }) => (
-  <Layout meta={meta} recommendedPosts={recommendedPosts}>
-    {children}
-  </Layout>
-);
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;

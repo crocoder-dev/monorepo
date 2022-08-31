@@ -1,4 +1,3 @@
-// TODO: Remove - import Head from "next/head";
 import siteConfig from "../../content/site-config.json";
 
 export const OrganizationJSONLDHead = ({
@@ -17,7 +16,7 @@ export const OrganizationJSONLDHead = ({
   youtubeLink = siteConfig.social.youtube,
   instagramLink = siteConfig.social.instagram,
 }) => (
-  <Head>
+  <head>
     <script type="application/ld+json">
       {JSON.stringify({
         "@context": "http://schema.org/",
@@ -43,5 +42,5 @@ export const OrganizationJSONLDHead = ({
         ],
       })}
     </script>
-  </Head>
+  </head>
 );

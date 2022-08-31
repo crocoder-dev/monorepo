@@ -1,4 +1,3 @@
-// TODO: Remove - import Head from "next/head";
 import siteConfig from "../../content/site-config.json";
 
 const BlogPostingJSONLDHead = ({
@@ -20,7 +19,7 @@ const BlogPostingJSONLDHead = ({
   companyLogo = siteConfig.logo,
   url = siteConfig.siteUrl,
 }) => (
-  <Head>
+  <head>
     <script type="application/ld+json">
       {JSON.stringify({
         "@context": "http://schema.org/",
@@ -62,7 +61,7 @@ const BlogPostingJSONLDHead = ({
         sharedContent: [],
       })}
     </script>
-  </Head>
+  </head>
 );
 /*
 "sharedContent": [

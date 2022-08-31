@@ -1,13 +1,5 @@
 import blogHeader from "../../content/images/blogs/how-to-properly-showcase-your-coding-projects.jpg";
 import Layout from "../../components/Blog/Layout";
-import { getRecommendedPosts } from "../../lib/blogs.js";
-
-export async function getStaticProps(context) {
-  const recommendedPosts = await getRecommendedPosts(meta.id);
-  return {
-    props: { recommendedPosts },
-  };
-}
 
 export const meta = {
   id: "how-to-properly-showcase-your-coding-projects",
@@ -45,8 +37,4 @@ If you want us to review and improve your CV in video form similar to this, cont
   ></iframe>
 </div>
 
-export default ({ children, recommendedPosts }) => (
-  <Layout meta={meta} recommendedPosts={recommendedPosts}>
-    {children}
-  </Layout>
-);
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;

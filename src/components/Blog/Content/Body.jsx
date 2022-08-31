@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./index.module.scss";
 import Section from "../../Layout/Section";
-//TODO: Implement clsx - import classnames from "classnames";
+import clsx from "clsx";
 import Prism from "prismjs";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-bash";
@@ -11,12 +11,7 @@ const Body = ({ children, bodyRef }) => {
     Prism.highlightAll();
   }, [children]);
   return (
-    <Section
-      blog
-      as="main"
-      ref={bodyRef}
-      className={classnames(styles.body, "okaidia")}
-    >
+    <Section blog as="main" ref={bodyRef} clasx={clsx(styles.body, "okaidia")}>
       {children}
     </Section>
   );

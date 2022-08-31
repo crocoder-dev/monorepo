@@ -5,16 +5,6 @@ import ListToggle from "../../components/Blog/CodeExample/ListToggle";
 import Demo from "../../components/Blog/CodeExample/Demo";
 import Layout from "../../components/Blog/Layout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
-import { getTableOfContent, getRecommendedPosts } from "../../lib/blogs";
-import ContentTable from "../../components/Blog/ContentTable";
-
-export async function getStaticProps(context) {
-  const tocs = await getTableOfContent();
-  const recommendedPosts = await getRecommendedPosts(meta.id);
-  return {
-    props: { tocs, recommendedPosts },
-  };
-}
 
 export const meta = {
   id: "the-dom-exercises",
@@ -43,8 +33,7 @@ The DOM or the Document Object Model of the page is created after the web page i
 
 <br />
 <br />
-
-<ContentTable headings={props.tocs} id={meta.id} title="Exercises" />
+<p>{/*TODO: Create ContentTable*/}</p>
 
 <br />
 <br />
@@ -233,8 +222,4 @@ lastLis.forEach((li) => (li.textContent = "last"));
 
 </ListToggle>
 
-export default ({ children, recommendedPosts }) => (
-  <Layout meta={meta} recommendedPosts={recommendedPosts}>
-    {children}
-  </Layout>
-);
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;

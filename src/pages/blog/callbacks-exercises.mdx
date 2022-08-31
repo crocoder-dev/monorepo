@@ -4,16 +4,6 @@ import Row from "../../components/Blog/CodeExample/Row";
 import ListToggle from "../../components/Blog/CodeExample/ListToggle";
 import Layout from "../../components/Blog/Layout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
-import { getTableOfContent, getRecommendedPosts } from "../../lib/blogs";
-import ContentTable from "../../components/Blog/ContentTable";
-
-export async function getStaticProps(context) {
-  const tocs = await getTableOfContent();
-  const recommendedPosts = await getRecommendedPosts(meta.id);
-  return {
-    props: { tocs, recommendedPosts },
-  };
-}
 
 export const meta = {
   id: "callbacks-exercises",
@@ -54,8 +44,7 @@ The second parameter passed into addEventListener is a **callback**. I have comp
 
 <br />
 <br />
-
-<ContentTable title="Exercises" headings={props.tocs} id={meta.id} />
+<p>{/*TODO: Create ContentTable*/}</p>
 
 <br />
 <br />
@@ -461,8 +450,4 @@ repeat("trogdor", 3, (t) => `°${t}°`);
 
 </ListToggle>
 
-export default ({ children, recommendedPosts }) => (
-  <Layout meta={meta} recommendedPosts={recommendedPosts}>
-    {children}
-  </Layout>
-);
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;

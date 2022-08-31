@@ -1,7 +1,6 @@
 import Layout from "../components/Layout";
 import ContactUs from "../components/ContactUs";
 import { OrganizationJSONLDHead } from "../components/JSONLD/OrganizationJSONLDHead.jsx";
-// TODO: Remove - import {useRouter} from "next/router";
 
 import letsworktogetherImage from "../content/images/letsworktogether.png";
 
@@ -45,13 +44,12 @@ export const meta = {
   }}
 />
 
-export default ({ children }) => {
-  const router = useRouter();
+export default ({ children, pathname }) => {
   return (
     <Layout
       meta={meta}
       title={meta.title}
-      slug={router?.pathname}
+      slug={pathname}
       description={meta.description}
     >
       <OrganizationJSONLDHead />

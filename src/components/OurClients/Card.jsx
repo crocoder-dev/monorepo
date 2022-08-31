@@ -2,7 +2,6 @@ import React from "react";
 import Typography from "../Typography";
 import { motion } from "framer-motion";
 import * as styles from "./index.module.scss";
-// TODO: Remove - import Image from "next/image";
 
 const item = (delay) => ({
   hidden: { opacity: 0 },
@@ -34,13 +33,7 @@ const Card = ({ url, imageAlt, name, client, image, description, delay }) => (
       </Typography>
       <div className={`${styles.customer__logo} ${styles[client]}`}>
         <div className={styles.next__img}>
-          <Image
-            loader={({ src, width, quality }) => src}
-            alt={imageAlt}
-            src={image}
-            layout="fill"
-            objectFit="contain"
-          />
+          <img alt={imageAlt} src={image} />
         </div>
       </div>
     </a>

@@ -1,9 +1,7 @@
 import React from "react";
 import * as styles from "./index.module.scss";
-// TODO: Remove - import Image from "next/image";
 import Icon from "../Icon";
 import Typography from "../Typography";
-// TODO: Remove - import Link from "next/link";
 import logoFooter from "../../content/images/logoFooter.png";
 
 import footer from "../../content/footer.json";
@@ -13,63 +11,59 @@ const Footer = ({ scrollToTop }) => {
     <footer className={styles.footer}>
       <div className={styles.footer__grid}>
         <div className={styles.footer__logo}>
-          <Link href="/">
-            <a
-              onClick={() => {
-                if (scrollToTop) scrollToTop();
-              }}
-              aria-label={footer.home.ariaLabel}
+          <a
+            href="/"
+            onClick={() => {
+              if (scrollToTop) scrollToTop();
+            }}
+            aria-label={footer.home.ariaLabel}
+          >
+            <div
+              className={styles.image}
+              style={{ visibility: "visible" }}
+              aria-hidden="true"
             >
-              <div
-                className={styles.image}
-                style={{ visibility: "visible" }}
-                aria-hidden="true"
-              >
-                <Image
-                  loader={({ src, width, quality }) => src}
-                  src={logoFooter}
-                  alt={footer.home.ariaLabel}
-                  width={225}
-                  height={51}
-                />
-              </div>
-            </a>
-          </Link>
+              <img
+                src={logoFooter}
+                alt={footer.home.ariaLabel}
+                /* width={225}
+                  height={51} */
+              />
+            </div>
+          </a>
         </div>
         <div className={styles.footer__content}>
-          <Link href="/">
-            <a style={{ color: "inherit" }} className="link">
-              {footer.home.text}
-            </a>
-          </Link>
-          <Link href="/terms">
-            <a style={{ color: "inherit" }} className="link">
-              {footer.terms.text}
-            </a>
-          </Link>
-          <Link href="/privacy_policy">
-            <a style={{ color: "inherit" }} className="link">
-              {footer.privacy.text}
-            </a>
-          </Link>
+          <a href="/" style={{ color: "inherit" }} className="link">
+            {footer.home.text}
+          </a>
+          <a href="/terms" style={{ color: "inherit" }} className="link">
+            {footer.terms.text}
+          </a>
+          <a
+            href="/privacy_policy"
+            style={{ color: "inherit" }}
+            className="link"
+          >
+            {footer.privacy.text}
+          </a>
         </div>
         <div className={styles.footer__social_media}>
           <div>
             {footer.socialMedia.map((mediaLink) => (
-              <Link href={mediaLink.href} key={mediaLink.icon}>
-                <a
-                  rel="nofollow noopener noreferrer"
-                  className={styles.icon}
-                  aria-label={mediaLink.ariaLabel}
-                >
-                  <Icon
-                    aria-hidden="true"
-                    style={{ visibility: "visible" }}
-                    color="gray_1"
-                    icon={mediaLink.icon}
-                  />
-                </a>
-              </Link>
+              <a
+                href={mediaLink.href}
+                key={mediaLink.icon}
+                rel="nofollow noopener noreferrer"
+                className={styles.icon}
+                aria-label={mediaLink.ariaLabel}
+              >
+                <Icon
+                  aria-hidden="true"
+                  style={{ visibility: "visible" }}
+                  color="gray_1"
+                  icon={mediaLink.icon}
+                />
+              </a>
             ))}
           </div>
         </div>
