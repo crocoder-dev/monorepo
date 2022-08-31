@@ -1,0 +1,80 @@
+@import './_media.scss';
+
+$section__content--max-width: 1100px;
+$card__content--max-width: 1100px;
+
+/**
+  Padding applied to sections
+*/
+$section__padding-horizontal--desktop: 100px;
+$section__padding-horizontal--tabletLandscape: 80px;
+$section__padding-horizontal--tabletPortrait: 60px;
+$section__padding-horizontal--mobile: 30px;
+$section__padding-horizontal--mobileMini: 20px;
+
+$section__padding-vertical--desktop: 80px;
+$section__padding-vertical--tabletLandscape: 60px;
+$section__padding-vertical--tabletPortrait: 50px;
+$section__padding-vertical--mobile: 40px;
+$section__padding-vertical--mobileMini: 30px;
+
+$section__padding: (
+  desktop: ($section__padding-vertical--desktop, $section__padding-horizontal--desktop),
+  tabletLandscape:  ($section__padding-vertical--tabletLandscape, $section__padding-horizontal--tabletLandscape),
+  tabletPortrait:  ($section__padding-vertical--tabletPortrait, $section__padding-horizontal--tabletPortrait),
+  mobile:  ($section__padding-vertical--mobile, $section__padding-horizontal--mobile),
+  mobileMini:  ($section__padding-vertical--mobileMini, $section__padding-horizontal--mobileMini),
+);
+
+/**
+  Horizontal padding applied to cards
+*/
+$card__padding-horizontal--desktop: 75px;
+$card__padding-horizontal--tabletLandscape: 60px;
+$card__padding-horizontal--tabletPortrait: 50px;
+$card__padding-horizontal--mobile: 20px;
+$card__padding-horizontal--mobileMini: 20px;
+
+$card__padding-vertical--desktop: 40px;
+$card__padding-vertical--tabletLandscape: 40px;
+$card__padding-vertical--tabletPortrait: 40px;
+$card__padding-vertical--mobile: 30px;
+$card__padding-vertical--mobileMini: 30px;
+
+
+$card__padding: (
+  desktop: ($card__padding-vertical--desktop, $card__padding-horizontal--desktop),
+  tabletLandscape:  ($card__padding-vertical--tabletLandscape, $card__padding-horizontal--tabletLandscape),
+  tabletPortrait:  ($card__padding-vertical--tabletPortrait, $card__padding-horizontal--tabletPortrait),
+  mobile:  ($card__padding-vertical--mobile, $card__padding-horizontal--mobile),
+  mobileMini:  ($card__padding-vertical--mobileMini, $card__padding-horizontal--mobileMini),
+);
+
+
+@mixin sectionPadding($key, $includeVertical: false) {
+  $paddinglist: map-get($section__padding, $key);
+  @if $includeVertical {
+    padding: nth($paddinglist, 1) nth($paddinglist, 2);
+  } @else {
+    padding: 0 nth($paddinglist, 2);
+  }
+}
+
+
+@mixin cardPadding($key, $includeVertical: false) {
+  $paddinglist: map-get($card__padding, $key);
+  @if $includeVertical {
+    padding: nth($paddinglist, 1) nth($paddinglist, 2);
+  } @else {
+    padding: 0 nth($paddinglist, 2);
+  }
+}
+
+
+
+:export {
+  cardContentMaxWidth: $card__content--max-width;
+  sectionContentMaxWidth: $section__content--max-width;
+  sectionPadding: (map-get($section__padding, "desktop") ";" map-get($section__padding, "tabletLandscape") ";" map-get($section__padding, "tabletPortrait") ";" map-get($section__padding, "mobile") ";" map-get($section__padding, "mobileMini"));
+  cardPadding: (map-get($card__padding, "desktop") ";" map-get($card__padding, "tabletLandscape") ";" map-get($card__padding, "tabletPortrait") ";" map-get($card__padding, "mobile") ";" map-get($card__padding, "mobileMini"));
+}

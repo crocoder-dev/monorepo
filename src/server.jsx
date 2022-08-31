@@ -19,11 +19,13 @@ const memoize = (fn) => {
 const GET_PAGES_KEY = Symbol('🐊');
 
 const getPages = () => {
+
   const modules = import.meta.globEager('./pages/**/*.{jsx,mdx}');
 
   return Object.entries(modules).reduce((pages, [modulePath, page]) => {
     const filePath = modulePath.replace(/^\.\/pages/, '').replace(/(\.jsx|\.mdx)$/, '');
     const urlPath = filePath.endsWith('/index') ? filePath.replace(/index$/, '') : `${filePath}/`;
+    
     pages[urlPath] = {
       Component: page.default,
       meta: page.meta,
