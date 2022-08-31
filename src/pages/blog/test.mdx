@@ -15,11 +15,11 @@ export const meta = {
 
 ## ABC
 
-<div>{JSON.stringify(props)}</div>
+<div>{JSON.stringify(props, null, 2)}</div>
 
 
 export default ({ children }) => (
-  <div style={{backgroundColor: 'red'}}>
+  <pre style={{backgroundColor: 'aquamarine'}}>
     {children}
-  </div>
+  </pre>
 );
