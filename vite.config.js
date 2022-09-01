@@ -4,13 +4,29 @@ import mdx from '@mdx-js/rollup';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import rehypeToc from './plugins/rehype-toc';
+import imagePresets, { widthPreset } from "vite-plugin-image-presets";
 
 export const plugins = [
   react(),
   mdx({
     rehypePlugins: [rehypeSlug, rehypeToc],
     remarkPlugins: [remarkGfm],
-    providerImportSource: '@mdx-js/react',
+    providerImportSource: "@mdx-js/react",
+  }),
+  imagePresets({
+    hd: widthPreset({
+      widths: [400, 700],
+      formats: {
+        original: { quality: 80 },
+      }
+    }),
+    multi: widthPreset({
+      widths: [400, 700],
+      formats: {
+        webp: { quality: 70 },
+        png: { quality: 80 },
+      }
+    })
   }),
 ];
 
