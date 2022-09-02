@@ -14,19 +14,15 @@ export const plugins = [
     providerImportSource: "@mdx-js/react",
   }),
   imagePresets({
-    hd: widthPreset({
-      widths: [400, 700],
+    responsive: widthPreset({
+      widths: [450, 800, 1000],
+      sizes: "(min-width: 800px) 1000px, (min-width: 450px) 800px 400px",
       formats: {
-        original: { quality: 80 },
-      }
+        webp: { quality: 60 },
+        png: { quality: 40 },
+        jpg: { quality: 50 },
+      },
     }),
-    multi: widthPreset({
-      widths: [400, 700],
-      formats: {
-        webp: { quality: 70 },
-        png: { quality: 80 },
-      }
-    })
   }),
 ];
 
