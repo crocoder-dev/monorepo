@@ -12,7 +12,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         client: resolve(dir, 'index.html'),
-        ssrAssetCollector: resolve(dir, 'src/server.jsx'),
+        ssrAssets: resolve(dir, 'src/server.jsx'),
       }
     }
   }

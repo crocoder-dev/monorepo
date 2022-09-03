@@ -7,10 +7,8 @@ const PORT = 3000;
 
 const dir = dirname('../');
 
-console.log(resolve(dir, 'index.html'));
-
 async function createServer() {
-  const app = express()
+  const app = express();
   const vite = await createViteServer({
     appType: 'custom',
     server: { middlewareMode: true },

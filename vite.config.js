@@ -3,11 +3,12 @@ import react from '@vitejs/plugin-react';
 import mdx from '@mdx-js/rollup';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
+import rehypeToc from './plugins/rehype-toc';
 
 export const plugins = [
   react(),
   mdx({
-    rehypePlugins: [rehypeSlug],
+    rehypePlugins: [rehypeSlug, rehypeToc],
     remarkPlugins: [remarkGfm],
     providerImportSource: '@mdx-js/react',
   }),

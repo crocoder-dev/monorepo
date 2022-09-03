@@ -29,6 +29,7 @@ const getPages = () => {
     pages[urlPath] = {
       Component: page.default,
       meta: page.meta,
+      toc: page.toc,
       filePath,
       modulePath,
       urlPath,
@@ -43,15 +44,17 @@ export const pages = memoizedGetPages(GET_PAGES_KEY);
 
 export const renderPage = (pathname, transformedTemplate) => {
 
+  console.log(pathname, transformedTemplate);
+
   if (!pathname.endsWith('/')) pathname = `${pathname}/`;
 
   const headTags = [];
-  const { Component, meta = {} } = pages[pathname] || pages['/404/'];
+  const { Component, meta = {}, toc } = pages[pathname] || pages['/404/'];
 
   const html = ReactDOMServer.renderToString(
     <HeadProvider headTags={headTags}>
         <MDXProvider>
-            <Component meta={meta} pages={pages} pathname={pathname} />
+            <Component meta={meta} pages={pages} pathname={pathname} toc={toc} />
         </MDXProvider>
     </HeadProvider>
   );
