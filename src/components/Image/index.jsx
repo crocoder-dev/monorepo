@@ -1,4 +1,4 @@
-const Image = ({ src, ...props }) => {
+const ResponsiveImage = ({ src, ...props }) => {
   if (typeof src === "string") {
     return <img src={src} {...props} />;
   }
@@ -17,4 +17,4 @@ const Image = ({ src, ...props }) => {
   );
 };
 
-export default Image;
+export default ResponsiveImage;
