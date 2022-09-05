@@ -1,0 +1,78 @@
+import Code from "../components/Code";
+
+
+<Code>
+  {`const input = [
+  ["a", "b", "c"],
+  ["c", "d", "f"],
+  ["d", "f", "g"],
+];`}
+
+</Code>
+
+<Code language="html">{`<ul></ul>`}</Code>
+
+<Code language="jsx">
+	{`
+	/\*
+    The parent component code that will be implemented 
+    in the consumer's web app
+
+    Input value should be stored in component's state,
+    onChange handler should set the Input value  
+  \*/
+
+const ParentFormComponent = () => {
+
+  const [emailInputValue, setEmailInputValue] = useState("");
+
+  const handleEmailChange = useCallback(
+    (e) => {
+      setEmailInputValue(e.target.value);
+    },
+    [setEmailInputValue]
+  );
+
+  const [nameInputValue, setNameInputValue] = useState("");
+
+  const handleNameChange = useCallback(
+    (e) => {
+      setNameInputValue(e.target.value);
+    },
+    [setNameInputValue]
+  );
+
+  /\*
+      Getting the values from each input is straightforward;
+      just get it from the component's state
+	\*/
+
+  const handleSubmit = useCallback(() => {
+    console.log(
+      \`{
+         email: \${emailInputValue || null},
+         name: \${nameInputValue || null} 
+        }\`
+    );
+    setEmailInputValue("");
+    setNameInputValue("");
+  }, [emailInputValue, nameInputValue]);
+
+  return (
+    <>
+      <InputComponent
+        label="E-mail"
+        inputValue={emailInputValue}
+        onInputChange={handleEmailChange}
+      />
+      <InputComponent
+        label="Name"
+        inputValue={nameInputValue}
+        onInputChange={handleNameChange}
+      />
+      <button onClick={handleSubmit}>Submit</button>
+    </>
+  );
+};
+	`}
+</Code>
