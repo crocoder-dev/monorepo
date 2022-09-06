@@ -10,7 +10,7 @@ SyntaxHighlighter.registerLanguage("jsx", jsx);
 SyntaxHighlighter.registerLanguage("bash", bash);
 SyntaxHighlighter.registerLanguage("typescript", typescript);
 
-const Code = ({ children, language = "javascript" }) => {
+const Code = ({ children, language }) => {
   return (
     <SyntaxHighlighter language={language} style={okaidia}>
       {children}
