@@ -13,7 +13,7 @@ const components = {
     return (
       <Code
         language={
-          matches && matches.groups && matches.groups.language
+          matches?.groups?.language
             ? matches.groups.language
             : ""
         }
