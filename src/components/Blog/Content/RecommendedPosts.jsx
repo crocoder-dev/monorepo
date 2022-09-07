@@ -1,5 +1,5 @@
 import React from "react";
-import Section from "../../Layout/Section";
+import Section from "../../Section";
 import styles from "./index.module.scss";
 import Posts from "../Posts";
 import Typography from "../../Typography";
