@@ -3,6 +3,26 @@
 import ReactDOMServer from 'react-dom/server'
 import { MDXProvider } from '@mdx-js/react'
 import { HeadProvider } from 'react-head'
+import Code from "./components/Code"
+
+const components = {
+  pre: ({ children }) => {
+    const className = children.props.className || "";
+    const matches = className.match(/language-(?<language>.*)/);
+
+    return (
+      <Code
+        language={
+          matches?.groups?.language
+            ? matches.groups.language
+            : ""
+        }
+      >
+        {children.props.children}
+      </Code>
+    );
+  },
+};
 
 const memoize = (fn) => {
   const cache = new Map();
@@ -50,7 +70,7 @@ export const renderPage = (pathname, transformedTemplate) => {
 
   const html = ReactDOMServer.renderToString(
     <HeadProvider headTags={headTags}>
-        <MDXProvider>
+        <MDXProvider components={components}>
             <Component meta={meta} pages={pages} pathname={pathname} />
         </MDXProvider>
     </HeadProvider>

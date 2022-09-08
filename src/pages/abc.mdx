@@ -1,0 +1,109 @@
+```javascript
+const doubleChars = (str) =>
+  str
+    .split("")
+    .map((c) => `${c}${c}`)
+    .join("");
+
+doubleChars("Adrian");
+doubleChars("ssssnake");
+```
+
+```bash
+CloudFrontDistribution:
+  Type: 'AWS::CloudFront::Distribution'
+  Properties:
+    DistributionConfig:
+      ...
+      Restrictions:
+        GeoRestriction:
+          Locations:
+          - RU
+          - BY
+          RestrictionType: blacklist
+```
+
+```jsx
+/*
+    The parent component code that will be implemented 
+    in the consumer's web app
+
+    Input value should be stored in component's state,
+    onChange handler should set the Input value  
+  */
+const ParentFormComponent = () => {
+  const [emailInputValue, setEmailInputValue] = useState("");
+
+  const handleEmailChange = useCallback(
+    (e) => {
+      setEmailInputValue(e.target.value);
+    },
+    [setEmailInputValue]
+  );
+
+  const [nameInputValue, setNameInputValue] = useState("");
+
+  const handleNameChange = useCallback(
+    (e) => {
+      setNameInputValue(e.target.value);
+    },
+    [setNameInputValue]
+  );
+
+  /*
+      Getting the values from each input is straightforward;
+      just get it from the component's state
+    */
+  const handleSubmit = useCallback(() => {
+    console.log(
+      `{
+         email: ${emailInputValue || null},
+         name: ${nameInputValue || null} 
+        }`
+    );
+    setEmailInputValue("");
+    setNameInputValue("");
+  }, [emailInputValue, nameInputValue]);
+
+  return (
+    <>
+      <InputComponent
+        label="E-mail"
+        inputValue={emailInputValue}
+        onInputChange={handleEmailChange}
+      />
+      <InputComponent
+        label="Name"
+        inputValue={nameInputValue}
+        onInputChange={handleNameChange}
+      />
+      <button onClick={handleSubmit}>Submit</button>
+    </>
+  );
+};
+```
+
+```html
+<ul></ul>
+```
+
+```typescript
+interface User {
+  name: string;
+  id: number;
+}
+ 
+class UserAccount {
+  name: string;
+  id: number;
+ 
+  constructor(name: string, id: number) {
+    this.name = name;
+    this.id = id;
+  }
+}
+ 
+const user: User = new UserAccount("Murphy", 1);
+```
+
+
