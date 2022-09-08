@@ -1,39 +1,28 @@
 import Typography from "../../Typography";
 
-const ContentTable = ({ tocData, title = "Contents" }) => {
-  const getToc = (data) => {
-    let tocElems = [];
-
-    data.forEach((dataItem) => {
-      dataItem.hasOwnProperty("children")
-        ? tocElems.push(
-            <li key={dataItem.id}>
-              <a href={`#${dataItem.id}`}>{dataItem.value}</a>
-
-              <ul>{getToc(dataItem.children)}</ul>
-            </li>
-          )
-        : dataItem.value !== title && dataItem.value !== "Recommended Posts"
-        ? tocElems.push(
-            <li key={dataItem.id}>
-              <a href={`#${dataItem.id}`}>{dataItem.value}</a>
-            </li>
-          )
-        : null;
-    });
-
-    return tocElems;
-  };
-
+const Table = ({ tocData }) => {
   return (
     <ul>
+      {tocData.map(({ value, id, children }) => (
+        <li key={id}>
+          <a href={`#${id}`}>{value}</a>
+          {children && <Table tocData={children} />}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+const ContentTable = ({ tocData, title = "Contents" }) => {
+  return (
+    <>
       {title ? (
         <Typography element="h2" id="contents" fontFamily="rubik">
           {title}
         </Typography>
       ) : null}
-      {getToc(tocData)}
-    </ul>
+      <Table tocData={tocData} />
+    </>
   );
 };
 
