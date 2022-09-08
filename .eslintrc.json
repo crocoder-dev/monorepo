@@ -1,0 +1,25 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier", "react", "react-hooks"],
+  "rules": {
+    "prettier/prettier": ["warn", {}, { "usePrettierrc": true }], //Use .pretterrc as source
+    "react/jsx-filename-extension": "off",
+    "react-hooks/rules-of-hooks": "warn", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies,
+    "react/react-in-jsx-scope": "off",
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-unused-vars": "warn",
+    "no-console": "warn"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "jsx": true // Enable JSX since we're using React
+    }
+  },
+  "env": {
+    "node": true,
+    "browser": true
+  }
+}

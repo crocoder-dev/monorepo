@@ -1,0 +1,11 @@
+{
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier-scss"],
+  "rules": {
+    "comment-no-empty": true,
+    "indentation": 2,
+    "no-extra-semicolons": true,
+    "color-no-invalid-hex": true,
+    "alpha-value-notation": "number",
+    "color-function-notation": "legacy"
+  }
+}
