@@ -14,7 +14,7 @@ const feed = new Feed({
   image: "", //TODO: Image reference?
   favicon: "", //TODO: Favicon reference?
   copyright: "Copyright © CroCoder, Inc. All rights reserved",
-  generator: "awesome", // optional, default = 'Feed for Node.js' => //TODO: Not sure
+  generator: "CroCoder feed",
   feedLinks: {
     json: `${siteUrl}/json`,
   },
