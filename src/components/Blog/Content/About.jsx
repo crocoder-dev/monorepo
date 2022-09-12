@@ -1,10 +1,9 @@
 import React from "react";
-import Section from "../../Layout/Section";
+import Section from "../../Section";
 import Typography from "../../Typography";
 import styles from "./index.module.scss";
 
 const About = ({ author }) => {
-  const authorImage = require(`../../../content/images/authors/${author.id}.png`);
   return (
     <Section blog as="footer" className={styles.about}>
       <div className={styles.aboutWrapper}>
@@ -12,7 +11,7 @@ const About = ({ author }) => {
           className={styles.aboutAvatarWrapper}
           style={{ backgroundColor: `${author.bgColor}` }}
         >
-          <img src={authorImage} alt={author.name} />
+          <img src={`/src/content/images/authors/${author.id}.png`} alt={author.name} />
         </div>
         <div className={styles.aboutName}>
           <Typography
