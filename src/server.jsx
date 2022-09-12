@@ -74,7 +74,7 @@ export const renderPage = (pathname, transformedTemplate) => {
   const html = ReactDOMServer.renderToString(
     <HeadProvider headTags={headTags}>
         <MDXProvider components={components}>
-            <Component meta={meta} pages={pages} pathname={pathname} />
+            <Component meta={meta} pages={pages} pathname={pathname} toc={toc} />
         </MDXProvider>
     </HeadProvider>
   );
