@@ -1,6 +1,11 @@
+import BlogLayout from "../../Layouts/BlogLayout";
+import blogHeader from "../../content/images/blogs/component-libraries-an-overlooked-part-of-your-brand.jpg";
+
+
 export const meta = {
   id: "component-libraries-an-overlooked-part-of-your-brand",
   title: "Component Libraries - An Overlooked Part of Your Brand",
+  image: blogHeader,
   description:
     "Placing a lot of effort into creating a unique, modern, and easy-to-use UX / UI is crucial for branding your product. Often companies can't justify spending a similar effort to build internal component libraries. Danica Pivalica Abram argues in the article that companies should reconsider their stance because it's seriously hurting their brand.",
   category: "Design System / UI Component Libraries",
@@ -13,13 +18,23 @@ export const meta = {
 };
 
 
-## ABC
+## Using Third-Party Component Libraries
 
-<div>{JSON.stringify(props, null, 2)}</div>
+Investing in UI/UX can be a bit tricky. You can have all the right people, new bright and shiny specifications, but if they do not come to life the way they are supposed to, the investment will not have the desired return. That's why I find it strange when companies are spending lots of money and time (hey, more money!) perfecting their design and the overall behavior of the product, but are not keen on spending nearly as much when it comes to design implementation.
+
+I have heard one too many times that you should pick and choose your development battles as an argument to diminish the value of building an internal component library. Every time there was a single underlying idea behind it - the effort that needs to be invested in building an internal component library is too high compared to what is gained. Therefore, building something custom is a waste of time because there are some great existing third-party options out there. These component libraries are shown as low-effort options which will increase developer velocity and solve all your UI implementation problems.
+
+But is that really the case?
+
+## Is This Really That Great for Your Brand (and Your Dev Team)?
+
+I find favoring third-party solutions somewhat short-sighted considering the emphasis most businesses put on branding and the amount of money they put into a custom design. There are a great number of different factors to take into account when deciding on your approach, but I’d suggest focusing on the most relevant ones from a programmer’s perspective: development velocity, maintenance effort, and flexibility.
+
+If we are to consider branding impact, it is implied that implementing UI/UX as per design is a huge factor. Also, it is worth mentioning that if your product looks exactly like a third-party design, it might be worth to re-check if you need a UI update as this article might not be for you.
+
+Third-party libraries are useful when aiming for development velocity, but unless they look exactly like your product should, they always need to be modified to match your UI and UX goals. Though it may seem easier, this is actually more difficult to do because your team will need a deep dive into how that third-party library was made in order to achieve that same look and feel described by your design system. This is true for both modifying components as well as debugging issues within them, and there is no other way around it. Your development team will need to become experts in using the third-party component library and know much more than the average consumer if they wish to keep delivering new features at a high velocity.
+
+An existing component library can perhaps give you momentum in the beginning if you are willing to look past some design discrepancies, but as soon as you start to harmonize all those hundreds of small details present in your design, you will notice a significant drop in development velocity.
 
 
-export default ({ children }) => (
-  <pre style={{backgroundColor: 'aquamarine'}}>
-    {children}
-  </pre>
-);
+export default ({ children, meta }) => <BlogLayout meta={meta}>{children}</BlogLayout>;

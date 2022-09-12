@@ -1,13 +1,13 @@
 import { MDXProvider } from "@mdx-js/react";
-import Typography from "../../Typography/Typography";
-import Layout from "../../Layout";
-import Header from "../Content/Header";
-import Body from "../Content/Body";
-import About from "../Content/About";
-import BlogPostingJSONLDHead from "../../JSONLD/BlogPostingJSONLDHead";
-import authorsJSON from "../../../content/authors/authors.json";
+import Typography from "../../components/Typography";
+import PageLayout from "../PageLayout";
+import Header from "../../components/Blog/Content/Header";
+import Body from "../../components/Blog/Content/Body";
+import About from "../../components/Blog/Content/About";
+import BlogPostingJSONLDHead from "../../components/JSONLD/BlogPostingJSONLDHead";
+import authorsJSON from "../../content/authors/authors.json";
 import { useRef } from "react";
-import RecommendedPosts from "../Content/RecommendedPosts";
+import RecommendedPosts from "../../components/Blog/Content/RecommendedPosts";
 import styles from "./index.module.scss";
 
 const { authors } = authorsJSON;
@@ -82,7 +82,7 @@ export default function BlogLayout({
 
   return (
     <MDXProvider components={components}>
-      <Layout
+      <PageLayout
         title={meta.title}
         slug={pathname}
         description={meta.description}
@@ -113,7 +113,7 @@ export default function BlogLayout({
           <About author={author} />
           <RecommendedPosts posts={recommendedPosts} />
         </article>
-      </Layout>
+      </PageLayout>
     </MDXProvider>
   );
 }
