@@ -1,109 +1,37 @@
-```javascript
-const doubleChars = (str) =>
-  str
-    .split("")
-    .map((c) => `${c}${c}`)
-    .join("");
+import ContentTable from "../components/Blog/ContentTable";
 
-doubleChars("Adrian");
-doubleChars("ssssnake");
-```
+<ContentTable tocData={props.toc} />
 
-```bash
-CloudFrontDistribution:
-  Type: 'AWS::CloudFront::Distribution'
-  Properties:
-    DistributionConfig:
-      ...
-      Restrictions:
-        GeoRestriction:
-          Locations:
-          - RU
-          - BY
-          RestrictionType: blacklist
-```
+# Heading 1
 
-```jsx
-/*
-    The parent component code that will be implemented 
-    in the consumer's web app
+# Heading 2
 
-    Input value should be stored in component's state,
-    onChange handler should set the Input value  
-  */
-const ParentFormComponent = () => {
-  const [emailInputValue, setEmailInputValue] = useState("");
+## Heading 2.1
 
-  const handleEmailChange = useCallback(
-    (e) => {
-      setEmailInputValue(e.target.value);
-    },
-    [setEmailInputValue]
-  );
+### Heading 2.1.1
 
-  const [nameInputValue, setNameInputValue] = useState("");
+### Heading 2.1.2
 
-  const handleNameChange = useCallback(
-    (e) => {
-      setNameInputValue(e.target.value);
-    },
-    [setNameInputValue]
-  );
+#### Heading 2.1.2.1
 
-  /*
-      Getting the values from each input is straightforward;
-      just get it from the component's state
-    */
-  const handleSubmit = useCallback(() => {
-    console.log(
-      `{
-         email: ${emailInputValue || null},
-         name: ${nameInputValue || null} 
-        }`
-    );
-    setEmailInputValue("");
-    setNameInputValue("");
-  }, [emailInputValue, nameInputValue]);
+#### Heading 2.1.2.2
 
-  return (
-    <>
-      <InputComponent
-        label="E-mail"
-        inputValue={emailInputValue}
-        onInputChange={handleEmailChange}
-      />
-      <InputComponent
-        label="Name"
-        inputValue={nameInputValue}
-        onInputChange={handleNameChange}
-      />
-      <button onClick={handleSubmit}>Submit</button>
-    </>
-  );
-};
-```
+##### Heading 2.1.2.2.1
 
-```html
-<ul></ul>
-```
+##### Heading 2.1.2.2.2
 
-```typescript
-interface User {
-  name: string;
-  id: number;
-}
- 
-class UserAccount {
-  name: string;
-  id: number;
- 
-  constructor(name: string, id: number) {
-    this.name = name;
-    this.id = id;
-  }
-}
- 
-const user: User = new UserAccount("Murphy", 1);
-```
+## Heading 2.2
+
+# Heading 3
+
+# Recommended Posts
 
 
+<div>{JSON.stringify(props, null, 2)}</div>
+
+
+export default ({ children }) => (
+  <pre style={{backgroundColor: 'aquamarine'}}>
+    {children}
+  </pre>
+);
