@@ -1,7 +1,7 @@
 import React, { createRef, useRef } from "react";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
-import logoNavigation from "../../../content/images/logoNavigation.png";
+import logoNavigation from "../../content/images/logoNavigation.png";
 
 import navigation from "../../content/navigation.json";
 import siteConfig from "../../content/site-config.json";
