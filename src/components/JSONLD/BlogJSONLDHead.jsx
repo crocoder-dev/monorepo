@@ -28,9 +28,10 @@ export const BlogJSONLDHead = ({
   instagramLink = siteConfig.social.instagram,
   description,
 }) => (
-  <head>
-    <script type="application/ld+json">
-      {JSON.stringify({
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
         "@context": "http://schema.org",
         "@type": "Blog",
         name: blogName,
@@ -47,7 +48,7 @@ export const BlogJSONLDHead = ({
           "@type": "Organization",
           name: companyName,
         },
-      })}
-    </script>
-  </head>
+      }),
+    }}
+  />
 );

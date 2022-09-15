@@ -1,89 +1,87 @@
-{
-  "authors": [
-    {
-      "id": "davidabram",
-      "name": "David Abram",
-      "description": "Spends his time untangling software architectures and doing DevOps. Likes to build stuff.",
-      "twitter": "https://twitter.com/devabram",
-      "linkedin": "https://www.linkedin.com/in/david-abram/",
-      "email": "david@crocoder.dev",
-      "image": "../images/authors/david.png",
-      "role": "Senior Backend & DevOps Engineer",
-      "bgColor": "#67a807"
-    },
-    {
-      "id": "danicapivalicaabram",
-      "name": "Danica Pivalica Abram",
-      "description": "Experienced senior software developer that enjoys building stunning and instinctive interfaces with great user experience.",
-      "twitter": "https://twitter.com/danabananadev",
-      "linkedin": "https://www.linkedin.com/in/danicapivalicaabram/",
-      "email": "danica@crocoder.dev",
-      "image": "../images/authors/danicapivalicaabram.png",
-      "role": "Senior Web Developer",
-      "bgColor": "#ffb818"
-    },
-    {
-      "id": "ivanpenga",
-      "name": "Ivan Penga",
-      "description": "Software developer that is eager to learn, loves to explore as well as apply new technologies in web development",
-      "twitter": "",
-      "linkedin": "https://www.linkedin.com/in/ivan-penga-5a789b13a",
-      "email": "ivan@crocoder.dev",
-      "image": "../images/authors/ivanpenga.png",
-      "role": "Full Stack Developer",
-      "bgColor": "#2a85e0"
-    },
-    {
-      "id": "velimirujevic",
-      "name": "Velimir Ujevic",
-      "description": "A videographer skilled in using contemporary image editing software and can help you realize your audiovisual needs.",
-      "twitter": "",
-      "linkedin": "https://www.linkedin.com/in/velimir-ujevi%C4%87-06913b223",
-      "email": "vele@crocoder.dev",
-      "image": "../images/authors/velimirujevic.png",
-      "role": "Marketing Manager",
-      "bgColor": "#2985DF"
-    },
-    {
-      "id": "antekoceic",
-      "name": "Ante Koceić",
-      "description": "",
-      "twitter": "",
-      "linkedin": "https://www.linkedin.com/in/ante-kocei%C4%87-440644153",
-      "email": "ante@crocoder.dev",
-      "image": "../images/authors/antekoceic.png",
-      "role": "Software Developer",
-      "bgColor": "#fa5d2a"
-    },
-    {
-      "id": "marijaduvnjak",
-      "name": "Marija Duvnjak",
-      "description": "",
-      "twitter": "",
-      "linkedin": "https://www.linkedin.com/in/marija-duvnjak-663aa6106/",
-      "email": "marija@crocoder.dev",
-      "image": "../images/authors/marijaduvnjak.png",
-      "role": "Senior Web Developer",
-      "bgColor": "#FF8C17"
-    },
-    {
-      "id": "stefanskoric",
-      "name": "Stefan Škorić",
-      "description": "I am software developer who is eager to expand my knowledge and implement what i have learned in a practical and professional environment.",
-      "twitter": "",
-      "linkedin": "https://www.linkedin.com/in/stefan-skoric/",
-      "email": "stefan@crocoder.dev",
-      "image": "../images/authors/stefanskoric.png",
-      "role": "Junior Software Developer",
-      "bgColor": "#4E25A3"
-    },
-    {
-      "id": "lukaucur",
-      "name": "Luka Učur",
-      "description": "Learning JavaScript all the time, writing posts sometimes.",
-      "email": "luka.ucur@gmail.com",
-      "image": "../images/authors/default-author.png",
-      "role": "Krokodil"
-    }
-  ]
-}
+[
+  {
+    "id": "davidabram",
+    "name": "David Abram",
+    "description": "Spends his time untangling software architectures and doing DevOps. Likes to build stuff.",
+    "twitter": "https://twitter.com/devabram",
+    "linkedin": "https://www.linkedin.com/in/david-abram/",
+    "email": "david@crocoder.dev",
+    "image": "../images/authors/david.png",
+    "role": "Senior Backend & DevOps Engineer",
+    "bgColor": "#67a807"
+  },
+  {
+    "id": "danicapivalicaabram",
+    "name": "Danica Pivalica Abram",
+    "description": "Experienced senior software developer that enjoys building stunning and instinctive interfaces with great user experience.",
+    "twitter": "https://twitter.com/danabananadev",
+    "linkedin": "https://www.linkedin.com/in/danicapivalicaabram/",
+    "email": "danica@crocoder.dev",
+    "image": "../images/authors/danicapivalicaabram.png",
+    "role": "Senior Web Developer",
+    "bgColor": "#ffb818"
+  },
+  {
+    "id": "ivanpenga",
+    "name": "Ivan Penga",
+    "description": "Software developer that is eager to learn, loves to explore as well as apply new technologies in web development",
+    "twitter": "",
+    "linkedin": "https://www.linkedin.com/in/ivan-penga-5a789b13a",
+    "email": "ivan@crocoder.dev",
+    "image": "../images/authors/ivanpenga.png",
+    "role": "Full Stack Developer",
+    "bgColor": "#2a85e0"
+  },
+  {
+    "id": "velimirujevic",
+    "name": "Velimir Ujevic",
+    "description": "A videographer skilled in using contemporary image editing software and can help you realize your audiovisual needs.",
+    "twitter": "",
+    "linkedin": "https://www.linkedin.com/in/velimir-ujevi%C4%87-06913b223",
+    "email": "vele@crocoder.dev",
+    "image": "../images/authors/velimirujevic.png",
+    "role": "Marketing Manager",
+    "bgColor": "#2985DF"
+  },
+  {
+    "id": "antekoceic",
+    "name": "Ante Koceić",
+    "description": "",
+    "twitter": "",
+    "linkedin": "https://www.linkedin.com/in/ante-kocei%C4%87-440644153",
+    "email": "ante@crocoder.dev",
+    "image": "../images/authors/antekoceic.png",
+    "role": "Software Developer",
+    "bgColor": "#fa5d2a"
+  },
+  {
+    "id": "marijaduvnjak",
+    "name": "Marija Duvnjak",
+    "description": "",
+    "twitter": "",
+    "linkedin": "https://www.linkedin.com/in/marija-duvnjak-663aa6106/",
+    "email": "marija@crocoder.dev",
+    "image": "../images/authors/marijaduvnjak.png",
+    "role": "Senior Web Developer",
+    "bgColor": "#FF8C17"
+  },
+  {
+    "id": "stefanskoric",
+    "name": "Stefan Škorić",
+    "description": "I am software developer who is eager to expand my knowledge and implement what i have learned in a practical and professional environment.",
+    "twitter": "",
+    "linkedin": "https://www.linkedin.com/in/stefan-skoric/",
+    "email": "stefan@crocoder.dev",
+    "image": "../images/authors/stefanskoric.png",
+    "role": "Junior Software Developer",
+    "bgColor": "#4E25A3"
+  },
+  {
+    "id": "lukaucur",
+    "name": "Luka Učur",
+    "description": "Learning JavaScript all the time, writing posts sometimes.",
+    "email": "luka.ucur@gmail.com",
+    "image": "../images/authors/default-author.png",
+    "role": "Krokodil"
+  }
+]

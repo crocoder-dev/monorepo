@@ -16,9 +16,10 @@ export const OrganizationJSONLDHead = ({
   youtubeLink = siteConfig.social.youtube,
   instagramLink = siteConfig.social.instagram,
 }) => (
-  <head>
-    <script type="application/ld+json">
-      {JSON.stringify({
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
         "@context": "http://schema.org/",
         "@type": "Organization",
         name: companyName,
@@ -40,7 +41,7 @@ export const OrganizationJSONLDHead = ({
           youtubeLink,
           instagramLink,
         ],
-      })}
-    </script>
-  </head>
+      }),
+    }}
+  />
 );
