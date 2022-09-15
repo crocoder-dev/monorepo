@@ -2,9 +2,8 @@ import blogHeader from "../../content/images/blogs/map-filter-reduce.png";
 import Column from "../../components/Blog/CodeExample/Column";
 import Row from "../../components/Blog/CodeExample/Row";
 import ListToggle from "../../components/Blog/CodeExample/ListToggle";
-import Layout from "../../components/Blog/Layout";
+import BlogLayout from "../../Layouts/BlogLayout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
-import ContentTable from "../../components/Blog/ContentTable";
 
 export const meta = {
   id: "map-filter-reduce-exercises",
@@ -37,8 +36,8 @@ I would like to prove to you that by using **Map, Filter, and Reduce** array met
 
 <br />
 <br />
+
 <p>{/*TODO: Create ContentTable*/}</p>
-<ContentTable headings={props.tocs} id={meta.id} title="Exercises" />
 
 <br />
 <br />
@@ -529,4 +528,4 @@ input.flat().reduce((accumulator, currentValue) => {
 
 </ListToggle>
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

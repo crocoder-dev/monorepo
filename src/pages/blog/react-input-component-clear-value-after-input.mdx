@@ -2,7 +2,7 @@ import blogHeader from "../../content/images/blogs/react-input-component-clear-v
 import Demo from "../../components/Blog/CodeExample/Demo";
 import StatusQuoDemo from "../../components/Blog/ImperativeHandlePost/StatusQuoDemo.jsx";
 import UncontrolledDemo from "../../components/Blog/ImperativeHandlePost/UncontrolledDemo.jsx";
-import Layout from "../../components/Blog/Layout";
+import BlogLayout from "../../Layouts/BlogLayout";
 
 export const meta = {
   id: "react-input-component-clear-value-after-input",
@@ -295,4 +295,4 @@ Although we have reinvented the Input component as an uncontrolled component usi
 
 We are actively working on expanding our internal component library, always striving to create neat and tidy component APIs. That is why long term thinking and reusability are key factors in our decision making when it comes to logic building of our components. We hope you found our solution helpful, and of course, feel free to comment or contact us about any ambiguities you might encounter while going through this post.
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

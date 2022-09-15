@@ -1,5 +1,5 @@
 import blogHeader from "../../content/images/blogs/how-to-clone-object-in-javascript.png";
-import Layout from "../../components/Blog/Layout";
+import BlogLayout from "../../Layouts/BlogLayout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
 
 export const meta = {
@@ -442,4 +442,4 @@ console.log(clonedObject);
 
 - [Lodash docs \_.cloneDeep()](https://lodash.com/docs/4.17.15#cloneDeep)
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

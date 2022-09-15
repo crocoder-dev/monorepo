@@ -3,8 +3,8 @@ import step1 from "../../content/images/blogs/block-russia-using-cloudfront/step
 import step2 from "../../content/images/blogs/block-russia-using-cloudfront/step2.png";
 import step3 from "../../content/images/blogs/block-russia-using-cloudfront/step3.png";
 import step4 from "../../content/images/blogs/block-russia-using-cloudfront/step4.png";
-import Layout from "../../components/Blog/Layout";
-import ResponsiveImage from "../../components/Blog/ResponsiveImage";
+import BlogLayout from "../../Layouts/BlogLayout";
+import ResponsiveImage from "../../components/ResponsiveImage";
 
 export const meta = {
   id: "block-russia-using-cloudfront",
@@ -106,4 +106,4 @@ resource "aws_cloudfront_distribution" "website_distribution" {
 
 Thank you for reading. ❤️🇺🇦
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

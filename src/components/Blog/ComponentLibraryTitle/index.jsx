@@ -7,12 +7,14 @@ const ComponentLibraryTitle = ({ id, children }) => {
   const libraries = librariesJSON.componentLibraries;
   const library = libraries.find((library) => library.id === id);
   const { title, altTitle } = library;
-  const libraryLogo = require(`../../../content/images/blogs/best-react-component-library-2022/${id}.png`);
 
   return (
     <div id={id} className={styles.libraryTitleWrapper}>
       <div className={styles.libraryLogo}>
-        <img src={libraryLogo} alt={title} />
+        <img
+          src={`../../../content/images/blogs/best-react-component-library-2022/${id}.png`}
+          alt={title}
+        />
       </div>
       <Typography className={styles.libraryTitle} element="h2">
         {children}

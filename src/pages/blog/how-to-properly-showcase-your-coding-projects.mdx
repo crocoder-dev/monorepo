@@ -1,5 +1,5 @@
 import blogHeader from "../../content/images/blogs/how-to-properly-showcase-your-coding-projects.jpg";
-import Layout from "../../components/Blog/Layout";
+import BlogLayout from "../../Layouts/BlogLayout";
 
 export const meta = {
   id: "how-to-properly-showcase-your-coding-projects",
@@ -37,4 +37,4 @@ If you want us to review and improve your CV in video form similar to this, cont
   ></iframe>
 </div>
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

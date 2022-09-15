@@ -2,7 +2,7 @@ import blogHeader from "../../content/images/blogs/callback-hell.jpg";
 import Column from "../../components/Blog/CodeExample/Column";
 import Row from "../../components/Blog/CodeExample/Row";
 import ListToggle from "../../components/Blog/CodeExample/ListToggle";
-import Layout from "../../components/Blog/Layout";
+import BlogLayout from "../../Layouts/BlogLayout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
 
 export const meta = {
@@ -450,4 +450,4 @@ repeat("trogdor", 3, (t) => `°${t}°`);
 
 </ListToggle>
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

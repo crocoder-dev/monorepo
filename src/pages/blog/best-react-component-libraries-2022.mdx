@@ -1,5 +1,5 @@
 import blogHeader from "../../content/images/blogs/how-to-properly-showcase-your-coding-projects.jpg";
-import Layout from "../../components/Blog/Layout";
+import BlogLayout from "../../Layouts/BlogLayout";
 import ComponentLibraryTitle from "../../components/Blog/ComponentLibraryTitle";
 import QuoteCard from "../../components/Blog/QuoteCard";
 
@@ -243,4 +243,4 @@ Reach UI claoms that all of their components are tested with Safari + VoiceOver,
 
 React v18 has brought new hooks like react.Suspense, but also started requiring the use of strict more. Unfortunately, strict mode brings more rerenders in the development circles and that can break some of the hooks used in Reach UI. As of writing this blog post, Reach UI is not compatible with React v18, but there is this issue discussion on GitHub where you can follow all of the developments. Similarly to Radix UI, all of the logic of each component is written in a single file and is treated a standalone package. This can make it hard for unexperienced developers to understand the source code. Even though every component is a standalone package, all of the components are released simultaneously and share the same version. This goes against the rules of SemVer because the packages will be published with a new version even though some components might not have been altered after the previous version.
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
