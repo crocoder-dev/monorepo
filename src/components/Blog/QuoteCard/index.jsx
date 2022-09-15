@@ -25,7 +25,7 @@ const QuoteCard = ({
           className={styles.authorImageWrapper}
         >
           <div className={styles.nextImage}>
-            <img src={`../../../content/images/authors/${id}.png`} alt={name} />
+            <img src={`/src/content/images/authors/${id}.png`} alt={name} />
           </div>
         </div>
         <Typography

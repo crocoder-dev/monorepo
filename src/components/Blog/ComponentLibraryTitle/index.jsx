@@ -12,7 +12,7 @@ const ComponentLibraryTitle = ({ id, children }) => {
     <div id={id} className={styles.libraryTitleWrapper}>
       <div className={styles.libraryLogo}>
         <img
-          src={`../../../content/images/blogs/best-react-component-library-2022/${id}.png`}
+          src={`/src/content/images/blogs/best-react-component-library-2022/${id}.png`}
           alt={title}
         />
       </div>
