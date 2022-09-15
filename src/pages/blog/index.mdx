@@ -1,4 +1,7 @@
 import PageLayout from "../../Layouts/PageLayout";
+import Section from "../../components/Section";
+import Header from "../../components/Blog/Header";
+import MostRecent from "../../components/Blog/MostRecent";
 
 export const meta = {
   title: "Blog",
@@ -7,6 +10,9 @@ export const meta = {
   pageType: "blog"
 };
 
-Blog Page
+<Header />
+<Section as="main">
+  <MostRecent pages={props.pages}/>
+</Section>
 
 export default ({children}) => <PageLayout>{children}</PageLayout>

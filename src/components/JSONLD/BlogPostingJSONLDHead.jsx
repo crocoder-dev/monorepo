@@ -50,7 +50,7 @@ const BlogPostingJSONLDHead = ({
           },
           author: {
             "@type": "Person",
-            name: author,
+            name: author.name,
           },
           publisher: {
             "@type": "Organization",
@@ -62,7 +62,7 @@ const BlogPostingJSONLDHead = ({
           },
           editor: {
             "@type": "Person",
-            name: editor,
+            name: editor.name,
           },
           image: {
             "@type": "imageObject",
