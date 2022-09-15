@@ -3,9 +3,9 @@ import styles from "./index.module.scss";
 import Section from "../../Section";
 import clsx from "clsx";
 
-const Body = ({ children, bodyRef }) => {
+const Body = ({ children }) => {
   return (
-    <Section blog as="main" ref={bodyRef} clasx={clsx(styles.body, "okaidia")}>
+    <Section blog as="main" clasx={clsx(styles.body, "okaidia")}>
       {children}
     </Section>
   );
