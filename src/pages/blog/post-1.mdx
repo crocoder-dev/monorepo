@@ -1,0 +1,34 @@
+import blogHeader from "../../content/images/blogs/block-russia-using-cloudfront.jpg";
+import BlogLayout from "../../Layouts/BlogLayout";
+
+export const meta = {
+  id: "post-1",
+  title:
+    "Block traffic to your website from Russia and Belarus using CloudFront",
+  description:
+    "We want to invite you all to block your website traffic from Russia and Belarus to show support for the Ukranian people. the following tutorial will help you to enable CloudFront Geographic Restrictions and block traffic.",
+  category: "AWS",
+  image: blogHeader,
+  date: 1645837875000,
+  updatedAt: 1645837875000,
+  author: "davidabram",
+  editor: "velimirujevic",
+  abstract:
+    "Russia invaded Ukraine on the 24th of February 2022. Belarus offers logistic support to the Russian army. This website won't be available in Russia and Belarus until the invasion stops. We don't intend to punish our readers from Russia and Belarus but to show dissatisfaction and disapproval of the political and philosophical stance of the Russian government. Our company and I are strong supporters and believers in individual liberty, free trade, and free association. In addition to being against war, we strongly oppose evil and destructive ideas that support autocracies. Make no mistake, this is not the doing of one man, but a joint effort of individuals who believe it is not you who should be deciding how to live your life. We want to invite you all to block your website traffic from Russia and Belarus to show support for the Ukranian people. the following tutorial will help you to enable CloudFront Geographic Restrictions and block traffic.",
+};
+
+Russia invaded Ukraine on the 24th of February 2022. Belarus offers logistic support to the Russian army.
+
+This website **won't be available in Russia and Belarus** until the invasion stops. We don't intend to punish our readers from Russia and Belarus but to show dissatisfaction and disapproval of the political and philosophical stance of the Russian government.
+
+Our company and I are **strong supporters and believers** in **individual liberty, free trade, and free association**. In addition to being against war, we strongly oppose evil and destructive ideas that support autocracies. Make no mistake, **this is not the doing of one man**, but a joint effort of individuals who believe it is not you who should be deciding how to live your life.
+
+We will continue doing as much as possible to show our support for the Ukrainian people and invite you all to do the same. If you use CloudFront as your CDN, the following tutorial will help you to **enable CloudFront Geographic Restrictions** and block traffic from Russia and Belarus.
+
+If you are using any other CDN or a different provider, send us an email at [hello@crocoder.dev](mailto:hello@crocoder.dev). I will personally assist you in blocking traffic.
+
+<hr />
+
+I will show you three ways to block traffic depending on how your CloudFront distribution is provisioned.
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

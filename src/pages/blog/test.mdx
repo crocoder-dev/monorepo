@@ -3,7 +3,7 @@ import blogHeader from "../../content/images/blogs/component-libraries-an-overlo
 
 
 export const meta = {
-  id: "component-libraries-an-overlooked-part-of-your-brand",
+  id: "test",
   title: "Component Libraries - An Overlooked Part of Your Brand",
   image: blogHeader,
   description:
@@ -37,4 +37,4 @@ Third-party libraries are useful when aiming for development velocity, but unles
 An existing component library can perhaps give you momentum in the beginning if you are willing to look past some design discrepancies, but as soon as you start to harmonize all those hundreds of small details present in your design, you will notice a significant drop in development velocity.
 
 
-export default ({ children, meta }) => <BlogLayout meta={meta}>{children}</BlogLayout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
