@@ -1,5 +1,6 @@
 import React from "react";
 import Typography from "../Typography";
+import ResponsiveImage from "../ResponsiveImage";
 import { motion } from "framer-motion";
 import * as styles from "./index.module.scss";
 
@@ -33,7 +34,7 @@ const Card = ({ url, imageAlt, name, client, image, description, delay }) => (
       </Typography>
       <div className={`${styles.customer__logo} ${styles[client]}`}>
         <div className={styles.next__img}>
-          <img alt={imageAlt} src={image} />
+          <ResponsiveImage alt={imageAlt} src={image} />
         </div>
       </div>
     </a>

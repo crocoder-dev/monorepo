@@ -6,6 +6,7 @@ import Input from "../Input";
 import TextArea from "../TextArea";
 import styles from "./index.module.scss";
 import Section from "../Section";
+import ResponsiveImage from "../ResponsiveImage";
 import { motion, AnimatePresence } from "framer-motion";
 
 const waitGrecaptchaReady = () => {
@@ -371,7 +372,7 @@ const ContactUs = ({
             </div>
           </div>
           <div className={styles.image}>
-            <img src={image} alt={imageAlt} />
+            <ResponsiveImage src={image} alt={imageAlt} />
           </div>
         </div>
       </div>

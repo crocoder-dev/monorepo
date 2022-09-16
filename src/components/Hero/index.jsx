@@ -3,12 +3,13 @@ import * as styles from "./index.module.scss";
 import Section from "../Section";
 import Typography from "../Typography";
 import Button from "../Button";
+import ResponsiveImage from "../ResponsiveImage";
 
 const Hero = ({ imageAlt, title, text, action, image, scrollToContactUs }) => (
   <Section as="header" className={styles.section}>
     <div className={styles.flex}>
       <div className={styles.image}>
-        <img alt={imageAlt} src={image} />
+        <ResponsiveImage alt={imageAlt} src={image} />
       </div>
       <div className={styles.text}>
         <Typography
