@@ -1,6 +1,6 @@
 import React from "react";
 import * as styles from "./index.module.scss";
-import Section from "../Layout/Section";
+import Section from "../Section";
 import Typography from "../Typography";
 import Button from "../Button";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "../Typography";
 import * as styles from "./index.module.scss";
-import Section from "../Layout/Section";
+import Section from "../Section";
 
 const HowWeWork = ({ title, content }) => (
   <Section as="section" className={styles.section}>

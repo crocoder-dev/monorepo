@@ -5,7 +5,7 @@ import Button from "../Button";
 import Input from "../Input";
 import TextArea from "../TextArea";
 import styles from "./index.module.scss";
-import Section from "../Layout/Section";
+import Section from "../Section";
 import { motion, AnimatePresence } from "framer-motion";
 
 const waitGrecaptchaReady = () => {

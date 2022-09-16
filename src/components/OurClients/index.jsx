@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "../Typography";
 import Button from "../Button";
-import Section from "../Layout/Section";
+import Section from "../Section";
 import styles from "./index.module.scss";
 import { motion } from "framer-motion";
 import Card from "./Card";

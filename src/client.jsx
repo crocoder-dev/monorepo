@@ -1,5 +1,5 @@
 // Hydrate
-import Test from './components/Test';
+/* import Test from './components/Test';
 import ReactDOM from 'react-dom';
 import React from 'react';
 
@@ -13,5 +13,4 @@ setTimeout(() => {
     </React.StrictMode>,
     document.getElementById('root')
   );
-}, 10000);
-
+}, 10000); */
