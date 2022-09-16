@@ -2,9 +2,8 @@ import blogHeader from "../../content/images/blogs/map-filter-reduce.png";
 import Column from "../../components/Blog/CodeExample/Column";
 import Row from "../../components/Blog/CodeExample/Row";
 import ListToggle from "../../components/Blog/CodeExample/ListToggle";
-import Layout from "../../components/Blog/Layout";
+import BlogLayout from "../../Layouts/BlogLayout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
-import ContentTable from "../../components/Blog/ContentTable";
 
 export const meta = {
   id: "map-filter-reduce-exercises",
@@ -19,6 +18,7 @@ export const meta = {
   editor: "velimirujevic",
   abstract:
     "It's really hard to test your programming knowledge after you have completed a tutorial or a lecture. We have prepared some exercises to help out beginner devs to solidify their understanding of Map, Filter, Reduce, and other useful array methods. Every exercise has a brief description of the problem, starting code, links to relevant MDN docs, and expected results. Try to solve the problems without taking a peek at the solution.",
+  pageType: "blog-posting"
 };
 
 It's really hard to test your programming knowledge after you have completed a tutorial or a lecture. We have prepared some exercises to help out beginner devs to solidify their understanding of **Map, Filter, Reduce**, and other useful array methods. Every exercise has a brief description of the problem, starting code, links to relevant MDN docs, and expected results. Try to solve the problems without taking a peek at the solution.
@@ -37,8 +37,8 @@ I would like to prove to you that by using **Map, Filter, and Reduce** array met
 
 <br />
 <br />
+
 <p>{/*TODO: Create ContentTable*/}</p>
-<ContentTable headings={props.tocs} id={meta.id} title="Exercises" />
 
 <br />
 <br />
@@ -529,4 +529,4 @@ input.flat().reduce((accumulator, currentValue) => {
 
 </ListToggle>
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

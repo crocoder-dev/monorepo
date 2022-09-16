@@ -1,5 +1,5 @@
 import styles from "./index.module.scss";
-import Section from "../../Layout/Section";
+import Section from "../../Section";
 import Typography from "../../Typography";
 
 function BlogHeader() {

@@ -2,7 +2,7 @@ import blogHeader from "../../content/images/blogs/react-input-component-clear-v
 import Demo from "../../components/Blog/CodeExample/Demo";
 import StatusQuoDemo from "../../components/Blog/ImperativeHandlePost/StatusQuoDemo.jsx";
 import UncontrolledDemo from "../../components/Blog/ImperativeHandlePost/UncontrolledDemo.jsx";
-import Layout from "../../components/Blog/Layout";
+import BlogLayout from "../../Layouts/BlogLayout";
 
 export const meta = {
   id: "react-input-component-clear-value-after-input",
@@ -18,6 +18,7 @@ export const meta = {
   editor: "velimirujevic",
   abstract:
     "We had to refactor the Input component from our internal component library because its value wasn't getting cleared after submission. In this article, we discuss different ways for how to solve this problem in React. One of the solutions for your Input component discussed in this post is a controlled component, which is achieved by adding a state to the component itself. Another solution is to keep the Input component uncontrolled and give it the ability to pass a ref via props to the rendered <input> HTML element, allowing the parent component to pass the ref to the Input component. The alternative solution we suggest is to use a not well-known hook called useImperativeHandle in combination with a piece of React API called forwardRef. This allows the parent component to access the component API with ref.current, while the Input component remains uncontrolled.",
+  pageType: "blog-posting"
 };
 
 While importing the Input component from our internal component library for a company-related project, we encountered an issue that compelled us to completely reinvent how this component works. We realized that there was no way for a parent component to affect the value of the rendered [\<input\> HTML element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input), and after reading through the source code, we decided to look for solutions and ultimately refactor our Input component.
@@ -295,4 +296,4 @@ Although we have reinvented the Input component as an uncontrolled component usi
 
 We are actively working on expanding our internal component library, always striving to create neat and tidy component APIs. That is why long term thinking and reusability are key factors in our decision making when it comes to logic building of our components. We hope you found our solution helpful, and of course, feel free to comment or contact us about any ambiguities you might encounter while going through this post.
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

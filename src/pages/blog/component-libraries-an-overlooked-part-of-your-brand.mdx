@@ -1,9 +1,9 @@
 import blogHeader from "../../content/images/blogs/component-libraries-an-overlooked-part-of-your-brand.jpg";
-import Layout from "../../components/Blog/Layout";
+import BlogLayout from "../../Layouts/BlogLayout";
 import DesignSystemOnMac from "../../content/images/blogs/component-libraries-an-overlooked-part-of-your-brand/design-system-on-a-mac.png";
 import StrugglingWithTheUi from "../../content/images/blogs/component-libraries-an-overlooked-part-of-your-brand/struggling-with-the-ui.png";
 import WorkOrganization from "../../content/images/blogs/component-libraries-an-overlooked-part-of-your-brand/work-organization.png";
-import ResponsiveImage from "../../components/Blog/ResponsiveImage";
+import ResponsiveImage from "../../components/ResponsiveImage";
 
 export const meta = {
   id: "component-libraries-an-overlooked-part-of-your-brand",
@@ -18,6 +18,7 @@ export const meta = {
   editor: "velimirujevic",
   abstract:
     "Good design means doing good business - it shows credibility, facilitates trust, and makes the user feel involved. UX / UI also creates and maintains the ever-so-important promise of a brand. Design systems and component libraries reduce duplication, improve cross-team collaboration, drive product scalability, and make UI consistent. There are arguments popular in the developer community that diminish the value of building an internal component library and in favor of using third-party component libraries. Third-party component libraries constrain your development team in multiple different ways. Often when there is a problem your development team cannot solve, issues will spill into the design team, forcing them to rethink their proposed design system. That creates compromises in the design and damages the perception of the product brand. Only by building your own component library will you possess enough flexibility to ensure the components used to shape your product match the design system specification in a way that does not damage your brand.",
+  pageType: "blog-posting"
 };
 
 Whether you are delivering a new product to the target market or improving an existing one to drive sales, chances are you are actively investing in your product’s UI/UX design. After all, good design means doing good business - it shows credibility, facilitates trust, and makes the user feel involved.
@@ -95,4 +96,4 @@ If you are spending money on custom UI/UX, you should also be spending money in 
 
 Only by building your own component library will you possess enough flexibility to easily ensure the components used to build your product match the design system specification in a way that does not damage your brand.
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

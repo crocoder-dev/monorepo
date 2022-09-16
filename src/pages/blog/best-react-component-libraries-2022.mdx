@@ -1,5 +1,5 @@
 import blogHeader from "../../content/images/blogs/how-to-properly-showcase-your-coding-projects.jpg";
-import Layout from "../../components/Blog/Layout";
+import BlogLayout from "../../Layouts/BlogLayout";
 import ComponentLibraryTitle from "../../components/Blog/ComponentLibraryTitle";
 import QuoteCard from "../../components/Blog/QuoteCard";
 
@@ -16,6 +16,7 @@ export const meta = {
   editor: "velimirujevic",
   abstract:
     "Russia invaded Ukraine on the 24th of February 2022. Belarus offers logistic support to the Russian army. This website won't be available in Russia and Belarus until the invasion stops. We don't intend to punish our readers from Russia and Belarus but to show dissatisfaction and disapproval of the political and philosophical stance of the Russian government. Our company and I are strong supporters and believers in individual liberty, free trade, and free association. In addition to being against war, we strongly oppose evil and destructive ideas that support autocracies. Make no mistake, this is not the doing of one man, but a joint effort of individuals who believe it is not you who should be deciding how to live your life. We want to invite you all to block your website traffic from Russia and Belarus to show support for the Ukrainian people. the following tutorial will help you to enable CloudFront Geographic Restrictions and block traffic.",
+  pageType: "blog-posting"
 };
 
 As a newcomer in the IT sphere, I spend a lot of time researching different topics relating to development. Perhaps it should not be emphasized, but understanding all of the finer workings of this field helps me in doing all of my marketing-related work obligations, i.e. content creation. While exploring the process of building web applications, I realized that there is a seemingly endless sea of open-source React component libraries to pick and choose from. Some of them built for very specific use cases, others intended strictly for web development and many of them adapted for general use. I turned to my team for guidance and taking into consideration factors that are relevant to development such as; use cases, documentation and support, I wanted us to create some sort of guide that can assist developers in pinpointing UIs that suit their various needs. These are the nine component libraries recommended by the CroCoder consultants. Let's explore which of these libraries they suggest using, which are best for specific use case scenarios and what they think about them in general.
@@ -243,4 +244,4 @@ Reach UI claoms that all of their components are tested with Safari + VoiceOver,
 
 React v18 has brought new hooks like react.Suspense, but also started requiring the use of strict more. Unfortunately, strict mode brings more rerenders in the development circles and that can break some of the hooks used in Reach UI. As of writing this blog post, Reach UI is not compatible with React v18, but there is this issue discussion on GitHub where you can follow all of the developments. Similarly to Radix UI, all of the logic of each component is written in a single file and is treated a standalone package. This can make it hard for unexperienced developers to understand the source code. Even though every component is a standalone package, all of the components are released simultaneously and share the same version. This goes against the rules of SemVer because the packages will be published with a new version even though some components might not have been altered after the previous version.
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

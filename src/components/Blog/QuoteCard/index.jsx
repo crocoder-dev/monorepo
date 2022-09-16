@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
-import Section from "../../Layout/Section";
+import Section from "../../Section";
 import clsx from "clsx";
-import authorsJSON from "../../../content/authors/authors.json";
+import authors from "../../../content/authors/authors.json";
 
 const QuoteCard = ({
   direction,
@@ -11,9 +11,7 @@ const QuoteCard = ({
   "author-color": authorBgColor,
   "author-name": authorName,
 }) => {
-  const { authors } = authorsJSON;
   const { name, role, id } = authors.find((author) => author.id === authorName);
-  const authorImage = require(`../../../content/images/authors/${id}.png`);
 
   return (
     <Section
@@ -27,7 +25,7 @@ const QuoteCard = ({
           className={styles.authorImageWrapper}
         >
           <div className={styles.nextImage}>
-            <img src={authorImage} alt={name} />
+            <img src={`/src/content/images/authors/${id}.png`} alt={name} />
           </div>
         </div>
         <Typography

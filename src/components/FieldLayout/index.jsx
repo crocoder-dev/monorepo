@@ -37,14 +37,14 @@ const Field = ({
         id={labelId}
         aria-hidden={hideLabel}
         htmlFor={labelHtmlFor}
-        className={classnames(styles.label, {
+        className={clsx(styles.label, {
           [styles.labelHidden]: hideLabelOnFocus,
         })}
       >
         {label} {required && "*"}
       </label>
       <div
-        className={classnames(styles.field, {
+        className={clsx(styles.field, {
           [styles.includeBorder]: !removeBottomBorder,
           [styles.style__child]: !removeChildrenStyle,
         })}

@@ -7,7 +7,7 @@ import * as styles from "./index.module.scss";
 const Input = ({
   className,
   defaultValue,
-  disabled = false, 
+  disabled = false,
   error,
   errorMessage,
   id,

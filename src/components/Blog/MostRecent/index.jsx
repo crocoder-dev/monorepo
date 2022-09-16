@@ -2,7 +2,16 @@ import styles from "./index.module.scss";
 import Typography from "../../Typography";
 import { Post } from "../Posts";
 
-function MostRecent({ featuredPost = {}, posts = [] }) {
+function MostRecent({ pages }) {
+  const postKeys = Object.keys(pages).filter(
+    (key) => key.includes("blog") && key !== "/blog/"
+  );
+  const posts = postKeys.map((key) => pages[key]);
+
+  const [featuredPost, ...restOfPosts] = posts.sort(
+    (a, b) => new Date(b.meta.date) - new Date(a.meta.date)
+  );
+
   return (
     <>
       <div className={styles.titleWrapper}>
@@ -18,9 +27,12 @@ function MostRecent({ featuredPost = {}, posts = [] }) {
       </div>
       <div className={styles.wrapper}>
         <article className={styles.featured_post}>
-          <a href={featuredPost.slug}>
+          <a href={featuredPost.urlPath}>
             <figure>
-              <img src={featuredPost.image} alt={featuredPost.title} />
+              <img
+                src={featuredPost.meta.image}
+                alt={featuredPost.meta.title}
+              />
             </figure>
             <Typography
               fontSize={14}
@@ -30,7 +42,7 @@ function MostRecent({ featuredPost = {}, posts = [] }) {
               color="gray_11"
               fontFamily="rubik"
             >
-              {featuredPost.category}
+              {featuredPost.meta.category}
             </Typography>
             <Typography
               fontSize={24}
@@ -40,7 +52,7 @@ function MostRecent({ featuredPost = {}, posts = [] }) {
               fontFamily="rubik"
               element="h3"
             >
-              {featuredPost.title}
+              {featuredPost.meta.title}
             </Typography>
             <Typography
               fontSize={18}
@@ -48,18 +60,18 @@ function MostRecent({ featuredPost = {}, posts = [] }) {
               color="gray_11"
               fontFamily="rubik"
             >
-              {featuredPost.description}
+              {featuredPost.meta.description}
             </Typography>
           </a>
         </article>
-        {posts.map((post) => {
+        {restOfPosts.map((post) => {
           return (
             <Post
-              key={post.title}
-              slug={post.slug}
-              image={post.image}
-              title={post.title}
-              category={post.category}
+              key={post.meta.title}
+              slug={post.urlPath}
+              image={post.meta.image}
+              title={post.meta.title}
+              category={post.meta.category}
             />
           );
         })}
