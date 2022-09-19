@@ -1,5 +1,6 @@
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
+import ResponsiveImage from "../../ResponsiveImage";
 import { Post } from "../Posts";
 
 function MostRecent({ pages }) {
@@ -29,7 +30,7 @@ function MostRecent({ pages }) {
         <article className={styles.featured_post}>
           <a href={featuredPost.urlPath}>
             <figure>
-              <img
+              <ResponsiveImage
                 src={featuredPost.meta.image}
                 alt={featuredPost.meta.title}
               />

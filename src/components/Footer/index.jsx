@@ -2,7 +2,7 @@ import React from "react";
 import * as styles from "./index.module.scss";
 import Icon from "../Icon";
 import Typography from "../Typography";
-import logoFooter from "../../content/images/logoFooter.png?preset=responsive";
+import logoFooter from "../../content/images/logoFooter.png";
 import ResponsiveImage from "../ResponsiveImage";
 
 import footer from "../../content/footer.json";

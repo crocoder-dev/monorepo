@@ -1,12 +1,13 @@
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
+import ResponsiveImage from "../../ResponsiveImage";
 
 export const Post = ({ image, category, title, slug }) => {
   return (
     <article>
       <a href={slug} className={styles.post}>
         <figure>
-          <img src={image} alt={title} />
+          <ResponsiveImage src={image} alt={title} />
         </figure>
         <Typography
           fontSize={12}
