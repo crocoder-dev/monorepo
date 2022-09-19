@@ -64,11 +64,13 @@
       min-width: 140px;
       max-width: 140px;
       height: 140px;
-      display: inline-block;
+      display: flex;
+      justify-content: center;
       border-radius: 50%;
       overflow: hidden;
-      div {
-        width: inherit !important;
+      img {
+        height: 100%;
+        width: auto;
       }
     }
   }

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
+import ResponsiveImage from "../../ResponsiveImage";
 import Section from "../../Section";
 
 const Header = ({ image, title, author, lastUpdatedAt }) => {
@@ -20,7 +21,7 @@ const Header = ({ image, title, author, lastUpdatedAt }) => {
 
   return (
     <Section blog as="header" className={styles.header}>
-      <img src={image} alt={title} />
+      <ResponsiveImage src={image} alt={title} />
       <Typography
         element="h1"
         fontSize={50}
