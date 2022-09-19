@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
 import Section from "../../Section";
+import ResponsiveImage from "../../ResponsiveImage";
 import clsx from "clsx";
 import authors from "../../../content/authors/authors.json";
 
@@ -24,9 +25,10 @@ const QuoteCard = ({
           style={{ backgroundColor: authorBgColor }}
           className={styles.authorImageWrapper}
         >
-          <div className={styles.nextImage}>
-            <img src={`/src/content/images/authors/${id}.png`} alt={name} />
-          </div>
+          <ResponsiveImage
+            src={`/src/content/images/authors/${id}.png`}
+            alt={name}
+          />
         </div>
         <Typography
           fontFamily="rubik"
