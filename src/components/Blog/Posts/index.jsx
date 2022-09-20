@@ -1,6 +1,7 @@
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
 import ResponsiveImage from "../../ResponsiveImage";
+import clsx from "clsx";
 
 export const Post = ({ image, category, title, slug }) => {
   return (
@@ -12,7 +13,7 @@ export const Post = ({ image, category, title, slug }) => {
         <Typography
           fontSize={12}
           fontWeight={500}
-          className={`${styles.category} ${styles.text}`}
+          className={clsx(styles.category, styles.text)}
           element="div"
           color="gray_11"
           fontFamily="rubik"

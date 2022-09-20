@@ -1,11 +1,10 @@
 import React from "react";
 import styles from "./index.module.scss";
 import Section from "../../Section";
-import clsx from "clsx";
 
 const Body = ({ children }) => {
   return (
-    <Section blog as="main" clasx={clsx(styles.body, "okaidia")}>
+    <Section blog as="main" className={styles.body}>
       {children}
     </Section>
   );

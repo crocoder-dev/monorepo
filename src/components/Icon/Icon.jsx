@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import Typography from "../Typography";
 
@@ -15,7 +16,7 @@ const Icon = ({ icon, className, fontSize, fontWeight, color, ...other }) => {
       fontWeight={fontWeight}
       color={color}
       element="span"
-      className={compositeClassName}
+      className={clsx(`icon-${icon}`, className)}
     >
       <span className="path1" />
       <span className="path2" />

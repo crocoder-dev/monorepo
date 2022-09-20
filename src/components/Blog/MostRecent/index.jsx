@@ -2,6 +2,7 @@ import styles from "./index.module.scss";
 import Typography from "../../Typography";
 import ResponsiveImage from "../../ResponsiveImage";
 import { Post } from "../Posts";
+import clsx from "clsx";
 
 function MostRecent({ pages }) {
   const postKeys = Object.keys(pages).filter(
@@ -38,7 +39,7 @@ function MostRecent({ pages }) {
             <Typography
               fontSize={14}
               fontWeight={500}
-              className={`${styles.category} ${styles.text}`}
+              className={clsx(styles.category, styles.text)}
               element="div"
               color="gray_11"
               fontFamily="rubik"

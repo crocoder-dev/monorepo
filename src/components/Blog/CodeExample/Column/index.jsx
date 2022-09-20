@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./index.module.scss";
+import clsx from "clsx";
 
 const Column = ({ children, margin, text }) => {
   let style = {};
@@ -7,14 +8,8 @@ const Column = ({ children, margin, text }) => {
     style.margin = `${margin}px`;
   }
 
-  let className = styles.column;
-
-  if (text) {
-    className = `${className} ${styles.text}`;
-  }
-
   return (
-    <div className={className} style={style}>
+    <div className={clsx(styles.column, text && styles.text)} style={style}>
       {children}
     </div>
   );

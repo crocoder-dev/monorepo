@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import styles from "./Typography.module.scss";
 
@@ -39,19 +40,20 @@ const Typography = ({
     Component = "span";
   }
 
-  let compositeClassName = `${styles.typography} ${className} `;
-  compositeClassName += ` ${styles[`size${fontSize}`]} ${styles[textAlign]} ${
-    styles[`weight${fontWeight}`]
-  } ${styles[`${fontFamily}`]}`;
-  if (color) {
-    compositeClassName += ` ${styles[`color${color}`]}`;
-  }
   return React.createElement(
     Component,
     {
       ...other,
       title,
-      className: compositeClassName,
+      className: clsx(
+        styles.typography,
+        className,
+        styles[`size${fontSize}`],
+        styles[textAlign],
+        styles[`weight${fontWeight}`],
+        styles[`${fontFamily}`],
+        color && styles[`color${color}`]
+      ),
     },
     children
   );
