@@ -1,6 +1,7 @@
 import blogHeader from "../../content/images/blogs/how-to-clone-object-in-javascript.png";
 import BlogLayout from "../../Layouts/BlogLayout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
+import ContentTable from "../../components/Blog/ContentTable";
 
 export const meta = {
   id: "how-to-clone-object-in-javascript",
@@ -101,19 +102,7 @@ Hopefully, the next examples will help you learn some of the techniques for clon
 <br />
 <br />
 
-## Contents
-
-- [Shallow Clone](#shallow-clone)
-  - [Using Spread syntax](#using-spread-syntax)
-  - [Using Object.assign()](#using-object-assign)
-  - [Using Object.entries & Object.fromEntries](#using-object-entries---object-fromentries)
-- [Deep Clone](#deep-clone)
-  - [Using JSON.stringify & JSON.parse](#using-json-stringify---json-parse)
-  - [\[Node.js ONLY\] Using v8.serialize & v8.deserialize](#node-js-only--using-v8-serialize---v8-deserialize)
-- [External libraries](#using-external-libraries)
-  - [Using $.extend()](#using---extend)
-  - [Using \_.clone()](#using-_-clone)
-  - [Using \_.cloneDeep()](#using-_-clonedeep)
+<ContentTable tocData={props.toc} />
 
 <br />
 <br />

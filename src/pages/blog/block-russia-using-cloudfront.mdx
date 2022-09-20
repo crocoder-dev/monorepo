@@ -1,10 +1,11 @@
-import blogHeader from "../../content/images/blogs/block-russia-using-cloudfront.jpg";
-import step1 from "../../content/images/blogs/block-russia-using-cloudfront/step1.png";
-import step2 from "../../content/images/blogs/block-russia-using-cloudfront/step2.png";
-import step3 from "../../content/images/blogs/block-russia-using-cloudfront/step3.png";
-import step4 from "../../content/images/blogs/block-russia-using-cloudfront/step4.png";
+import blogHeader from "../../content/images/blogs/block-russia-using-cloudfront.jpg?preset=responsive";
+import step1 from "../../content/images/blogs/block-russia-using-cloudfront/step1.png?preset=responsive";
+import step2 from "../../content/images/blogs/block-russia-using-cloudfront/step2.png?preset=responsive";
+import step3 from "../../content/images/blogs/block-russia-using-cloudfront/step3.png?preset=responsive";
+import step4 from "../../content/images/blogs/block-russia-using-cloudfront/step4.png?preset=responsive";
 import BlogLayout from "../../Layouts/BlogLayout";
 import ResponsiveImage from "../../components/ResponsiveImage";
+import ContentTable from "../../components/Blog/ContentTable";
 
 export const meta = {
   id: "block-russia-using-cloudfront",
@@ -37,7 +38,7 @@ If you are using any other CDN or a different provider, send us an email at [hel
 
 I will show you three ways to block traffic depending on how your CloudFront distribution is provisioned.
 
-<p>{/*TODO: Create ContentTable*/}</p>
+<ContentTable tocData={props.toc} />
 
 <br />
 <br />

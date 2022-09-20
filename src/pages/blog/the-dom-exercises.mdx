@@ -5,6 +5,7 @@ import ListToggle from "../../components/Blog/CodeExample/ListToggle";
 import Demo from "../../components/Blog/CodeExample/Demo";
 import BlogLayout from "../../Layouts/BlogLayout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
+import ContentTable from "../../components/Blog/ContentTable";
 
 export const meta = {
   id: "the-dom-exercises",
@@ -34,7 +35,8 @@ The DOM or the Document Object Model of the page is created after the web page i
 
 <br />
 <br />
-<p>{/*TODO: Create ContentTable*/}</p>
+
+<ContentTable tocData={props.toc} />
 
 <br />
 <br />
