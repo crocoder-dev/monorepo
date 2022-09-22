@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import { plugins, build } from './vite.config.js';
+import { plugins, build } from './vite.config';
 
 const dir = dirname(fileURLToPath(import.meta.url));
 

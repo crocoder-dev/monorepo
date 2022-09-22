@@ -26,13 +26,15 @@ async function createServer() {
       res.status(status).set({ 'Content-Type': type }).end(body);
     } catch (e) {
       vite.ssrFixStacktrace(e);
+      // eslint-disable-next-line no-console
       console.error(e);
       res.status(500).end(e.message);
     }
-  })
+  });
 
   app.listen(PORT);
 
+  // eslint-disable-next-line no-console
   console.log(`🐊🐊🐊 Site is now being served at: http://localhost:${PORT} 🐊🐊🐊`);
 }
 
