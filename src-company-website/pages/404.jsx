@@ -1,14 +1,14 @@
-import Layout from "../components/Layout";
-import Typography from "../components/Typography";
-import Section from "../components/Section";
-import Button from "../components/Button";
-import notfoundJSON from "../content/notfound.json";
+import React from 'react';
+import Layout from '../components/Layout';
+import Typography from '../components/Typography';
+import Section from '../components/Section';
+import Button from '../components/Button';
+import notfoundJSON from '../content/notfound.json';
+import notfoundImage from '../content/images/404.png';
 
 export default function Custom404({ pathname }) {
-  const notfoundImage = require("../content/images/404.png");
-
   const meta = {
-    title: "404",
+    title: '404',
     description: notfoundJSON.subtitle,
   };
 

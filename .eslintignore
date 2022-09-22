@@ -1,6 +1,0 @@
-node_modules
-dist
-.vscode
-.eslintrc.js
-vite.config.js
-.stylelintrc.json
