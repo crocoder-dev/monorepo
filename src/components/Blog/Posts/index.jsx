@@ -3,12 +3,12 @@ import Typography from "../../Typography";
 import ResponsiveImage from "../../ResponsiveImage";
 import clsx from "clsx";
 
-export const Post = ({ image, category, title, slug }) => {
+export const Post = ({ meta, urlPath }) => {
   return (
     <article>
-      <a href={slug} className={styles.post}>
+      <a href={urlPath} className={styles.post}>
         <figure>
-          <ResponsiveImage src={image} alt={title} />
+          <ResponsiveImage src={meta.image} alt={meta.title} />
         </figure>
         <Typography
           fontSize={12}
@@ -18,7 +18,7 @@ export const Post = ({ image, category, title, slug }) => {
           color="gray_11"
           fontFamily="rubik"
         >
-          {category}
+          {meta.category}
         </Typography>
         <Typography
           element="h3"
@@ -28,7 +28,7 @@ export const Post = ({ image, category, title, slug }) => {
           fontWeight={700}
           fontFamily="rubik"
         >
-          {title}
+          {meta.title}
         </Typography>
       </a>
     </article>
@@ -38,7 +38,7 @@ export const Post = ({ image, category, title, slug }) => {
 const Posts = ({ posts }) => {
   return (
     <div className={styles.wrapper}>
-      {posts && posts.map((p) => <Post key={p.slug} {...p} />)}
+      {posts && posts.map((p) => <Post key={p.urlPath} {...p} />)}
     </div>
   );
 };

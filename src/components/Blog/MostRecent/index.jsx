@@ -67,15 +67,7 @@ function MostRecent({ pages }) {
           </a>
         </article>
         {restOfPosts.map((post) => {
-          return (
-            <Post
-              key={post.meta.title}
-              slug={post.urlPath}
-              image={post.meta.image}
-              title={post.meta.title}
-              category={post.meta.category}
-            />
-          );
+          return <Post key={post.meta.title} {...post} />;
         })}
       </div>
     </>
