@@ -1,5 +1,5 @@
-import Layout from "../components/Layout";
-import Section from "../components/Layout/Section";
+import PageLayout from "../Layouts/PageLayout";
+import Section from "../components/Section";
 import Typography from "../components/Typography";
 
 export const meta = {};
@@ -69,4 +69,4 @@ export const lineHeight = "1.8";
 <br />
 <br />
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default ({ children }) => <PageLayout>{children}</PageLayout>;

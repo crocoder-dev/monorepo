@@ -2,11 +2,8 @@ import React, { createRef, useRef } from "react";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import logoNavigation from "../../content/images/logoNavigation.png";
+import ResponsiveImage from "../../components/ResponsiveImage";
 import navigation from "../../content/navigation.json";
-
-export const contactUsRef = createRef(null);
-
-export const scrollToContactUs = () => contactUsRef.current.scrollIntoView();
 
 const Layout = ({ children }) => {
   const topRef = useRef(null);
@@ -19,11 +16,9 @@ const Layout = ({ children }) => {
         topRef={topRef}
         Logo={
           <a href="/">
-            <img
+            <ResponsiveImage
               src={logoNavigation}
               alt={navigation.home.ariaLabel}
-              /* height={51}
-                width={225} */
             />
           </a>
         }

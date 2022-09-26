@@ -1,9 +1,10 @@
-import blogHeader from "../../content/images/blogs/callback-hell.jpg";
+import blogHeader from "../../content/images/blogs/callback-hell.jpg?preset=responsive";
 import Column from "../../components/Blog/CodeExample/Column";
 import Row from "../../components/Blog/CodeExample/Row";
 import ListToggle from "../../components/Blog/CodeExample/ListToggle";
 import BlogLayout from "../../Layouts/BlogLayout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
+import ContentTable from "../../components/Blog/ContentTable";
 
 export const meta = {
   id: "callbacks-exercises",
@@ -45,7 +46,8 @@ The second parameter passed into addEventListener is a **callback**. I have comp
 
 <br />
 <br />
-<p>{/*TODO: Create ContentTable*/}</p>
+
+<ContentTable tocData={props.toc} />
 
 <br />
 <br />

@@ -5,7 +5,8 @@ import Button from "../Button";
 import Input from "../Input";
 import TextArea from "../TextArea";
 import styles from "./index.module.scss";
-import Section from "../Layout/Section";
+import Section from "../Section";
+import ResponsiveImage from "../ResponsiveImage";
 import { motion, AnimatePresence } from "framer-motion";
 
 const waitGrecaptchaReady = () => {
@@ -67,10 +68,10 @@ const ContactUs = ({
   title,
   description,
   image,
-  contactUsRef,
   consent,
   imageAlt,
   notification,
+  id = null,
 }) => {
   const [confirmed, setConfirmed] = React.useState(false);
   const [confirmedError, setConfirmedError] = React.useState(false);
@@ -244,9 +245,9 @@ const ContactUs = ({
 
   return [
     <div
+      id={id}
       key="ref"
-      style={{ position: "relative", top: "-20px" }}
-      ref={contactUsRef}
+      style={{ position: "relative", top: "-20px", scrollMarginTop: "50px" }}
     />,
     <ul className={styles.notifications} key="notification">
       <AnimatePresence initial={false}>
@@ -371,7 +372,7 @@ const ContactUs = ({
             </div>
           </div>
           <div className={styles.image}>
-            <img src={image} alt={imageAlt} />
+            <ResponsiveImage src={image} alt={imageAlt} />
           </div>
         </div>
       </div>

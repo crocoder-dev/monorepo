@@ -10,8 +10,7 @@
   font-display: block;
 }
 
-[class^="icon-"],
-[class*=" icon-"] {
+.icon {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: "crocoder" !important;
   font-style: normal;

@@ -1,22 +1,24 @@
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
+import ResponsiveImage from "../../ResponsiveImage";
+import clsx from "clsx";
 
-export const Post = ({ image, category, title, slug }) => {
+export const Post = ({ meta, urlPath }) => {
   return (
     <article>
-      <a href={slug} className={styles.post}>
+      <a href={urlPath} className={styles.post}>
         <figure>
-          <img src={image} alt={title} />
+          <ResponsiveImage src={meta.image} alt={meta.title} />
         </figure>
         <Typography
           fontSize={12}
           fontWeight={500}
-          className={`${styles.category} ${styles.text}`}
+          className={clsx(styles.category, styles.text)}
           element="div"
           color="gray_11"
           fontFamily="rubik"
         >
-          {category}
+          {meta.category}
         </Typography>
         <Typography
           element="h3"
@@ -26,7 +28,7 @@ export const Post = ({ image, category, title, slug }) => {
           fontWeight={700}
           fontFamily="rubik"
         >
-          {title}
+          {meta.title}
         </Typography>
       </a>
     </article>
@@ -36,7 +38,7 @@ export const Post = ({ image, category, title, slug }) => {
 const Posts = ({ posts }) => {
   return (
     <div className={styles.wrapper}>
-      {posts && posts.map((p) => <Post key={p.slug} {...p} />)}
+      {posts && posts.map((p) => <Post key={p.urlPath} {...p} />)}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "../Typography";
 import Button from "../Button";
-import Section from "../Layout/Section";
+import Section from "../Section";
 import styles from "./index.module.scss";
 import { motion } from "framer-motion";
 import Card from "./Card";
@@ -18,7 +18,7 @@ const item = {
   show: { opacity: 1, transition: { duration: 1 } },
 };
 
-const OurClients = ({ title, text, lastCard, cards, scrollToContactUs }) => {
+const OurClients = ({ title, text, lastCard, cards }) => {
   return (
     <Section as={motion.section} className={styles.blue}>
       <div className={styles.section}>
@@ -75,15 +75,11 @@ const OurClients = ({ title, text, lastCard, cards, scrollToContactUs }) => {
             >
               {lastCard.text}
             </Typography>
-            <Button
-              className={styles.button}
-              onClick={() => {
-                scrollToContactUs && scrollToContactUs();
-              }}
-              variant="primary"
-            >
-              {lastCard.action}
-            </Button>
+            <a href="#contact-us">
+              <Button className={styles.button} variant="primary">
+                {lastCard.action}
+              </Button>
+            </a>
           </motion.div>
         </motion.div>
       </div>

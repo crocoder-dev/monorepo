@@ -1,6 +1,7 @@
 import React from "react";
 import Section from "../../Section";
 import Typography from "../../Typography";
+import ResponsiveImage from "../../ResponsiveImage";
 import styles from "./index.module.scss";
 
 const About = ({ author }) => {
@@ -11,7 +12,10 @@ const About = ({ author }) => {
           className={styles.aboutAvatarWrapper}
           style={{ backgroundColor: `${author.bgColor}` }}
         >
-          <img src={`/src/content/images/authors/${author.id}.png`} alt={author.name} />
+          <ResponsiveImage
+            src={`/src/content/images/authors/${author.id}.png`}
+            alt={author.name}
+          />
         </div>
         <div className={styles.aboutName}>
           <Typography

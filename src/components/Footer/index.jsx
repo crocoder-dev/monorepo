@@ -3,6 +3,7 @@ import * as styles from "./index.module.scss";
 import Icon from "../Icon";
 import Typography from "../Typography";
 import logoFooter from "../../content/images/logoFooter.png";
+import ResponsiveImage from "../ResponsiveImage";
 
 import footer from "../../content/footer.json";
 
@@ -23,12 +24,7 @@ const Footer = ({ scrollToTop }) => {
               style={{ visibility: "visible" }}
               aria-hidden="true"
             >
-              <img
-                src={logoFooter}
-                alt={footer.home.ariaLabel}
-                /* width={225}
-                  height={51} */
-              />
+              <ResponsiveImage src={logoFooter} alt={footer.home.ariaLabel} />
             </div>
           </a>
         </div>

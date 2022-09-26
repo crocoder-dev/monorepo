@@ -4,7 +4,7 @@ import Typography from "../../Typography";
 
 function BlogHeader() {
   return (
-    <Section as="header" className={styles.whiteBackground}>
+    <Section as="header" blog className={styles.whiteBackground}>
       <div className={styles.wrapper}>
         <Typography
           className={styles.title}

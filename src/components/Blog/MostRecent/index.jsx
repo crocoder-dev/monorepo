@@ -1,6 +1,8 @@
 import styles from "./index.module.scss";
 import Typography from "../../Typography";
+import ResponsiveImage from "../../ResponsiveImage";
 import { Post } from "../Posts";
+import clsx from "clsx";
 
 function MostRecent({ pages }) {
   const postKeys = Object.keys(pages).filter(
@@ -29,7 +31,7 @@ function MostRecent({ pages }) {
         <article className={styles.featured_post}>
           <a href={featuredPost.urlPath}>
             <figure>
-              <img
+              <ResponsiveImage
                 src={featuredPost.meta.image}
                 alt={featuredPost.meta.title}
               />
@@ -37,7 +39,7 @@ function MostRecent({ pages }) {
             <Typography
               fontSize={14}
               fontWeight={500}
-              className={`${styles.category} ${styles.text}`}
+              className={clsx(styles.category, styles.text)}
               element="div"
               color="gray_11"
               fontFamily="rubik"
@@ -65,15 +67,7 @@ function MostRecent({ pages }) {
           </a>
         </article>
         {restOfPosts.map((post) => {
-          return (
-            <Post
-              key={post.meta.title}
-              slug={post.urlPath}
-              image={post.meta.image}
-              title={post.meta.title}
-              category={post.meta.category}
-            />
-          );
+          return <Post key={post.meta.title} {...post} />;
         })}
       </div>
     </>
