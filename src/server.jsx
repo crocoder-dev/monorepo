@@ -3,7 +3,9 @@
 import ReactDOMServer from 'react-dom/server'
 import { MDXProvider } from '@mdx-js/react'
 import { HeadProvider } from 'react-head'
-import Code from "./components/Code"
+import Code from "./components/Code";
+import createFeed from "./feed";
+import { extname } from 'path';
 
 const components = {
   pre: ({ children }) => {
@@ -54,14 +56,43 @@ const getPages = () => {
       urlPath,
     };
     return pages;
-  }, {})
+  }, {});
 }
 
 const memoizedGetPages = memoize(getPages);
 
 export const pages = memoizedGetPages(GET_PAGES_KEY);
 
+export const feeds = ['/feed', '/feed.json', '/feed.xml'];
+
+const renderFeeds = (pathname) => {
+
+  let feedType = null;
+
+  switch (extname(pathname)) {
+    case '.json':
+      feedType = 'json';
+      break;
+    case '.xml':
+      feedType = 'rss';
+    default:
+      break;
+  }
+
+  const [body, type] = createFeed(pages, feedType);
+
+  return {
+    status: 200,
+    type,
+    body,
+  }
+}
+
 export const renderPage = (pathname, transformedTemplate) => {
+
+  if(feeds.includes(pathname)) {
+    return renderFeeds(pathname);
+  }
 
   if (!pathname.endsWith('/')) pathname = `${pathname}/`;
 
