@@ -22,9 +22,9 @@ const createFeed = (pages, type = "rss") => {
       rss: `${siteUrl}/feed.xml`
     },
     author: {
-      name: "David Abram",
-      email: "david@crocoder.dev",
-      link: "https://www.linkedin.com/in/david-abram/",
+      name: "CroCoder, Inc.",
+      email: "hello@crocoder.dev",
+      link: "crocoder.dev",
     },
   });
 
