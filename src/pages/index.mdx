@@ -1,4 +1,4 @@
-import PageLayout, { contactUsRef, scrollToContactUs } from "../Layouts/PageLayout";
+import PageLayout from "../Layouts/PageLayout";
 import Hero from "../components/Hero";
 import OurClients from "../components/OurClients";
 import HowWeWork from "../components/HowWeWork";
@@ -26,11 +26,9 @@ export const meta = {
   text="Whether you are redesigning your app, improving your website performance, or need help structuring your codebase, we can help you <b>reach your goals.</b>"
   action="contact us"
   image={heroImage}
-  scrollToContactUs={scrollToContactUs}
   imageAlt="CroCoder crocodile in a hoodie holding a laptop"
 />
 <OurClients
-  scrollToContactUs={scrollToContactUs}
   title="Our Clients"
   text="At <em><b>Cro</b>Coder</em>, we’ve worked with various organizations, including enterprises, startups, and small businesses. We’ve built MVPs, helped projects scale up, refactored legacy code, and set up the architecture for transitioning into the world of React/Node. Is there something we can do for you?"
   lastCard={{
@@ -105,7 +103,7 @@ export const meta = {
   ]}
 />
 <ContactUs
-  contactUsRef={contactUsRef}
+  id="contact-us"
   imageAlt="Group of people working on their laptops and collaborating"
   image={letsworktogetherImage}
   title="Let’s start working together"

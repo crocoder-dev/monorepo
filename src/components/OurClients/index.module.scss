@@ -9,7 +9,7 @@
   text-align: justify;
 
   b {
-    color: #607a1a; // #647E1B; //$green_4;
+    color: #607a1a;
     font-weight: 700;
   }
   em {
@@ -56,8 +56,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+    a {
+      text-decoration: none;
+    }
     .button {
+      display: block;
       margin: auto;
       margin-top: 20px;
       margin-bottom: 0;

@@ -68,10 +68,10 @@ const ContactUs = ({
   title,
   description,
   image,
-  contactUsRef,
   consent,
   imageAlt,
   notification,
+  id = null,
 }) => {
   const [confirmed, setConfirmed] = React.useState(false);
   const [confirmedError, setConfirmedError] = React.useState(false);
@@ -245,9 +245,9 @@ const ContactUs = ({
 
   return [
     <div
+      id={id}
       key="ref"
-      style={{ position: "relative", top: "-20px" }}
-      ref={contactUsRef}
+      style={{ position: "relative", top: "-20px", scrollMarginTop: "50px" }}
     />,
     <ul className={styles.notifications} key="notification">
       <AnimatePresence initial={false}>

@@ -5,10 +5,6 @@ import logoNavigation from "../../content/images/logoNavigation.png";
 import ResponsiveImage from "../../components/ResponsiveImage";
 import navigation from "../../content/navigation.json";
 
-export const contactUsRef = createRef(null);
-
-export const scrollToContactUs = () => contactUsRef.current.scrollIntoView();
-
 const Layout = ({ children }) => {
   const topRef = useRef(null);
 

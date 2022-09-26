@@ -1,4 +1,4 @@
-@import '../../styles/main.module.scss';
+@import "../../styles/main.module.scss";
 
 $twoRowBreakLine: "<=tabletPortrait";
 
@@ -6,7 +6,6 @@ $twoRowBreakLine: "<=tabletPortrait";
   width: 100%;
   padding-top: 0;
 }
-
 
 .image {
   flex-basis: 35%;
@@ -42,8 +41,12 @@ $twoRowBreakLine: "<=tabletPortrait";
     flex-basis: 100%;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   b {
-    color: #607A1A; // #647E1B;//not our color;
+    color: #607a1a; // #647E1B;//not our color;
     font-weight: 700;
   }
   em {
@@ -81,4 +84,3 @@ $twoRowBreakLine: "<=tabletPortrait";
     text-align: justify;
   }
 }
-

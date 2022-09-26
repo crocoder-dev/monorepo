@@ -5,7 +5,7 @@ import Typography from "../Typography";
 import Button from "../Button";
 import ResponsiveImage from "../ResponsiveImage";
 
-const Hero = ({ imageAlt, title, text, action, image, scrollToContactUs }) => (
+const Hero = ({ imageAlt, title, text, action, image }) => (
   <Section as="header" className={styles.section}>
     <div className={styles.flex}>
       <div className={styles.image}>
@@ -28,15 +28,11 @@ const Hero = ({ imageAlt, title, text, action, image, scrollToContactUs }) => (
           fontWeight={400}
           color="gray_2"
         />
-        <Button
-          className={styles.button}
-          onClick={() => {
-            scrollToContactUs && scrollToContactUs();
-          }}
-          variant="primary"
-        >
-          {action}
-        </Button>
+        <a href="#contact-us">
+          <Button className={styles.button} variant="primary">
+            {action}
+          </Button>
+        </a>
       </div>
     </div>
   </Section>
