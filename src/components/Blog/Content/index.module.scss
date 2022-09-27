@@ -1,35 +1,153 @@
-@import "../../../styles/main.module.scss";
+@import '../../../styles/main.module.scss';
 
 .header {
-  background-color: $white;
-
-  > div {
-    width: 100% !important;
-    border-bottom: 1px solid $gray_5;
-    padding-bottom: 50px;
-  }
-
-  img {
-    border-radius: 5px;
-  }
-
-  .authorHeaderWrapper {
-    display: flex;
-    flex-direction: column;
-    :first-child {
-      margin-bottom: 8px;
+  background-color: #ff8c1733;
+  margin-bottom: 50px;
+  .headerContent {
+    .blogMeta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      span {
+        margin: 0 35px;
+        color: $gray_2;
+      }
+    }
+    .title,
+    .subtitle {
+      margin: 10px auto 0;
+      line-height: 160%;
     }
   }
 }
 
 .body {
-  background-color: $white;
-  padding-top: 0px !important;
-  > div {
-    width: 100% !important;
-  }
-  iframe {
-    border: none;
+  display: flex;
+  .bodyContent {
+    background-color: $white;
+    padding-top: 0px !important;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+    line-height: 28px;
+    word-wrap: break-word;
+
+    @include mediaQuery('>=desktop') {
+      font-size: 20px;
+    }
+
+    > :first-child {
+      margin-top: 0 !important;
+    }
+    > :last-child {
+      margin-bottom: 0 !important;
+    }
+
+    p {
+      color: $gray_11;
+      line-height: 28px;
+    }
+
+    p,
+    ul,
+    blockquote,
+    ol,
+    pre {
+      margin-top: 0;
+      margin-bottom: 28px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $gray_2;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      margin-top: 24px;
+    }
+
+    h1,
+    h2 {
+      border-bottom: 1px solid;
+      padding-bottom: 0.3em;
+    }
+
+    h2,
+    h3 {
+      margin-top: 0;
+      padding-top: 75px;
+    }
+
+    hr {
+      background-color: #85a32a;
+      border: 0;
+      height: 0.25em;
+      margin: 24px 0;
+      padding: 0;
+      border-bottom-color: #eee;
+    }
+
+    ul {
+      padding-left: 2em;
+    }
+
+    li + li {
+      margin-top: 0.45em;
+    }
+
+    a {
+      color: $gray_2;
+      font-weight: 700;
+      padding: 2px 0 1px 0;
+      text-decoration: none;
+      background-image: linear-gradient(
+        transparent 0%,
+        transparent 35%,
+        rgba(133, 163, 42, 0.5) 35%,
+        rgba(133, 163, 42, 0.5) 100%
+      );
+      transition: background-position 120ms ease-in-out, padding 120ms ease-in-out;
+      background-size: 100% 200%;
+      background-position: 0 0;
+      word-break: break-word;
+    }
+
+    a:active,
+    a:hover {
+      outline-width: 0;
+    }
+
+    a:hover {
+      background-image: linear-gradient(
+        transparent 0%,
+        transparent 35%,
+        rgba(133, 163, 42, 0.5) 35%,
+        rgba(133, 163, 42, 0.5) 100%
+      );
+      background-position: 0 100%;
+    }
+
+    a:not([href]) {
+      text-decoration: none;
+    }
+
+    code {
+      font-family: monospace, monospace;
+      font-size: 1em;
+      background: #252a33;
+      color: #f8f8f2;
+      padding: 0.05em 0.2em;
+      border-radius: 0.15em;
+      white-space: normal;
+    }
+    iframe {
+      border: none;
+    }
   }
 }
 
@@ -44,13 +162,13 @@
   .aboutWrapper {
     display: flex;
     align-items: center;
-    @include mediaQuery("<=tabletPortrait") {
+    @include mediaQuery('<=tabletPortrait') {
       flex-direction: column;
       text-align: center;
     }
     .aboutName {
       padding-left: 20px;
-      @include mediaQuery("<=tabletPortrait") {
+      @include mediaQuery('<=tabletPortrait') {
         padding-top: 30px;
         padding-left: 0;
       }
@@ -80,7 +198,7 @@
   padding-top: 60px !important;
   padding-bottom: 30px !important;
   border-top: 1px solid $gray_5;
-  @include mediaQuery("<=tabletPortrait") {
+  @include mediaQuery('<=tabletPortrait') {
     padding-top: 30px !important;
     padding-bottom: 0 !important;
   }
@@ -147,7 +265,7 @@
     display: grid;
   }
 
-  @include mediaQuery(">=1000px") {
+  @include mediaQuery('>=1000px') {
     .wrapper {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -156,7 +274,7 @@
     }
   }
 
-  @include mediaQuery(">=tabletPortrait", "<1000px") {
+  @include mediaQuery('>=tabletPortrait', '<1000px') {
     .wrapper {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -170,7 +288,7 @@
     }
   }
 
-  @include mediaQuery("<tabletPortrait") {
+  @include mediaQuery('<tabletPortrait') {
     .wrapper {
       display: grid;
       grid-template-columns: 1fr;

@@ -1,14 +1,14 @@
-import React, { createRef, useRef } from "react";
-import Navigation from "../../components/Navigation";
-import Footer from "../../components/Footer";
-import logoNavigation from "../../content/images/logoNavigation.png";
-import ResponsiveImage from "../../components/ResponsiveImage";
-import navigation from "../../content/navigation.json";
+import React, { createRef, useRef } from 'react';
+import Navigation from '../../components/Navigation';
+import Footer from '../../components/Footer';
+import logoNavigation from '../../content/images/logoNavigation.png';
+import ResponsiveImage from '../../components/ResponsiveImage';
+import navigation from '../../content/navigation.json';
 
 const Layout = ({ children }) => {
   const topRef = useRef(null);
 
-  const scrollToTop = () => topRef.current.scrollIntoView({ block: "end" });
+  const scrollToTop = () => topRef.current.scrollIntoView({ block: 'end' });
 
   return (
     <>
@@ -16,10 +16,7 @@ const Layout = ({ children }) => {
         topRef={topRef}
         Logo={
           <a href="/">
-            <ResponsiveImage
-              src={logoNavigation}
-              alt={navigation.home.ariaLabel}
-            />
+            <ResponsiveImage src={logoNavigation} alt={navigation.home.ariaLabel} />
           </a>
         }
       >

@@ -1,8 +1,9 @@
-import Typography from "../../Typography";
+import Typography from '../../Typography';
+import styles from './index.module.scss';
 
 const Table = ({ tocData }) => {
   return (
-    <ul>
+    <ul className={styles.table}>
       {tocData.map(({ value, id, children }) => (
         <li key={id}>
           <a href={`#${id}`}>{value}</a>
@@ -13,16 +14,24 @@ const Table = ({ tocData }) => {
   );
 };
 
-const ContentTable = ({ tocData, title = "Contents" }) => {
+const ContentTable = ({ tocData, title = 'Contents' }) => {
   return (
-    <>
-      {title ? (
-        <Typography element="h2" id="contents" fontFamily="rubik">
+    <aside className={styles.contentTable}>
+      {title && tocData.length > 0 ? (
+        <Typography
+          className={styles.title}
+          element="h2"
+          id="contents"
+          fontSize={24}
+          fontWeight={600}
+          fontFamily="rubik"
+          color="gray_2"
+        >
           {title}
         </Typography>
       ) : null}
       <Table tocData={tocData} />
-    </>
+    </aside>
   );
 };
 

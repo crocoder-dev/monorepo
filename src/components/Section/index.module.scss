@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
-@import "../../styles/main.module.scss";
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+@import '../../styles/main.module.scss';
 
 .section {
   margin: auto;
@@ -13,36 +13,36 @@
   width: 100%;
 
   &.blog {
-    padding-right: calc(50% - 550px);
-    padding-left: calc(50% - 550px);
+    padding-right: calc(50% - 450px);
+    padding-left: calc(50% - 450px);
   }
 
-  @include mediaQuery(">=desktop", "<viewportLimit") {
+  @include mediaQuery('>=desktop', '<viewportLimit') {
     padding: 30px 100px;
   }
 
-  @include mediaQuery(">=tabletLandscape", "<desktop") {
+  @include mediaQuery('>=tabletLandscape', '<desktop') {
     padding: 30px 60px;
     &.blog {
       padding: 30px 60px;
     }
   }
 
-  @include mediaQuery(">=tabletPortrait", "<tabletLandscape") {
+  @include mediaQuery('>=tabletPortrait', '<tabletLandscape') {
     padding: 20px 40px;
     &.blog {
       padding: 20px 40px;
     }
   }
 
-  @include mediaQuery(">=360px", "<tabletPortrait") {
+  @include mediaQuery('>=360px', '<tabletPortrait') {
     padding: 20px 30px;
     &.blog {
       padding: 20px 30px;
     }
   }
 
-  @include mediaQuery("<360px") {
+  @include mediaQuery('<360px') {
     padding: 20px 20px;
     &.blog {
       padding: 20px 20px;

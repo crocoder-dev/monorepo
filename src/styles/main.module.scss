@@ -1,8 +1,8 @@
-@import "./_box";
-@import "./_colors.scss";
-@import "./_fonts.scss";
-@import "./_media.scss";
-@import "./_mixins.scss";
+@import './_box';
+@import './_colors.scss';
+@import './_fonts.scss';
+@import './_media.scss';
+@import './_mixins.scss';
 
 * {
   scroll-behavior: smooth;
@@ -12,11 +12,106 @@
 
   body {
     padding: 0 !important;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     min-height: 100vh !important;
     background-color: #fff;
     margin: 0 !important;
     padding: 0 !important;
     font-family: Rubik, sans-serif;
+
+    [class^='link'] {
+      font-family: 'Rubik', sans-serif;
+      color: #85a32a;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 20px;
+      text-decoration: none;
+
+      &:hover {
+        color: #98b534;
+      }
+
+      &:focus,
+      &:active {
+        color: #72911f;
+      }
+
+      &:disabled {
+        color: #e8e8e8;
+      }
+    }
+
+    [class^='link--primary'] {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 6px;
+      border-style: solid;
+      border-width: 1px;
+      box-sizing: border-box;
+      cursor: pointer;
+      font-family: 'Rubik', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 16px 25px 14px 25px;
+      background-color: #85a32a;
+      border-color: #85a32a;
+      color: #1e1a1a;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+
+      &:hover {
+        background-color: rgba(151, 181, 52, 90);
+        border-color: rgba(151, 181, 52, 90);
+      }
+      &:focus {
+        outline: none;
+        background-color: rgba(151, 181, 52, 90);
+        border-color: #1e1a1a;
+      }
+
+      &:disabled,
+      &:disabled:hover {
+        cursor: not-allowed;
+        background-color: #e8e8e8;
+        color: #828282;
+        border-color: #e8e8e8;
+      }
+    }
+
+    [class^='link--secondary'] {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 6px;
+      border-style: solid;
+      border-width: 1px;
+      box-sizing: border-box;
+      cursor: pointer;
+      font-family: 'Rubik', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 16px 25px 14px 25px;
+      background-color: #fec343;
+      border-color: #fec343;
+      color: #1e1a1a;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+
+      &:hover {
+        background-color: rgba(254, 209, 82, 90);
+        border-color: rgba(254, 209, 82, 90);
+      }
+      &:focus {
+        outline: none;
+        background-color: rgba(254, 209, 82, 90);
+        border-color: #1e1a1a;
+      }
+      &:disabled,
+      &:disabled:hover {
+        cursor: not-allowed;
+        background-color: #e8e8e8;
+        color: #828282;
+        border-color: #e8e8e8;
+      }
+    }
   }
 }
