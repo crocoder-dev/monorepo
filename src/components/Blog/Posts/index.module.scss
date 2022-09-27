@@ -1,23 +1,30 @@
-@import "../../../styles/main.module.scss";
+@import '../../../styles/main.module.scss';
 
 .title {
+  height: 100px;
   margin: 0;
   line-height: 1.3;
+  @supports (-webkit-line-clamp: 2) {
+    height: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
 }
 
 .post {
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   color: inherit;
-  cursor: pointer;
-
-  &:visited {
-    text-decoration: inherit;
-    color: inherit;
-    cursor: pointer;
-  }
+  box-shadow: 0px 5px 20px rgba(66, 76, 109, 0.2);
+  border-radius: 6px;
 
   .text {
-    margin: 20px 0px;
+    margin: 0;
   }
 
   figure {
@@ -52,10 +59,58 @@
   }
 
   .category {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     letter-spacing: 0.07em;
     font-weight: 500;
     text-transform: uppercase;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: auto;
+    div {
+      display: grid;
+      grid-template-columns: 30px auto;
+      grid-template-rows: 16px 16px;
+    }
+    p {
+      margin: 0 10px;
+      line-height: 130%;
+      align-self: center;
+    }
+    a {
+      text-decoration: underline;
+    }
+
+    .authorImage {
+      width: 30px;
+      height: 30px;
+      align-self: center;
+      border-radius: 100%;
+      overflow: hidden;
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      img {
+        width: auto;
+        height: 30px;
+        transform: translateX(-8px);
+      }
+    }
+    .authorName {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+  }
+
+  figcaption,
+  footer {
+    padding: 20px;
   }
 }
 
@@ -63,7 +118,7 @@
   display: grid;
 }
 
-@include mediaQuery(">=1000px") {
+@include mediaQuery('>=1000px') {
   .wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -72,7 +127,7 @@
   }
 }
 
-@include mediaQuery(">=tabletPortrait", "<1000px") {
+@include mediaQuery('>=tabletPortrait', '<1000px') {
   .wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -86,7 +141,7 @@
   }
 }
 
-@include mediaQuery("<tabletPortrait") {
+@include mediaQuery('<tabletPortrait') {
   .wrapper {
     display: grid;
     grid-template-columns: 1fr;

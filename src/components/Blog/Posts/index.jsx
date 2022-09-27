@@ -1,15 +1,17 @@
-import styles from "./index.module.scss";
-import Typography from "../../Typography";
-import ResponsiveImage from "../../ResponsiveImage";
-import clsx from "clsx";
+import styles from './index.module.scss';
+import Typography from '../../Typography';
+import ResponsiveImage from '../../ResponsiveImage';
+import clsx from 'clsx';
+import authors from '../../../content/authors/authors.json';
 
 export const Post = ({ meta, urlPath }) => {
+  const author = authors.find((author) => author.id === meta.author);
   return (
-    <article>
-      <a href={urlPath} className={styles.post}>
-        <figure>
-          <ResponsiveImage src={meta.image} alt={meta.title} />
-        </figure>
+    <article className={styles.post}>
+      <figure>
+        <ResponsiveImage src={meta.image} alt={meta.title} />
+      </figure>
+      <figcaption>
         <Typography
           fontSize={12}
           fontWeight={500}
@@ -30,7 +32,35 @@ export const Post = ({ meta, urlPath }) => {
         >
           {meta.title}
         </Typography>
-      </a>
+      </figcaption>
+      <footer>
+        <div>
+          <div style={{ backgroundColor: `${author.bgColor}` }} className={styles.authorImage}>
+            <ResponsiveImage src={`/src/content/images/authors/${author.id}.png`} />
+          </div>
+          <Typography
+            element="p"
+            color="gray_3"
+            fontWeight={600}
+            fontSize={18}
+            className={styles.authorName}
+          >
+            {author.name}
+          </Typography>
+          <Typography
+            element="p"
+            color="gray_3"
+            fontWeight={300}
+            fontSize={12}
+            className={styles.authorRole}
+          >
+            {author.role}
+          </Typography>
+        </div>
+        <a href={urlPath} className="link">
+          Read More
+        </a>
+      </footer>
     </article>
   );
 };
