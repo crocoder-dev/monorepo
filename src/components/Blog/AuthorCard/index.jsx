@@ -4,7 +4,7 @@ import Typography from '../../Typography';
 
 const AuthorCard = ({ author }) => {
   return (
-    <aside className={styles.authorCardWrapper}>
+    <div className={styles.authorCardWrapper}>
       <figure>
         <ResponsiveImage
           style={{ backgroundColor: `${author.bgColor}` }}
@@ -52,7 +52,7 @@ const AuthorCard = ({ author }) => {
           </Typography>
         </figcaption>
       </figure>
-    </aside>
+    </div>
   );
 };
 export default AuthorCard;

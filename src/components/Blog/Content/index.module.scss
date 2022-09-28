@@ -77,10 +77,14 @@
       padding-bottom: 0.3em;
     }
 
+    h2 {
+      margin-top: 62px;
+    }
+
     h2,
-    h3 {
-      margin-top: 0;
-      padding-top: 75px;
+    h3,
+    h4 {
+      scroll-margin-top: 100px;
     }
 
     hr {

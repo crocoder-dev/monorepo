@@ -10,29 +10,29 @@ export const Post = ({ meta, urlPath }) => {
     <article className={styles.post}>
       <figure>
         <ResponsiveImage src={meta.image} alt={meta.title} />
+        <figcaption>
+          <Typography
+            fontSize={12}
+            fontWeight={500}
+            className={clsx(styles.category, styles.text)}
+            element="div"
+            color="gray_11"
+            fontFamily="rubik"
+          >
+            {meta.category}
+          </Typography>
+          <Typography
+            element="h3"
+            color="gray_2"
+            fontSize={24}
+            className={styles.title}
+            fontWeight={700}
+            fontFamily="rubik"
+          >
+            {meta.title}
+          </Typography>
+        </figcaption>
       </figure>
-      <figcaption>
-        <Typography
-          fontSize={12}
-          fontWeight={500}
-          className={clsx(styles.category, styles.text)}
-          element="div"
-          color="gray_11"
-          fontFamily="rubik"
-        >
-          {meta.category}
-        </Typography>
-        <Typography
-          element="h3"
-          color="gray_2"
-          fontSize={24}
-          className={styles.title}
-          fontWeight={700}
-          fontFamily="rubik"
-        >
-          {meta.title}
-        </Typography>
-      </figcaption>
       <footer>
         <div>
           <div style={{ backgroundColor: `${author.bgColor}` }} className={styles.authorImage}>
