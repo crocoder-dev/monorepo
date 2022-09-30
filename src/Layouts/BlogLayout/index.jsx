@@ -6,7 +6,9 @@ import Body from "../../components/Blog/Content/Body";
 import About from "../../components/Blog/Content/About";
 import authors from "../../content/authors/authors.json";
 import RecommendedPosts from "../../components/Blog/Content/RecommendedPosts";
-import styles from "./index.module.scss";
+
+
+const styles = {};
 
 const idText = (textContent) =>
   textContent.replace(/\W/g, " ").trim().replace(/ /g, "-").toLowerCase();
