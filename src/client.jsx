@@ -1,16 +1,23 @@
 // Hydrate
-/* import Test from './components/Test';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import React from 'react';
+import Example from './components/Example';
+import OurClients from './components/OurClients';
+import ContactUs from './components/ContactUs';
 
-console.log('abc');
+const components = {
+  Example,
+  OurClients,
+  ContactUs,
+};
 
-setTimeout(() => {
+const islands = document.querySelectorAll('[data-name]');
 
-  ReactDOM.render(
-    <React.StrictMode>
-      <Test />
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-}, 10000); */
+islands.forEach((island) => {
+  console.log(island.dataset);
+  const root = document.querySelector(`[data-name=${island.dataset.name}]`);
+  const props = root.dataset.props;
+  const Component = components[island.dataset.name];
+  if (!Component) return;
+  ReactDOM.hydrateRoot(island, <Component {...JSON.parse(props)} />);
+});
