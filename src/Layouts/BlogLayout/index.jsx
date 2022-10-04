@@ -1,24 +1,36 @@
-import { MDXProvider } from "@mdx-js/react";
-import Typography from "../../components/Typography";
-import PageLayout from "../PageLayout";
-import Header from "../../components/Blog/Content/Header";
-import Body from "../../components/Blog/Content/Body";
-import About from "../../components/Blog/Content/About";
-import authors from "../../content/authors/authors.json";
-import RecommendedPosts from "../../components/Blog/Content/RecommendedPosts";
-
-
-const styles = {};
+import { MDXProvider } from '@mdx-js/react';
+import Typography from '../../components/Typography';
+import Code from '../../components/Code';
+import BlogLink from '../../components/Blog/BlogLink';
+import BlogHr from '../../components/Blog/BlogHr';
+import BlogUl from '../../components/Blog/BlogUl';
+import PageLayout from '../PageLayout';
+import Header from '../../components/Blog/Content/Header';
+import Body from '../../components/Blog/Content/Body';
+import About from '../../components/Blog/Content/About';
+import authors from '../../content/authors/authors.json';
+import RecommendedPosts from '../../components/Blog/Content/RecommendedPosts';
+import styles from './index.module.scss';
 
 const idText = (textContent) =>
-  textContent.replace(/\W/g, " ").trim().replace(/ /g, "-").toLowerCase();
+  textContent.replace(/\W/g, ' ').trim().replace(/ /g, '-').toLowerCase();
+
+const commonHeadingStyles = {
+  lineHeight: '1.25',
+  marginBottom: '16px',
+  marginTop: '24px',
+  scrollMarginTop: '100px',
+};
 
 const components = {
   h1: (props) => (
     <Typography
       element="h1"
       id={idText(props.children)}
+      color="gray_2"
+      fontWeight={600}
       fontFamily="rubik"
+      style={{ ...commonHeadingStyles, borderBottom: '1px solid', paddingBottom: '0.3em' }}
       {...props}
     />
   ),
@@ -26,7 +38,16 @@ const components = {
     <Typography
       element="h2"
       id={idText(props.children)}
+      color="gray_2"
+      fontWeight={600}
       fontFamily="rubik"
+      style={{
+        ...commonHeadingStyles,
+        borderBottom: '1px solid',
+        paddingBottom: '0.3em',
+        scrollMarginTop: '100px',
+        marginTop: '64px',
+      }}
       {...props}
     />
   ),
@@ -34,7 +55,10 @@ const components = {
     <Typography
       element="h3"
       id={idText(props.children)}
+      color="gray_2"
+      fontWeight={600}
       fontFamily="rubik"
+      style={{ ...commonHeadingStyles, marginTop: '64px' }}
       {...props}
     />
   ),
@@ -42,15 +66,49 @@ const components = {
     <Typography
       element="h4"
       id={idText(props.children)}
+      color="gray_2"
+      fontWeight={600}
       fontFamily="rubik"
+      style={{ ...commonHeadingStyles }}
+      {...props}
+    />
+  ),
+  h5: (props) => (
+    <Typography
+      element="h5"
+      id={idText(props.children)}
+      color="gray_2"
+      fontWeight={600}
+      fontFamily="rubik"
+      style={{ ...commonHeadingStyles }}
+      {...props}
+    />
+  ),
+  h6: (props) => (
+    <Typography
+      element="h6"
+      id={idText(props.children)}
+      color="gray_2"
+      fontWeight={600}
+      fontFamily="rubik"
+      style={{ ...commonHeadingStyles }}
       {...props}
     />
   ),
   p: (props) => (
-    <Typography element="p" color="$gray_11" fontFamily="rubik" {...props} />
+    <Typography
+      element="p"
+      color="gray_11"
+      fontFamily="rubik"
+      style={{ lineHeight: '28px', marginTop: '0', marginBottom: '28px' }}
+      {...props}
+    />
   ),
   span: (props) => <Typography {...props} />,
-  a: (props) => <a {...props}>{props.children}</a>,
+  a: (props) => <BlogLink {...props} />,
+  ul: (props) => <BlogUl {...props} />,
+  hr: () => <BlogHr />,
+  pre: (props) => <Code {...props} />,
 };
 
 export default function BlogLayout({ meta, children, recommendedPosts = [] }) {

@@ -1,11 +1,12 @@
-@import "../../styles/main.scss";
+@import '../../styles/main.scss';
 
 .blog {
   line-height: 28px;
   word-wrap: break-word;
 
   main {
-    @include mediaQuery(">=desktop") {
+    font-size: 18px;
+    @include mediaQuery('>=desktop') {
       font-size: 20px;
     }
 
@@ -16,107 +17,18 @@
       margin-bottom: 0 !important;
     }
 
-    p {
-      color: $gray_11;
-      line-height: 28px;
-    }
-
-    p,
-    ul,
-    blockquote,
-    ol,
-    pre {
-      margin-top: 0;
-      margin-bottom: 28px;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      color: $gray_2;
-      font-weight: 600;
-      line-height: 1.25;
-      margin-bottom: 16px;
-      margin-top: 24px;
-    }
-
-    h1,
-    h2 {
-      border-bottom: 1px solid;
-      padding-bottom: 0.3em;
-    }
-
-    h2,
-    h3 {
-      margin-top: 0;
-      padding-top: 75px;
-    }
-
-    hr {
-      background-color: #85a32a;
-      border: 0;
-      height: 0.25em;
-      margin: 24px 0;
-      padding: 0;
-      border-bottom-color: #eee;
-    }
-
-    ul {
-      padding-left: 2em;
-    }
-
-    li + li {
-      margin-top: 0.45em;
-    }
-
-    a {
-      color: $gray_2;
-      font-weight: 700;
-      padding: 2px 0 1px 0;
-      text-decoration: none;
-      background-image: linear-gradient(
-        transparent 0%,
-        transparent 35%,
-        rgba(133, 163, 42, 0.5) 35%,
-        rgba(133, 163, 42, 0.5) 100%
-      );
-      transition: background-position 120ms ease-in-out,
-        padding 120ms ease-in-out;
-      background-size: 100% 200%;
-      background-position: 0 0;
-      word-break: break-word;
-    }
-
-    a:active,
-    a:hover {
-      outline-width: 0;
-    }
-
-    a:hover {
-      background-image: linear-gradient(
-        transparent 0%,
-        transparent 35%,
-        rgba(133, 163, 42, 0.5) 35%,
-        rgba(133, 163, 42, 0.5) 100%
-      );
-      background-position: 0 100%;
-    }
-
-    a:not([href]) {
-      text-decoration: none;
-    }
-
-    code {
-      font-family: monospace, monospace;
-      font-size: 1em;
-      background: #252a33;
-      color: #f8f8f2;
-      padding: 0.05em 0.2em;
-      border-radius: 0.15em;
-      white-space: normal;
+    [class^='iframe-wrapper'] {
+      position: relative;
+      padding-bottom: 56.1%;
+      height: 0;
+      overflow: hidden;
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }

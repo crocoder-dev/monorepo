@@ -1,0 +1,37 @@
+@import '../../../styles/main.scss';
+
+.blogLink {
+  color: $gray_2;
+  font-weight: 700;
+  padding: 2px 0 1px 0;
+  text-decoration: none;
+  background-image: linear-gradient(
+    transparent 0%,
+    transparent 35%,
+    rgba(133, 163, 42, 0.5) 35%,
+    rgba(133, 163, 42, 0.5) 100%
+  );
+  transition: background-position 120ms ease-in-out, padding 120ms ease-in-out;
+  background-size: 100% 200%;
+  background-position: 0 0;
+  word-break: break-word;
+
+  .blogLink:active,
+  .blogLink:hover {
+    outline-width: 0;
+  }
+
+  .blogLink:hover {
+    background-image: linear-gradient(
+      transparent 0%,
+      transparent 35%,
+      rgba(133, 163, 42, 0.5) 35%,
+      rgba(133, 163, 42, 0.5) 100%
+    );
+    background-position: 0 100%;
+  }
+
+  .blogLink:not([href]) {
+    text-decoration: none;
+  }
+}
