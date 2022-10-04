@@ -111,7 +111,7 @@ const components = {
   pre: (props) => <Code {...props} />,
 };
 
-export default function BlogLayout({ meta, children, recommendedPosts = [] }) {
+export default function BlogLayout({ meta, children, pages, pathname }) {
   const author = authors.find((author) => author.id === meta.author);
 
   return (
@@ -126,7 +126,7 @@ export default function BlogLayout({ meta, children, recommendedPosts = [] }) {
           />
           <Body>{children}</Body>
           <About author={author} />
-          <RecommendedPosts posts={recommendedPosts} />
+          <RecommendedPosts pages={pages} pathname={pathname} />
         </article>
       </PageLayout>
     </MDXProvider>
