@@ -4,7 +4,7 @@ import Code from '../../components/Code';
 import BlogLink from '../../components/Blog/BlogLink';
 import BlogHr from '../../components/Blog/BlogHr';
 import BlogUl from '../../components/Blog/BlogUl';
-import PageLayout from '../PageLayout';
+import DefaultLayout from '../DefaultLayout';
 import Header from '../../components/Blog/Content/Header';
 import Body from '../../components/Blog/Content/Body';
 import About from '../../components/Blog/Content/About';
@@ -116,7 +116,7 @@ export default function BlogLayout({ meta, children, pages, pathname }) {
 
   return (
     <MDXProvider components={components}>
-      <PageLayout stickyFooter>
+      <DefaultLayout stickyFooter>
         <article className={styles.blog}>
           <Header
             author={author}
@@ -128,7 +128,7 @@ export default function BlogLayout({ meta, children, pages, pathname }) {
           <About author={author} />
           <RecommendedPosts pages={pages} pathname={pathname} />
         </article>
-      </PageLayout>
+      </DefaultLayout>
     </MDXProvider>
   );
 }
