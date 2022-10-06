@@ -7,6 +7,7 @@ $active__color: $gray_1;
 $inactive__color: $gray_2;
 
 .wrapper {
+  color: blue;
   font-family: "Rubik", sans-serif;
   font-weight: lighter;
   min-height: calc(3em + #{$padding_bottom * 2});
