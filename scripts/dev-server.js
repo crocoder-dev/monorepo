@@ -36,7 +36,7 @@ async function createServer() {
       const transformedTemplate = await vite.transformIndexHtml(pathname, template);
       const { renderPage } = await vite.ssrLoadModule('/src/server.jsx');
       const { status, type, body } = renderPage(pathname, transformedTemplate, {
-        styles: '<link rel="stylesheet" type="text/css" href="style.css" />',
+        styles: '<link rel="stylesheet" type="text/css" href="/style.css" />',
       });
       res.status(status).set({ 'Content-Type': type }).end(body);
     } catch (e) {
