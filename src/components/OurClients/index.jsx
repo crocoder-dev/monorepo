@@ -1,22 +1,11 @@
-import React from "react";
-import Typography from "../Typography";
-import Button from "../Button";
-import Section from "../Section";
-import styles from "./index.module.scss";
-import { motion } from "framer-motion";
-import Card from "./Card";
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-  },
-};
-
-const item = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { duration: 1 } },
-};
+import React from 'react';
+import Typography from '../Typography';
+import Section from '../Section';
+import styles from './index.module.scss';
+import { motion } from 'framer-motion';
+import Card from './Card';
+import Island from '../Island';
+import LastCard from './LastCard';
 
 const OurClients = ({ title, text, lastCard, cards }) => {
   return (
@@ -39,49 +28,25 @@ const OurClients = ({ title, text, lastCard, cards }) => {
           color="gray_2"
           dangerouslySetInnerHTML={{ __html: text }}
         />
-        <motion.div
-          layout
-          variants={container}
-          initial="show"
-          animate="show"
-          className={styles.grid}
-        >
+        <div className={styles.grid}>
           {cards.map(({ title, image, text, client, imageAlt, url }, index) => (
-            <Card
-              delay={3 * index}
-              key={title}
-              name={title}
-              image={image}
-              description={text}
-              client={client}
-              imageAlt={imageAlt}
-              url={url}
-            />
+            <Island key={title} deferUntil="visible">
+              <Card
+                delay={3 * index}
+                key={title}
+                name={title}
+                image={image}
+                description={text}
+                client={client}
+                imageAlt={imageAlt}
+                url={url}
+              />
+            </Island>
           ))}
-          <motion.div
-            transition={{ duration: 0.7 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            variants={item}
-            className={styles.card}
-            key="join-us"
-          >
-            <Typography
-              color="gray_2"
-              element="div"
-              fontSize={26}
-              fontWeight={100}
-              className={styles.join}
-            >
-              {lastCard.text}
-            </Typography>
-            <a href="#contact-us">
-              <Button className={styles.button} variant="primary">
-                {lastCard.action}
-              </Button>
-            </a>
-          </motion.div>
-        </motion.div>
+          <Island deferUntil="visible">
+            <LastCard lastCard={lastCard} />
+          </Island>
+        </div>
       </div>
     </Section>
   );
