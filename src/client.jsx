@@ -48,10 +48,9 @@ const initOnVisible = (callback, element) => {
 const islands = document.querySelectorAll('[data-name]');
 
 islands.forEach((island) => {
-  const element = document.querySelector(`[data-name=${island.dataset.name}]`);
-  const props = element.dataset.props;
+  const props = island.dataset.props;
   const Component = components[island.dataset.name];
-  const deferUntil = element.dataset.deferuntil;
+  const deferUntil = island.dataset.deferuntil;
   switch (deferUntil) {
     case 'idle':
       initOnIdle(() => {
@@ -66,7 +65,7 @@ islands.forEach((island) => {
     case 'visible':
       initOnVisible(() => {
         hydrate(Component, island, props);
-      }, element);
+      }, island);
       break;
     default:
       hydrate(Component, island, props);
