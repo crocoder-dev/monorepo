@@ -1,9 +1,12 @@
-import React, { useState, useEffect, useCallback } from "react";
-import clsx from "clsx";
-import Button from "../Button";
-import styles from "./index.module.scss";
-import useDevice from "../../hooks/useDevice";
-import useScrollPrevent from "../../hooks/useScrollPrevent";
+import React, { useState, useEffect, useCallback } from 'react';
+import clsx from 'clsx';
+import Button from '../Button';
+import ResponsiveImage from '../ResponsiveImage';
+import styles from './index.module.scss';
+import useDevice from '../../hooks/useDevice';
+import useScrollPrevent from '../../hooks/useScrollPrevent';
+import navigation from '../../content/navigation.json';
+import logo from '../../content/images/logoNavigation.png';
 
 const Navigation = ({
   className,
@@ -29,10 +32,10 @@ const Navigation = ({
         setIsScrolled(false);
       }
     };
-    window.addEventListener("scroll", scrollHandler);
+    window.addEventListener('scroll', scrollHandler);
     return () => {
       enableScroll();
-      window.removeEventListener("scroll", scrollHandler);
+      window.removeEventListener('scroll', scrollHandler);
     };
   }, [enableScroll, scrolled]);
 
@@ -56,7 +59,11 @@ const Navigation = ({
         [styles.transparent]: transparentOnZeroScroll && !scrolled && !opened,
       })}
     >
-      <div className={styles.header__image}>{Logo}</div>
+      <div className={styles.header__image}>
+        <a href="/">
+          <ResponsiveImage src={logo} alt={navigation.home.ariaLabel} />
+        </a>
+      </div>
       <Button
         hidden={!opened || !isMobile}
         aria-haspopup="true"
@@ -78,9 +85,22 @@ const Navigation = ({
         )}
       </Button>
       <ol id="navigation-content-menu" className={styles.header__content}>
-        {typeof children === "function"
-          ? children(toggleMenu)
-          : children || null}
+        <li className="link">
+          <a href="/" className="link">
+            {navigation.home.text}
+          </a>
+        </li>
+
+        <li className="link">
+          <a href="/blog" className="link">
+            {navigation.blog.text}
+          </a>
+        </li>
+        <li className="link">
+          <a href="/contact" className="link">
+            {navigation.contactUs.text}
+          </a>
+        </li>
       </ol>
     </nav>
   );
