@@ -1,4 +1,4 @@
-@import "../../styles/main.module.scss";
+@import '../../styles/main.scss';
 
 .section {
   width: 100%;
@@ -12,6 +12,7 @@
 
 .wrapper {
   background: $blue_6;
+  overflow: visible;
 }
 
 .flex {
@@ -28,7 +29,7 @@
 }
 
 .image {
-  @include mediaQuery("<=desktop") {
+  @include mediaQuery('<=desktop') {
     display: none;
   }
   flex-basis: 50%;
@@ -40,18 +41,18 @@
   min-width: 500px;
   box-sizing: border-box;
 
-  @include mediaQuery("<=tabletLandscape") {
+  @include mediaQuery('<=tabletLandscape') {
     min-width: 450px;
   }
 
-  @include mediaQuery("<=900px") {
+  @include mediaQuery('<=900px') {
     padding-right: 0;
     flex-basis: 100%;
     min-width: auto;
     max-width: 550px;
   }
 
-  @include mediaQuery("<=desktop") {
+  @include mediaQuery('<=desktop') {
     padding: 0 3.5%;
   }
 
@@ -65,10 +66,10 @@
   line-height: 180%;
   margin-bottom: 30px;
 
-  @include mediaQuery(">=desktop") {
+  @include mediaQuery('>=desktop') {
     width: 50%;
   }
-  @include mediaQuery("<=900px") {
+  @include mediaQuery('<=900px') {
     max-width: 550px;
     margin: auto;
     margin-bottom: 30px;
@@ -78,8 +79,9 @@
 .title {
   line-height: 147%;
   text-transform: capitalize;
+  scroll-margin-top: 120px;
 
-  @include mediaQuery("<=900px") {
+  @include mediaQuery('<=900px') {
     max-width: 550px;
     margin: auto;
     margin-bottom: 30px;
@@ -101,7 +103,7 @@
   flex-direction: column;
   display: flex;
 
-  @include mediaQuery("<=tabletPortrait") {
+  @include mediaQuery('<=tabletPortrait') {
     padding: 20px 25px;
   }
 }
@@ -115,7 +117,7 @@
 .input input {
   box-sizing: border-box;
   color: $gray_2;
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
   font-size: 1rem;
   min-width: auto;
   width: 100%;
@@ -126,7 +128,7 @@
 }
 
 .captcha {
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
   color: $gray_2;
   line-height: 1.6;
   padding-top: 1.5em;
@@ -173,7 +175,7 @@
     }
   }
 
-  @include mediaQuery(">=tabletPortrait") {
+  @include mediaQuery('>=tabletPortrait') {
     right: 30px;
     bottom: 50px;
     top: unset;

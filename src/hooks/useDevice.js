@@ -4,7 +4,7 @@ import {
   tabletPortrait,
   mobile,
   viewportLimit,
-} from '../styles/main.module.scss';
+} from './useDevice.module.scss';
 
 /**
  * Custom hook for screen-size detection in components.
