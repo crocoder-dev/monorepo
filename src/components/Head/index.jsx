@@ -1,9 +1,10 @@
-import siteConfig from "../../content/site-config.json";
-import { OrganizationJSONLDHead } from "../JSONLD/OrganizationJSONLDHead";
-import { BlogJSONLDHead } from "../JSONLD/BlogJSONLDHead";
-import BlogPostingJSONLDHead from "../JSONLD/BlogPostingJSONLDHead";
+import React from 'react';
+import siteConfig from '../../content/site-config.json';
+import OrganizationJSONLDHead from '../JSONLD/OrganizationJSONLDHead';
+import BlogJSONLDHead from '../JSONLD/BlogJSONLDHead';
+import BlogPostingJSONLDHead from '../JSONLD/BlogPostingJSONLDHead';
 
-const Head = ({ meta, slug, pageContent = "" }) => {
+const Head = ({ meta, slug, pageContent = '' }) => {
   const pageTitle = meta.title
     ? `${meta.title} | CroCoder`
     : siteConfig.siteTitle;
@@ -14,13 +15,13 @@ const Head = ({ meta, slug, pageContent = "" }) => {
   let jsonLd = null;
 
   switch (meta.pageType) {
-    case "organization":
+    case 'organization':
       jsonLd = <OrganizationJSONLDHead />;
       break;
-    case "blog":
+    case 'blog':
       jsonLd = <BlogJSONLDHead description={meta.description} />;
       break;
-    case "blog-posting":
+    case 'blog-posting':
       jsonLd = (
         <BlogPostingJSONLDHead
           articleSlug={slug}
@@ -39,7 +40,7 @@ const Head = ({ meta, slug, pageContent = "" }) => {
       );
       break;
     default:
-      jsonLd;
+      jsonLd = null;
   }
 
   return (

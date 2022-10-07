@@ -13,12 +13,12 @@
 "@type": "Organization",
 "name": "Blog Name"
 }
-}</script>*/
+}</script> */
+import React from 'react';
+import siteConfig from '../../content/site-config.json';
 
-import siteConfig from "../../content/site-config.json";
-
-export const BlogJSONLDHead = ({
-  blogName = "CroCoder Blog",
+const BlogJSONLDHead = ({
+  blogName = 'CroCoder Blog',
   url = siteConfig.siteUrl,
   companyName = siteConfig.company.name,
   twitterLink = siteConfig.social.twitter,
@@ -30,13 +30,14 @@ export const BlogJSONLDHead = ({
 }) => (
   <script
     type="application/ld+json"
+    // eslint-disable-next-line react/no-danger
     dangerouslySetInnerHTML={{
       __html: JSON.stringify({
-        "@context": "http://schema.org",
-        "@type": "Blog",
+        '@context': 'http://schema.org',
+        '@type': 'Blog',
         name: blogName,
-        url: url,
-        description: description,
+        url,
+        description,
         sameAs: [
           twitterLink,
           linkedinLink,
@@ -45,10 +46,12 @@ export const BlogJSONLDHead = ({
           instagramLink,
         ],
         publisher: {
-          "@type": "Organization",
+          '@type': 'Organization',
           name: companyName,
         },
       }),
     }}
   />
 );
+
+export default BlogJSONLDHead;

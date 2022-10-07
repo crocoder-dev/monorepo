@@ -14,11 +14,11 @@ const Layout = ({ children }) => {
     <>
       <Navigation
         topRef={topRef}
-        Logo={
+        Logo={(
           <a href="/">
             <ResponsiveImage src={logoNavigation} alt={navigation.home.ariaLabel} />
           </a>
-        }
+        )}
       >
         {() => (
           <>
@@ -41,7 +41,7 @@ const Layout = ({ children }) => {
           </>
         )}
       </Navigation>
-      <>{children}</>
+      {children}
       <Footer scrollToTop={scrollToTop} navigation={navigation} />
     </>
   );

@@ -1,3 +1,4 @@
+import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import Typography from '../../components/Typography';
 import Code from '../../components/Code';
@@ -11,8 +12,7 @@ import About from '../../components/Blog/Content/About';
 import authors from '../../content/authors/authors.json';
 import RecommendedPosts from '../../components/Blog/Content/RecommendedPosts';
 
-const idText = (textContent) =>
-  textContent.replace(/\W/g, ' ').trim().replace(/ /g, '-').toLowerCase();
+const idText = (textContent) => textContent.replace(/\W/g, ' ').trim().replace(/ /g, '-').toLowerCase();
 
 const commonHeadingStyles = {
   lineHeight: '1.25',
@@ -110,8 +110,10 @@ const components = {
   pre: (props) => <Code {...props} />,
 };
 
-export default function BlogLayout({ meta, children, pages, pathname }) {
-  const author = authors.find((author) => author.id === meta.author);
+const BlogLayout = ({
+  meta, children, pages, pathname,
+}) => {
+  const author = authors.find((a) => a.id === meta.author);
 
   return (
     <MDXProvider components={components}>
@@ -130,4 +132,6 @@ export default function BlogLayout({ meta, children, pages, pathname }) {
       </DefaultLayout>
     </MDXProvider>
   );
-}
+};
+
+export default BlogLayout;

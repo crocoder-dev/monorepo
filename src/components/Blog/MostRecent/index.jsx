@@ -1,17 +1,18 @@
-import styles from "./index.module.scss";
-import Typography from "../../Typography";
-import ResponsiveImage from "../../ResponsiveImage";
-import { Post } from "../Posts";
-import clsx from "clsx";
+import React from 'react';
+import clsx from 'clsx';
+import styles from './index.module.scss';
+import Typography from '../../Typography';
+import ResponsiveImage from '../../ResponsiveImage';
+import { Post } from '../Posts';
 
-function MostRecent({ pages }) {
+const MostRecent = ({ pages }) => {
   const postKeys = Object.keys(pages).filter(
-    (key) => key.includes("blog") && key !== "/blog/"
+    (key) => key.includes('blog') && key !== '/blog/',
   );
   const posts = postKeys.map((key) => pages[key]);
 
   const [featuredPost, ...restOfPosts] = posts.sort(
-    (a, b) => new Date(b.meta.date) - new Date(a.meta.date)
+    (a, b) => new Date(b.meta.date) - new Date(a.meta.date),
   );
 
   return (
@@ -66,11 +67,9 @@ function MostRecent({ pages }) {
             </Typography>
           </a>
         </article>
-        {restOfPosts.map((post) => {
-          return <Post key={post.meta.title} {...post} />;
-        })}
+        {restOfPosts.map((post) => <Post key={post.meta.title} {...post} />)}
       </div>
     </>
   );
-}
+};
 export default MostRecent;

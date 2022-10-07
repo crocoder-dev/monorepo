@@ -1,8 +1,9 @@
-import React from "react";
-import styles from "./index.module.scss";
+import React from 'react';
+import styles from './index.module.scss';
 
 const Console = ({ consoleOutputs }) => {
   const consoleText = consoleOutputs.map((t, i) => (
+    // eslint-disable-next-line react/no-array-index-key
     <div key={i}>
       <div>{t}</div>
     </div>

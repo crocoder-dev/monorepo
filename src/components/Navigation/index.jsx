@@ -78,9 +78,9 @@ const Navigation = ({
       >
         {isMobile && (
           <>
-            <span></span>
-            <span></span>
-            <span></span>
+            <span />
+            <span />
+            <span />
           </>
         )}
       </Button>

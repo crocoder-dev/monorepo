@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
       <Island>
         <Navigation topRef={topRef} />
       </Island>
-      <>{children}</>
+      {children}
       <Footer scrollToTop={scrollToTop} navigation={navigation} />
     </>
   );

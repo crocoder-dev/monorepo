@@ -1,3 +1,4 @@
+import React from 'react';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import okaidia from 'react-syntax-highlighter/dist/cjs/styles/prism/okaidia';
 import javascript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';

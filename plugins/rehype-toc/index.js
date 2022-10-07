@@ -1,17 +1,23 @@
 import { visit } from 'unist-util-visit';
 
 const isPlainObject = (value) => {
-	if (typeof value !== 'object' || value === null) {
-		return false;
-	}
+  if (typeof value !== 'object' || value === null) {
+    return false;
+  }
 
-	const prototype = Object.getPrototypeOf(value);
-	return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(Symbol.toStringTag in value) && !(Symbol.iterator in value);
-}
+  const prototype = Object.getPrototypeOf(value);
+  return (
+    prototype === null
+    || prototype === Object.prototype
+    || Object.getPrototypeOf(prototype) === null
+  )
+  && !(Symbol.toStringTag in value)
+  && !(Symbol.iterator in value);
+};
 
 const toEstree = (value, options = {}) => {
   if (typeof value === 'number' || typeof value === 'string') {
-    return { type: 'Literal', value }
+    return { type: 'Literal', value };
   }
   if (Array.isArray(value)) {
     const elements = [];
@@ -36,7 +42,7 @@ const toEstree = (value, options = {}) => {
   }
 
   throw new TypeError(`Unsupported value: ${String(value)}`);
-}
+};
 
 const getHeadingRank = (node) => {
   if (!node || !node.type === 'element' || !node.tagName) {
@@ -45,28 +51,28 @@ const getHeadingRank = (node) => {
 
   const name = node.tagName.toLowerCase();
 
-  if(name.length === 2 && name[0] === 'h' && Number(name[1] > 0 && Number(name[1] < 7))) {
+  if (name.length === 2 && name[0] === 'h' && Number(name[1] > 0 && Number(name[1] < 7))) {
     return Number(name[1]);
   }
 
   return null;
-}
+};
 
 const getTextConentRecursive = (node) => {
   const result = [];
 
-  for (let index = 0; index < node.children.length; index++) {
+  for (let index = 0; index < node.children.length; index += 1) {
     const childNode = node.children[index];
-    if(childNode.type === 'text') {
+    if (childNode.type === 'text') {
       result[index] = childNode.value;
     } else if (childNode.children) {
-      result[index] = getTextConentRecursive(childNode)
+      result[index] = getTextConentRecursive(childNode);
     } else {
       result[index] = '';
     }
   }
   return result.join('');
-}
+};
 
 const getTextConent = (node) => {
   if (node.children) {
@@ -74,7 +80,7 @@ const getTextConent = (node) => {
   }
 
   return node.value || '';
-}
+};
 
 const createTree = (headings) => {
   const root = { rank: 0, children: [] };
@@ -93,23 +99,22 @@ const createTree = (headings) => {
     }
     parents[parents.length - 1].children.push(heading);
     previous = heading;
-  })
+  });
 
   return root.children;
-}
+};
 
 const transform = (tree, vfile) => {
   const headings = [];
-   
-  visit(tree, 'element', (node) => {
 
+  visit(tree, 'element', (node) => {
     const rank = getHeadingRank(node);
-  
+
     if (rank != null) {
       const heading = {
-        rank: rank,
+        rank,
         value: getTextConent(node),
-      }
+      };
       if (node.properties !== undefined && node.properties.id != null) {
         heading.id = node.properties.id;
       }
@@ -117,6 +122,7 @@ const transform = (tree, vfile) => {
     }
   });
 
+  // eslint-disable-next-line no-param-reassign
   vfile.data.toc = createTree(headings) || [];
 
   tree.children.unshift({
@@ -145,8 +151,7 @@ const transform = (tree, vfile) => {
         ],
       },
     },
-  })
-
-}
+  });
+};
 
 export default () => transform;

@@ -1,16 +1,18 @@
-import React from "react";
-import Typography from "../Typography";
-import ResponsiveImage from "../ResponsiveImage";
-import { motion } from "framer-motion";
-import * as styles from "./index.module.scss";
-import clsx from "clsx";
+import React from 'react';
+import { motion } from 'framer-motion';
+import clsx from 'clsx';
+import Typography from '../Typography';
+import ResponsiveImage from '../ResponsiveImage';
+import * as styles from './index.module.scss';
 
 const item = (delay) => ({
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { duration: delay } },
 });
 
-const Card = ({ url, imageAlt, name, client, image, description, delay }) => (
+const Card = ({
+  url, imageAlt, name, client, image, description,
+}) => (
   <motion.div
     transition={{ duration: 0.7 }}
     whileHover={{ scale: 1.05 }}

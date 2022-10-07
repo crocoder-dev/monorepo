@@ -1,4 +1,8 @@
-import React, { useCallback, useRef, useState, useMemo } from 'react';
+/* eslint-disable no-undef */
+import React, {
+  useCallback, useRef, useState, useMemo,
+} from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Typography from '../Typography';
 import Icon from '../Icon';
 import Button from '../Button';
@@ -7,13 +11,10 @@ import TextArea from '../TextArea';
 import styles from './index.module.scss';
 import Section from '../Section';
 import ResponsiveImage from '../ResponsiveImage';
-import { motion, AnimatePresence } from 'framer-motion';
 
-const waitGrecaptchaReady = () => {
-  return new Promise((resolve) => {
-    grecaptcha.ready(resolve());
-  });
-};
+const waitGrecaptchaReady = () => new Promise((resolve) => {
+  grecaptcha.ready(resolve());
+});
 
 const executeGrecaptchaAsync = async () => {
   await waitGrecaptchaReady();
@@ -86,21 +87,17 @@ const ContactUs = ({
 
   const [notificationVisible, setNotificationVisible] = useState(false);
 
-  const successNotification = useMemo(() => {
-    return {
-      title: notification.title,
-      text: notification.text,
-      class: 'positive',
-    };
-  }, [notification]);
+  const successNotification = useMemo(() => ({
+    title: notification.title,
+    text: notification.text,
+    class: 'positive',
+  }), [notification]);
 
-  const errorNotification = useMemo(() => {
-    return {
-      title: notification.errorTitle,
-      text: notification.errorText,
-      class: 'negative',
-    };
-  }, [notification]);
+  const errorNotification = useMemo(() => ({
+    title: notification.errorTitle,
+    text: notification.errorText,
+    class: 'negative',
+  }), [notification]);
 
   const notificationTimeout = useRef();
 
@@ -123,7 +120,10 @@ const ContactUs = ({
   const clearForm = useCallback(() => {
     if (document) {
       const children = [...document.querySelectorAll('input,textarea')];
-      children.forEach((child) => (child.value = null));
+      children.forEach((child) => {
+        // eslint-disable-next-line no-param-reassign
+        child.value = null;
+      });
 
       setEmail(null);
       setFullName(null);
@@ -163,9 +163,9 @@ const ContactUs = ({
     setConfirmedError(!confirmed);
 
     if (
-      errorMessageAboutProject === null &&
-      errorMessageEmail === null &&
       errorMessageAboutProject === null
+      && errorMessageEmail === null
+      && errorMessageAboutProject === null
     ) {
       executeGrecaptchaAsync()
         .then((token) => {

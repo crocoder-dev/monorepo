@@ -1,9 +1,9 @@
-import React from "react";
-import styles from "./index.module.scss";
-import clsx from "clsx";
+import React from 'react';
+import clsx from 'clsx';
+import styles from './index.module.scss';
 
 const Column = ({ children, margin, text }) => {
-  let style = {};
+  const style = {};
   if (margin) {
     style.margin = `${margin}px`;
   }

@@ -1,5 +1,6 @@
-import Typography from "../../Typography/Typography";
-import styles from "./index.module.scss";
+import React from 'react';
+import Typography from '../../Typography/Typography';
+import styles from './index.module.scss';
 
 const NonHSubtitle = ({ children, ...other }) => (
   <Typography

@@ -1,6 +1,6 @@
-import React from "react";
-import clsx from "clsx";
-import styles from "./index.module.scss";
+import React from 'react';
+import clsx from 'clsx';
+import styles from './index.module.scss';
 
 const Button = ({
   className,
@@ -10,7 +10,7 @@ const Button = ({
   onClick,
   title,
   style,
-  variant = "primary",
+  variant = 'primary',
   ...other
 }) => (
   <button

@@ -1,6 +1,7 @@
-import siteConfig from "../../content/site-config.json";
+import React from 'react';
+import siteConfig from '../../content/site-config.json';
 
-export const OrganizationJSONLDHead = ({
+const OrganizationJSONLDHead = ({
   url = siteConfig.siteUrl,
   logo = siteConfig.logo,
   description = siteConfig.siteDescription,
@@ -18,16 +19,17 @@ export const OrganizationJSONLDHead = ({
 }) => (
   <script
     type="application/ld+json"
+    // eslint-disable-next-line react/no-danger
     dangerouslySetInnerHTML={{
       __html: JSON.stringify({
-        "@context": "http://schema.org/",
-        "@type": "Organization",
+        '@context': 'http://schema.org/',
+        '@type': 'Organization',
         name: companyName,
         description,
         logo,
         url,
         address: {
-          "@type": "PostalAddress",
+          '@type': 'PostalAddress',
           streetAddress: companyStreet,
           addressLocality: companyCity,
           addressRegion: companyRegion,
@@ -45,3 +47,5 @@ export const OrganizationJSONLDHead = ({
     }}
   />
 );
+
+export default OrganizationJSONLDHead;

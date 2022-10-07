@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from "react";
-import FieldLayout from "../FieldLayout";
-import * as styles from "./index.module.scss";
+import React, { useState, useCallback } from 'react';
+import FieldLayout from '../FieldLayout';
+import * as styles from './index.module.scss';
 /**
  * Basic input component of the CroCoder component library
  */
@@ -29,7 +29,7 @@ const Input = ({
       setEmpty(e.target.value.length === 0);
       if (onChange) onChange(e);
     },
-    [onChange]
+    [onChange],
   );
 
   return (

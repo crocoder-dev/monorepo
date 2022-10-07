@@ -1,11 +1,13 @@
-import React from "react";
-import * as styles from "./index.module.scss";
-import Section from "../Section";
-import Typography from "../Typography";
-import Button from "../Button";
-import ResponsiveImage from "../ResponsiveImage";
+import React from 'react';
+import * as styles from './index.module.scss';
+import Section from '../Section';
+import Typography from '../Typography';
+import Button from '../Button';
+import ResponsiveImage from '../ResponsiveImage';
 
-const Hero = ({ imageAlt, title, text, action, image }) => (
+const Hero = ({
+  imageAlt, title, text, action, image,
+}) => (
   <Section as="header" className={styles.section}>
     <div className={styles.flex}>
       <div className={styles.image}>

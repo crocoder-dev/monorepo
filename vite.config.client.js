@@ -13,7 +13,7 @@ export default defineConfig({
       input: {
         client: resolve(dir, 'index.html'),
         ssrAssets: resolve(dir, 'src/server.jsx'),
-      }
-    }
-  }
+      },
+    },
+  },
 });

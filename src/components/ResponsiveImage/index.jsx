@@ -1,10 +1,13 @@
-import styles from "./index.module.scss";
-import clsx from "clsx";
+import React from 'react';
+import clsx from 'clsx';
+import styles from './index.module.scss';
 
-const ResponsiveImage = ({ src, className, ...props }) => {
-  if (typeof src === "string") {
+const ResponsiveImage = ({
+  src, className, alt, ...props
+}) => {
+  if (typeof src === 'string') {
     return (
-      <img className={clsx(styles.image, className)} src={src} {...props} />
+      <img alt={alt} className={clsx(styles.image, className)} src={src} {...props} />
     );
   }
 
@@ -14,10 +17,12 @@ const ResponsiveImage = ({ src, className, ...props }) => {
   return (
     <picture>
       {sources.map((source, i) => {
-        const { srcset, ...sourceProps } = source;
-        return <source srcSet={srcset} key={i} {...sourceProps} />;
+        const { s, ...sourceProps } = source;
+        // eslint-disable-next-line react/no-array-index-key
+        return <source srcSet={s} key={i} {...sourceProps} />;
       })}
       <img
+        alt={alt}
         className={clsx(styles.image, className)}
         srcSet={srcset}
         {...imgProps}

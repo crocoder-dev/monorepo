@@ -1,23 +1,23 @@
-import React from "react";
-import styles from "./index.module.scss";
-import Typography from "../../Typography";
-import Section from "../../Section";
-import ResponsiveImage from "../../ResponsiveImage";
-import clsx from "clsx";
-import authors from "../../../content/authors/authors.json";
+import React from 'react';
+import clsx from 'clsx';
+import styles from './index.module.scss';
+import Typography from '../../Typography';
+import Section from '../../Section';
+import ResponsiveImage from '../../ResponsiveImage';
+import authors from '../../../content/authors/authors.json';
 
 const QuoteCard = ({
   direction,
   children,
-  "author-color": authorBgColor,
-  "author-name": authorName,
+  'author-color': authorBgColor,
+  'author-name': authorName,
 }) => {
   const { name, role, id } = authors.find((author) => author.id === authorName);
 
   return (
     <Section
       className={clsx(styles.quoteCard, {
-        [styles.leftDirection]: direction !== "right",
+        [styles.leftDirection]: direction !== 'right',
       })}
     >
       <figure className={styles.figureWrapper}>
@@ -33,7 +33,7 @@ const QuoteCard = ({
         <Typography
           fontFamily="rubik"
           fontWeight={300}
-          element={"blockquote"}
+          element="blockquote"
           fontSize={22}
           className={styles.quoteBody}
         >

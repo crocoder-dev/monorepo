@@ -1,8 +1,8 @@
-import React from "react";
-import Typography from "../Typography";
-import ResponsiveImage from "../ResponsiveImage";
-import * as styles from "./index.module.scss";
-import Section from "../Section";
+import React from 'react';
+import Typography from '../Typography';
+import ResponsiveImage from '../ResponsiveImage';
+import * as styles from './index.module.scss';
+import Section from '../Section';
 
 const HowWeWork = ({ title, content }) => (
   <Section as="section" className={styles.section}>
