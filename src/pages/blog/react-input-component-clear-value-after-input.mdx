@@ -2,6 +2,7 @@ import blogHeader from "../../content/images/blogs/react-input-component-clear-v
 import Demo from "../../components/Blog/CodeExample/Demo";
 import StatusQuoDemo from "../../components/Blog/ImperativeHandlePost/StatusQuoDemo.jsx";
 import UncontrolledDemo from "../../components/Blog/ImperativeHandlePost/UncontrolledDemo.jsx";
+import Island from "../../components/Island";
 import BlogLayout from "../../Layouts/BlogLayout";
 import ContentTable from "../../components/Blog/ContentTable";
 
@@ -36,7 +37,9 @@ Let’s provide some context; one of our developers was working on a project whe
 Underneath is a demo of how our component worked before the implemented fix. We added a small console next to the form, so that you can see the state inside of the component. Type something in the form and submit it. You should see the console correctly display whatever you wrote in the input. However, you will also see that the HTML `<input>` element's value will not clear, and if you try resubmitting it, the console will show that the state of the input fields considers them empty, even when they aren't.
 
 <Demo hide={true}>
-  <StatusQuoDemo />
+  <Island deferUntil="visible">
+    <StatusQuoDemo />
+  </Island>
 </Demo>
 
 This makes the UI seem lackluster because nothing gives any indication to the website visitor that the form was submitted after something was typed in. Our developer wanted to improve the UI by clearing the value from the HTML `<input>` element after the form was submitted. Finally, after reading through the source code, he found out that the Input component from our component library didn't accept a ref as its prop, even though it was an uncontrolled component by design.
@@ -191,7 +194,9 @@ However, this solution would give the parent component the ability to easily cha
 For example, try submitting this form:
 
 <Demo hide={true}>
-  <UncontrolledDemo />
+  <Island deferUntil="visible">
+    <UncontrolledDemo />
+  </Island>
 </Demo>
 
 With a few extra lines of code, one can easily fiddle with your component. Even though you can always access any HTML element via `document.querySelector` and change all of the attributes, handlers, etc., we didn’t really want to create an easy path for doing this via our Input component API. We wanted a clear-cut solution, a component API that has a precise scope with limited peddling options.

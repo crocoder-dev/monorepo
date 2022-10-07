@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import OurClients from "../components/OurClients";
 import HowWeWork from "../components/HowWeWork";
 import ContactUs from "../components/ContactUs";
+import Island from "../components/Island"
 
 import heroImage from "../content/images/hero.png?preset=responsive";
 import lynesImage from "../content/images/lynes.png?preset=responsive";
@@ -102,6 +103,7 @@ export const meta = {
     },
   ]}
 />
+<Island>
 <ContactUs
   id="contact-us"
   imageAlt="Group of people working on their laptops and collaborating"
@@ -135,7 +137,7 @@ export const meta = {
     errorText:
       "Unfortunately, something happened and we could not submit this form. Would you mind trying again?",
   }}
-/>
+/></Island>
 
 export default ({ children }) => {
   return (

@@ -1,4 +1,4 @@
-@import "../../styles/main.module.scss";
+@import '../../styles/main.module.scss';
 
 .blue {
   background-color: $blue_6;
@@ -27,14 +27,18 @@
   column-gap: 60px;
   row-gap: 60px;
 
-  @include mediaQuery("<=1300px") {
+  .card {
+    height: calc(100% - 60px);
+  }
+
+  @include mediaQuery('<=1300px') {
     margin-top: 30px;
     grid-template-columns: 1fr 1fr;
     column-gap: 40px;
     row-gap: 40px;
   }
 
-  @include mediaQuery("<tabletLandscape") {
+  @include mediaQuery('<tabletLandscape') {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
     column-gap: 30px;
@@ -75,10 +79,16 @@
       line-height: 150%;
       text-align: center;
 
-      @include mediaQuery("<=1300px") {
+      @include mediaQuery('<=1300px') {
         max-width: 100%;
       }
     }
+  }
+  @include mediaQuery('<=1300px') {
+    height: calc(100% - 40px);
+  }
+  @include mediaQuery('<=tabletLandscape') {
+    height: calc(100% - 30px);
   }
 }
 .customer__name {
@@ -96,6 +106,7 @@
 
 .customer__description {
   line-height: 180%;
+  margin: 0;
   em {
     font-style: normal;
     font-weight: 700;
@@ -106,7 +117,9 @@
 .customer__logo {
   position: relative;
   flex-basis: 75px;
-  height: 56px;
+  height: 46px;
+  display: flex;
+  align-items: center;
 }
 
 .searchmetrics {

@@ -1,5 +1,6 @@
 import PageLayout from "../Layouts/PageLayout";
 import ContactUs from "../components/ContactUs";
+import Island from "../components/Island";
 
 import letsworktogetherImage from "../content/images/letsworktogether.png";
 
@@ -9,6 +10,7 @@ export const meta = {
   pageType: "organization"
 };
 
+<Island>
 <ContactUs
   imageAlt="Group of people working on their laptops and collaborating"
   image={letsworktogetherImage}
@@ -41,7 +43,7 @@ export const meta = {
     errorText:
       "Unfortunately, something happened and we could not submit this form. Would you mind trying again?",
   }}
-/>
+/></ Island>
 
 export default ({ children }) => {
   return (
