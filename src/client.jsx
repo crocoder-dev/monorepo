@@ -1,16 +1,21 @@
-// Hydrate
 import ReactDOM from 'react-dom/client';
 import React from 'react';
-import Example from './components/Example';
 import OurClients from './components/OurClients';
 import ContactUs from './components/ContactUs';
 import Card from './components/OurClients/Card';
+import LastCard from './components/OurClients/LastCard';
+import Navigation from './components/Navigation';
+import StatusQuoDemo from './components/Blog/ImperativeHandlePost/StatusQuoDemo';
+import UncontrolledDemo from './components/Blog/ImperativeHandlePost/UncontrolledDemo';
 
 const components = {
-  Example,
   OurClients,
   ContactUs,
   Card,
+  LastCard,
+  Navigation,
+  StatusQuoDemo,
+  UncontrolledDemo,
 };
 
 const hydrate = (Component, root, props) => {
@@ -23,6 +28,7 @@ const hydrate = (Component, root, props) => {
  * If requestIdleCallback is not supported fallover to invoke immediately
  * https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback
  * @param callback - Fired when requestIdleCallback runs
+ * @param timeOut - Time after callback will be called and qeued in event loop no metter what
  */
 const initOnIdle = (callback, timeOut = 500) => {
   if ('requestIdleCallback' in window) {
