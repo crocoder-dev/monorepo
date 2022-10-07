@@ -16,14 +16,14 @@ const QuoteCard = ({
 
   return (
     <Section
-      className={clsx(styles.quoteCard, {
-        [styles.leftDirection]: direction !== 'right',
+      className={clsx(styles['quote-card'], {
+        [styles['left-direction']]: direction !== 'right',
       })}
     >
-      <figure className={styles.figureWrapper}>
+      <figure className={styles['figure-wrapper']}>
         <div
           style={{ backgroundColor: authorBgColor }}
-          className={styles.authorImageWrapper}
+          className={styles['author-image-wrapper']}
         >
           <ResponsiveImage
             src={`/src/content/images/authors/${id}.png`}
@@ -35,11 +35,11 @@ const QuoteCard = ({
           fontWeight={300}
           element="blockquote"
           fontSize={22}
-          className={styles.quoteBody}
+          className={styles['quote-body']}
         >
           {children}
         </Typography>
-        <figcaption className={styles.authorDetails}>
+        <figcaption className={styles['author-details']}>
           <Typography
             className={styles.author}
             element="p"

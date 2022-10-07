@@ -4,7 +4,7 @@ import Section from '../../Section';
 import Typography from '../../Typography';
 
 const BlogHeader = () => (
-  <Section as="header" blog className={styles.whiteBackground}>
+  <Section as="header" blog className={styles['white-background']}>
     <div className={styles.wrapper}>
       <Typography
         className={styles.title}

@@ -1,4 +1,5 @@
-@import "../../styles/main.scss";
+@use "sass:map";
+@import "../../styles/main";
 
 /**
   Basic styles all CroCoder buttons should have
@@ -9,17 +10,17 @@
   border-width: 1px;
   box-sizing: border-box;
   cursor: pointer;
-  font-family: "Rubik", sans-serif;
+  font-family: Rubik, sans-serif;
   font-size: 16px;
   font-weight: 500;
-  padding: 16px 25px 14px 25px;
+  padding: 16px 25px 14px;
 
   &:disabled,
   &:disabled:hover {
     cursor: not-allowed;
-    background-color: map-get($contrasts, "gray_12");
+    background-color: map.get($contrasts, "gray_12");
     color: $gray_12;
-    border-color: map-get($contrasts, "gray_12");
+    border-color: map.get($contrasts, "gray_12");
   }
 }
 
@@ -27,7 +28,7 @@
   Filled buttons go by certain rules that
   can be easily applied via this mixin.
 **/
-@mixin generateFilledButtonStyle($mainColor, $lightColor, $contrast) {
+@mixin generate-filled-button-style($mainColor, $lightColor, $contrast) {
   background-color: $mainColor;
   border-color: $mainColor;
   color: $contrast;
@@ -51,12 +52,12 @@
 
 // Primary variant
 .primary {
-  @include generateFilledButtonStyle($primary, $primary_light, $contrast);
+  @include generate-filled-button-style($primary, $primary_light, $contrast);
 }
 
 // Secondary variant
 .secondary {
-  @include generateFilledButtonStyle($secondary, $secondary_light, $contrast);
+  @include generate-filled-button-style($secondary, $secondary_light, $contrast);
 }
 
 /**
@@ -87,25 +88,26 @@
   color: $contrast;
 
   &:focus {
-    padding: 15px 24px 13px 24px;
+    padding: 15px 24px 13px;
     border: 2px solid $green_2;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
-  }
-  
-  &:hover {
-    &:not(:disabled) {
-      box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
-    }
-    &:disabled {
-      background-color: transparent;
-      color: $gray_12;
-      border-color: map-get($contrasts, "gray_12");
-    }
+    box-shadow: 0 3px 15px rgba(0 0 0 / 25%);
   }
 
   &:disabled {
     background-color: transparent;
     color: $gray_12;
-    border-color: map-get($contrasts, "gray_12");
+    border-color: map.get($contrasts, "gray_12");
+  }
+  
+  &:hover {
+    &:not(:disabled) {
+      box-shadow: 0 3px 15px rgba(0 0 0 / 25%);
+    }
+
+    &:disabled {
+      background-color: transparent;
+      color: $gray_12;
+      border-color: map.get($contrasts, "gray_12");
+    }
   }
 }

@@ -3,7 +3,7 @@ import Typography from '../../../Typography';
 import styles from './index.module.scss';
 
 const ListToggle = ({ children, title }) => (
-  <div className={styles.listToggle}>
+  <div className={styles['list-toggle']}>
     <details className={styles.details}>
       <summary>
         <Typography

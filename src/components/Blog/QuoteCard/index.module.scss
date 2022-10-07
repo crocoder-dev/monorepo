@@ -1,34 +1,38 @@
-@import "../../../styles/main.scss";
+/* stylelint-disable no-descending-specificity */
+@import "../../../styles/main";
 
-p + .quoteCard {
+p + .quote-card {
   margin-top: 30px;
   padding-top: 40px !important;
 }
-.quoteCard + .quoteCard {
+
+.quote-card + .quote-card {
   margin-bottom: 30px;
 }
 
-.quoteCard {
+.quote-card {
   padding: 0 0 40px !important;
   width: calc(100% + 40px);
   margin: 0 -20px;
   background-color: $blue_6;
-  .figureWrapper {
+  
+  .figure-wrapper {
     width: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    box-shadow: 0px 5px 20px rgba(66, 76, 109, 0.2);
+    box-shadow: 0 5px 20px rgba(66 76 109 / 20%);
     border-radius: 6px 6px 0 0;
     overflow: hidden;
 
-    .authorImageWrapper {
+    .author-image-wrapper {
       display: flex;
       justify-content: center;
       align-items: flex-end;
       height: 200px;
       overflow: hidden;
+      
       img {
         height: 100%;
         max-height: 230px;
@@ -36,7 +40,7 @@ p + .quoteCard {
       }
     }
 
-    .authorDetails {
+    .author-details {
       margin: 25px 15px 15px;
 
       p {
@@ -54,19 +58,22 @@ p + .quoteCard {
       }
     }
 
-    .quoteBody {
+    .quote-body {
       position: relative;
       margin: 0 15px 30px;
       padding: 0 0 0 3px;
       border: none;
       line-height: 26px;
       order: 3;
+
       p {
         margin: 0;
       }
+
       :first-child {
         color: $gray_2;
       }
+
       :first-child::before {
         position: absolute;
         transform: translateX(-100%);
@@ -82,11 +89,12 @@ p + .quoteCard {
 }
 
 @include mediaQuery(">=360px", "<tabletPortrait") {
-  .quoteCard {
+  .quote-card {
     width: calc(100% + 60px);
     margin: 0 -30px;
-    .figureWrapper {
-      .authorImageWrapper {
+
+    .figure-wrapper {
+      .author-image-wrapper {
         height: 250px;
       }
     }
@@ -94,53 +102,60 @@ p + .quoteCard {
 }
 
 @include mediaQuery(">=tabletPortrait") {
-  p + .quoteCard {
+  p + .quote-card {
     padding-top: 60px !important;
   }
-  .quoteCard + .quoteCard {
+
+  .quote-card + .quote-card {
     padding-bottom: 60px !important;
   }
-  .quoteCard {
+
+  .quote-card {
     padding: 0 0 50px !important;
     width: calc(100% + 80px);
     margin: 0 -40px;
-    .figureWrapper {
+
+    .figure-wrapper {
       display: grid;
       grid-template-columns: 160px auto;
       grid-template-rows: auto auto;
 
-      .authorImageWrapper {
+      .author-image-wrapper {
         grid-row-start: 1;
+        /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
         grid-row-end: 3;
         height: auto;
       }
 
-      .authorDetails {
+      .author-details {
         grid-column-start: 2;
+        /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
         grid-column-end: 3;
         grid-row-start: 2;
         margin: 25px 32px;
         align-self: end;
       }
 
-      .quoteBody {
-        margin: 25px 32px 0px;
+      .quote-body {
+        margin: 25px 32px 0;
         line-height: 1.47;
       }
     }
   }
 
-  .quoteCard.leftDirection {
-    .figureWrapper {
+  .quote-card .left-direction {
+    .figure-wrapper {
       grid-template-columns: auto 160px;
 
-      .authorImageWrapper {
+      .author-image-wrapper {
         grid-column-start: 2;
+        /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
         grid-column-end: 3;
       }
 
-      .authorDetails {
+      .author-details {
         grid-column-start: 1;
+        /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
         grid-column-end: 2;
         grid-row-start: 2;
         text-align: right;
@@ -150,7 +165,7 @@ p + .quoteCard {
 }
 
 @include mediaQuery(">=tabletLandscape") {
-  .quoteCard {
+  .quote-card {
     padding: 0 0 50px !important;
     width: calc(100% + 120px);
     margin: 0 -60px;
@@ -158,36 +173,40 @@ p + .quoteCard {
 }
 
 @include mediaQuery(">=1024px") {
-  p + .quoteCard {
+  p + .quote-card {
     margin-top: 30px;
     padding-top: 80px !important;
   }
-  .quoteCard + .quoteCard {
+
+  .quote-card + .quote-card {
     margin-bottom: 30px;
     padding-bottom: 80px !important;
   }
-  .quoteCard {
+
+  .quote-card {
     padding: 0 80px 50px !important;
     width: calc(100% + 160px);
     margin: 0 -80px;
 
-    .figureWrapper {
+    .figure-wrapper {
       width: 100%;
       grid-template-columns: 160px auto;
       margin: 0 auto;
       border-radius: 6px 0 0 6px;
 
-      .quoteBody {
+      .quote-body {
         padding: 0;
         margin-top: 20px;
       }
-      .quoteBody::before {
+
+      .quote-body::before {
         transform: translateX(-100%);
       }
     }
   }
-  .quoteCard.leftDirection {
-    .figureWrapper {
+
+  .quote-card .left-direction {
+    .figure-wrapper {
       grid-template-columns: auto 160px;
       border-radius: 0 6px 6px 0;
     }
@@ -195,24 +214,26 @@ p + .quoteCard {
 }
 
 @include mediaQuery(">=desktop") {
-  .quoteCard {
+  .quote-card {
     width: calc(100% + 120px);
     margin: 0 -60px;
-    .figureWrapper {
+
+    .figure-wrapper {
       width: calc(100% - 170px);
       grid-template-columns: 170px auto;
     }
   }
-  .quoteCard.leftDirection {
-    .figureWrapper {
+
+  .quote-card .left-direction {
+    .figure-wrapper {
       grid-template-columns: auto 170px;
     }
   }
 }
 
 @include mediaQuery(">=1440px") {
-  .quoteCard {
-    .figureWrapper {
+  .quote-card {
+    .figure-wrapper {
       width: calc(100% - 130px);
     }
   }

@@ -18,6 +18,7 @@ const Button = ({
     style={style}
     title={title}
     disabled={disabled}
+    // eslint-disable-next-line react/button-has-type
     type={type}
     onClick={onClick}
     className={clsx(className, styles.button, styles[variant])}

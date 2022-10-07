@@ -1,6 +1,6 @@
-@import "../../../styles/main.scss";
+@import "../../../styles/main";
 
-.whiteBackground {
+.white-background {
   background-color: $white;
 
   div {
@@ -18,8 +18,9 @@
   padding-bottom: 50px;
   @include mediaQuery("<=tabletPortrait") {
     padding-top: 10px;
-    padding-bottom: 0px;
+    padding-bottom: 0;
   }
+  
   .title {
     margin: 0;
     line-height: 1.3;

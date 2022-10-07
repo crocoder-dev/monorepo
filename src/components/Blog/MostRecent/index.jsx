@@ -17,7 +17,7 @@ const MostRecent = ({ pages }) => {
 
   return (
     <>
-      <div className={styles.titleWrapper}>
+      <div className={styles['title-wrapper']}>
         <Typography
           className={styles.title}
           element="h2"
@@ -29,7 +29,7 @@ const MostRecent = ({ pages }) => {
         </Typography>
       </div>
       <div className={styles.wrapper}>
-        <article className={styles.featured_post}>
+        <article className={styles['featured-post']}>
           <a href={featuredPost.urlPath}>
             <figure>
               <ResponsiveImage
@@ -67,7 +67,10 @@ const MostRecent = ({ pages }) => {
             </Typography>
           </a>
         </article>
-        {restOfPosts.map((post) => <Post key={post.meta.title} {...post} />)}
+        {
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          restOfPosts.map((post) => <Post key={post.meta.title} {...post} />)
+        }
       </div>
     </>
   );

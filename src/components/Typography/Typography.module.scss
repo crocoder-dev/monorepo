@@ -1,4 +1,5 @@
-@import '../../styles/main.scss';
+@use "sass:list";
+@import '../../styles/main';
 
 $sizes: (
   // (maxSize, minSize)
@@ -30,14 +31,15 @@ h6.typography { @include getFluidFontSize(14, 20); font-family: 'Rubik', sans-se
 .typography {
   transition: font-size  0.7s cubic-bezier(0, 0.55, 0.45, 1);
   line-height: normal;
-  font-family: 'Roboto', sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
 .roboto {
-  font-family: 'Roboto', sans-serif;
+  font-family: Roboto, sans-serif;
 }
+
 .rubik {
-  font-family: 'Rubik', sans-serif;
+  font-family: Rubik, sans-serif;
 }
 
 // Dynamic color class definition
@@ -56,12 +58,12 @@ h6.typography { @include getFluidFontSize(14, 20); font-family: 'Rubik', sans-se
 
 // Dynamic fluid font-size definition
 @each $name, $value in $sizes {
-  $maxValue: nth($value, 1);
-  $minValue: nth($value, 2);
+  $max-value: list.nth($value, 1);
+  $min-value: list.nth($value, 2);
 
   .typography.size#{$name} {
-    @include getFluidFontSize($minValue, $maxValue);
-    @include setMaxFontSize($maxValue)
+    @include getFluidFontSize($min-value, $max-value);
+    @include setMaxFontSize($max-value)
   }
 }
 
@@ -76,9 +78,11 @@ h6.typography { @include getFluidFontSize(14, 20); font-family: 'Rubik', sans-se
 .left {
   text-align: left;
 }
+
 .center {
   text-align: center;
 }
+
 .right {
   text-align: right;
 }

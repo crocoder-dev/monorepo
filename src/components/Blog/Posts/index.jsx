@@ -36,7 +36,10 @@ export const Post = ({ meta, urlPath }) => (
 
 const Posts = ({ posts }) => (
   <div className={styles.wrapper}>
-    {posts && posts.map((p) => <Post key={p.urlPath} {...p} />)}
+    {
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      posts && posts.map((p) => <Post key={p.urlPath} {...p} />)
+    }
   </div>
 );
 

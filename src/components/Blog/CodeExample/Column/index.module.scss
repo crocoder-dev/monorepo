@@ -1,4 +1,4 @@
-@import "../../../../styles/main.scss";
+@import "../../../../styles/main";
 
 .column {
   display: flex;
@@ -12,11 +12,11 @@
   }
 
   &:first-of-type {
-    margin-left: 0px;
+    margin-left: 0;
   }
 
   &:last-of-type {
-    margin-right: 0px;
+    margin-right: 0;
   }
 
   @include mediaQuery("<=tabletPortrait") {

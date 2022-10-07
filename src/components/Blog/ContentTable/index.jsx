@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './index.module.scss';
 import Typography from '../../Typography';
+import BlogLink from '../BlogLink';
 
 const Table = ({ tocData }) => (
-  <ul className={styles.Table}>
+  <ul className={styles.table}>
     {tocData.map(({ value, id, children }) => (
       <li key={id}>
-        <a href={`#${id}`}>{value}</a>
+        <BlogLink href={`#${id}`}>{value}</BlogLink>
         {children && <Table tocData={children} />}
       </li>
     ))}
@@ -21,7 +22,7 @@ const ContentTable = ({ tocData, title = 'Contents' }) => (
         id="contents"
         fontFamily="rubik"
         color="gray_2"
-        className={styles.ContentTitle}
+        className={styles['content-title']}
       >
         {title}
       </Typography>

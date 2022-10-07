@@ -55,7 +55,7 @@ const UncontrolledDemo = () => {
   return (
     <Row>
       <Column>
-        <div className={styles.defaultGrid}>
+        <div className={styles['default-grid']}>
           <ParentComponent setConsoleOutputs={setConsoleOutputs} />
         </div>
       </Column>

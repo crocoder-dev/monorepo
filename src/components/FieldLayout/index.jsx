@@ -29,7 +29,7 @@ const Field = ({
     className={clsx(className, styles.wrapper, {
       [styles.error]: error,
       [styles.empty]: empty,
-      [styles.hideLabel]: hideLabel,
+      [styles['hide-label']]: hideLabel,
     })}
   >
     <label

@@ -40,7 +40,7 @@ const StatusQuoDemo = () => {
   return (
     <Row>
       <Column>
-        <div className={styles.defaultGrid}>
+        <div className={styles['default-grid']}>
           <Typography color="gray_2" fontWeight={700} fontSize={44}>
             Contact
             {' '}

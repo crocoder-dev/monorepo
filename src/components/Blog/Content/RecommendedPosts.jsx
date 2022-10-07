@@ -16,13 +16,13 @@ const selectRandomBlogPost = (posts, selectedPosts = []) => {
   let total = 1;
   let selectedPost = null;
 
-  for (let i = 0; i < posts.length; i++) {
+  for (let i = 0; i < posts.length; i += 1) {
     const post = posts[i];
     if (total + post.rating > selected) {
       selectedPost = post;
       break;
     }
-    total = total + post.rating;
+    total += post.rating;
   }
 
   selectedPosts.push(selectedPost);
@@ -54,7 +54,7 @@ const getRecommendedPosts = (
 
   let selectedPosts = [];
 
-  for (let i = 0; i < totalRecommendedPosts; i++) {
+  for (let i = 0; i < totalRecommendedPosts; i += 1) {
     [blogs, selectedPosts] = selectRandomBlogPost(blogs, selectedPosts);
   }
 

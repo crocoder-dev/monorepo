@@ -29,7 +29,6 @@ const TextArea = ({
   onChange,
   required = false,
   style,
-  testId,
   value,
 }) => {
   const { minRows, maxRows, lineHeight } = fluidHeightOptions;
@@ -166,7 +165,6 @@ const TextArea = ({
           height: heightStyle.height,
           lineHeight: heightStyle.lineHeight,
         }}
-        testid={testId}
       />
       <div className={styles.textarea__messages}>
         {errorMessage && error && (
