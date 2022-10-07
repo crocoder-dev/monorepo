@@ -18,30 +18,38 @@ const hydrate = (Component, root, props) => {
   ReactDOM.hydrateRoot(root, <Component {...JSON.parse(props)} />);
 };
 
-const initOnDelay = (callback, delay = 300) => {
-  setTimeout(callback, delay);
-};
-
+/**
+ * initOnIdle invokes the given callback when the browser is 'idle'
+ * If requestIdleCallback is not supported fallover to invoke immediately
+ * https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback
+ * @param callback - Fired when requestIdleCallback runs
+ */
 const initOnIdle = (callback, timeOut = 500) => {
   if ('requestIdleCallback' in window) {
     window.requestIdleCallback(callback, { timeout: timeOut });
   } else {
-    //If rIC is not supported fallover to delay hydration for 200ms
-    initOnDelay(callback, 200);
+    callback();
   }
 };
 
+/**
+ * initOnVisible invokes the given callback when element is in viewport
+ * If IntersectionObserver is not supported fallover to invoke callback immediately
+ * https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+ * @param callback - Fired when element enters into viewport
+ * @param element - HTML element that is observed
+ */
 const initOnVisible = (callback, element) => {
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(([el]) => {
       if (!el.isIntersecting || !el.intersectionRatio > 0) return;
+      //Observer diconnected once element has been seen
       observer.disconnect();
       callback();
     });
     observer.observe(element);
   } else {
-    //If IO is not supported fallover to move callback invocation to end of call stack
-    initOnDelay(callback, 0);
+    callback();
   }
 };
 
@@ -54,11 +62,6 @@ islands.forEach((island) => {
   switch (deferUntil) {
     case 'idle':
       initOnIdle(() => {
-        hydrate(Component, island, props);
-      });
-      break;
-    case 'delay':
-      initOnDelay(() => {
         hydrate(Component, island, props);
       });
       break;
