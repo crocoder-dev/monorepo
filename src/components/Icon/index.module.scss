@@ -1,3 +1,7 @@
+/* stylelint-disable font-family-name-quotes */
+/* stylelint-disable color-function-notation */
+/* stylelint-disable selector-pseudo-element-colon-notation */
+/* stylelint-disable rule-empty-line-before */
 @font-face {
   font-family: "crocoder";
   src: url("/fonts/crocoder.eot?hrsj22");
@@ -12,6 +16,7 @@
 
 .icon {
   /* use !important to prevent issues with browser extensions that change fonts */
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: "crocoder" !important;
   font-style: normal;
   font-weight: normal;

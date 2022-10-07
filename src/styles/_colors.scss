@@ -1,3 +1,8 @@
+/* stylelint-disable property-no-unknown */
+/* stylelint-disable selector-pseudo-class-no-unknown */
+/* stylelint-disable scss/dollar-variable-empty-line-before */
+/* stylelint-disable scss/dollar-variable-pattern */
+
 /**
   CroCoder Color Definitions
 */
@@ -52,9 +57,9 @@ $yellow_5: #FFCA36;
 */
 
 $primary: $green_4;
-$primary_light: rgba(151,181,52,90%); // green_5 with 90% opacity
+$primary_light: rgba(151 181 52 / 90%); // green_5 with 90% opacity
 $secondary: $yellow_2;
-$secondary_light:  rgba(254,209,82, 90%);  // yellow_3 with 90% opacity
+$secondary_light:  rgba(254 209 82 / 90%);  // yellow_3 with 90% opacity
 $contrast: $gray_7;
 
 // Available background colors. Useful for section backgrounds
@@ -171,7 +176,7 @@ $contrasts: (
   "gray_2": $white,  // (8.45)
   "gray_3": $white,  // (7.26)
   "gray_4": $gray_1, // (4.76)
-  "gray_5": $gray_10,// (3.13) -- OK
+  "gray_5": $gray_10,// (3.13) -- ok
   "gray_6": $gray_7,
   "gray_7": $green_2,
   "gray_8": $yellow_2,

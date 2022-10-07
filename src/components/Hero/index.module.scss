@@ -1,4 +1,5 @@
-@import "../../styles/main.scss";
+/* stylelint-disable scss/dollar-variable-pattern */
+@import "../../styles/main";
 
 $twoRowBreakLine: "<=tabletPortrait";
 
@@ -49,6 +50,7 @@ $twoRowBreakLine: "<=tabletPortrait";
     color: #607a1a; // #647E1B;//not our color;
     font-weight: 700;
   }
+
   em {
     font-style: normal;
     font-weight: 700;
@@ -69,7 +71,6 @@ $twoRowBreakLine: "<=tabletPortrait";
   margin-left: auto;
   margin-right: 0;
   margin-top: 25px;
-
   min-width: 200px;
 
   @include mediaQuery("<=tabletLandscape") {

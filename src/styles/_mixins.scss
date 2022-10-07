@@ -1,4 +1,8 @@
-@import "./_media.scss";
+/* stylelint-disable scss/at-import-no-partial-leading-underscore */
+/* stylelint-disable scss/at-mixin-pattern */
+/* stylelint-disable indentation */
+/* stylelint-disable scss/at-function-pattern */
+@import "./_media";
 
 /* Adds elipsis to element */
 @mixin ellipsis() {

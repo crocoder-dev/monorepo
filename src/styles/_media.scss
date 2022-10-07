@@ -1,3 +1,11 @@
+/* stylelint-disable scss/at-mixin-pattern */
+/* stylelint-disable indentation */
+/* stylelint-disable scss/at-function-pattern */
+/* stylelint-disable value-keyword-case */
+/* stylelint-disable property-no-unknown */
+/* stylelint-disable selector-pseudo-class-no-unknown */
+/* stylelint-disable scss/dollar-variable-pattern */
+@use "scss:str";
 
 $viewport__width--minimum: 320;
 $viewport__width--maximum: 1800;
@@ -27,9 +35,9 @@ $breakpoints: (
   $condition: '';
 
   @each $op in ('>', '>=', '<', '<=') {
-    @if str-index($expression, $op) {
+    @if str.index($expression, $op) {
        $operator: $op;
-       $value: str-slice($expression, str-index($expression, $op) + str-length($op));
+       $value: str.slice($expression, str.index($expression, $op) + str.length($op));
     }
   }
 
@@ -50,8 +58,8 @@ $breakpoints: (
   $value: '';
   $operator: '>';
   @each $op in ('>', '>=', '<', '<=') {
-    @if str-index($expression, $op) {
-       $value: str-slice($expression, str-index($expression, $op) + str-length($op));
+    @if str.index($expression, $op) {
+       $value: str.slice($expression, str.index($expression, $op) + str.length($op));
        $operator: $op;
     }
   }

@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 /* stylelint-disable no-descending-specificity */
 @import "../../styles/main";
 
@@ -134,7 +135,7 @@ $inactive-color: $gray_2;
     left: 0;
     position: absolute;
     text-transform: capitalize;
-    transform: translate(0em, 1em);
+    transform: translate(0, 1em);
     transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
       height 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
       font-size 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
