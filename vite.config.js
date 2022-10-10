@@ -20,7 +20,6 @@ export const plugins = [
       formats: {
         webp: { quality: 60 },
         png: { quality: 40 },
-        jpg: { quality: 50 },
       },
     }),
   }),
