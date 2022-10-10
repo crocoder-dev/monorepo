@@ -1,17 +1,15 @@
-import React, { useCallback, useState, useRef } from "react";
-import styles from "./index.module.scss";
-import Console from "../Console";
-import Row from "../CodeExample/Row";
-import Column from "../CodeExample/Column";
+import React, { useCallback, useState, useRef } from 'react';
+import styles from './index.module.scss';
+import Console from '../Console';
+import Row from '../CodeExample/Row';
+import Column from '../CodeExample/Column';
 
-const InputComponent = ({ label, inputRef }) => {
-  return (
-    <div>
-      <span>{label}</span>
-      <input ref={inputRef} />
-    </div>
-  );
-};
+const InputComponent = ({ label, inputRef }) => (
+  <div>
+    <span>{label}</span>
+    <input ref={inputRef} />
+  </div>
+);
 
 const ParentComponent = ({ setConsoleOutputs }) => {
   const emailInputRef = useRef(null);
@@ -25,15 +23,15 @@ const ParentComponent = ({ setConsoleOutputs }) => {
         nameInputRef.current.value || null
       } }`,
     ]);
-    emailInputRef.current.value = "";
-    nameInputRef.current.value = "";
-    if (emailInputRef.current.style["background-color"] === "red") {
-      emailInputRef.current.style = "background-color:blue;";
+    emailInputRef.current.value = '';
+    nameInputRef.current.value = '';
+    if (emailInputRef.current.style['background-color'] === 'red') {
+      emailInputRef.current.style = 'background-color:blue;';
     } else {
-      emailInputRef.current.style = "background-color:red;";
+      emailInputRef.current.style = 'background-color:red;';
     }
-    nameInputRef.current.type = "button";
-    nameInputRef.current.value = "I am now a button";
+    nameInputRef.current.type = 'button';
+    nameInputRef.current.value = 'I am now a button';
   }, [setConsoleOutputs, emailInputRef, nameInputRef]);
 
   return (
@@ -42,7 +40,7 @@ const ParentComponent = ({ setConsoleOutputs }) => {
       <br />
       <InputComponent label="Name" inputRef={nameInputRef} />
       <br />
-      <button style={{ height: "30px" }} onClick={handleSubmit}>
+      <button type="button" style={{ height: '30px' }} onClick={handleSubmit}>
         Submit
       </button>
     </>
@@ -51,13 +49,13 @@ const ParentComponent = ({ setConsoleOutputs }) => {
 
 const UncontrolledDemo = () => {
   const [consoleOutputs, setConsoleOutputs] = useState([
-    "Try submitting the form!",
+    'Try submitting the form!',
   ]);
 
   return (
     <Row>
       <Column>
-        <div className={styles.defaultGrid}>
+        <div className={styles['default-grid']}>
           <ParentComponent setConsoleOutputs={setConsoleOutputs} />
         </div>
       </Column>

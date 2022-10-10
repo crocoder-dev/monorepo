@@ -1,9 +1,10 @@
-import blogHeader from "../../content/images/blogs/callback-hell.jpg";
+import blogHeader from "../../content/images/blogs/callback-hell.jpg?preset=responsive";
 import Column from "../../components/Blog/CodeExample/Column";
 import Row from "../../components/Blog/CodeExample/Row";
 import ListToggle from "../../components/Blog/CodeExample/ListToggle";
-import Layout from "../../components/Blog/Layout";
+import BlogLayout from "../../Layouts/BlogLayout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
+import ContentTable from "../../components/Blog/ContentTable";
 
 export const meta = {
   id: "callbacks-exercises",
@@ -18,6 +19,7 @@ export const meta = {
   editor: "velimirujevic",
   abstract:
     "It's really hard to test your programming knowledge after you have completed a tutorial or a lecture. We have prepared some exercises to help out beginner devs to solidify their understanding of callbacks. Every exercise has a brief description of the problem, starting code, links to relevant MDN docs, and expected results. Try to solve the problems without taking a peek at the solution.",
+  pageType: "blog-posting"
 };
 
 It's really hard to test your programming knowledge after you have completed a tutorial or a lecture. We have prepared some exercises to help out beginner devs to solidify their understanding of **callbacks**. Every exercise has a brief description of the problem, starting code, links to relevant MDN docs, and expected results. Try to solve the problems without taking a peek at the solution.
@@ -25,7 +27,7 @@ It's really hard to test your programming knowledge after you have completed a t
 If you need some additional help, you can check out our [Functions video](https://youtu.be/VkjE7CebnPQ) from the **#lockdown learning** series in which we discuss **functions and callbacks** or contact the author of the article directly.
 
 <br />
-<hr />
+***
 <br />
 
 **Callbacks** are a critical concept in **JavaScript** and you won't get very far without knowing how to use them. They are often as confusing to experienced developers as well as to beginners. A **callback** is nothing more than a function that is passed into another function as an argument to be executed later.
@@ -44,7 +46,8 @@ The second parameter passed into addEventListener is a **callback**. I have comp
 
 <br />
 <br />
-<p>{/*TODO: Create ContentTable*/}</p>
+
+<ContentTable tocData={props.toc} />
 
 <br />
 <br />
@@ -450,4 +453,4 @@ repeat("trogdor", 3, (t) => `°${t}°`);
 
 </ListToggle>
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

@@ -1,8 +1,10 @@
-@import "../../styles/main.module.scss";
+/* stylelint-disable selector-pseudo-class-no-unknown */
+/* stylelint-disable no-descending-specificity */
+@import "../../styles/main";
 
-$header__desktop__height: 90px;
-$header__mobile__height: 65px;
-$header__animation__length: 0.6s;
+$header-desktop-height: 90px;
+$header-mobile-height: 65px;
+$header-animation-length: 0.6s;
 
 .header {
   align-items: center;
@@ -10,15 +12,14 @@ $header__animation__length: 0.6s;
   box-sizing: border-box;
   color: $gray_2;
   display: flex;
-  height: $header__desktop__height;
+  height: $header-desktop-height;
   justify-content: space-between;
   padding: 25px 100px;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
-  transition: padding #{$header__animation__length} cubic-bezier(0.5, 1, 0.89, 1),
-    transform #{$header__animation__length} cubic-bezier(0.5, 1, 0.89, 1),
-    box-shadow #{$header__animation__length} cubic-bezier(0.5, 1, 0.89, 1);
+  transition: padding #{$header-animation-length} cubic-bezier(0.5, 1, 0.89, 1),
+    transform #{$header-animation-length} cubic-bezier(0.5, 1, 0.89, 1),
+    box-shadow #{$header-animation-length} cubic-bezier(0.5, 1, 0.89, 1);
   z-index: 100;
 
   &.transparent {
@@ -28,7 +29,6 @@ $header__animation__length: 0.6s;
   :global(.link) {
     color: $gray_2;
   }
-
   @include mediaQuery(">=tabletPortrait", "<desktop") {
     padding: 25px 50px;
   }
@@ -36,10 +36,10 @@ $header__animation__length: 0.6s;
   @include mediaQuery(">=0px", "<=720px") {
     flex-wrap: wrap;
     padding: 10px 0 15px 25px;
-    height: $header__mobile__height;
+    height: $header-mobile-height;
 
     &.transparent {
-      height: $header__mobile__height;
+      height: $header-mobile-height;
     }
   }
 
@@ -48,6 +48,7 @@ $header__animation__length: 0.6s;
 
     @include mediaQuery(">=0px", "<=720px") {
       display: inline-block;
+      
       span {
         display: block;
         margin: 2px 0;
@@ -63,13 +64,16 @@ $header__animation__length: 0.6s;
   &__burger.active {
     @include mediaQuery(">=0px", "<=720px") {
       overflow: hidden;
+      
       span:nth-child(1) {
         transform: translate(0, 4px) rotate(45deg);
       }
+      
       span:nth-child(2) {
         transform: translate(-200%);
         opacity: 0;
       }
+      
       span:nth-child(3) {
         transform: translate(0, -4px) rotate(-45deg);
       }
@@ -119,7 +123,7 @@ $header__animation__length: 0.6s;
 }
 
 .scroll {
-  box-shadow: 0px 5px 20px rgba(69, 85, 22, 0.1);
+  box-shadow: 0 5px 20px rgba(69 85 22 / 10%);
   top: 0;
 
   @include mediaQuery(">720px") {
@@ -134,26 +138,28 @@ $header__animation__length: 0.6s;
   * Whenever we have a closed menu,
   * we do not wish to display content.
   **/
+  /* stylelint-disable-next-line selector-class-pattern */
   .closed > .header__content {
     opacity: 0;
     visibility: hidden;
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .header__content {
     background: $white;
     box-sizing: border-box;
     display: inline-block;
     flex-basis: 100%;
-    height: calc(100vh - #{$header__mobile__height});
+    height: calc(100vh - #{$header-mobile-height});
     left: 0;
     max-width: 100%;
     min-width: 100%;
     opacity: 1;
-    padding-top: calc(#{$header__desktop__height} - #{$header__mobile__height});
+    padding-top: calc(#{$header-desktop-height} - #{$header-mobile-height});
     margin-top: 0;
     position: fixed;
-    top: $header__mobile__height;
-    transition: opacity #{$header__animation__length} cubic-bezier(0.5, 1, 0.89, 1);
+    top: $header-mobile-height;
+    transition: opacity #{$header-animation-length} cubic-bezier(0.5, 1, 0.89, 1);
     visibility: visible;
     width: 100vw;
 

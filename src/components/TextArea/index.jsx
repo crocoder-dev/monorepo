@@ -1,6 +1,9 @@
-import clsx from "clsx";
-import React, { useState, useCallback, useRef, useEffect } from "react";
-import * as styles from "./index.module.scss";
+/* eslint-disable no-console */
+import clsx from 'clsx';
+import React, {
+  useState, useCallback, useRef, useEffect,
+} from 'react';
+import * as styles from './index.module.scss';
 
 const isNumber = (value) => !Number.isNaN(Number(value));
 
@@ -11,7 +14,7 @@ const TextArea = ({
   className,
   disabled = false,
   showCharCount = false,
-  manualResize = "none",
+  manualResize = 'none',
   error = false,
   errorMessage,
   fluidHeight = false,
@@ -26,7 +29,6 @@ const TextArea = ({
   onChange,
   required = false,
   style,
-  testId,
   value,
 }) => {
   const { minRows, maxRows, lineHeight } = fluidHeightOptions;
@@ -36,46 +38,48 @@ const TextArea = ({
   const [heightStyle, setHeightStyle] = useState(
     fluidHeight
       ? {
-          height: `${minRows * lineHeight}px`,
-          lineHeight: `${lineHeight}px`,
-          resize: manualResize,
-          previousHeight: 0,
-        }
-      : { resize: manualResize }
+        height: `${minRows * lineHeight}px`,
+        lineHeight: `${lineHeight}px`,
+        resize: manualResize,
+        previousHeight: 0,
+      }
+      : { resize: manualResize },
   );
 
-  const maximumCharachtersLength =
-    showCharCount && !maxLength ? 500 : maxLength;
+  const maximumCharachtersLength = showCharCount && !maxLength ? 500 : maxLength;
 
   useEffect(() => {
-    if (process.env.NODE_ENV !== "development") return;
+    if (process.env.NODE_ENV !== 'development') return;
 
     if (fluidHeight) {
-      if (!minRows)
+      if (!minRows) {
         console.warn(
-          "fluidHeight is set to true but fluidHeightOptions.minRows is missing"
+          'fluidHeight is set to true but fluidHeightOptions.minRows is missing',
         );
-      if (!maxRows)
+      }
+      if (!maxRows) {
         console.warn(
-          "fluidHeight is set to true but fluidHeightOptions.maxRows is missing"
+          'fluidHeight is set to true but fluidHeightOptions.maxRows is missing',
         );
-      if (!lineHeight)
+      }
+      if (!lineHeight) {
         console.warn(
-          "fluidHeight is set to true but fluidHeightOptions.lineHeight is missing"
+          'fluidHeight is set to true but fluidHeightOptions.lineHeight is missing',
         );
+      }
 
       if (!isNumber(minRows)) {
-        console.warn("fluidHeightOptions.minRows should be a number");
+        console.warn('fluidHeightOptions.minRows should be a number');
       }
       if (!isNumber(maxRows)) {
-        console.warn("fluidHeightOptions.maxRows should be a number");
+        console.warn('fluidHeightOptions.maxRows should be a number');
       }
       if (!isNumber(lineHeight)) {
-        console.warn("fluidHeightOptions.lineHeight should be a number");
+        console.warn('fluidHeightOptions.lineHeight should be a number');
       }
       if (minRows > maxRows) {
         console.warn(
-          "fluidHeightOptions.maxRows should be greater or equal fluidHeightOptions.minRows"
+          'fluidHeightOptions.maxRows should be greater or equal fluidHeightOptions.minRows',
         );
       }
     }
@@ -90,7 +94,7 @@ const TextArea = ({
 
       const rows = Math.max(
         Math.floor(textAreaRef.current.scrollHeight / lineHeight),
-        minRows
+        minRows,
       );
 
       const height = `${(rows > maxRows ? maxRows : rows) * lineHeight}px`;
@@ -114,7 +118,7 @@ const TextArea = ({
       maxRows,
       fluidHeight,
       manualResize,
-    ]
+    ],
   );
 
   useEffect(() => {
@@ -132,7 +136,7 @@ const TextArea = ({
 
       if (onChange) onChange(e);
     },
-    [onChange, fluidHeight, calculateAndSetHeight]
+    [onChange, fluidHeight, calculateAndSetHeight],
   );
 
   return (
@@ -144,7 +148,9 @@ const TextArea = ({
       })}
     >
       <label htmlFor={id} className={styles.textarea__label}>
-        {label} {required && "*"}
+        {label}
+        {' '}
+        {required && '*'}
       </label>
       <textarea
         ref={textAreaRef}
@@ -159,7 +165,6 @@ const TextArea = ({
           height: heightStyle.height,
           lineHeight: heightStyle.lineHeight,
         }}
-        testid={testId}
       />
       <div className={styles.textarea__messages}>
         {errorMessage && error && (
@@ -170,7 +175,10 @@ const TextArea = ({
         {showCharCount && (
           <span
             className={styles.textarea__charCounter}
-          >{`${charCount}/${maximumCharachtersLength}`}</span>
+          >
+            {`${charCount}/${maximumCharachtersLength}`}
+
+          </span>
         )}
       </div>
     </div>

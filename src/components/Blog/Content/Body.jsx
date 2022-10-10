@@ -1,20 +1,11 @@
-import React, { useEffect } from "react";
-import styles from "./index.module.scss";
-import Section from "../../Layout/Section";
-import clsx from "clsx";
-import Prism from "prismjs";
-import "prismjs/components/prism-jsx";
-import "prismjs/components/prism-bash";
+import React from 'react';
+import styles from './index.module.scss';
+import Section from '../../Section';
 
-const Body = ({ children, bodyRef }) => {
-  useEffect(() => {
-    Prism.highlightAll();
-  }, [children]);
-  return (
-    <Section blog as="main" ref={bodyRef} clasx={clsx(styles.body, "okaidia")}>
-      {children}
-    </Section>
-  );
-};
+const Body = ({ children }) => (
+  <Section blog as="main" className={styles.body}>
+    {children}
+  </Section>
+);
 
 export default Body;

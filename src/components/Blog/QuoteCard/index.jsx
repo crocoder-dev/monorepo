@@ -1,45 +1,45 @@
-import React from "react";
-import styles from "./index.module.scss";
-import Typography from "../../Typography";
-import Section from "../../Layout/Section";
-import clsx from "clsx";
-import authorsJSON from "../../../content/authors/authors.json";
+import React from 'react';
+import clsx from 'clsx';
+import styles from './index.module.scss';
+import Typography from '../../Typography';
+import Section from '../../Section';
+import ResponsiveImage from '../../ResponsiveImage';
+import authors from '../../../content/authors/authors.json';
 
 const QuoteCard = ({
   direction,
   children,
-  "author-color": authorBgColor,
-  "author-name": authorName,
+  'author-color': authorBgColor,
+  'author-name': authorName,
 }) => {
-  const { authors } = authorsJSON;
   const { name, role, id } = authors.find((author) => author.id === authorName);
-  const authorImage = require(`../../../content/images/authors/${id}.png`);
 
   return (
     <Section
-      className={clsx(styles.quoteCard, {
-        [styles.leftDirection]: direction !== "right",
+      className={clsx(styles['quote-card'], {
+        [styles['left-direction']]: direction !== 'right',
       })}
     >
-      <figure className={styles.figureWrapper}>
+      <figure className={styles['figure-wrapper']}>
         <div
           style={{ backgroundColor: authorBgColor }}
-          className={styles.authorImageWrapper}
+          className={styles['author-image-wrapper']}
         >
-          <div className={styles.nextImage}>
-            <img src={authorImage} alt={name} />
-          </div>
+          <ResponsiveImage
+            src={`/src/content/images/authors/${id}.png`}
+            alt={name}
+          />
         </div>
         <Typography
           fontFamily="rubik"
           fontWeight={300}
-          element={"blockquote"}
+          element="blockquote"
           fontSize={22}
-          className={styles.quoteBody}
+          className={styles['quote-body']}
         >
           {children}
         </Typography>
-        <figcaption className={styles.authorDetails}>
+        <figcaption className={styles['author-details']}>
           <Typography
             className={styles.author}
             element="p"

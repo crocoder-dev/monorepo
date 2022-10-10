@@ -1,4 +1,6 @@
-@import "../../styles/main.module.scss";
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable selector-class-pattern */
+@import '../../styles/main';
 
 .section {
   width: 100%;
@@ -12,15 +14,24 @@
 
 .wrapper {
   background: $blue_6;
+  overflow: visible;
 }
 
 .flex {
   display: flex;
   align-items: center;
+  background-color: transparent;
+  border: none;
+
+  span{
+    text-align: left;
+  }
+
   b {
     color: #607a1a; // #647E1B;//not our color;
     font-weight: 700;
   }
+
   em {
     font-style: normal;
     font-weight: 700;
@@ -28,9 +39,10 @@
 }
 
 .image {
-  @include mediaQuery("<=desktop") {
+  @include mediaQuery('<=desktop') {
     display: none;
   }
+
   flex-basis: 50%;
 }
 
@@ -40,18 +52,18 @@
   min-width: 500px;
   box-sizing: border-box;
 
-  @include mediaQuery("<=tabletLandscape") {
+  @include mediaQuery('<=tabletLandscape') {
     min-width: 450px;
   }
 
-  @include mediaQuery("<=900px") {
+  @include mediaQuery('<=900px') {
     padding-right: 0;
     flex-basis: 100%;
     min-width: auto;
     max-width: 550px;
   }
 
-  @include mediaQuery("<=desktop") {
+  @include mediaQuery('<=desktop') {
     padding: 0 3.5%;
   }
 
@@ -65,10 +77,10 @@
   line-height: 180%;
   margin-bottom: 30px;
 
-  @include mediaQuery(">=desktop") {
+  @include mediaQuery('>=desktop') {
     width: 50%;
   }
-  @include mediaQuery("<=900px") {
+  @include mediaQuery('<=900px') {
     max-width: 550px;
     margin: auto;
     margin-bottom: 30px;
@@ -78,8 +90,9 @@
 .title {
   line-height: 147%;
   text-transform: capitalize;
+  scroll-margin-top: 120px;
 
-  @include mediaQuery("<=900px") {
+  @include mediaQuery('<=900px') {
     max-width: 550px;
     margin: auto;
     margin-bottom: 30px;
@@ -96,12 +109,12 @@
   padding: 30px 45px;
   background-color: $white;
   border-radius: 6px;
-  box-shadow: 0px 5px 20px rgba(69, 85, 22, 0.1);
+  box-shadow: 0 5px 20px rgba(69 85 22 / 10%);
   overflow: hidden;
   flex-direction: column;
   display: flex;
 
-  @include mediaQuery("<=tabletPortrait") {
+  @include mediaQuery('<=tabletPortrait') {
     padding: 20px 25px;
   }
 }
@@ -115,7 +128,7 @@
 .input input {
   box-sizing: border-box;
   color: $gray_2;
-  font-family: "Rubik", sans-serif;
+  font-family: Rubik, sans-serif;
   font-size: 1rem;
   min-width: auto;
   width: 100%;
@@ -126,7 +139,7 @@
 }
 
 .captcha {
-  font-family: "Rubik", sans-serif;
+  font-family: Rubik, sans-serif;
   color: $gray_2;
   line-height: 1.6;
   padding-top: 1.5em;
@@ -150,7 +163,7 @@
 .notifications {
   padding: 0;
   position: fixed;
-  right: 0px;
+  right: 0;
   top: 65px;
   background-color: white;
   z-index: 99;
@@ -161,6 +174,7 @@
 
   .positive {
     background-color: #fff;
+
     .notifications__title {
       color: #607a1a; // #647E1B; //$green_4;
     }
@@ -168,12 +182,13 @@
 
   .negative {
     background-color: #e1787142;
+
     .notifications__title {
       color: #8e4a51;
     }
   }
 
-  @include mediaQuery(">=tabletPortrait") {
+  @include mediaQuery('>=tabletPortrait') {
     right: 30px;
     bottom: 50px;
     top: unset;
@@ -199,8 +214,7 @@
 
   li {
     align-items: center;
-
-    box-shadow: 0px 5px 20px rgba(69, 85, 22, 0.1);
+    box-shadow: 0 5px 20px rgba(69 85 22 / 10%);
     box-sizing: border-box;
     display: grid;
     grid-template-columns: minmax(auto, 340px) 25px;
@@ -219,6 +233,7 @@
       color: #607a1a; // #647E1B;//not our color;
       font-weight: 700;
     }
+
     em {
       font-style: normal;
       font-weight: 700;

@@ -1,32 +1,31 @@
-import React, { useCallback, useRef, useState, useMemo } from "react";
-import Typography from "../Typography";
-import Icon from "../Icon";
-import Button from "../Button";
-import Input from "../Input";
-import TextArea from "../TextArea";
-import styles from "./index.module.scss";
-import Section from "../Layout/Section";
-import { motion, AnimatePresence } from "framer-motion";
+/* eslint-disable no-undef */
+import React, {
+  useCallback, useRef, useState, useMemo,
+} from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Typography from '../Typography';
+import Icon from '../Icon';
+import Button from '../Button';
+import Input from '../Input';
+import TextArea from '../TextArea';
+import styles from './index.module.scss';
+import Section from '../Section';
+import ResponsiveImage from '../ResponsiveImage';
 
-const waitGrecaptchaReady = () => {
-  return new Promise((resolve) => {
-    grecaptcha.ready(resolve());
-  });
-};
+const waitGrecaptchaReady = () => new Promise((resolve) => {
+  grecaptcha.ready(resolve());
+});
 
 const executeGrecaptchaAsync = async () => {
   await waitGrecaptchaReady();
-  const token = await grecaptcha.execute(
-    process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
-    {
-      action: "submit",
-    }
-  );
+  const token = await grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
+    action: 'submit',
+  });
   return token;
 };
 
 const validateFullName = (fullName, form) => {
-  if (typeof fullName !== "string" || !fullName) {
+  if (typeof fullName !== 'string' || !fullName) {
     return form.fullname.requiredField;
   }
   if (fullName.length < 3) {
@@ -36,7 +35,7 @@ const validateFullName = (fullName, form) => {
 };
 
 const validateEmail = (email, form) => {
-  if (typeof email !== "string" || !email) {
+  if (typeof email !== 'string' || !email) {
     return form.email.requiredField;
   }
   if (/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(email) === false) {
@@ -46,7 +45,7 @@ const validateEmail = (email, form) => {
 };
 
 const validateAboutProject = (aboutProject, form) => {
-  if (typeof aboutProject !== "string" || !aboutProject) {
+  if (typeof aboutProject !== 'string' || !aboutProject) {
     return form.projectInfo.requiredField;
   }
   return null;
@@ -67,10 +66,10 @@ const ContactUs = ({
   title,
   description,
   image,
-  contactUsRef,
   consent,
   imageAlt,
   notification,
+  id = null,
 }) => {
   const [confirmed, setConfirmed] = React.useState(false);
   const [confirmedError, setConfirmedError] = React.useState(false);
@@ -88,21 +87,17 @@ const ContactUs = ({
 
   const [notificationVisible, setNotificationVisible] = useState(false);
 
-  const successNotification = useMemo(() => {
-    return {
-      title: notification.title,
-      text: notification.text,
-      class: "positive",
-    };
-  }, [notification]);
+  const successNotification = useMemo(() => ({
+    title: notification.title,
+    text: notification.text,
+    class: 'positive',
+  }), [notification]);
 
-  const errorNotification = useMemo(() => {
-    return {
-      title: notification.errorTitle,
-      text: notification.errorText,
-      class: "negative",
-    };
-  }, [notification]);
+  const errorNotification = useMemo(() => ({
+    title: notification.errorTitle,
+    text: notification.errorText,
+    class: 'negative',
+  }), [notification]);
 
   const notificationTimeout = useRef();
 
@@ -124,8 +119,11 @@ const ContactUs = ({
 
   const clearForm = useCallback(() => {
     if (document) {
-      const children = [...document.querySelectorAll("input,textarea")];
-      children.forEach((child) => (child.value = null));
+      const children = [...document.querySelectorAll('input,textarea')];
+      children.forEach((child) => {
+        // eslint-disable-next-line no-param-reassign
+        child.value = null;
+      });
 
       setEmail(null);
       setFullName(null);
@@ -147,12 +145,7 @@ const ContactUs = ({
         handleOnCloseNotification();
       }, 10000);
     },
-    [
-      handleOnCloseNotification,
-      successNotification,
-      errorNotification,
-      clearForm,
-    ]
+    [handleOnCloseNotification, successNotification, errorNotification, clearForm],
   );
 
   const handleOnSubmit = useCallback(() => {
@@ -170,17 +163,17 @@ const ContactUs = ({
     setConfirmedError(!confirmed);
 
     if (
-      errorMessageAboutProject === null &&
-      errorMessageEmail === null &&
       errorMessageAboutProject === null
+      && errorMessageEmail === null
+      && errorMessageAboutProject === null
     ) {
       executeGrecaptchaAsync()
         .then((token) => {
           fetch(`${process.env.NEXT_API_URL}contacts`, {
-            method: "POST",
-            mode: "cors",
+            method: 'POST',
+            mode: 'cors',
             headers: {
-              "Content-Type": "application/json",
+              'Content-Type': 'application/json',
             },
             body: JSON.stringify({
               email,
@@ -196,11 +189,11 @@ const ContactUs = ({
                 showNotification();
               }
             })
-            .catch((ex) => {
+            .catch(() => {
               showNotification(true);
             });
         })
-        .catch((ex) => {
+        .catch(() => {
           showNotification(true);
         });
     }
@@ -214,7 +207,7 @@ const ContactUs = ({
         setFullNameError(errorMessageFullName);
       }
     },
-    [triedToSubmit, form]
+    [triedToSubmit, form],
   );
 
   const handleOnEmailChange = useCallback(
@@ -225,29 +218,22 @@ const ContactUs = ({
         setEmailError(errorMessageEmail);
       }
     },
-    [triedToSubmit, form]
+    [triedToSubmit, form],
   );
 
   const handleOnAboutProjectChange = useCallback(
     (event) => {
       setAboutProject(event.target.value);
       if (triedToSubmit) {
-        const errorMessageAboutProject = validateAboutProject(
-          event.target.value,
-          form
-        );
+        const errorMessageAboutProject = validateAboutProject(event.target.value, form);
         setAboutProjectError(errorMessageAboutProject);
       }
     },
-    [triedToSubmit, form]
+    [triedToSubmit, form],
   );
 
   return [
-    <div
-      key="ref"
-      style={{ position: "relative", top: "-20px" }}
-      ref={contactUsRef}
-    />,
+    <div key="ref" style={{ position: 'relative', top: '-20px', scrollMarginTop: '50px' }} />,
     <ul className={styles.notifications} key="notification">
       <AnimatePresence initial={false}>
         {notificationVisible && (
@@ -291,6 +277,7 @@ const ContactUs = ({
     <Section key="contact-us" as="section" className={styles.wrapper}>
       <div className={styles.section}>
         <Typography
+          id={id}
           className={styles.title}
           element="h2"
           fontSize={36}
@@ -343,23 +330,23 @@ const ContactUs = ({
                 required
                 showCharCount
               />
-              <div className={styles.flex} onClick={handleConfirm}>
+              <button type="button" className={styles.flex} onClick={handleConfirm}>
                 <Icon
                   role="checkbox"
                   aria-checked={confirmed}
                   fontSize={26}
-                  color={confirmedError ? "negative" : "gray_2"}
+                  color={confirmedError ? 'negative' : 'gray_2'}
                   className={styles.icon}
-                  icon={confirmed ? "checkbox-checked" : "checkbox-unchecked"}
+                  icon={confirmed ? 'checkbox-checked' : 'checkbox-unchecked'}
                   aria-labelledby="contact-us-consent-text"
                 />
                 <Typography
                   dangerouslySetInnerHTML={{ __html: consent }}
                   id="contact-us-consent-text"
                   fontSize={18}
-                  color={confirmedError ? "negative" : "gray_2"}
+                  color={confirmedError ? 'negative' : 'gray_2'}
                 />
-              </div>
+              </button>
               <Button onClick={handleOnSubmit} className={styles.button}>
                 {form.submit}
               </Button>
@@ -371,7 +358,7 @@ const ContactUs = ({
             </div>
           </div>
           <div className={styles.image}>
-            <img src={image} alt={imageAlt} />
+            <ResponsiveImage src={image} alt={imageAlt} />
           </div>
         </div>
       </div>

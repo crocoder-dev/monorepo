@@ -1,32 +1,29 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from 'react';
 import {
   desktop,
   tabletPortrait,
   mobile,
   viewportLimit,
-} from "../styles/main.module.scss";
+} from './useDevice.module.scss';
 
 /**
  * Custom hook for screen-size detection in components.
  */
 export default function useDevice(custom) {
-  const mobileLimit = useMemo(() => (custom && custom.mobile) || Number(mobile.replace("px", "")), [custom]);
-  const tabletLimit = useMemo(() => (custom && custom.tablet) || Number(tabletPortrait.replace("px", "")), [custom]);
-  const desktopLimit = useMemo(() => (custom && custom.desktop) || Number(desktop.replace("px", "")), [custom]);
-  const largeDesktopLimit = useMemo(() => (custom && custom.largeDesktop) || Number(viewportLimit.replace("px", "")), [custom]);
-    
+  const mobileLimit = useMemo(() => (custom && custom.mobile) || Number(mobile.replace('px', '')), [custom]);
+  const tabletLimit = useMemo(() => (custom && custom.tablet) || Number(tabletPortrait.replace('px', '')), [custom]);
+  const desktopLimit = useMemo(() => (custom && custom.desktop) || Number(desktop.replace('px', '')), [custom]);
+  const largeDesktopLimit = useMemo(() => (custom && custom.largeDesktop) || Number(viewportLimit.replace('px', '')), [custom]);
 
   const [isMobile, setIsMobile] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [isLargeDesktop, setIsLargeDesktop] = useState(false);
 
-
   useEffect(() => {
-    const checkIsMobile = () =>
-      window.innerWidth < tabletLimit && window.innerWidth >= mobileLimit;
-    const checkIsTablet = () =>
-      window.innerWidth >= tabletLimit && window.innerWidth < desktopLimit;
+    const checkIsMobile = () => window.innerWidth < tabletLimit && window.innerWidth >= mobileLimit;
+    // eslint-disable-next-line max-len
+    const checkIsTablet = () => window.innerWidth >= tabletLimit && window.innerWidth < desktopLimit;
     const checkIsDesktop = () => window.innerWidth >= desktopLimit;
     const checkIsLargeDesktop = () => window.innerWidth > largeDesktopLimit;
 
@@ -42,9 +39,11 @@ export default function useDevice(custom) {
       setIsLargeDesktop(checkIsLargeDesktop());
     };
 
-    window.addEventListener("resize", resizeHanlder);
-    return () => window.removeEventListener("resize", resizeHanlder);
+    window.addEventListener('resize', resizeHanlder);
+    return () => window.removeEventListener('resize', resizeHanlder);
   }, [desktopLimit, largeDesktopLimit, mobileLimit, tabletLimit]);
 
-  return { isMobile, isDesktop, isTablet, isLargeDesktop };
+  return {
+    isMobile, isDesktop, isTablet, isLargeDesktop,
+  };
 }

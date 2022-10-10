@@ -1,5 +1,5 @@
-import blogHeader from "../../content/images/blogs/how-to-perfect-your-cv-entry-level-developer.png";
-import Layout from "../../components/Blog/Layout";
+import blogHeader from "../../content/images/blogs/how-to-perfect-your-cv-entry-level-developer.png?preset=responsive";
+import BlogLayout from "../../Layouts/BlogLayout";
 
 export const meta = {
   id: "how-to-perfect-your-cv-entry-level-developer",
@@ -14,6 +14,7 @@ export const meta = {
   editor: "velimirujevic",
   abstract:
     "In this episode of After Work Talks, we reviewed a CV from an actual entry-level software developer and provided helpful tips on how to improve your resume writing skills. ",
+  pageType: "blog-posting"
 };
 
 In this episode of After Work Talks, we reviewed a CV from an actual entry-level software developer and provided helpful tips on how to improve your resume writing skills.
@@ -35,4 +36,4 @@ If you want us to review and improve your CV in video form similar to this, cont
   ></iframe>
 </div>
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

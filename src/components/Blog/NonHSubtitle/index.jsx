@@ -1,5 +1,6 @@
-import Typography from "../../Typography/Typography";
-import styles from "./index.module.scss";
+import React from 'react';
+import Typography from '../../Typography/Typography';
+import styles from './index.module.scss';
 
 const NonHSubtitle = ({ children, ...other }) => (
   <Typography
@@ -7,6 +8,7 @@ const NonHSubtitle = ({ children, ...other }) => (
     className={styles.subtitle}
     fontFamily="rubik"
     fontSize={30}
+    // eslint-disable-next-line react/jsx-props-no-spreading
     {...other}
   >
     {children}

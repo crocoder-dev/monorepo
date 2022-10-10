@@ -1,6 +1,6 @@
-import React from "react";
-import clsx from "clsx";
-import * as styles from "./index.module.scss";
+import React from 'react';
+import clsx from 'clsx';
+import * as styles from './index.module.scss';
 
 /**
  * Basic Field component of the CroCoder component library.
@@ -22,42 +22,42 @@ const Field = ({
   removeBottomBorder = false,
   hideLabel = false,
   hideLabelOnFocus,
-}) => {
-  return (
-    <div
-      id={id}
-      style={style}
-      className={clsx(className, styles.wrapper, {
-        [styles.error]: error,
-        [styles.empty]: empty,
-        [styles.hideLabel]: hideLabel,
+}) => (
+  <div
+    id={id}
+    style={style}
+    className={clsx(className, styles.wrapper, {
+      [styles.error]: error,
+      [styles.empty]: empty,
+      [styles['hide-label']]: hideLabel,
+    })}
+  >
+    <label
+      id={labelId}
+      aria-hidden={hideLabel}
+      htmlFor={labelHtmlFor}
+      className={clsx(styles.label, {
+        [styles.labelHidden]: hideLabelOnFocus,
       })}
     >
-      <label
-        id={labelId}
-        aria-hidden={hideLabel}
-        htmlFor={labelHtmlFor}
-        className={classnames(styles.label, {
-          [styles.labelHidden]: hideLabelOnFocus,
-        })}
-      >
-        {label} {required && "*"}
-      </label>
-      <div
-        className={classnames(styles.field, {
-          [styles.includeBorder]: !removeBottomBorder,
-          [styles.style__child]: !removeChildrenStyle,
-        })}
-      >
-        {children}
-      </div>
-      {errorMessage && error && (
-        <span title={errorMessage} className={styles.message}>
-          {errorMessage}
-        </span>
-      )}
+      {label}
+      {' '}
+      {required && '*'}
+    </label>
+    <div
+      className={clsx(styles.field, {
+        [styles.includeBorder]: !removeBottomBorder,
+        [styles.style__child]: !removeChildrenStyle,
+      })}
+    >
+      {children}
     </div>
-  );
-};
+    {errorMessage && error && (
+    <span title={errorMessage} className={styles.message}>
+      {errorMessage}
+    </span>
+    )}
+  </div>
+);
 
 export default Field;

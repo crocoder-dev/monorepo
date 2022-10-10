@@ -1,6 +1,6 @@
-import React from "react";
-import clsx from "clsx";
-import styles from "./index.module.scss";
+import React from 'react';
+import clsx from 'clsx';
+import styles from './index.module.scss';
 
 const Button = ({
   className,
@@ -10,7 +10,7 @@ const Button = ({
   onClick,
   title,
   style,
-  variant = "primary",
+  variant = 'primary',
   ...other
 }) => (
   <button
@@ -18,6 +18,7 @@ const Button = ({
     style={style}
     title={title}
     disabled={disabled}
+    // eslint-disable-next-line react/button-has-type
     type={type}
     onClick={onClick}
     className={clsx(className, styles.button, styles[variant])}

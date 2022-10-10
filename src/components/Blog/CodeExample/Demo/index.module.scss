@@ -8,7 +8,7 @@
   padding: 1em;
 
   .icon {
-    color:black;
+    color: black;
     width: 8%;
     max-width: 48px;
     position: absolute;
@@ -23,5 +23,9 @@
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
+  }
+
+  .content > :first-child {
+    width: 100%;
   }
 }

@@ -1,4 +1,5 @@
-@import "../../styles/main.module.scss";
+/* stylelint-disable no-descending-specificity */
+@import "../../styles/main";
 
 .blue {
   background-color: $blue_6;
@@ -9,9 +10,10 @@
   text-align: justify;
 
   b {
-    color: #607a1a; // #647E1B; //$green_4;
+    color: #607a1a;
     font-weight: 700;
   }
+
   em {
     font-style: normal;
     font-weight: 700;
@@ -27,14 +29,18 @@
   column-gap: 60px;
   row-gap: 60px;
 
-  @include mediaQuery("<=1300px") {
+  .card {
+    height: calc(100% - 60px);
+  }
+
+  @include mediaQuery('<=1300px') {
     margin-top: 30px;
     grid-template-columns: 1fr 1fr;
     column-gap: 40px;
     row-gap: 40px;
   }
 
-  @include mediaQuery("<tabletLandscape") {
+  @include mediaQuery('<tabletLandscape') {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
     column-gap: 30px;
@@ -46,9 +52,10 @@
   padding: 30px 25px;
   background-color: $white;
   border-radius: 6px;
-  box-shadow: 0px 5px 20px rgba(69, 85, 22, 0.1);
+  box-shadow: 0 5px 20px rgba(69 85 22 / 10%);
   overflow: hidden;
 
+  /* stylelint-disable-next-line declaration-empty-line-before */
   grid-column: auto / 1 span;
   grid-row: auto / 1 span;
 
@@ -57,7 +64,12 @@
     flex-direction: column;
     justify-content: center;
 
+    a {
+      text-decoration: none;
+    }
+
     .button {
+      display: block;
       margin: auto;
       margin-top: 20px;
       margin-bottom: 0;
@@ -72,12 +84,20 @@
       line-height: 150%;
       text-align: center;
 
-      @include mediaQuery("<=1300px") {
+      @include mediaQuery('<=1300px') {
         max-width: 100%;
       }
     }
   }
+  @include mediaQuery('<=1300px') {
+    height: calc(100% - 40px);
+  }
+  @include mediaQuery('<=tabletLandscape') {
+    height: calc(100% - 30px);
+  }
 }
+
+/* stylelint-disable-next-line selector-class-pattern */
 .customer__name {
   margin-top: 0;
   margin-bottom: 0;
@@ -91,26 +111,24 @@
   justify-content: space-between;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .customer__description {
   line-height: 180%;
+  margin: 0;
+
   em {
-    font-style: normal;
     font-weight: 700;
     font-style: normal;
   }
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .customer__logo {
   position: relative;
   flex-basis: 75px;
-  height: 56px;
-  .next__img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+  height: 46px;
+  display: flex;
+  align-items: center;
 }
 
 .searchmetrics {

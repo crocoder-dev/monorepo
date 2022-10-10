@@ -1,0 +1,30 @@
+import Typography from "../components/Typography";
+import PageLayout from "../Layouts/PageLayout";
+import Section from "../components/Section";
+import Button from "../components/Button";
+import ResponsiveImage from "../components/ResponsiveImage";
+import notFoundImage from "../content/images/404.png?preset=responsive";
+import notfoundJSON from "../content/notfound.json";
+
+export const meta = {
+  title: "404",
+  description: notfoundJSON.subtitle,
+  pageType: "organization",
+};
+
+<Section>
+  <ResponsiveImage src={notFoundImage} alt={notfoundJSON.title} />
+  <Typography element="h1" fontWeight={400}>
+    {notfoundJSON.title}
+  </Typography>
+  <Typography element="h2" fontWeight={400}>
+    {notfoundJSON.subtitle}
+  </Typography>
+  <Typography element="p">
+    <a href="/">
+      <Button>{notfoundJSON.homepage}</Button>
+    </a>
+  </Typography>
+</Section>
+
+export default ({children}) => <PageLayout>{children}</PageLayout>

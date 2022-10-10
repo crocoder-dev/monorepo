@@ -1,15 +1,16 @@
-import Layout from "../components/Layout";
+import PageLayout from "../Layouts/PageLayout";
 import ContactUs from "../components/ContactUs";
-import { OrganizationJSONLDHead } from "../components/JSONLD/OrganizationJSONLDHead.jsx";
+import Island from "../components/Island";
 
 import letsworktogetherImage from "../content/images/letsworktogether.png";
 
 export const meta = {
   title: "Contact Us",
   description: "We are an experienced software development team that specializes in building elegant, performant, and user-friendly web applications.",
-
+  pageType: "organization"
 };
 
+<Island>
 <ContactUs
   imageAlt="Group of people working on their laptops and collaborating"
   image={letsworktogetherImage}
@@ -42,20 +43,12 @@ export const meta = {
     errorText:
       "Unfortunately, something happened and we could not submit this form. Would you mind trying again?",
   }}
-/>
+/></ Island>
 
-export default ({ children, pathname }) => {
+export default ({ children }) => {
   return (
-    <Layout
-      meta={meta}
-      title={meta.title}
-      slug={pathname}
-      description={meta.description}
-    >
-      <OrganizationJSONLDHead />
+    <PageLayout>
       {children}
-    </Layout>
+    </PageLayout>
   );
 };
-
-;

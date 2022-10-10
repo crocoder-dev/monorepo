@@ -1,20 +1,15 @@
-import React from "react";
-import styles from "./index.module.scss";
+import React from 'react';
+import clsx from 'clsx';
+import styles from './index.module.scss';
 
 const Column = ({ children, margin, text }) => {
-  let style = {};
+  const style = {};
   if (margin) {
     style.margin = `${margin}px`;
   }
 
-  let className = styles.column;
-
-  if (text) {
-    className = `${className} ${styles.text}`;
-  }
-
   return (
-    <div className={className} style={style}>
+    <div className={clsx(styles.column, text && styles.text)} style={style}>
       {children}
     </div>
   );

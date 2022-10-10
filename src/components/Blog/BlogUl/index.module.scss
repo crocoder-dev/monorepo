@@ -1,0 +1,9 @@
+.unordered-list {
+  margin-top: 0;
+  margin-bottom: 28px;
+  padding-left: 2em;
+  
+  li + li {
+    margin-top: 0.45em;
+  }
+}

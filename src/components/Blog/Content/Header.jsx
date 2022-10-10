@@ -1,26 +1,29 @@
-import React from "react";
-import styles from "./index.module.scss";
-import Typography from "../../Typography";
-import Section from "../../Layout/Section";
+import React from 'react';
+import styles from './index.module.scss';
+import Typography from '../../Typography';
+import ResponsiveImage from '../../ResponsiveImage';
+import Section from '../../Section';
 
-const Header = ({ image, title, author, lastUpdatedAt }) => {
+const Header = ({
+  image, title, author, lastUpdatedAt,
+}) => {
   const formatDate = (date) => {
-    let d = new Date(date);
+    const d = new Date(date);
     let month = (d.getMonth() + 1).toString();
     let day = d.getDate().toString();
-    let year = d.getFullYear();
+    const year = d.getFullYear();
     if (month.length < 2) {
-      month = "0" + month;
+      month = `0${month}`;
     }
     if (day.length < 2) {
-      day = "0" + day;
+      day = `0${day}`;
     }
-    return [year, month, day].join("-");
+    return [year, month, day].join('-');
   };
 
   return (
     <Section blog as="header" className={styles.header}>
-      <img src={image.src} alt={title} />
+      <ResponsiveImage src={image} alt={title} />
       <Typography
         element="h1"
         fontSize={50}
@@ -30,13 +33,15 @@ const Header = ({ image, title, author, lastUpdatedAt }) => {
       >
         {title}
       </Typography>
-      <div className={styles.authorHeaderWrapper}>
+      <div className={styles['author-header-wrapper']}>
         <Typography
           fontFamily="rubik"
           color="gray_11"
-          className={styles.authorWrittenBy}
+          className={styles['author-written-by']}
         >
-          Written by {author.name}
+          Written by
+          {' '}
+          {author.name}
         </Typography>
         <Typography
           dateTime={formatDate(lastUpdatedAt)}
@@ -45,12 +50,13 @@ const Header = ({ image, title, author, lastUpdatedAt }) => {
           color="gray_11"
           className={styles.lastUpdated}
         >
-          Last updated:{" "}
+          Last updated:
+          {' '}
           {new Date(lastUpdatedAt).toLocaleDateString(undefined, {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
           })}
         </Typography>
       </div>

@@ -1,6 +1,7 @@
 import blogHeader from "../../content/images/blogs/how-to-clone-object-in-javascript.png";
-import Layout from "../../components/Blog/Layout";
+import BlogLayout from "../../Layouts/BlogLayout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
+import ContentTable from "../../components/Blog/ContentTable";
 
 export const meta = {
   id: "how-to-clone-object-in-javascript",
@@ -15,6 +16,7 @@ export const meta = {
   editor: "velimirujevic",
   abstract:
     "In JavaScript, object cloning isn't as obvious as it seems. You can't just assign the value of one object to another variable and create a copy of it. The problem is related to the data types you can use in JavaScript.There are two groups of JavaScript data types; primitive values and objects. Primitive values are Boolean, Null, Undefined, Number, BigInt, String & Symbol. Objects are all other data types that are collections of properties (including Arrays!).The big difference between primitive values and objects happens when you try using the `=` operator.",
+  pageType: "blog-posting"
 };
 
 In JavaScript, object cloning isn't as obvious as it seems. You can't just assign the value of one object to another variable and create a copy of it. The problem is related to the data types you can use in JavaScript.
@@ -100,19 +102,7 @@ Hopefully, the next examples will help you learn some of the techniques for clon
 <br />
 <br />
 
-## Contents
-
-- [Shallow Clone](#shallow-clone)
-  - [Using Spread syntax](#using-spread-syntax)
-  - [Using Object.assign()](#using-object-assign)
-  - [Using Object.entries & Object.fromEntries](#using-object-entries---object-fromentries)
-- [Deep Clone](#deep-clone)
-  - [Using JSON.stringify & JSON.parse](#using-json-stringify---json-parse)
-  - [\[Node.js ONLY\] Using v8.serialize & v8.deserialize](#node-js-only--using-v8-serialize---v8-deserialize)
-- [External libraries](#using-external-libraries)
-  - [Using $.extend()](#using---extend)
-  - [Using \_.clone()](#using-_-clone)
-  - [Using \_.cloneDeep()](#using-_-clonedeep)
+<ContentTable tocData={props.toc} />
 
 <br />
 <br />
@@ -442,4 +432,4 @@ console.log(clonedObject);
 
 - [Lodash docs \_.cloneDeep()](https://lodash.com/docs/4.17.15#cloneDeep)
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

@@ -1,21 +1,23 @@
-@import "../../styles/main.module.scss";
+/* stylelint-disable selector-class-pattern */
+/* stylelint-disable no-descending-specificity */
+@import "../../styles/main";
 
-$textarea__padding: 6px 0 7px;
-$active__color: $gray_1;
-$inactive__color: $gray_2;
+$textarea-padding: 6px 0 7px;
+$active-color: $gray_1;
+$inactive-color: $gray_2;
 
 
 .textarea {
   -webkit-tap-highlight-color: transparent;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid  $inactive__color;
-  color: $active__color;
+  border-bottom: 1px solid  $inactive-color;
+  color: $active-color;
   flex-grow: 1;
   font-size: 1em;
   margin-top: 1em;
   min-width: 100%;
-  padding: $textarea__padding;
+  padding: $textarea-padding;
   width: 100%;
   resize: none;
   font-family: inherit;
@@ -32,7 +34,7 @@ $inactive__color: $gray_2;
     color: $gray_2;
     display: inline-flex;
     flex-direction: column;
-    font-family: "Rubik", sans-serif;
+    font-family: Rubik, sans-serif;
     font-size: 1em;
     font-weight: lighter;
     min-width: 225px;
@@ -57,11 +59,12 @@ $inactive__color: $gray_2;
 
     &:hover {
       .textarea__label {
-        color: $active__color;
+        color: $active-color;
         opacity: 1;
       }
+
       .textarea {
-        border-bottom-color: $active__color;
+        border-bottom-color: $active-color;
       }
     }
 
@@ -69,21 +72,22 @@ $inactive__color: $gray_2;
       min-width: 190px;
     }
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       bottom: calc(1em - 1px);
       position: absolute;
       width: 0%;
       visibility: hidden;
       z-index: 1;
-      height: 0px;
+      height: 0;
       content: "";
     }
 
-    &:before {
+    &::before {
       background-color: $gray_6;
     }
-    &:after {
+    
+    &::after {
       background-color: $green_2;
       height: 2px;
       left: 50%;
@@ -94,7 +98,7 @@ $inactive__color: $gray_2;
       .textarea__label {
         font-size: 0.85em;
         height: 1.1884em;
-        transform: translate(0px, 0px);
+        transform: translate(0, 0);
       }
     }
 
@@ -103,7 +107,7 @@ $inactive__color: $gray_2;
         color: $green_2;
       }
 
-      &:after {
+      &::after {
         height: 2px;
         width: 100%;
         left: 0;
@@ -125,13 +129,13 @@ $inactive__color: $gray_2;
   }
 
   &__label {
-    color: $inactive__color;
+    color: $inactive-color;
     display: block;
     height: 1em;
     left: 0;
     position: absolute;
     text-transform: capitalize;
-    transform: translate(0em, 1em);
+    transform: translate(0, 1em);
     transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
       height 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
       font-size 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
@@ -150,7 +154,7 @@ $inactive__color: $gray_2;
     color: $red_4;
 
     &:focus {
-      color: $active__color;
+      color: $active-color;
     }
   }
 
@@ -165,7 +169,7 @@ $inactive__color: $gray_2;
 
     .textarea {
       border-bottom-color: $red_4;
-      color: $active__color;
+      color: $active-color;
     }
   }
 
@@ -174,7 +178,7 @@ $inactive__color: $gray_2;
       color: $red_4;
     }
 
-    &:after {
+    &::after {
       background-color: $red_4;
       visibility: hidden;
     }

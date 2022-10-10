@@ -1,18 +1,23 @@
+/* stylelint-disable font-family-name-quotes */
+/* stylelint-disable color-function-notation */
+/* stylelint-disable selector-pseudo-element-colon-notation */
+/* stylelint-disable rule-empty-line-before */
 @font-face {
-  font-family: 'crocoder';
-  src:  url('/fonts/crocoder.eot?hrsj22');
-  src:  url('/fonts/crocoder.eot?hrsj22#iefix') format('embedded-opentype'),
-    url('/fonts/crocoder.ttf?hrsj22') format('truetype'),
-    url('/fonts/crocoder.woff?hrsj22') format('woff'),
-    url('/fonts/crocoder-font.svg?hrsj22#icomoon') format('svg');
+  font-family: "crocoder";
+  src: url("/fonts/crocoder.eot?hrsj22");
+  src: url("/fonts/crocoder.eot?hrsj22#iefix") format("embedded-opentype"),
+    url("/fonts/crocoder.ttf?hrsj22") format("truetype"),
+    url("/fonts/crocoder.woff?hrsj22") format("woff"),
+    url("/fonts/crocoder-font.svg?hrsj22#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+.icon {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'crocoder' !important;
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font-family: "crocoder" !important;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;

@@ -2,9 +2,9 @@ const { favicons } = require('favicons');
 const path = require('path');
 const fs = require('fs');
 
-const siteTitleShort = "CroCoder";
-const themeColor = "#ffffff";
-const backgroundColor = "#000000";
+const siteTitleShort = 'CroCoder';
+const themeColor = '#ffffff';
+const backgroundColor = '#000000';
 
 const dir = path.resolve(__dirname, '../public/icons/');
 if (!fs.existsSync(dir)) {
@@ -39,33 +39,36 @@ const configuration = {
   },
 };
 
-const callback = function(err, res) {
+const callback = (err, res) => {
   if (err) {
+    // eslint-disable-next-line no-console
     console.log(err.message);
     return;
   }
 
-  res.images.forEach(image => {
+  res.images.forEach((image) => {
     fs.writeFile(
       path.resolve(__dirname, '../out/icons/', image.name),
       image.contents,
-      err => {
-        if (err) {
-          console.log(err);
+      (error) => {
+        if (error) {
+          // eslint-disable-next-line no-console
+          console.log(error);
         }
-      }
+      },
     );
   });
 
-  res.files.forEach(file => {
+  res.files.forEach((file) => {
     fs.writeFile(
       path.resolve(__dirname, '../out/', file.name),
       file.contents,
-      err => {
-        if (err) {
-          console.log(err);
+      (error) => {
+        if (error) {
+          // eslint-disable-next-line no-console
+          console.log(error);
         }
-      }
+      },
     );
   });
 };
