@@ -5,7 +5,7 @@
 /* stylelint-disable property-no-unknown */
 /* stylelint-disable selector-pseudo-class-no-unknown */
 /* stylelint-disable scss/dollar-variable-pattern */
-@use "scss:str";
+@use "sass:string";
 
 $viewport__width--minimum: 320;
 $viewport__width--maximum: 1800;
