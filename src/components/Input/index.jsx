@@ -17,7 +17,6 @@ const Input = ({
   onChange,
   required,
   style,
-  testId,
   title,
   type,
   value,
@@ -46,7 +45,6 @@ const Input = ({
     >
       <input
         id={id}
-        testid={testId}
         title={title}
         defaultValue={defaultValue}
         disabled={disabled}

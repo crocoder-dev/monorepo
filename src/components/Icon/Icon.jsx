@@ -11,6 +11,7 @@ const Icon = ({
   icon, className, fontSize, fontWeight, color, ...other
 }) => (
   <Typography
+    // eslint-disable-next-line react/jsx-props-no-spreading
     {...other}
     fontSize={fontSize}
     fontWeight={fontWeight}

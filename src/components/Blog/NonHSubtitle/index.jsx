@@ -8,6 +8,7 @@ const NonHSubtitle = ({ children, ...other }) => (
     className={styles.subtitle}
     fontFamily="rubik"
     fontSize={30}
+    // eslint-disable-next-line react/jsx-props-no-spreading
     {...other}
   >
     {children}

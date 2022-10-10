@@ -189,11 +189,11 @@ const ContactUs = ({
                 showNotification();
               }
             })
-            .catch((ex) => {
+            .catch(() => {
               showNotification(true);
             });
         })
-        .catch((ex) => {
+        .catch(() => {
           showNotification(true);
         });
     }
@@ -330,7 +330,7 @@ const ContactUs = ({
                 required
                 showCharCount
               />
-              <div className={styles.flex} onClick={handleConfirm}>
+              <button type="button" className={styles.flex} onClick={handleConfirm}>
                 <Icon
                   role="checkbox"
                   aria-checked={confirmed}
@@ -346,7 +346,7 @@ const ContactUs = ({
                   fontSize={18}
                   color={confirmedError ? 'negative' : 'gray_2'}
                 />
-              </div>
+              </button>
               <Button onClick={handleOnSubmit} className={styles.button}>
                 {form.submit}
               </Button>

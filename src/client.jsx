@@ -20,6 +20,7 @@ const components = {
 
 const hydrate = (Component, root, props) => {
   if (!Component) return;
+  // eslint-disable-next-line react/jsx-props-no-spreading
   ReactDOM.hydrateRoot(root, <Component {...JSON.parse(props)} />);
 };
 
@@ -49,7 +50,7 @@ const initOnVisible = (callback, element) => {
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(([el]) => {
       if (!el.isIntersecting || !el.intersectionRatio > 0) return;
-      //Observer diconnected once element has been seen
+      // Observer diconnected once element has been seen
       observer.disconnect();
       callback();
     });
@@ -62,7 +63,7 @@ const initOnVisible = (callback, element) => {
 const islands = document.querySelectorAll('[data-name]');
 
 islands.forEach((island) => {
-  const props = island.dataset.props;
+  const { props } = island.dataset;
   const Component = components[island.dataset.name];
   const deferUntil = island.dataset.deferuntil;
   switch (deferUntil) {

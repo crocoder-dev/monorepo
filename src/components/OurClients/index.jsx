@@ -31,15 +31,15 @@ const OurClients = ({
       />
       <div className={styles.grid}>
         {cards.map(({
-          title, image, text, client, imageAlt, url,
+          cardTitle, image, cardText, client, imageAlt, url,
         }, index) => (
-          <Island key={title} deferUntil="visible">
+          <Island key={cardTitle} deferUntil="visible">
             <Card
               delay={3 * index}
-              key={title}
-              name={title}
+              key={cardTitle}
+              name={cardTitle}
               image={image}
-              description={text}
+              description={cardText}
               client={client}
               imageAlt={imageAlt}
               url={url}
