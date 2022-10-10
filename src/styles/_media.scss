@@ -5,7 +5,7 @@
 /* stylelint-disable property-no-unknown */
 /* stylelint-disable selector-pseudo-class-no-unknown */
 /* stylelint-disable scss/dollar-variable-pattern */
-@use "sass:string";
+@use 'sass:string';
 
 $viewport__width--minimum: 320;
 $viewport__width--maximum: 1800;
@@ -35,9 +35,9 @@ $breakpoints: (
   $condition: '';
 
   @each $op in ('>', '>=', '<', '<=') {
-    @if str.index($expression, $op) {
-       $operator: $op;
-       $value: str.slice($expression, str.index($expression, $op) + str.length($op));
+    @if string.index($expression, $op) {
+      $operator: $op;
+      $value: string.slice($expression, string.index($expression, $op) + string.length($op));
     }
   }
 
@@ -58,9 +58,9 @@ $breakpoints: (
   $value: '';
   $operator: '>';
   @each $op in ('>', '>=', '<', '<=') {
-    @if str.index($expression, $op) {
-       $value: str.slice($expression, str.index($expression, $op) + str.length($op));
-       $operator: $op;
+    @if string.index($expression, $op) {
+      $value: string.slice($expression, string.index($expression, $op) + string.length($op));
+      $operator: $op;
     }
   }
   @if map-has-key($breakpoints, $value) {
@@ -79,7 +79,7 @@ $breakpoints: (
 **/
 @mixin mediaQuery($conditionA, $conditionB: '') {
   @if $conditionB == '' {
-    @media #{unquote(parse(($conditionA)))}{
+    @media #{unquote(parse(($conditionA)))} {
       @content;
     }
   } @else {
@@ -87,5 +87,4 @@ $breakpoints: (
       @content;
     }
   }
-  
 }
