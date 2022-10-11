@@ -17,7 +17,7 @@ const ResponsiveImage = ({
   return (
     <picture>
       {sources.map((source, i) => {
-        const { s, ...sourceProps } = source;
+        const { srcset: s, ...sourceProps } = source;
         // eslint-disable-next-line react/no-array-index-key
         return <source srcSet={s} key={i} {...sourceProps} />;
       })}
