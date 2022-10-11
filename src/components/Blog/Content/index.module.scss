@@ -157,43 +157,49 @@
 
 .about {
   background-color: $white;
+  padding-bottom: 100px;
+  display: flex;
+  align-items: center;
+  @include mediaQuery('<=tabletPortrait') {
+    flex-direction: column;
+    text-align: center;
+  }
   > div {
     width: 100% !important;
-    border-top: 1px solid $gray_5;
-    padding: 50px 0 30px;
+  }
+  .author-info {
+    padding-left: 20px;
+    div {
+      padding-bottom: 15px;
+    }
+
+    p {
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    a {
+      text-transform: uppercase;
+      font-size: inherit;
+    }
+
+    .author-name {
+      padding-bottom: 12px;
+    }
   }
 
-  .aboutWrapper {
+  .author-avatar {
+    position: relative;
+    min-width: 150px;
+    max-width: 150px;
+    height: 150px;
     display: flex;
-    align-items: center;
-    @include mediaQuery('<=tabletPortrait') {
-      flex-direction: column;
-      text-align: center;
-    }
-    .aboutName {
-      padding-left: 20px;
-      @include mediaQuery('<=tabletPortrait') {
-        padding-top: 30px;
-        padding-left: 0;
-      }
-      div {
-        padding-bottom: 15px;
-      }
-    }
-
-    .aboutAvatarWrapper {
-      position: relative;
-      min-width: 140px;
-      max-width: 140px;
-      height: 140px;
-      display: flex;
-      justify-content: center;
-      border-radius: 50%;
-      overflow: hidden;
-      img {
-        height: 100%;
-        width: auto;
-      }
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 5px 0 0 5px;
+    img {
+      height: 100%;
+      width: auto;
     }
   }
 }
@@ -201,7 +207,6 @@
 .recommended > div {
   padding-top: 60px !important;
   padding-bottom: 30px !important;
-  border-top: 1px solid $gray_5;
   @include mediaQuery('<=tabletPortrait') {
     padding-top: 30px !important;
     padding-bottom: 0 !important;

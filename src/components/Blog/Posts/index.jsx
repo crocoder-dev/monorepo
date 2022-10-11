@@ -6,6 +6,7 @@ import authors from '../../../content/authors/authors.json';
 
 export const Post = ({ meta, urlPath }) => {
   const author = authors.find((author) => author.id === meta.author);
+  
   return (
     <article className={styles.post}>
       <figure>
@@ -14,12 +15,26 @@ export const Post = ({ meta, urlPath }) => {
           <Typography
             fontSize={12}
             fontWeight={500}
-            className={clsx(styles.category, styles.text)}
-            element="div"
+            className={clsx(styles.category)}
+            element="span"
             color="gray_11"
             fontFamily="rubik"
           >
             {meta.category}
+          </Typography>
+          <Typography
+            fontSize={12}
+            fontWeight={500}
+            className={clsx(styles.category, styles['date-updated'])}
+            element="span"
+            color="gray_11"
+            fontFamily="rubik"
+          >
+            {new Date(meta.updatedAt).toLocaleDateString('en-GB', {
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric',
+            })}
           </Typography>
           <Typography
             element="h3"
