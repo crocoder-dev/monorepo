@@ -1,22 +1,12 @@
 import React, { useRef } from 'react';
-import Navigation from '../../components/Navigation';
-import Footer from '../../components/Footer';
-import navigation from '../../content/navigation.json';
-import Island from '../../components/Island';
+import DefaultLayout from '../DefaultLayout';
 
 const Layout = ({ children }) => {
-  const topRef = useRef(null);
-
-  const scrollToTop = () => topRef.current.scrollIntoView({ block: 'end' });
 
   return (
-    <>
-      <Island>
-        <Navigation topRef={topRef} />
-      </Island>
-      {children}
-      <Footer scrollToTop={scrollToTop} navigation={navigation} />
-    </>
+    <DefaultLayout>
+    {children}
+    </DefaultLayout>
   );
 };
 

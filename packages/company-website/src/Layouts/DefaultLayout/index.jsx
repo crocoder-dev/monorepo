@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import Navigation from '../../components/Navigation';
+import Island from '../../components/Island';
 import Footer from '../../components/Footer';
 import logoNavigation from '../../content/images/logoNavigation.png';
 import ResponsiveImage from '../../components/ResponsiveImage';
@@ -12,6 +13,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
+    <Island>
       <Navigation
         topRef={topRef}
         Logo={(
@@ -41,6 +43,7 @@ const Layout = ({ children }) => {
           </>
         )}
       </Navigation>
+      </Island>
       {children}
       <Footer scrollToTop={scrollToTop} navigation={navigation} />
     </>
