@@ -5,9 +5,8 @@ import * as styles from './index.module.scss';
 import Section from '../Section';
 
 const HowWeWork = ({ title, content }) => (
-  <Section as="section" className={styles.section}>
+  <Section as="section">
     <Typography
-      className={styles.title}
       element="h2"
       fontSize={36}
       fontWeight={700}
@@ -25,7 +24,6 @@ const HowWeWork = ({ title, content }) => (
               element="h3"
               fontSize={26}
               fontWeight={600}
-              className={styles.flex__name}
             >
               {sectionContent.title}
             </Typography>
