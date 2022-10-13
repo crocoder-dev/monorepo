@@ -1,21 +1,24 @@
-const { favicons } = require('favicons');
-const path = require('path');
-const fs = require('fs');
+import { favicons } from 'favicons';
+import { dirname, resolve } from 'path';
+import { existsSync, mkdirSync, writeFile } from 'fs';
 
 const siteTitleShort = 'CroCoder';
+const siteDescription = 'We are an experienced software development team for projects with big impact.';
 const themeColor = '#ffffff';
 const backgroundColor = '#000000';
 
-const dir = path.resolve(__dirname, '../public/icons/');
-if (!fs.existsSync(dir)) {
-  fs.mkdirSync(dir);
+const dirName = dirname('../');
+
+const dir = resolve(dirName, 'public/icons/');
+if (!existsSync(dir)) {
+  mkdirSync(dir);
 }
 
-const source = 'public/icon.png';
+const source = resolve(dirName, 'public/icon.png');
 const configuration = {
-  path: '/',
+  path: 'icons/',
   appName: siteTitleShort,
-  appDescription: null,
+  appDescription: siteDescription,
   developerName: null,
   developerURL: null,
   dir: 'auto',
@@ -39,7 +42,7 @@ const configuration = {
   },
 };
 
-const callback = (err, res) => {
+const callback = (res, err) => {
   if (err) {
     // eslint-disable-next-line no-console
     console.log(err.message);
@@ -47,30 +50,23 @@ const callback = (err, res) => {
   }
 
   res.images.forEach((image) => {
-    fs.writeFile(
-      path.resolve(__dirname, '../out/icons/', image.name),
-      image.contents,
-      (error) => {
-        if (error) {
-          // eslint-disable-next-line no-console
-          console.log(error);
-        }
-      },
-    );
+    writeFile(resolve(dirName, 'out/icons/', image.name), image.contents, (error) => {
+      if (error) {
+        // eslint-disable-next-line no-console
+        console.log(error);
+      }
+    });
   });
 
   res.files.forEach((file) => {
-    fs.writeFile(
-      path.resolve(__dirname, '../out/', file.name),
-      file.contents,
-      (error) => {
-        if (error) {
-          // eslint-disable-next-line no-console
-          console.log(error);
-        }
-      },
-    );
+    writeFile(resolve(dirName, 'out/', file.name), file.contents, (error) => {
+      if (error) {
+        // eslint-disable-next-line no-console
+        console.log(error);
+      }
+    });
   });
 };
-
-favicons(source, configuration, callback);
+favicons(source, configuration).then((res, err) => {
+  callback(res, err);
+});

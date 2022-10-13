@@ -1,15 +1,26 @@
 import fs from 'fs';
+import fse from 'fs-extra';
 import { dirname, resolve } from 'path';
 
 const dir = dirname('../');
 
 const transformedTemplate = fs.readFileSync(resolve(dir, 'dist/client/index.html'), 'utf-8');
 
+// Copy files from dist/client to out/
+fse.copySync(resolve(dir, 'dist/client'), resolve(dir, 'out/'), {
+  overwrite: true,
+});
+
 async function render() {
+  const assetsFiles = fs.readdirSync(resolve(dir, 'out/assets'));
+  const styleFilePath = assetsFiles.find((file) => file.match(/^.*server.*\.css$/i));
+
   const { renderPage, pages } = await import(resolve(dir, 'dist/server/server.js'));
 
   Object.entries(pages).forEach(([pathname, page]) => {
-    const { body } = renderPage(pathname, transformedTemplate);
+    const { body } = renderPage(pathname, transformedTemplate, {
+      styles: `<link rel="stylesheet" type="text/css" href="/assets/${styleFilePath}" />`,
+    });
     const filePath = `out${page.filePath}.html`;
 
     const file = resolve(dir, filePath);
