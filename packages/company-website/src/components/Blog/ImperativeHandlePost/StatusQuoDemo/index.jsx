@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import styles from './index.module.scss';
-import Typography from '../../Typography';
-import Input from '../../Input';
-import Button from '../../Button';
-import Console from '../Console';
-import Row from '../CodeExample/Row';
-import Column from '../CodeExample/Column';
+import styles from '../index.module.scss';
+import Typography from '../../../Typography';
+import Input from '../../../Input';
+import Button from '../../../Button';
+import Console from '../../Console';
+import Row from '../../CodeExample/Row';
+import Column from '../../CodeExample/Column';
 
 const StatusQuoDemo = () => {
   const [email, setEmail] = useState('');
