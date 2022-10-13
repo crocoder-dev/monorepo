@@ -2,20 +2,18 @@ import ReactDOM from 'react-dom/client';
 import React from 'react';
 import OurClients from './components/OurClients';
 import ContactUs from './components/ContactUs';
-import Card from './components/OurClients/Card';
-import LastCard from './components/OurClients/LastCard';
 import Navigation from './components/Navigation';
 import StatusQuoDemo from './components/Blog/ImperativeHandlePost/StatusQuoDemo';
 import UncontrolledDemo from './components/Blog/ImperativeHandlePost/UncontrolledDemo';
+import Cards from './components/OurClients/Cards';
 
 const components = {
   OurClients,
   ContactUs,
-  Card,
-  LastCard,
   Navigation,
   StatusQuoDemo,
   UncontrolledDemo,
+  Cards,
 };
 
 const hydrate = (Component, root, props) => {

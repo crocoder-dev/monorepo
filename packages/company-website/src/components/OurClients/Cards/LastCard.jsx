@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Typography from '../Typography';
-import Button from '../Button';
-import * as styles from './index.module.scss';
+import Typography from '../../Typography';
+import Button from '../../Button';
+import * as styles from '../index.module.scss';
 
 const item = {
   hidden: { opacity: 0 },
