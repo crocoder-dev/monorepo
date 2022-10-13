@@ -1,20 +1,18 @@
-import PageLayout from "../Layouts/PageLayout";
-import Hero from "../components/Hero";
-import OurClients from "../components/OurClients";
-import HowWeWork from "../components/HowWeWork";
-import ContactUs from "../components/ContactUs";
-import Island from "../components/Island"
+import PageLayout from '../Layouts/PageLayout';
+import Hero from '../components/Hero';
+import OurClients from '../components/OurClients';
+import HowWeWork from '../components/HowWeWork';
+import ContactUs from '../components/ContactUs';
+import Island from '../components/Island';
 
-import heroImage from "../content/images/hero.png?preset=responsive";
-import technologiesImage from "../content/images/technologies.png?preset=responsive";
-import weworkremotelyImage from "../content/images/weworkremotely.png?preset=responsive";
-import weworkasmembersofyourteamImage from "../content/images/weworkasmembersofyourteam.png?preset=responsive";
-import letsworktogetherImage from "../content/images/letsworktogether.png?preset=responsive";
+import heroImage from '../content/images/hero.png?preset=responsive';
+import technologiesImage from '../content/images/technologies.png?preset=responsive';
+import weworkremotelyImage from '../content/images/weworkremotely.png?preset=responsive';
+import weworkasmembersofyourteamImage from '../content/images/weworkasmembersofyourteam.png?preset=responsive';
 
 export const meta = {
-  description:
-    "CroCoder - An Experienced Software Development Team For Projects With Big Impact.",
-    pageType: "organization"
+  description: 'CroCoder - An Experienced Software Development Team For Projects With Big Impact.',
+  pageType: 'organization',
 };
 
 <Hero
@@ -34,66 +32,30 @@ export const meta = {
   title="How We Work"
   content={[
     {
-      title: "We Work Remotely",
-      text: "We are a remote-first team with extensive experience in working with distributed and diverse organizations. To efficiently collaborate, we make sure to have at least 6-working-hours overlap with your team members.",
+      title: 'We Work Remotely',
+      text: 'We are a remote-first team with extensive experience in working with distributed and diverse organizations. To efficiently collaborate, we make sure to have at least 6-working-hours overlap with your team members.',
       image: weworkremotelyImage,
-      imageAlt: "CroCoder crocodile participating in an online video-call",
+      imageAlt: 'CroCoder crocodile participating in an online video-call',
     },
     {
-      title: "We Work as Members of Your Team",
-      text: "We operate as equal members - using the same tools, participating in the same meetings, and using the same workflows and processes your business has set up. We are highly adaptable and able to collaborate with different departments with ease.",
+      title: 'We Work as Members of Your Team',
+      text: 'We operate as equal members - using the same tools, participating in the same meetings, and using the same workflows and processes your business has set up. We are highly adaptable and able to collaborate with different departments with ease.',
       image: weworkasmembersofyourteamImage,
-      imageAlt: "CroCoder crocodile talking to a person from his team",
+      imageAlt: 'CroCoder crocodile talking to a person from his team',
     },
     {
-      title: "We Work With React and Node",
-      text: "We specialize in crafting high-quality software using the tools and frameworks in the React.js as well as Node.js ecosystem. We always recommend approaches that are favorable in the long run, however, we are without exception willing to compromise and are open to all kinds of different solutions.",
+      title: 'We Work With React and Node',
+      text: 'We specialize in crafting high-quality software using the tools and frameworks in the React.js as well as Node.js ecosystem. We always recommend approaches that are favorable in the long run, however, we are without exception willing to compromise and are open to all kinds of different solutions.',
       image: technologiesImage,
-      imageAlt:
-        "A group of logo images of technologies the CroCoder team works with",
+      imageAlt: 'A group of logo images of technologies the CroCoder team works with',
     },
   ]}
 />
+
 <Island>
-<ContactUs
-  id="contact-us"
-  imageAlt="Group of people working on their laptops and collaborating"
-  image={letsworktogetherImage}
-  title="Let’s start working together"
-  description="We are an experienced software development team that specializes in building elegant, performant, and user-friendly web applications."
-  consent="I give consent to <em><b>Cro</b>Coder</em> to use this information to contact me."
-  form={{
-    fullname: {
-      label: "Full name",
-      requiredField: "This is a required field.",
-      minimalLength: "Your name should be at least 3 characters long.",
-    },
-    email: {
-      label: "E-mail",
-      requiredField: "This is a required field.",
-      invalidEmail: "Looks like the email you entered is not valid.",
-    },
-    projectInfo: {
-      label: "Tell us about your project",
-      requiredField: "This is a required field.",
-    },
-    submit: "Submit",
-    captcha:
-      'This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.',
-  }}
-  notification={{
-    title: "Thank you for contacting <em><b>Cro</b>Coder</em>!",
-    text: "Your form has been submitted. We will reach out to you as soon as possible!",
-    errorTitle: "Looks like something went wrong",
-    errorText:
-      "Unfortunately, something happened and we could not submit this form. Would you mind trying again?",
-  }}
-/></Island>
+  <ContactUs id="contact-us" />
+</Island>
 
 export default ({ children }) => {
-  return (
-    <PageLayout>
-      {children}
-    </PageLayout>
-  );
+  return <PageLayout>{children}</PageLayout>;
 };

@@ -59,7 +59,7 @@ $twoRowBreakLine: "<=tabletPortrait";
 
 .title {
   margin: 0;
-  line-height: 147%;
+  line-height: 147% !important;
   text-transform: capitalize;
   @include mediaQuery(#{$twoRowBreakLine}) {
     text-align: center;
@@ -79,7 +79,7 @@ $twoRowBreakLine: "<=tabletPortrait";
 }
 
 .paragraph {
-  line-height: 180%;
+  line-height: 180% !important;
 
   @include mediaQuery("<=tabletLandscape") {
     text-align: justify;
