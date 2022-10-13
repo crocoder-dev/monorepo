@@ -1,13 +1,6 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import DefaultLayout from '../DefaultLayout';
 
-const Layout = ({ children }) => {
-
-  return (
-    <DefaultLayout>
-    {children}
-    </DefaultLayout>
-  );
-};
+const Layout = ({ children }) => <DefaultLayout>{children}</DefaultLayout>;
 
 export default Layout;
