@@ -47,7 +47,7 @@ const Head = ({ meta, slug, pageContent = '' }) => {
     <>
       {jsonLd}
       <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
-      <link href="/manifest.json" rel="manifest" />
+      <link href="/manifest.webmanifest" rel="manifest" />
       <meta content={siteConfig.themeColor} name="theme-color" />
       <meta content={pageTitle} name="application-name" />
       <title>{pageTitle}</title>
