@@ -21,10 +21,14 @@ async function render() {
     const { body } = renderPage(pathname, transformedTemplate, {
       styles: `<link rel="stylesheet" type="text/css" href="/assets/${styleFilePath}" />`,
     });
-    const filePath = `out${page.filePath}.html`;
+
+    const filePath = page.filePath.includes('index')
+      ? `out${page.filePath}.html`
+      : `out${page.filePath}/index.html`;
 
     const file = resolve(dir, filePath);
     const fileDir = dirname(file);
+
     if (fs.existsSync(fileDir)) {
       fs.writeFileSync(file, body);
     } else {
