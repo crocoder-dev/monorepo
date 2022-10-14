@@ -4,7 +4,7 @@ import mdx from '@mdx-js/rollup';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import imagePresets, { widthPreset } from 'vite-plugin-image-presets';
-import rehypeToc from './plugins/rehype-toc';
+import rehypeToc from '@crocoder-dev/rehype-toc';
 
 export const plugins = [
   react(),
