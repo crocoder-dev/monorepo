@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
-import Typography from '../Typography';
-import ResponsiveImage from '../ResponsiveImage';
-import * as styles from './index.module.scss';
+import Typography from '../../Typography';
+import ResponsiveImage from '../../ResponsiveImage';
+import * as styles from '../index.module.scss';
 
 const item = (delay) => ({
   hidden: { opacity: 0 },

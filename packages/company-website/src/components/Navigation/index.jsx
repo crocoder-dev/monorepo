@@ -10,9 +10,7 @@ import logo from '../../content/images/logoNavigation.png';
 
 const Navigation = ({
   className,
-  children,
   style,
-  Logo,
   transparentOnZeroScroll = false,
   defaultScrolled = false,
   topRef,

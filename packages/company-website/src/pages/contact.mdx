@@ -1,54 +1,18 @@
-import PageLayout from "../Layouts/PageLayout";
-import ContactUs from "../components/ContactUs";
-import Island from "../components/Island";
-
-import letsworktogetherImage from "../content/images/letsworktogether.png";
+import PageLayout from '../Layouts/PageLayout';
+import ContactUs from '../components/ContactUs';
+import Island from '../components/Island';
 
 export const meta = {
-  title: "Contact Us",
-  description: "We are an experienced software development team that specializes in building elegant, performant, and user-friendly web applications.",
-  pageType: "organization"
+  title: 'Contact Us',
+  description:
+    'We are an experienced software development team that specializes in building elegant, performant, and user-friendly web applications.',
+  pageType: 'organization',
 };
 
-<Island>
-<ContactUs
-  imageAlt="Group of people working on their laptops and collaborating"
-  image={letsworktogetherImage}
-  title="Let’s start working together"
-  description="We are an experienced software development team that specializes in building elegant, performant, and user-friendly web applications."
-  consent="I give consent to <em><b>Cro</b>Coder</em> to use this information to contact me."
-  form={{
-    fullname: {
-      label: "Full name",
-      requiredField: "This is a required field.",
-      minimalLength: "Your name should be at least 3 characters long.",
-    },
-    email: {
-      label: "E-mail",
-      requiredField: "This is a required field.",
-      invalidEmail: "Looks like the email you entered is not valid.",
-    },
-    projectInfo: {
-      label: "Tell us about your project",
-      requiredField: "This is a required field.",
-    },
-    submit: "Submit",
-    captcha:
-      'This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.',
-  }}
-  notification={{
-    title: "Thank you for contacting <em><b>Cro</b>Coder</em>!",
-    text: "Your form has been submitted. We will reach out to you as soon as possible!",
-    errorTitle: "Looks like something went wrong",
-    errorText:
-      "Unfortunately, something happened and we could not submit this form. Would you mind trying again?",
-  }}
-/></ Island>
+  <Island>
+    <ContactUs />
+  </Island>
 
-export default ({ children }) => {
-  return (
-    <PageLayout>
-      {children}
-    </PageLayout>
-  );
-};
+export default function ({ children }) {
+  return <PageLayout>{children}</PageLayout>;
+}

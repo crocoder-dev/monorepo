@@ -3,13 +3,10 @@ import { motion } from 'framer-motion';
 import Typography from '../Typography';
 import Section from '../Section';
 import styles from './index.module.scss';
-import Card from './Card';
 import Island from '../Island';
-import LastCard from './LastCard';
+import Cards from './Cards';
 
-const OurClients = ({
-  title, text, lastCard, cards,
-}) => (
+const OurClients = ({ title, text }) => (
   <Section as={motion.section} className={styles.blue}>
     <div className={styles.section}>
       <Typography
@@ -29,27 +26,9 @@ const OurClients = ({
         color="gray_2"
         dangerouslySetInnerHTML={{ __html: text }}
       />
-      <div className={styles.grid}>
-        {cards.map(({
-          cardTitle, image, cardText, client, imageAlt, url,
-        }, index) => (
-          <Island key={cardTitle} deferUntil="visible">
-            <Card
-              delay={3 * index}
-              key={cardTitle}
-              name={cardTitle}
-              image={image}
-              description={cardText}
-              client={client}
-              imageAlt={imageAlt}
-              url={url}
-            />
-          </Island>
-        ))}
-        <Island deferUntil="visible">
-          <LastCard lastCard={lastCard} />
-        </Island>
-      </div>
+      <Island deferUntil="visible">
+        <Cards />
+      </Island>
     </div>
   </Section>
 );

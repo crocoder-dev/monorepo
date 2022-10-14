@@ -11,6 +11,16 @@ import TextArea from '../TextArea';
 import styles from './index.module.scss';
 import Section from '../Section';
 import ResponsiveImage from '../ResponsiveImage';
+import form from '../../content/contact-us/form.json';
+import notification from '../../content/contact-us/notification.json';
+import {
+  title,
+  description,
+  consent,
+  imageAlt,
+} from '../../content/contact-us/contact-us.json';
+// eslint-disable-next-line import/no-unresolved
+import letsworktogetherImage from '../../content/images/letsworktogether.png?preset=responsive';
 
 const waitGrecaptchaReady = () => new Promise((resolve) => {
   grecaptcha.ready(resolve());
@@ -24,29 +34,29 @@ const executeGrecaptchaAsync = async () => {
   return token;
 };
 
-const validateFullName = (fullName, form) => {
+const validateFullName = (fullName, formData) => {
   if (typeof fullName !== 'string' || !fullName) {
-    return form.fullname.requiredField;
+    return formData.fullname.requiredField;
   }
   if (fullName.length < 3) {
-    return form.fullname.minimalLength;
+    return formData.fullname.minimalLength;
   }
   return null;
 };
 
-const validateEmail = (email, form) => {
+const validateEmail = (email, formData) => {
   if (typeof email !== 'string' || !email) {
-    return form.email.requiredField;
+    return formData.email.requiredField;
   }
   if (/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(email) === false) {
-    return form.email.invalidEmail;
+    return formData.email.invalidEmail;
   }
   return null;
 };
 
-const validateAboutProject = (aboutProject, form) => {
+const validateAboutProject = (aboutProject, formData) => {
   if (typeof aboutProject !== 'string' || !aboutProject) {
-    return form.projectInfo.requiredField;
+    return formData.projectInfo.requiredField;
   }
   return null;
 };
@@ -62,13 +72,6 @@ const Path = (props) => (
 );
 
 const ContactUs = ({
-  form,
-  title,
-  description,
-  image,
-  consent,
-  imageAlt,
-  notification,
   id = null,
 }) => {
   const [confirmed, setConfirmed] = React.useState(false);
@@ -358,7 +361,7 @@ const ContactUs = ({
             </div>
           </div>
           <div className={styles.image}>
-            <ResponsiveImage src={image} alt={imageAlt} />
+            <ResponsiveImage src={letsworktogetherImage} alt={imageAlt} />
           </div>
         </div>
       </div>
