@@ -14,7 +14,9 @@ const Head = ({ meta, slug, pageContent = '' }) => {
    * meta.image is an array with two objects, where second object has src prop
    * src prop is reference to hero image of a blog article page
    */
-  const socialImage = meta.image ? meta.image[1].src :`${siteConfig.siteUrl}/social.png`;
+  const socialImage = meta.image
+    ? `${siteConfig.siteUrl}${meta.image[1].src}`
+    : `${siteConfig.siteUrl}/social.png`;
 
   let jsonLd = null;
 
