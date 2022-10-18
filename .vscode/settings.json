@@ -6,7 +6,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "eslint.codeActionsOnSave.rules": null,
   "eslint.workingDirectories": [
     {
       "directory": "packages/company-website"
