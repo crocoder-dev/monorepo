@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import clsx from 'clsx';
 import styles from './index.module.scss';
@@ -5,13 +6,13 @@ import Typography from '../../Typography';
 import Section from '../../Section';
 import ResponsiveImage from '../../ResponsiveImage';
 import authors from '../../../content/authors/authors.json';
-import davidabram from "../../../content/images/authors/davidabram.png?preset=responsive";
-import danicapivalicaabram from "../../../content/images/authors/danicapivalicaabram.png?preset=responsive";
-import velimirujevic from "../../../content/images/authors/velimirujevic.png?preset=responsive";
-import ivanpenga from "../../../content/images/authors/ivanpenga.png?preset=responsive";
-import antekoceic from "../../../content/images/authors/antekoceic.png?preset=responsive";
-import marijaduvnjak from "../../../content/images/authors/marijaduvnjak.png?preset=responsive";
-import stefanskoric from "../../../content/images/authors/stefanskoric.png?preset=responsive";
+import davidabram from '../../../content/images/authors/davidabram.png?preset=responsive';
+import danicapivalicaabram from '../../../content/images/authors/danicapivalicaabram.png?preset=responsive';
+import velimirujevic from '../../../content/images/authors/velimirujevic.png?preset=responsive';
+import ivanpenga from '../../../content/images/authors/ivanpenga.png?preset=responsive';
+import antekoceic from '../../../content/images/authors/antekoceic.png?preset=responsive';
+import marijaduvnjak from '../../../content/images/authors/marijaduvnjak.png?preset=responsive';
+import stefanskoric from '../../../content/images/authors/stefanskoric.png?preset=responsive';
 
 export const authorImages = {
   davidabram,
@@ -20,8 +21,8 @@ export const authorImages = {
   velimirujevic,
   antekoceic,
   marijaduvnjak,
-  stefanskoric
-}
+  stefanskoric,
+};
 
 const QuoteCard = ({
   direction,

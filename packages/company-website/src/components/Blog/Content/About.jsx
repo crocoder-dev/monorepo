@@ -1,16 +1,17 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import Section from '../../Section';
 import Typography from '../../Typography';
 import ResponsiveImage from '../../ResponsiveImage';
 import styles from './index.module.scss';
-import davidabram from "../../../content/images/authors/davidabram.png?preset=responsive";
+import davidabram from '../../../content/images/authors/davidabram.png?preset=responsive';
 import danicapivalicaabram from '../../../content/images/authors/danicapivalicaabram.png?preset=responsive';
 import velimirujevic from '../../../content/images/authors/velimirujevic.png?preset=responsive';
 
 const authorImages = {
   davidabram,
   danicapivalicaabram,
-  velimirujevic
+  velimirujevic,
 };
 
 const About = ({ author }) => (
