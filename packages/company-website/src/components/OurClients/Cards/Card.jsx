@@ -21,7 +21,7 @@ const Card = ({
     className={styles.card}
   >
     <a
-      href={`${url}?rel=crocoder`}
+      href={`${url}?ref=crocoder`}
       target="_blank"
       rel="noopener"
       className={styles.flex}
