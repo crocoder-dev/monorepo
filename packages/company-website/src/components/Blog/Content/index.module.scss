@@ -17,7 +17,7 @@
   .author-header-wrapper {
     display: flex;
     flex-direction: column;
-    
+
     :first-child {
       margin-bottom: 8px;
     }
@@ -35,7 +35,7 @@
   > :first-child {
     margin-top: 0 !important;
   }
-  
+
   > :last-child {
     margin-bottom: 0 !important;
   }
@@ -45,7 +45,7 @@
     padding-bottom: 56.1%;
     height: 0;
     overflow: hidden;
-    
+
     iframe {
       position: absolute;
       top: 0;
@@ -54,6 +54,15 @@
       height: 100%;
       border: none;
     }
+  }
+
+  code:not([class]),
+  code[class=''] {
+    padding: 0.05em 0.2em;
+    border-radius: 0.15em;
+    white-space: normal;
+    background: #252a33;
+    color: #f8f8f2;
   }
 
   > div {
@@ -70,7 +79,6 @@
     padding-bottom: 0 !important;
   }
 }
-
 
 .recommended {
   .title {
@@ -209,7 +217,7 @@
       justify-content: center;
       border-radius: 50%;
       overflow: hidden;
-      
+
       img {
         height: 100%;
         width: auto;
@@ -217,4 +225,3 @@
     }
   }
 }
-
