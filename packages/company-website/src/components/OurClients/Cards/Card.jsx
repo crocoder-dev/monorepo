@@ -21,9 +21,9 @@ const Card = ({
     className={styles.card}
   >
     <a
-      href={url}
+      href={`${url}?rel=crocoder`}
       target="_blank"
-      rel="noreferrer noopener"
+      rel="noopener"
       className={styles.flex}
     >
       <Typography

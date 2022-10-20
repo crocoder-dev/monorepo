@@ -51,6 +51,7 @@ const Footer = ({ scrollToTop }) => (
               rel="nofollow noopener noreferrer"
               className={styles.icon}
               aria-label={mediaLink.ariaLabel}
+              target="_blank"
             >
               <Icon
                 aria-hidden="true"
