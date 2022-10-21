@@ -39,7 +39,7 @@ const About = ({ author }) => (
             {author.twitter && (
             <a
               rel="nofollow noopener noreferrer"
-              className="link"
+              className={styles.link}
               target="_blank"
               href={author.twitter}
             >
@@ -50,7 +50,7 @@ const About = ({ author }) => (
             {author.linkedin && (
             <a
               rel="nofollow noopener noreferrer"
-              className="link"
+              className={styles.link}
               target="_blank"
               href={author.linkedin}
             >

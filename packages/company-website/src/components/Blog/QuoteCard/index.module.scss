@@ -219,7 +219,7 @@ p + .quote-card {
 
 @include mediaQuery(">=desktop") {
   .quote-card {
-    width: calc(100% + 120px);
+    width: calc(100% + 100px);
     margin: 0 -60px;
 
     .figure-wrapper {
@@ -244,7 +244,7 @@ p + .quote-card {
 @include mediaQuery(">=1440px") {
   .quote-card {
     .figure-wrapper {
-      width: calc(100% - 130px);
+      width: calc(100% - 100px);
     }
   }
 }

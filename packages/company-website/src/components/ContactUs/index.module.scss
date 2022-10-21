@@ -22,6 +22,7 @@
   align-items: center;
   background-color: transparent;
   border: none;
+  padding-left: 0;
 
   span{
     text-align: left;
@@ -63,9 +64,9 @@
     max-width: 550px;
   }
 
-  @include mediaQuery('<=desktop') {
+  /* @include mediaQuery('<=desktop') {
     padding: 0 3.5%;
-  }
+  } */
 
   b {
     color: #607a1a; // #647E1B; //$green_4;
@@ -136,6 +137,9 @@
 
 .icon {
   margin: 10px 10px 20px 0;
+  @include mediaQuery('<=tabletPortrait') {
+    margin-bottom: 10px;
+  }
 }
 
 .captcha {

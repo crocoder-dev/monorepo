@@ -1,6 +1,6 @@
 /* stylelint-disable selector-pseudo-class-no-unknown */
 /* stylelint-disable no-descending-specificity */
-@import "../../styles/main";
+@import '../../styles/main';
 
 $header-desktop-height: 90px;
 $header-mobile-height: 65px;
@@ -26,14 +26,20 @@ $header-animation-length: 0.6s;
     background: transparent;
   }
 
-  :global(.link) {
+  @include link;
+
+  .link,
+  .link:hover,
+  .link:focus,
+  .link:active {
     color: $gray_2;
   }
-  @include mediaQuery(">=tabletPortrait", "<desktop") {
+
+  @include mediaQuery('>=tabletPortrait', '<desktop') {
     padding: 25px 50px;
   }
 
-  @include mediaQuery(">=0px", "<=720px") {
+  @include mediaQuery('>=0px', '<=720px') {
     flex-wrap: wrap;
     padding: 10px 0 15px 25px;
     height: $header-mobile-height;
@@ -46,9 +52,9 @@ $header-animation-length: 0.6s;
   &__burger {
     display: none;
 
-    @include mediaQuery(">=0px", "<=720px") {
+    @include mediaQuery('>=0px', '<=720px') {
       display: inline-block;
-      
+
       span {
         display: block;
         margin: 2px 0;
@@ -62,18 +68,18 @@ $header-animation-length: 0.6s;
   }
 
   &__burger.active {
-    @include mediaQuery(">=0px", "<=720px") {
+    @include mediaQuery('>=0px', '<=720px') {
       overflow: hidden;
-      
+
       span:nth-child(1) {
         transform: translate(0, 4px) rotate(45deg);
       }
-      
+
       span:nth-child(2) {
         transform: translate(-200%);
         opacity: 0;
       }
-      
+
       span:nth-child(3) {
         transform: translate(0, -4px) rotate(-45deg);
       }
@@ -86,14 +92,14 @@ $header-animation-length: 0.6s;
 
   &__image {
     width: 225px;
-    @include mediaQuery(">=320px", "<=720px") {
+    @include mediaQuery('>=320px', '<=720px') {
       width: 200px;
     }
 
-    @include mediaQuery("<=320px") {
+    @include mediaQuery('<=320px') {
       width: calc(100% - 80px);
     }
-    @include mediaQuery(">=720px") {
+    @include mediaQuery('>=720px') {
       a {
         display: flex;
         align-items: center;
@@ -116,7 +122,7 @@ $header-animation-length: 0.6s;
       margin-left: auto;
     }
 
-    & > :global(.link) {
+    & > .link {
       margin: 0 15px;
     }
   }
@@ -126,14 +132,14 @@ $header-animation-length: 0.6s;
   box-shadow: 0 5px 20px rgba(69 85 22 / 10%);
   top: 0;
 
-  @include mediaQuery(">720px") {
+  @include mediaQuery('>720px') {
     transform: translateY(-30px);
     padding-top: 40px;
     padding-bottom: 10px;
   }
 }
 
-@include mediaQuery(">=0px", "<=720px") {
+@include mediaQuery('>=0px', '<=720px') {
   /**
   * Whenever we have a closed menu,
   * we do not wish to display content.
@@ -169,7 +175,7 @@ $header-animation-length: 0.6s;
       text-align: center;
     }
 
-    & > :global(.link) {
+    & > .link {
       margin-bottom: 10px;
       margin-top: 10px;
       padding: 10px 0;

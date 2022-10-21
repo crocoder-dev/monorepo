@@ -83,19 +83,19 @@ const Navigation = ({
         )}
       </Button>
       <ol id="navigation-content-menu" className={styles.header__content}>
-        <li className="link">
-          <a href="/" className="link">
+        <li>
+          <a href="/" className={styles.link}>
             {navigation.home.text}
           </a>
         </li>
 
-        <li className="link">
-          <a href="/blog" className="link">
+        <li>
+          <a href="/blog" className={styles.link}>
             {navigation.blog.text}
           </a>
         </li>
-        <li className="link">
-          <a href="/contact" className="link">
+        <li>
+          <a href="/contact" className={styles.link}>
             {navigation.contactUs.text}
           </a>
         </li>
