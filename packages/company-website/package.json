@@ -35,7 +35,8 @@
     "rehype-slug": "^5.0.1",
     "remark-gfm": "^3.0.1",
     "vite": "^3.0.9",
-    "vite-plugin-image-presets": "^0.3.2"
+    "vite-plugin-image-presets": "^0.3.2",
+    "web-vitals": "^3.0.4"
   },
   "devDependencies": {
     "chokidar": "^3.5.3",

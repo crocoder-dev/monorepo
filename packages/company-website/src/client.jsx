@@ -7,6 +7,9 @@ import StatusQuoDemo from './components/Blog/ImperativeHandlePost/StatusQuoDemo'
 import UncontrolledDemo from './components/Blog/ImperativeHandlePost/UncontrolledDemo';
 import Cards from './components/OurClients/Cards';
 
+import reportWebVitals from './web-vitals/report';
+import sendToVercelAnalytics from './web-vitals';
+
 const components = {
   OurClients,
   ContactUs,
@@ -80,3 +83,5 @@ islands.forEach((island) => {
       break;
   }
 });
+
+reportWebVitals(sendToVercelAnalytics);
