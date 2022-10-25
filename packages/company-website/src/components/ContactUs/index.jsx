@@ -28,7 +28,7 @@ const waitGrecaptchaReady = () => new Promise((resolve) => {
 
 const executeGrecaptchaAsync = async () => {
   await waitGrecaptchaReady();
-  const token = await grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
+  const token = await grecaptcha.execute(import.meta.env.VITE_RECAPTCHA_PUBLIC_KEY, {
     action: 'submit',
   });
   return token;
@@ -235,138 +235,147 @@ const ContactUs = ({
     [triedToSubmit, form],
   );
 
-  return [
-    <div key="ref" style={{ position: 'relative', top: '-20px', scrollMarginTop: '50px' }} />,
-    <ul className={styles.notifications} key="notification">
-      <AnimatePresence initial={false}>
-        {notificationVisible && (
-          <motion.li
-            positionTransition
-            initial={{ opacity: 0, y: 50, scale: 0.3 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
-            className={styles[notificationText.class]}
-          >
-            <Typography
-              element="p"
-              fontSize={18}
-              fontWeight={700}
-              dangerouslySetInnerHTML={{ __html: notificationText.title }}
-              color="gray_1"
-              className={styles.notifications__title}
-            />
-            <Button
-              variant="sneaky"
-              onClick={handleOnCloseNotification}
-              className={styles.notifications__button}
+  return (
+    <>
+      <div key="ref" style={{ position: 'relative', top: '-20px', scrollMarginTop: '50px' }} />
+      <ul className={styles.notifications} key="notification">
+        <AnimatePresence initial={false}>
+          {notificationVisible && (
+            <motion.li
+              positionTransition
+              initial={{ opacity: 0, y: 50, scale: 0.3 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
+              className={styles[notificationText.class]}
             >
-              <svg width="23" height="23" viewBox="0 0 23 23">
-                <Path d="M 3 16.5 L 17 2.5" />
-                <Path d="M 3 2.5 L 17 16.346" />
-              </svg>
-            </Button>
-            <Typography
-              color="gray_1"
-              element="p"
-              fontSize={16}
-              fontWeight={400}
-              dangerouslySetInnerHTML={{ __html: notificationText.text }}
-              className={styles.notifications__content}
-            />
-          </motion.li>
-        )}
-      </AnimatePresence>
-    </ul>,
-    <Section key="contact-us" as="section" className={styles.wrapper}>
-      <div className={styles.section}>
-        <Typography
-          id={id}
-          className={styles.title}
-          element="h2"
-          fontSize={36}
-          fontWeight={700}
-          color="gray_2"
-        >
-          {title}
-        </Typography>
-        <Typography
-          className={styles.p}
-          color="gray_2"
-          dangerouslySetInnerHTML={{ __html: description }}
-          element="p"
-          fontSize={18}
-          fontWeight={400}
-        />
-        <div className={styles.flexParent}>
-          <div className={styles.text}>
-            <div className={styles.form}>
-              <Input
-                className={styles.input}
-                error={fullNameError !== null}
-                errorMessage={fullNameError}
-                id="form-full-name"
-                label={form.fullname.label}
-                maxLength={100}
-                onChange={handleOnFullNameChange}
-                required
+              <Typography
+                element="p"
+                fontSize={18}
+                fontWeight={700}
+                dangerouslySetInnerHTML={{ __html: notificationText.title }}
+                color="gray_1"
+                className={styles.notifications__title}
               />
-              <Input
-                className={styles.input}
-                error={emailError !== null}
-                errorMessage={emailError}
-                id="form-email"
-                label={form.email.label}
-                maxLength={100}
-                onChange={handleOnEmailChange}
-                required
-              />
-              <TextArea
-                className={styles.textarea}
-                error={aboutProjectError !== null}
-                errorMessage={aboutProjectError}
-                fluidHeight
-                fluidHeightOptions={{ lineHeight: 18, minRows: 5, maxRows: 7 }}
-                id="form-message"
-                label={form.projectInfo.label}
-                maxLength={1500}
-                onChange={handleOnAboutProjectChange}
-                required
-                showCharCount
-              />
-              <button type="button" className={styles.flex} onClick={handleConfirm}>
-                <Icon
-                  role="checkbox"
-                  aria-checked={confirmed}
-                  fontSize={26}
-                  color={confirmedError ? 'negative' : 'gray_2'}
-                  className={styles.icon}
-                  icon={confirmed ? 'checkbox-checked' : 'checkbox-unchecked'}
-                  aria-labelledby="contact-us-consent-text"
-                />
-                <Typography
-                  dangerouslySetInnerHTML={{ __html: consent }}
-                  id="contact-us-consent-text"
-                  fontSize={18}
-                  color={confirmedError ? 'negative' : 'gray_2'}
-                />
-              </button>
-              <Button onClick={handleOnSubmit} className={styles.button}>
-                {form.submit}
+              <Button
+                variant="sneaky"
+                onClick={handleOnCloseNotification}
+                className={styles.notifications__button}
+              >
+                <svg width="23" height="23" viewBox="0 0 23 23">
+                  <Path d="M 3 16.5 L 17 2.5" />
+                  <Path d="M 3 2.5 L 17 16.346" />
+                </svg>
               </Button>
               <Typography
-                fontSize={14}
-                className={styles.captcha}
-                dangerouslySetInnerHTML={{ __html: form.captcha }}
+                color="gray_1"
+                element="p"
+                fontSize={16}
+                fontWeight={400}
+                dangerouslySetInnerHTML={{ __html: notificationText.text }}
+                className={styles.notifications__content}
               />
+            </motion.li>
+          )}
+        </AnimatePresence>
+      </ul>
+      <Section key="contact-us" as="section" className={styles.wrapper}>
+        <div className={styles.section}>
+          <Typography
+            id={id}
+            className={styles.title}
+            element="h2"
+            fontSize={36}
+            fontWeight={700}
+            color="gray_2"
+          >
+            {title}
+          </Typography>
+          <Typography
+            className={styles.p}
+            color="gray_2"
+            dangerouslySetInnerHTML={{ __html: description }}
+            element="p"
+            fontSize={18}
+            fontWeight={400}
+          />
+          <div className={styles.flexParent}>
+            <div className={styles.text}>
+              <div className={styles.form}>
+                <Input
+                  className={styles.input}
+                  error={fullNameError !== null}
+                  errorMessage={fullNameError}
+                  id="form-full-name"
+                  label={form.fullname.label}
+                  maxLength={100}
+                  onChange={handleOnFullNameChange}
+                  required
+                />
+                <Input
+                  className={styles.input}
+                  error={emailError !== null}
+                  errorMessage={emailError}
+                  id="form-email"
+                  label={form.email.label}
+                  maxLength={100}
+                  onChange={handleOnEmailChange}
+                  required
+                />
+                <TextArea
+                  className={styles.textarea}
+                  error={aboutProjectError !== null}
+                  errorMessage={aboutProjectError}
+                  fluidHeight
+                  fluidHeightOptions={{ lineHeight: 18, minRows: 5, maxRows: 7 }}
+                  id="form-message"
+                  label={form.projectInfo.label}
+                  maxLength={1500}
+                  onChange={handleOnAboutProjectChange}
+                  required
+                  showCharCount
+                />
+                <button type="button" className={styles.flex} onClick={handleConfirm}>
+                  <Icon
+                    role="checkbox"
+                    aria-checked={confirmed}
+                    fontSize={26}
+                    color={confirmedError ? 'negative' : 'gray_2'}
+                    className={styles.icon}
+                    icon={confirmed ? 'checkbox-checked' : 'checkbox-unchecked'}
+                    aria-labelledby="contact-us-consent-text"
+                  />
+                  <Typography
+                    dangerouslySetInnerHTML={{ __html: consent }}
+                    id="contact-us-consent-text"
+                    fontSize={18}
+                    color={confirmedError ? 'negative' : 'gray_2'}
+                  />
+                </button>
+                <Button onClick={handleOnSubmit} className={styles.button}>
+                  {form.submit}
+                </Button>
+                <Typography
+                  fontSize={14}
+                  className={styles.captcha}
+                  dangerouslySetInnerHTML={{ __html: form.captcha }}
+                />
+              </div>
+            </div>
+            <div className={styles.image}>
+              <ResponsiveImage src={letsworktogetherImage} alt={imageAlt} />
             </div>
           </div>
-          <div className={styles.image}>
-            <ResponsiveImage src={letsworktogetherImage} alt={imageAlt} />
-          </div>
         </div>
-      </div>
-    </Section>,
-  ];
+      </Section>
+      <script
+        key="google-recaptcha"
+        id="google-recaptcha"
+        src={`https://www.google.com/recaptcha/api.js?render=${
+          import.meta.env.VITE_RECAPTCHA_PUBLIC_KEY
+        }`}
+      />
+    </>
+  );
 };
 
 export default ContactUs;

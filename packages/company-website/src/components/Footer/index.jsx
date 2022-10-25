@@ -28,16 +28,16 @@ const Footer = ({ scrollToTop }) => (
         </a>
       </div>
       <div className={styles.footer__content}>
-        <a href="/" style={{ color: 'inherit' }} className="link">
+        <a href="/" style={{ color: 'inherit' }} className={styles.link}>
           {footer.home.text}
         </a>
-        <a href="/terms" style={{ color: 'inherit' }} className="link">
+        <a href="/terms" style={{ color: 'inherit' }} className={styles.link}>
           {footer.terms.text}
         </a>
         <a
           href="/privacy_policy"
           style={{ color: 'inherit' }}
-          className="link"
+          className={styles.link}
         >
           {footer.privacy.text}
         </a>
@@ -51,6 +51,7 @@ const Footer = ({ scrollToTop }) => (
               rel="nofollow noopener noreferrer"
               className={styles.icon}
               aria-label={mediaLink.ariaLabel}
+              target="_blank"
             >
               <Icon
                 aria-hidden="true"

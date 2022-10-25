@@ -1,8 +1,10 @@
+/* stylelint-disable selector-class-pattern */
 /* stylelint-disable scss/at-import-no-partial-leading-underscore */
 /* stylelint-disable scss/at-mixin-pattern */
 /* stylelint-disable indentation */
 /* stylelint-disable scss/at-function-pattern */
-@import "./_media";
+@import './_media';
+@import './fonts';
 
 /* Adds elipsis to element */
 @mixin ellipsis() {
@@ -25,20 +27,13 @@
   font-size: #{getFluidvalue($minValue, $maxValue)};
 }
 
-
 @mixin setMaxFontSize($maxValue) {
-  @include mediaQuery(">viewportLimit") {
+  @include mediaQuery('>viewportLimit') {
     font-size: #{$maxValue}px;
   }
 }
 
-
-
-@mixin setScrollbar(
-  $width,
-  $thubmColor,
-  $backgroundColor
-) {
+@mixin setScrollbar($width, $thubmColor, $backgroundColor) {
   /* width */
   &::-webkit-scrollbar {
     width: $width;
@@ -58,5 +53,105 @@
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
     background: $thubmColor;
+  }
+}
+
+@mixin link {
+  .link {
+    font-family: Rubik, sans-serif;
+    color: #85a32a;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 20px;
+    text-decoration: none;
+  }
+
+  .link:hover {
+    color: #98b534;
+  }
+
+  .link:focus,
+  .link:active {
+    color: #72911f;
+  }
+
+  .link:disabled {
+    color: #e8e8e8;
+  }
+
+  .link--primary {
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: Rubik, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 25px 14px;
+    background-color: #85a32a;
+    border-color: #85a32a;
+    color: #1e1a1a;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .link--primary:hover {
+    background-color: rgb(151 181 52/ 90%);
+    border-color: rgb(151 181 52/ 90%);
+  }
+
+  .link--primary:focus {
+    outline: none;
+    background-color: rgb(151 181 52/ 90%);
+    border-color: #1e1a1a;
+  }
+
+  .link--primary:disabled,
+  .link--primary:disabled:hover {
+    cursor: not-allowed;
+    background-color: #e8e8e8;
+    color: #828282;
+    border-color: #e8e8e8;
+  }
+
+  .link--secondary {
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: Rubik, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 25px 14px;
+    background-color: #fec343;
+    border-color: #fec343;
+    color: #1e1a1a;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .link--secondary:hover {
+    background-color: rgb(254 209 82 / 90%);
+    border-color: rgb(254 209 82 / 90%);
+  }
+
+  .link--secondary:focus {
+    outline: none;
+    background-color: rgb(254 209 82 / 90%);
+    border-color: #1e1a1a;
+  }
+
+  .link--secondary:disabled,
+  .link--secondary:disabled:hover {
+    cursor: not-allowed;
+    background-color: #e8e8e8;
+    color: #828282;
+    border-color: #e8e8e8;
   }
 }
