@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import React from 'react';
+import { inject } from '@vercel/analytics';
 import OurClients from './components/OurClients';
 import ContactUs from './components/ContactUs';
 import Navigation from './components/Navigation';
@@ -9,6 +10,8 @@ import Cards from './components/OurClients/Cards';
 
 import reportWebVitals from './web-vitals/report';
 import sendToVercelAnalytics from './web-vitals';
+
+inject();
 
 const components = {
   OurClients,
