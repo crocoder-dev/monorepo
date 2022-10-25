@@ -9,7 +9,7 @@ const backgroundColor = '#000000';
 
 const dirName = dirname('../');
 
-const dir = resolve(dirName, 'public/icons/');
+const dir = resolve(dirName, 'dist/client/icons/');
 if (!existsSync(dir)) {
   mkdirSync(dir);
 }
@@ -50,7 +50,7 @@ const callback = (res, err) => {
   }
 
   res.images.forEach((image) => {
-    writeFile(resolve(dirName, 'out/icons/', image.name), image.contents, (error) => {
+    writeFile(resolve(dirName, 'dist/client/icons/', image.name), image.contents, (error) => {
       if (error) {
         // eslint-disable-next-line no-console
         console.log(error);
@@ -59,7 +59,7 @@ const callback = (res, err) => {
   });
 
   res.files.forEach((file) => {
-    writeFile(resolve(dirName, 'out/', file.name), file.contents, (error) => {
+    writeFile(resolve(dirName, 'dist/client/', file.name), file.contents, (error) => {
       if (error) {
         // eslint-disable-next-line no-console
         console.log(error);

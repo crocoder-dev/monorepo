@@ -1,8 +1,18 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import Section from '../../Section';
 import Typography from '../../Typography';
 import ResponsiveImage from '../../ResponsiveImage';
 import styles from './index.module.scss';
+import davidabram from '../../../content/images/authors/davidabram.png?preset=responsive';
+import danicapivalicaabram from '../../../content/images/authors/danicapivalicaabram.png?preset=responsive';
+import velimirujevic from '../../../content/images/authors/velimirujevic.png?preset=responsive';
+
+const authorImages = {
+  davidabram,
+  danicapivalicaabram,
+  velimirujevic,
+};
 
 const About = ({ author }) => (
   <Section blog as="footer" className={styles.about}>
@@ -12,7 +22,7 @@ const About = ({ author }) => (
         style={{ backgroundColor: `${author.bgColor}` }}
       >
         <ResponsiveImage
-          src={`/src/content/images/authors/${author.id}.png`}
+          src={authorImages[author.id]}
           alt={author.name}
         />
       </div>

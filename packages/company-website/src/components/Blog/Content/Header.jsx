@@ -23,7 +23,7 @@ const Header = ({
 
   return (
     <Section blog as="header" className={styles.header}>
-      <ResponsiveImage src={image} alt={title} />
+      <ResponsiveImage src={image} alt={title} loading="eager" />
       <Typography
         element="h1"
         fontSize={50}
