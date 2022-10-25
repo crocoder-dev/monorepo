@@ -1,6 +1,7 @@
 import blogHeader from "../../content/images/blogs/what-should-be-included-in-an-internal-component-library.jpg?preset=responsive"
 import BlogLayout from "../../Layouts/BlogLayout";
 import ContentTable from "../../components/Blog/ContentTable";
+import QuestionsCard from "../../components/Blog/QuestionsCard";
 
 export const meta = {
     id: "what-to-include-in-an-internal-component-library",
@@ -39,6 +40,14 @@ If you are building your company's internal component library for the first time
 
 Alternatively, if you are working on a feature and you are considering implementing a new component as part of the the internal component library, going through the design files will help you discern if there already is a UI element that is similar to what you are building, eliminating the need for a new component altogether.
 
+<QuestionsCard title="Ask yourself:">
+    - Is this component already a part of our design system?
+    - Is this component present in our app’s design? Is it visible on multiple pages/layouts?
+    - Can this component be constructed by using some of our existing components (quickly and easily) without creating large and messy code?
+
+    If the answer to all of these questions is yes, you might have a good internal component library candidate.
+</QuestionsCard>
+
 ## Check existing component libraries
 
 Before jumping into code, it makes sense to check other existing component libraries, especially if your team is familiarized with a particular third-party component library. You do this for two reasons: to check which components exist in their codebase and to examine their API.
@@ -49,6 +58,14 @@ Taking a detailed look at the API will help you decide how to expose a certain f
 
 Keep in mind that the intention of this tip is not to blindly follow third-party implementation choices but to learn from their findings.
 
+<QuestionsCard title="Ask yourself:">
+    - Is this component a part of other third-party component libraries?
+    - Is this component a part of a package that exports a single component (like Airbnb Datepicker)?
+    - When looking at our designs and comparing functionalities that we want to build to the ones in a third-party codebase, is there a significant match?
+
+    If the answer to all of these questions is yes, you might have a good internal component library candidate.
+</QuestionsCard>
+
 ## When applicable, make use of third-party components
 
 Even though you are building an internal component library, this does not imply you need to implement every component and every behavior from scratch. If most components from a third-party suit your case, use what you can and focus your implementation efforts on those that are not easy to style or have different behavior.
@@ -56,6 +73,13 @@ Even though you are building an internal component library, this does not imply 
 Interactive tables or date pickers are good examples. These components are reasonably complex to implement, so unless your product’s key functionality revolves around them, it makes sense to introduce a dependency that implements them well (like [Airbnb Datepicker](https://react-dates.github.io/react-dates/?path=/story/daterangepicker-drp--default) 😀).
 
 To limit the effect of the dependency on your code, implement a wrapper around the component hiding this dependency from your internal component library consumers. The wrapper will ensure that the API of that component is consistent with the ones your team built themselves and it will make it easier to switch up different third-party implementations should you need to do that.
+
+<QuestionsCard title="Ask yourself:">
+    - Is there a third-party component library that matches our design system which has this component? (Alternatively, if the design is not a factor in our application and we don’t have custom UI/UX - do our developers know of a third-party component library that that has this component and are familiarized with it?)
+    - Is this component outside of our domain, meaning, is it vital for implementing core features of our application?
+
+    If the answer to all of these questions is no, you might have a good internal component library candidate.
+</QuestionsCard>
 
 ## Utilize existing design pattern and widget guides
 
@@ -67,6 +91,13 @@ In addition to allowing you to be more thorough, the guide can also show you whi
 
 One of my favorite things to check is the [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/). If a design contains a look and feel equivalent of a widget specified in the guide, I usually recommend including such a component to the internal component library.
 
+<QuestionsCard title="Ask yourself:">
+    - Is this component a part of standard patterns covered by the specifications (such as the ARIA Authoring Practices Guide)?
+    - Would this component be a custom implementation of an HTML element (for example Select)?
+
+    If the answer to all of these questions is yes, you might have a good internal component library candidate.
+</QuestionsCard>
+
 ## Don't think of the internal component library as a shared folder
 
 Make sure you and everyone on your team understand that the internal component library is not a shared folder. The primary idea behind a component library is not to reduce code duplication (although it is a nice side effect), but to provide developers with reusable UI patterns.
@@ -74,6 +105,13 @@ Make sure you and everyone on your team understand that the internal component l
 Typically, what happens during development with regards to a shared folder: people working on the project notice a similar code structure or behavior of different components, after which they extract them into a single location - making the code more easily available for others to use. This type of extraction can, and probably will happen to component libraries but do not let [The Rule of Three](https://blog.codinghorror.com/rule-of-three/) (of code duplication) influence your component picks. When considering whether or not to include a component to your internal component library, you should focus on *if someone could use this*, not *if someone used it (enough times)*.
 
 For example, let’s say you have a gallery in an e-commerce project. This gallery might only be used for product display when a development team gets the design specification. However, this should not be a discriminatory factor for excluding it from the internal component library. A gallery, at its core, is a component for displaying multiple images - a pattern general enough to be used repeatedly, and as such, I’d argue, should be a part of the internal component library regardless of the number of times it is used across the design. Focus on the purpose of the component rather than *what team will use it* or *how many times it will be used*.
+
+<QuestionsCard title="Ask yourself:">
+    - Can we envision the component being used by multiple developers? (Notice we are not asking ARE they using it)
+    - Is this a UI pattern recurrent enough (from a product perspective) so that it makes sense to abstract and standardize it?
+
+    If the answer to all of these questions is yes, you might have a good internal component library candidate.
+</QuestionsCard>
 
 ## Conclusion
 
