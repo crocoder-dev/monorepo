@@ -109,7 +109,7 @@ const components = {
   ul: (props) => <BlogUl {...props} />,
   hr: () => <BlogHr />,
   pre: (props) => <Code {...props} />,
-  blockquote: (props) => <Typography element="blockquote" {...props} />
+  blockquote: (props) => <Typography element="blockquote" {...props} />,
 };
 
 const BlogLayout = ({

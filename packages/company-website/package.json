@@ -1,5 +1,5 @@
 {
-  "name": "company-website-islands",
+  "name": "@crocoder-dev/company-website",
   "version": "0.1.0",
   "description": "",
   "private": true,
@@ -12,9 +12,6 @@
     "build:server": "vite --config vite.config.server.js build --outDir dist/server --ssr src/server.jsx",
     "build:favicons": "node scripts/favicons",
     "export": "node --experimental-specifier-resolution=node scripts/static-render",
-    "lint:js": "eslint .",
-    "lint:scss": "stylelint **/*.scss",
-    "lint": "npm run lint:js && npm run lint:scss",
     "test": "echo \"Error: no test specified in company-website\""
   },
   "dependencies": {
@@ -41,18 +38,8 @@
   },
   "devDependencies": {
     "chokidar": "^3.5.3",
-    "eslint": "^8.23.1",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
-    "eslint-plugin-react": "^7.31.8",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^2.7.1",
     "rehype-slug": "^5.0.1",
     "remark-gfm": "^3.0.1",
-    "sass": "^1.54.8",
-    "stylelint": "^14.11.0",
-    "stylelint-config-prettier-scss": "^0.0.1",
-    "stylelint-config-standard-scss": "^5.0.0"
+    "sass": "^1.54.8"
   }
 }
