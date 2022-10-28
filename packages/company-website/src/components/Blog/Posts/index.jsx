@@ -8,7 +8,7 @@ export const Post = ({ meta, urlPath }) => (
   <article>
     <a href={urlPath} className={styles.post}>
       <figure>
-        <ResponsiveImage src={meta.image} alt={meta.title} />
+        <ResponsiveImage src={meta.image} alt={meta.title} width={400} height={225} />
       </figure>
       <Typography
         fontSize={12}
