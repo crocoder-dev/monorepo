@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
@@ -36,7 +37,7 @@ const Card = ({
         {name}
       </Typography>
       <div className={clsx(styles.customer__logo, styles[client])}>
-        <ResponsiveImage alt={imageAlt} src={image} />
+        <ResponsiveImage alt={imageAlt} src={image} width={75} height={46} />
       </div>
     </a>
     <Typography

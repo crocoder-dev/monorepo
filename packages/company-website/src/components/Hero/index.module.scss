@@ -10,6 +10,10 @@ $twoRowBreakLine: "<=tabletPortrait";
 
 .image {
   flex-basis: 35%;
+  
+  img{
+    height: auto;
+  }
   @include mediaQuery(#{$twoRowBreakLine}) {
     flex-basis: 70%;
   }

@@ -4,10 +4,12 @@ import Console from '../../Console';
 import Row from '../../CodeExample/Row';
 import Column from '../../CodeExample/Column';
 
-const InputComponent = ({ label, inputRef }) => (
+const InputComponent = ({ label, inputRef, id }) => (
   <div>
-    <span>{label}</span>
-    <input ref={inputRef} />
+    <label htmlFor={id}>
+      {label}
+      <input id={id} ref={inputRef} />
+    </label>
   </div>
 );
 
@@ -36,9 +38,9 @@ const ParentComponent = ({ setConsoleOutputs }) => {
 
   return (
     <>
-      <InputComponent label="E-mail" inputRef={emailInputRef} />
+      <InputComponent id="email" label="E-mail" inputRef={emailInputRef} />
       <br />
-      <InputComponent label="Name" inputRef={nameInputRef} />
+      <InputComponent id="name" label="Name" inputRef={nameInputRef} />
       <br />
       <button type="button" style={{ height: '30px' }} onClick={handleSubmit}>
         Submit

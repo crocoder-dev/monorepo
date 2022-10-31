@@ -59,7 +59,7 @@ const Navigation = ({
     >
       <div className={styles.header__image}>
         <a href="/">
-          <ResponsiveImage src={logo} alt={navigation.home.ariaLabel} />
+          <ResponsiveImage src={logo} alt={navigation.home.ariaLabel} width={225} height={51} />
         </a>
       </div>
       <Button

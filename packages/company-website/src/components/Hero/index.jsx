@@ -11,7 +11,7 @@ const Hero = ({
   <Section as="header" className={styles.section}>
     <div className={styles.flex}>
       <div className={styles.image}>
-        <ResponsiveImage alt={imageAlt} src={image} loading="eager" />
+        <ResponsiveImage alt={imageAlt} src={image} width={420} height={380} loading="eager" />
       </div>
       <div className={styles.text}>
         <Typography

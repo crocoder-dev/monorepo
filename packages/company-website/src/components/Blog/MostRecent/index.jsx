@@ -35,6 +35,8 @@ const MostRecent = ({ pages }) => {
               <ResponsiveImage
                 src={featuredPost.meta.image}
                 alt={featuredPost.meta.title}
+                width={640}
+                height={340}
                 loading="eager"
               />
             </figure>

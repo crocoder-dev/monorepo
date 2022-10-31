@@ -12,6 +12,7 @@
 
   img {
     border-radius: 5px;
+    height: auto;
   }
 
   .author-header-wrapper {
@@ -63,10 +64,6 @@
     white-space: normal;
     background: #252a33;
     color: #f8f8f2;
-  }
-
-  > div {
-    width: 100% !important;
   }
 }
 

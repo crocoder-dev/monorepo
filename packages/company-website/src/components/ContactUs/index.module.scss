@@ -40,6 +40,9 @@
 }
 
 .image {
+  img{
+    height: auto;
+  }
   @include mediaQuery('<=desktop') {
     display: none;
   }
