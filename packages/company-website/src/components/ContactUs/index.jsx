@@ -14,10 +14,7 @@ import ResponsiveImage from '../ResponsiveImage';
 import form from '../../content/contact-us/form.json';
 import notification from '../../content/contact-us/notification.json';
 import {
-  title,
-  description,
-  consent,
-  imageAlt,
+  title, description, consent, imageAlt,
 } from '../../content/contact-us/contact-us.json';
 // eslint-disable-next-line import/no-unresolved
 import letsworktogetherImage from '../../content/images/letsworktogether.png?preset=responsive';
@@ -71,9 +68,7 @@ const Path = (props) => (
   />
 );
 
-const ContactUs = ({
-  id = null,
-}) => {
+const ContactUs = ({ id = null }) => {
   const [confirmed, setConfirmed] = React.useState(false);
   const [confirmedError, setConfirmedError] = React.useState(false);
 
@@ -90,17 +85,23 @@ const ContactUs = ({
 
   const [notificationVisible, setNotificationVisible] = useState(false);
 
-  const successNotification = useMemo(() => ({
-    title: notification.title,
-    text: notification.text,
-    class: 'positive',
-  }), [notification]);
+  const successNotification = useMemo(
+    () => ({
+      title: notification.title,
+      text: notification.text,
+      class: 'positive',
+    }),
+    [notification],
+  );
 
-  const errorNotification = useMemo(() => ({
-    title: notification.errorTitle,
-    text: notification.errorText,
-    class: 'negative',
-  }), [notification]);
+  const errorNotification = useMemo(
+    () => ({
+      title: notification.errorTitle,
+      text: notification.errorText,
+      class: 'negative',
+    }),
+    [notification],
+  );
 
   const notificationTimeout = useRef();
 
@@ -362,7 +363,13 @@ const ContactUs = ({
               </div>
             </div>
             <div className={styles.image}>
-              <ResponsiveImage src={letsworktogetherImage} alt={imageAlt} />
+              <ResponsiveImage
+                src={letsworktogetherImage}
+                alt={imageAlt}
+                loading="eager"
+                width={600}
+                height={636}
+              />
             </div>
           </div>
         </div>

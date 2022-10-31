@@ -18,12 +18,8 @@ const Footer = ({ scrollToTop }) => (
           }}
           aria-label={footer.home.ariaLabel}
         >
-          <div
-            className={styles.image}
-            style={{ visibility: 'visible' }}
-            aria-hidden="true"
-          >
-            <ResponsiveImage src={logoFooter} alt={footer.home.ariaLabel} />
+          <div className={styles.image} style={{ visibility: 'visible' }} aria-hidden="true">
+            <ResponsiveImage src={logoFooter} alt={footer.home.ariaLabel} width={225} height={51} />
           </div>
         </a>
       </div>
@@ -34,11 +30,7 @@ const Footer = ({ scrollToTop }) => (
         <a href="/terms" style={{ color: 'inherit' }} className={styles.link}>
           {footer.terms.text}
         </a>
-        <a
-          href="/privacy_policy"
-          style={{ color: 'inherit' }}
-          className={styles.link}
-        >
+        <a href="/privacy_policy" style={{ color: 'inherit' }} className={styles.link}>
           {footer.privacy.text}
         </a>
       </div>

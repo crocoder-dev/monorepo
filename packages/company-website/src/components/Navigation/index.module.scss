@@ -92,6 +92,10 @@ $header-animation-length: 0.6s;
 
   &__image {
     width: 225px;
+    
+    img{
+      height: auto;
+    }
     @include mediaQuery('>=320px', '<=720px') {
       width: 200px;
     }

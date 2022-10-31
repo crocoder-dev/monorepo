@@ -6,25 +6,14 @@ import Section from '../Section';
 
 const HowWeWork = ({ title, content }) => (
   <Section as="section">
-    <Typography
-      element="h2"
-      fontSize={36}
-      fontWeight={700}
-      textAlign="center"
-      color="gray_2"
-    >
+    <Typography element="h2" fontSize={36} fontWeight={700} textAlign="center" color="gray_2">
       {title}
     </Typography>
     <div>
       {content.map((sectionContent) => (
         <div key={sectionContent.title} className={styles.flex}>
           <div className={styles.flex__text}>
-            <Typography
-              color="gray_2"
-              element="h3"
-              fontSize={26}
-              fontWeight={600}
-            >
+            <Typography color="gray_2" element="h3" fontSize={26} fontWeight={600}>
               {sectionContent.title}
             </Typography>
             <Typography
@@ -39,6 +28,8 @@ const HowWeWork = ({ title, content }) => (
             <ResponsiveImage
               src={sectionContent.image}
               alt={sectionContent.imageAlt}
+              width={300}
+              height={300}
             />
           </div>
         </div>

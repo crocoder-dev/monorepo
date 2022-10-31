@@ -33,6 +33,10 @@
 
   &__image {
     flex-basis: 25%;
+    
+    img{
+      height: auto;
+    }
     @include mediaQuery(">tabletPortrait", "<=tabletLandscape") {
       flex-basis: 35%;
     }

@@ -34,6 +34,10 @@ $limit: 720;
   cursor: pointer;
   height: auto;
   width: 225px;
+
+  img{
+    height: auto;
+  }
 }
 
 .line {
@@ -87,7 +91,7 @@ $limit: 720;
 
     @include mediaQuery("<=#{$limit}px") {
       column-gap: 20px;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: auto auto;
       grid-template-rows: auto auto auto;
       padding: 20px 7px;
     }
