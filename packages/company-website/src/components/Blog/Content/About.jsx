@@ -24,6 +24,8 @@ const About = ({ author }) => (
         <ResponsiveImage
           src={authorImages[author.id]}
           alt={author.name}
+          width={140}
+          height={140}
         />
       </div>
       <div className={styles['about-name']}>
