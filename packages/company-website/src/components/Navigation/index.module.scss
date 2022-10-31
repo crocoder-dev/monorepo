@@ -126,7 +126,7 @@ $header-animation-length: 0.6s;
       margin-left: auto;
     }
 
-    & > .link {
+    li > .link {
       margin: 0 15px;
     }
   }
@@ -179,7 +179,8 @@ $header-animation-length: 0.6s;
       text-align: center;
     }
 
-    & > .link {
+    li > .link {
+      display: block;
       margin-bottom: 10px;
       margin-top: 10px;
       padding: 10px 0;
