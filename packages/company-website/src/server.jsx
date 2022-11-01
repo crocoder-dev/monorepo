@@ -1,7 +1,9 @@
 // Build
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import path from 'path';
 import Head from './components/Head';
+import createFeed from './feed';
 
 const memoize = (fn) => {
   const cache = new Map();
@@ -42,7 +44,35 @@ const memoizedGetPages = memoize(getPages);
 
 export const pages = memoizedGetPages(GET_PAGES_KEY);
 
+export const feeds = ['/feed', '/feed.json', '/feed.xml'];
+
+const renderFeeds = (pathname) => {
+  let feedType = null;
+
+  switch (path.extname(pathname)) {
+    case '.json':
+      feedType = 'json';
+      break;
+    case '.xml':
+      feedType = 'rss';
+      break;
+    default:
+      feedType = 'rss';
+  }
+
+  const [body, type] = createFeed(pages, feedType);
+
+  return {
+    status: 200,
+    type,
+    body,
+  };
+};
+
 export const renderPage = (pathname, transformedTemplate, { styles } = { styles: null }) => {
+  if (feeds.includes(pathname)) {
+    return renderFeeds(pathname);
+  }
   // eslint-disable-next-line no-param-reassign
   if (!pathname.endsWith('/')) pathname = `${pathname}/`;
 
