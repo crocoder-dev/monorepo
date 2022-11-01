@@ -1,0 +1,110 @@
+@import '../../../styles/main';
+
+.card-wrapper {
+  padding: 140px 50px;
+  margin: 100px 0;
+
+  .card {
+    position: relative;
+    width: 700px;
+    max-width: calc(100% - 100px);
+    margin: 0 auto;
+    padding: 80px 50px 50px;
+    background-color: #fff;
+    border-radius: 25px;
+
+    hr {
+      width: 250px;
+      height: 8px;
+      margin: 0 auto 30px;
+      border-radius: 5px;
+    }
+
+    .post-image {
+      position: absolute;
+      width: 320px;
+      top: -30%;
+      left: calc(50% - 160px);
+    }
+
+    .card-title {
+      margin-bottom: 15px;
+      text-align: center;
+      color: $gray_2;
+
+      span {
+        color: #85a32a;
+      }
+    }
+
+    .card-main {
+      display: flex;
+
+      .author-image {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 50px;
+        min-width: 50px;
+        border-radius: 5px;
+        overflow: hidden;
+
+        img {
+          display: block;
+          width: 80px;
+        }
+      }
+
+      .comment {
+        padding: 0 20px 20px 15px;
+
+        .author {
+          margin-top: 0;
+        }
+
+        .content {
+          p {
+            margin-bottom: 5px !important;
+          }
+        }
+      }
+    }
+  }
+}
+@include mediaQuery('<tabletPortrait') {
+  .card-wrapper {
+    width: calc(100% + 40px);
+    margin: 0 -30px;
+    padding: 150px 10px !important;
+
+    .card {
+      padding-left: 10px;
+      padding-right: 10px;
+      max-width: calc(100% - 20px);
+    }
+  }
+}
+
+@include mediaQuery('<=425px') {
+  .card-wrapper {
+    .card {
+      .post-image {
+        top: -22%;
+      }
+    }
+  }
+}
+
+@include mediaQuery('<=mobile') {
+  .card-wrapper {
+    width: calc(100% + 20px);
+    margin: 0 -20px;
+    padding: 150px 10px !important;
+
+    .card {
+      padding-left: 10px;
+      padding-right: 10px;
+      max-width: calc(100% - 20px);
+    }
+  }
+}

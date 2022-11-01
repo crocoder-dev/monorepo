@@ -1,0 +1,33 @@
+import blogHeader from "../../content/images/blogs/how-to-perfect-your-cv-entry-level-developer.png?preset=responsive";
+import BlogLayout from "../../Layouts/BlogLayout";
+import SlackCard from "../../components/Blog/SlackCard";
+import authorImage from "../../content/images/authors/danicapivalicaabram.png";
+import postImage from "../../content/images/dev-tips/crocodile-chill.png";
+
+export const meta = {
+  id: "product-list-semantic-html-using-article",
+  title: "Product List - Semantic HTML (Using <article>)",
+  description:
+    "If you are looking for a complete change in your profession or are fresh out of university and searching for your first job in the world's fastest-growing industry, this video is for you!",
+  category: "Dev Tip",
+  image: blogHeader,
+  date: 1667305080921,
+  updatedAt: 1667305080921,
+  author: "davidabram",
+  editor: "velimirujevic",
+  abstract:
+    "In this episode of After Work Talks, we reviewed a CV from an actual entry-level software developer and provided helpful tips on how to improve your resume writing skills. ",
+  pageType: "blog-posting"
+};
+
+🖥️ Did you know that adding **HTML** `<article>` can be useful while creating user-comments sections, interactive widgets or any independent item? 🖥️
+
+For example, when you're trying to **display a product** (e.g. for an e-commerce site), an `<article>` is a nice choice because it can have its own `<header>` and `<footer>`. If you have a list of products, wrap these articles in a `<section>` element. Your website will be more accessible. 🐊
+
+<SlackCard authorImage={authorImage} authorName="Danica Pivalica Abram" postImage={postImage} cardBgColor="#FFCA36" authorBgColor="#FF8C17">
+👉FYI - If you want to make a product list and you're thinking about semantic HTML, it's really good to use an article for each product and wrap them up inside a section element. 
+
+👈 What's really nice about this approach is that you can use a `<header>` and `<footer>` inside each `<article>`, and, in case you need a link for the product, you can use one with `rel="bookmark"`. 🐊
+</SlackCard>
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
