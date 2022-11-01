@@ -34,7 +34,9 @@ const createFeed = (pages, type = 'rss') => {
   });
 
   const blogKeys = Object.keys(pages).filter((key) => key.includes('blog') && key !== '/blog/');
-  const blogs = blogKeys.map((key) => pages[key]);
+  const blogs = blogKeys
+    .map((key) => pages[key])
+    .sort((a, b) => b.meta.updatedAt - a.meta.updatedAt);
 
   blogs.forEach((blog) => {
     const {
