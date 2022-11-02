@@ -1,15 +1,8 @@
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 import { Feed } from 'feed';
 import siteConfig from '../content/site-config.json';
 import authors from '../content/authors/authors.json';
 
 const { siteUrl } = siteConfig;
-
-const getBlogContentFromHtml = (html) => {
-  const main = html.match(/<main[^>]*>(.|\n)*?<\/main>/g);
-  return main;
-};
 
 const createFeed = (pages, type = 'rss') => {
   const feed = new Feed({
@@ -39,13 +32,7 @@ const createFeed = (pages, type = 'rss') => {
     .sort((a, b) => b.meta.updatedAt - a.meta.updatedAt);
 
   blogs.forEach((blog) => {
-    const {
-      Component, toc, meta, urlPath,
-    } = blog;
-
-    const blogContent = ReactDOMServer.renderToString(
-      <Component toc={toc} pages={pages} meta={meta} />,
-    );
+    const { meta, urlPath } = blog;
 
     const blogAuthor = authors.find((author) => author.id === meta?.author);
 
@@ -56,7 +43,7 @@ const createFeed = (pages, type = 'rss') => {
       id: meta?.id,
       link: `${siteUrl}${urlPath}`,
       description: meta?.description,
-      content: getBlogContentFromHtml(blogContent),
+      content: `<img src="${siteUrl}${meta.image[1].src}" /> ${meta?.description}`,
       author: [
         {
           name: blogAuthor?.name,
