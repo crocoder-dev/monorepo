@@ -20,7 +20,7 @@
       border-radius: 5px;
     }
 
-    .post-image {
+    .card-image {
       position: absolute;
       width: 320px;
       top: -30%;
@@ -60,6 +60,7 @@
 
         .author {
           margin-top: 0;
+          margin-bottom: 12px;
         }
 
         .content {
@@ -88,7 +89,7 @@
 @include mediaQuery('<=425px') {
   .card-wrapper {
     .card {
-      .post-image {
+      .card-image {
         top: -22%;
       }
     }

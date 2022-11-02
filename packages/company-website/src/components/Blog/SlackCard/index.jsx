@@ -1,23 +1,24 @@
 import React from 'react';
-import NonHSubtitle from '../NonHSubtitle';
 import styles from './index.module.scss';
+import NonHSubtitle from '../NonHSubtitle';
 import ResponsiveImage from '../../ResponsiveImage';
 import Typography from '../../Typography/Typography';
 import BlogHr from '../BlogHr';
-import defaultPostImage from '../../../content/images/dev-tips/crocodile-chill.png';
+import defaultCardImage from '../../../content/images/dev-tips/crocodile-chill.png';
 
 const SlackCard = ({
   authorImage,
   authorName,
   children,
-  postImage,
+  cardImage,
+  cardImageAltText,
   cardBgColor,
   authorBgColor,
 }) => (
   <section className={styles['card-wrapper']} style={{ backgroundColor: cardBgColor }}>
     <div className={styles.card}>
-      <div className={styles['post-image']}>
-        <ResponsiveImage src={postImage || defaultPostImage} />
+      <div className={styles['card-image']}>
+        <ResponsiveImage src={cardImage || defaultCardImage} alt={cardImageAltText || ''} />
       </div>
       <NonHSubtitle className={styles['card-title']} fontWeight={600}>
         Tips directly from
@@ -27,7 +28,7 @@ const SlackCard = ({
       <BlogHr />
       <div className={styles['card-main']}>
         <div className={styles['author-image']} style={{ backgroundColor: authorBgColor }}>
-          <ResponsiveImage src={authorImage} />
+          <ResponsiveImage src={authorImage} alt={authorName} />
         </div>
         <div className={styles.comment}>
           <Typography

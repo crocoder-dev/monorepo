@@ -2,7 +2,7 @@ import blogHeader from "../../content/images/blogs/how-to-perfect-your-cv-entry-
 import BlogLayout from "../../Layouts/BlogLayout";
 import SlackCard from "../../components/Blog/SlackCard";
 import authorImage from "../../content/images/authors/danicapivalicaabram.png";
-import postImage from "../../content/images/dev-tips/crocodile-chill.png";
+import cardImage from "../../content/images/dev-tips/crocodile-chill.png";
 
 export const meta = {
   id: "product-list-semantic-html-using-article",
@@ -13,7 +13,7 @@ export const meta = {
   image: blogHeader,
   date: 1667305080921,
   updatedAt: 1667305080921,
-  author: "davidabram",
+  author: "danicapivalicaabram",
   editor: "velimirujevic",
   abstract:
     "In this episode of After Work Talks, we reviewed a CV from an actual entry-level software developer and provided helpful tips on how to improve your resume writing skills. ",
@@ -24,7 +24,7 @@ export const meta = {
 
 For example, when you're trying to **display a product** (e.g. for an e-commerce site), an `<article>` is a nice choice because it can have its own `<header>` and `<footer>`. If you have a list of products, wrap these articles in a `<section>` element. Your website will be more accessible. 🐊
 
-<SlackCard authorImage={authorImage} authorName="Danica Pivalica Abram" postImage={postImage} cardBgColor="#FFCA36" authorBgColor="#FF8C17">
+<SlackCard authorImage={authorImage} authorName="Danica Pivalica Abram" cardImage={cardImage} cardImageAltText="Crocodile relaxes with drink in one hand and laptop in its lap" cardBgColor="#FFCA36" authorBgColor="#FF8C17">
 👉FYI - If you want to make a product list and you're thinking about semantic HTML, it's really good to use an article for each product and wrap them up inside a section element. 
 
 👈 What's really nice about this approach is that you can use a `<header>` and `<footer>` inside each `<article>`, and, in case you need a link for the product, you can use one with `rel="bookmark"`. 🐊
