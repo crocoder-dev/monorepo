@@ -5,7 +5,7 @@ import ResponsiveImage from '../../ResponsiveImage';
 import Typography from '../../Typography/Typography';
 import BlogHr from '../BlogHr';
 import defaultCardImage from '../../../content/images/dev-tips/crocodile-chill.png';
-import logo from '../../../content/images/logoFooter.png';
+import logo from '../../../content/images/logo-light.png';
 
 const SlackCard = ({
   authorImage,
