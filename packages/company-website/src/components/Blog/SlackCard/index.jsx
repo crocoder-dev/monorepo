@@ -5,6 +5,7 @@ import ResponsiveImage from '../../ResponsiveImage';
 import Typography from '../../Typography/Typography';
 import BlogHr from '../BlogHr';
 import defaultCardImage from '../../../content/images/dev-tips/crocodile-chill.png';
+import logo from '../../../content/images/logoFooter.png';
 
 const SlackCard = ({
   authorImage,
@@ -44,6 +45,7 @@ const SlackCard = ({
         </div>
       </div>
     </div>
+    <ResponsiveImage className={styles.logo} src={logo} alt="Crocoder logo" />
   </section>
 );
 export default SlackCard;

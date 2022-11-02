@@ -1,15 +1,14 @@
 @import '../../../styles/main';
 
 .card-wrapper {
-  padding: 140px 50px;
+  padding: 140px 80px 0;
   margin: 100px 0;
 
   .card {
     position: relative;
-    width: 700px;
-    max-width: calc(100% - 100px);
+    max-width: calc(100% - 70px);
     margin: 0 auto;
-    padding: 80px 50px 50px;
+    padding: 80px 70px 50px;
     background-color: #fff;
     border-radius: 25px;
 
@@ -71,17 +70,52 @@
       }
     }
   }
+
+  .logo{
+    display: block;
+    height: 100px;
+    width: auto;
+    max-width: 100%;
+    padding: 20px 0;
+    margin: 0 0 0 auto;
+    filter: drop-shadow(1px 1px 2px $gray_2);
+  }
 }
-@include mediaQuery('<tabletPortrait') {
+@include mediaQuery('<=tabletLandscape') {
+  .card-wrapper {
+    width: calc(100% - 80px);
+    margin: 0 -40px;
+
+    .card {
+      padding-left: 50px;
+      padding-right: 50px;
+      
+      .card-image {
+        top: -25%;
+      }
+    }
+
+    .logo{
+      height: 80px;
+      padding: 30px 0;
+    }
+  }
+}
+
+@include mediaQuery('<=tabletPortrait') {
   .card-wrapper {
     width: calc(100% + 40px);
     margin: 0 -30px;
-    padding: 150px 10px !important;
+    padding: 150px 10px 0 !important;
 
     .card {
       padding-left: 10px;
       padding-right: 10px;
       max-width: calc(100% - 20px);
+    }
+
+    .logo{
+      padding: 35px 0;
     }
   }
 }
@@ -93,14 +127,19 @@
         top: -22%;
       }
     }
+
+    .logo{
+      height: 70px;
+      padding: 40px 0;
+      margin: 0 auto;
+    }
   }
 }
 
-@include mediaQuery('<=mobile') {
+@include mediaQuery('<=360px') {
   .card-wrapper {
     width: calc(100% + 20px);
     margin: 0 -20px;
-    padding: 150px 10px !important;
 
     .card {
       padding-left: 10px;
