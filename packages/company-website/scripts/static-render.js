@@ -41,7 +41,7 @@ async function render() {
       styles: `<link rel="stylesheet" type="text/css" href="/assets/${styleFilePath}" />`,
     });
 
-    const filePath = page.filePath.includes('index')
+    const filePath = page.filePath.includes('index') || page.filePath.includes('404')
       ? `out${page.filePath}.html`
       : `out${page.filePath}/index.html`;
 
