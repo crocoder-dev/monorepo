@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import styles from './index.module.scss';
 import NonHSubtitle from '../NonHSubtitle';
