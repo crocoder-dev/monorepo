@@ -10,6 +10,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "ignorePatterns": ["*/**/*.mdx"],
   "plugins": ["react"],
   "rules": {
     "react/prop-types": 0,
