@@ -167,7 +167,6 @@ const ContactUs = ({ id = null }) => {
         },
         body: JSON.stringify({
           email,
-          token,
           message: aboutProject,
           name: fullName,
         }),
