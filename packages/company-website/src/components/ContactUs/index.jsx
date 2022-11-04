@@ -173,7 +173,7 @@ const ContactUs = ({ id = null }) => {
     ) {
       executeGrecaptchaAsync()
         .then((token) => {
-          fetch(`${process.env.NEXT_API_URL}contacts`, {
+          fetch('/api/contacts', {
             method: 'POST',
             mode: 'cors',
             headers: {
