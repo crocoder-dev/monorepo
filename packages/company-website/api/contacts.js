@@ -230,6 +230,7 @@ const contacts = async (req, res) => {
       },
     });
   } catch (error) {
+    console.error(error);
     res
       .status(error.statusCode || 501)
       .json({ headers: error?.headers, body: error?.body?.message });
