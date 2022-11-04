@@ -19,18 +19,6 @@ import {
 // eslint-disable-next-line import/no-unresolved
 import letsworktogetherImage from '../../content/images/letsworktogether.png?preset=responsive';
 
-const waitGrecaptchaReady = () => new Promise((resolve) => {
-  grecaptcha.ready(resolve());
-});
-
-const executeGrecaptchaAsync = async () => {
-  await waitGrecaptchaReady();
-  const token = await grecaptcha.execute(import.meta.env.VITE_RECAPTCHA_PUBLIC_KEY, {
-    action: 'submit',
-  });
-  return token;
-};
-
 const validateFullName = (fullName, formData) => {
   if (typeof fullName !== 'string' || !fullName) {
     return formData.fullname.requiredField;
@@ -171,31 +159,25 @@ const ContactUs = ({ id = null }) => {
       && errorMessageEmail === null
       && errorMessageAboutProject === null
     ) {
-      executeGrecaptchaAsync()
-        .then((token) => {
-          fetch('/api/contacts', {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              email,
-              token,
-              message: aboutProject,
-              name: fullName,
-            }),
-          })
-            .then((response) => {
-              if (!response.ok) {
-                showNotification(true);
-              } else {
-                showNotification();
-              }
-            })
-            .catch(() => {
-              showNotification(true);
-            });
+      fetch('/api/contacts', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          token,
+          message: aboutProject,
+          name: fullName,
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            showNotification(true);
+          } else {
+            showNotification();
+          }
         })
         .catch(() => {
           showNotification(true);

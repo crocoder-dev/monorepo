@@ -1,7 +1,6 @@
 /* eslint-disable no-throw-literal */
 /* eslint-disable no-useless-catch */
 import fetch from 'node-fetch';
-import FormData from 'form-data';
 import { nanoid } from 'nanoid';
 import { Client } from '@notionhq/client';
 
@@ -158,31 +157,6 @@ const processContact = async (event) => {
   }
 };
 
-const verify = async (token) => {
-  try {
-    const formData = new FormData();
-    formData.append('secret', process.env.RECAPTCHA_SECRET_KEY);
-    formData.append('response', token);
-
-    const options = {
-      method: 'POST',
-      body: formData,
-    };
-
-    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', options);
-
-    if (response.status !== 200) {
-      return false;
-    }
-
-    const { success, score, action } = await response.json();
-
-    return success && action === 'submit' && score >= 0.5;
-  } catch (error) {
-    return false;
-  }
-};
-
 const contacts = async (req, res) => {
   try {
     if (!req.body) {
@@ -199,18 +173,8 @@ const contacts = async (req, res) => {
     }
 
     const {
-      email, name, message, token,
+      email, name, message,
     } = req.body;
-
-    if (!token || !(await verify(token))) {
-      throw {
-        statusCode: 403,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Credentials': true,
-        },
-      };
-    }
 
     try {
       await processContact({
