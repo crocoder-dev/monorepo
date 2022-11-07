@@ -104,9 +104,17 @@
 }
 
 .button {
-  display: block;
-  margin-top: 25px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25px auto;
   width: 100%;
+
+  .loader-wrapper{
+    position: absolute;
+    left: calc(50% - 64px);
+  }
 }
 
 .form {
@@ -142,28 +150,6 @@
   margin: 10px 10px 20px 0;
   @include mediaQuery('<=tabletPortrait') {
     margin-bottom: 10px;
-  }
-}
-
-.captcha {
-  font-family: Rubik, sans-serif;
-  color: $gray_2;
-  line-height: 1.6;
-  padding-top: 1.5em;
-  padding-bottom: 1em;
-
-  a {
-    color: #607a1a; // #647E1B;
-    cursor: pointer;
-
-    &:hover {
-      color: $green_5;
-    }
-
-    &:focus,
-    &:active {
-      color: #72911f;
-    }
   }
 }
 

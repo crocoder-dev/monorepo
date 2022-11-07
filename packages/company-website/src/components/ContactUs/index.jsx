@@ -11,6 +11,7 @@ import TextArea from '../TextArea';
 import styles from './index.module.scss';
 import Section from '../Section';
 import ResponsiveImage from '../ResponsiveImage';
+import Loader from '../Loader';
 import form from '../../content/contact-us/form.json';
 import notification from '../../content/contact-us/notification.json';
 import {
@@ -73,14 +74,13 @@ const ContactUs = ({ id = null }) => {
 
   const [notificationVisible, setNotificationVisible] = useState(false);
 
-  const successNotification = useMemo(
-    () => ({
-      title: notification.title,
-      text: notification.text,
-      class: 'positive',
-    }),
-    [notification],
-  );
+  const [isLoading, setIsLoading] = useState(false);
+
+  const successNotification = useMemo(() => ({
+    title: notification.title,
+    text: notification.text,
+    class: 'positive',
+  }), [notification]);
 
   const errorNotification = useMemo(
     () => ({
@@ -159,6 +159,7 @@ const ContactUs = ({ id = null }) => {
       && errorMessageEmail === null
       && errorMessageAboutProject === null
     ) {
+      setIsLoading(true);
       fetch('/api/contacts', {
         method: 'POST',
         mode: 'cors',
@@ -172,6 +173,7 @@ const ContactUs = ({ id = null }) => {
         }),
       })
         .then((response) => {
+          setIsLoading(false);
           if (!response.ok) {
             showNotification(true);
           } else {
@@ -179,6 +181,7 @@ const ContactUs = ({ id = null }) => {
           }
         })
         .catch(() => {
+          setIsLoading(false);
           showNotification(true);
         });
     }
@@ -333,14 +336,14 @@ const ContactUs = ({ id = null }) => {
                     color={confirmedError ? 'negative' : 'gray_2'}
                   />
                 </button>
-                <Button onClick={handleOnSubmit} className={styles.button}>
+                <Button disabled={isLoading} onClick={handleOnSubmit} className={styles.button}>
+                  {isLoading && (
+                    <div className={styles['loader-wrapper']}>
+                      <Loader />
+                    </div>
+                  )}
                   {form.submit}
                 </Button>
-                <Typography
-                  fontSize={14}
-                  className={styles.captcha}
-                  dangerouslySetInnerHTML={{ __html: form.captcha }}
-                />
               </div>
             </div>
             <div className={styles.image}>
@@ -355,13 +358,6 @@ const ContactUs = ({ id = null }) => {
           </div>
         </div>
       </Section>
-      <script
-        key="google-recaptcha"
-        id="google-recaptcha"
-        src={`https://www.google.com/recaptcha/api.js?render=${
-          import.meta.env.VITE_RECAPTCHA_PUBLIC_KEY
-        }`}
-      />
     </>
   );
 };
