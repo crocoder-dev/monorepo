@@ -85,6 +85,43 @@ const notifyContactCreated = async (name, email, url) => {
   }
 };
 
+const mentionPerson = ({ id, email }) => [
+  {
+    type: 'mention',
+    mention: {
+      type: 'user',
+      user: {
+        object: 'user',
+        id,
+        type: 'person',
+        person: {
+          email,
+        },
+      },
+    },
+    plain_text: '',
+    href: null,
+  },
+  {
+    type: 'text',
+    text: {
+      content: ' ',
+    },
+  },
+];
+
+const getMentions = () => {
+  const emails = process.env.MENTION_EMAILS.split(',');
+  const ids = process.env.MENTION_IDS.split(',');
+
+  return ids.map((id, i) => ({
+    id,
+    email: emails[i],
+  }));
+};
+
+const mentionPeople = () => getMentions().flatMap(mentionPerson);
+
 const createContactObject = (id, email, name, content) => ({
   parent: {
     database_id: process.env.NOTION_DATABASE_ID,
@@ -133,6 +170,13 @@ const createContactObject = (id, email, name, content) => ({
         ],
       },
     },
+    {
+      object: 'block',
+      type: 'paragraph',
+      paragraph: {
+        rich_text: mentionPeople(),
+      },
+    },
   ],
 });
 
@@ -169,11 +213,11 @@ const allowRequest = async (request) => {
     const ratelimit = new Ratelimit({
       limiter: Ratelimit.fixedWindow(1, '30 s'),
       /** Use fromEnv() to automatically load connection secrets from your environment
-        * variables. For instance when using the Vercel integration.
-        *
-        * This tries to load `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` from
-        * your environment using `process.env`.
-        */
+       * variables. For instance when using the Vercel integration.
+       *
+       * This tries to load `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` from
+       * your environment using `process.env`.
+       */
       redis: Redis.fromEnv(),
     });
 
@@ -203,9 +247,7 @@ const contacts = async (req, res) => {
       };
     }
 
-    const {
-      email, name, message,
-    } = req.body;
+    const { email, name, message } = req.body;
 
     const {
       success, limit, reset, remaining,
