@@ -33,6 +33,9 @@ const Footer = ({ scrollToTop }) => (
         <a href="/privacy_policy" style={{ color: 'inherit' }} className={styles.link}>
           {footer.privacy.text}
         </a>
+        <a href="/feed" style={{ color: 'inherit' }} className={styles.link}>
+          {footer.feed.text}
+        </a>
       </div>
       <div className={styles.footer__social_media}>
         <div>

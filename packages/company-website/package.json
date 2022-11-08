@@ -38,6 +38,7 @@
     "react-syntax-highlighter": "^15.5.0",
     "rehype-slug": "^5.0.1",
     "remark-gfm": "^3.0.1",
+    "sitemap": "^7.1.1",
     "vite": "^3.0.9",
     "vite-plugin-image-presets": "^0.3.2",
     "web-vitals": "^3.0.4"

@@ -124,11 +124,6 @@ $limit: 720;
 
     @include link;
 
-    @include mediaQuery("<=#{$limit}px") {
-      flex-direction: column;
-      align-items: center;
-    }
-
     /** Footer design requires custom breakpoints */
     @include mediaQuery(">#{$limit}px", "<desktop") {
       box-sizing: border-box;
@@ -141,8 +136,14 @@ $limit: 720;
       grid-column: 1 / span 2;
       grid-row: 2 / span 1;
       justify-self: center;
+      flex-direction: column;
+      align-items: center;
       margin-bottom: 20px;
       min-height: 90px;
+      
+      a{
+        margin: 10px 0;
+      }
     }
   }
 
