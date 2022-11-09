@@ -1,5 +1,8 @@
 {
-  "rewrites": [{ "source": "/feed", "destination": "/feed.xml" }],
+  "rewrites": [
+    { "source": "/feed", "destination": "/feed.xml" },
+    { "source": "/sitemap", "destination": "/sitemap.xml" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -34,5 +37,11 @@
         }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/contacts.js": {
+      "memory": 256,
+      "maxDuration": 5
+    }
+  }
 }

@@ -11,6 +11,7 @@ import TextArea from '../TextArea';
 import styles from './index.module.scss';
 import Section from '../Section';
 import ResponsiveImage from '../ResponsiveImage';
+import Loader from '../Loader';
 import form from '../../content/contact-us/form.json';
 import notification from '../../content/contact-us/notification.json';
 import {
@@ -18,18 +19,6 @@ import {
 } from '../../content/contact-us/contact-us.json';
 // eslint-disable-next-line import/no-unresolved
 import letsworktogetherImage from '../../content/images/letsworktogether.png?preset=responsive';
-
-const waitGrecaptchaReady = () => new Promise((resolve) => {
-  grecaptcha.ready(resolve());
-});
-
-const executeGrecaptchaAsync = async () => {
-  await waitGrecaptchaReady();
-  const token = await grecaptcha.execute(import.meta.env.VITE_RECAPTCHA_PUBLIC_KEY, {
-    action: 'submit',
-  });
-  return token;
-};
 
 const validateFullName = (fullName, formData) => {
   if (typeof fullName !== 'string' || !fullName) {
@@ -85,14 +74,13 @@ const ContactUs = ({ id = null }) => {
 
   const [notificationVisible, setNotificationVisible] = useState(false);
 
-  const successNotification = useMemo(
-    () => ({
-      title: notification.title,
-      text: notification.text,
-      class: 'positive',
-    }),
-    [notification],
-  );
+  const [isLoading, setIsLoading] = useState(false);
+
+  const successNotification = useMemo(() => ({
+    title: notification.title,
+    text: notification.text,
+    class: 'positive',
+  }), [notification]);
 
   const errorNotification = useMemo(
     () => ({
@@ -171,33 +159,29 @@ const ContactUs = ({ id = null }) => {
       && errorMessageEmail === null
       && errorMessageAboutProject === null
     ) {
-      executeGrecaptchaAsync()
-        .then((token) => {
-          fetch(`${process.env.NEXT_API_URL}contacts`, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              email,
-              token,
-              message: aboutProject,
-              name: fullName,
-            }),
-          })
-            .then((response) => {
-              if (!response.ok) {
-                showNotification(true);
-              } else {
-                showNotification();
-              }
-            })
-            .catch(() => {
-              showNotification(true);
-            });
+      setIsLoading(true);
+      fetch('/api/contacts', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          message: aboutProject,
+          name: fullName,
+        }),
+      })
+        .then((response) => {
+          setIsLoading(false);
+          if (!response.ok) {
+            showNotification(true);
+          } else {
+            showNotification();
+          }
         })
         .catch(() => {
+          setIsLoading(false);
           showNotification(true);
         });
     }
@@ -352,14 +336,14 @@ const ContactUs = ({ id = null }) => {
                     color={confirmedError ? 'negative' : 'gray_2'}
                   />
                 </button>
-                <Button onClick={handleOnSubmit} className={styles.button}>
+                <Button disabled={isLoading} onClick={handleOnSubmit} className={styles.button}>
+                  {isLoading && (
+                    <div className={styles['loader-wrapper']}>
+                      <Loader />
+                    </div>
+                  )}
                   {form.submit}
                 </Button>
-                <Typography
-                  fontSize={14}
-                  className={styles.captcha}
-                  dangerouslySetInnerHTML={{ __html: form.captcha }}
-                />
               </div>
             </div>
             <div className={styles.image}>
@@ -374,13 +358,6 @@ const ContactUs = ({ id = null }) => {
           </div>
         </div>
       </Section>
-      <script
-        key="google-recaptcha"
-        id="google-recaptcha"
-        src={`https://www.google.com/recaptcha/api.js?render=${
-          import.meta.env.VITE_RECAPTCHA_PUBLIC_KEY
-        }`}
-      />
     </>
   );
 };
