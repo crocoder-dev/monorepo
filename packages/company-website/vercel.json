@@ -3,6 +3,13 @@
     { "source": "/feed", "destination": "/feed.xml" },
     { "source": "/sitemap", "destination": "/sitemap.xml" }
   ],
+  "redirects": [
+    { "source": "/jobs", "destination": "/" },
+    { "source": "/search", "destination": "/" },
+    { "source": "/jobs/(.*)", "destination": "/" },
+    { "source": "/search/(.*)", "destination": "/" },
+    { "source": "/post-a-job", "destination": "/" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
