@@ -3,8 +3,12 @@
     { "source": "/feed", "destination": "/feed.xml" },
     { "source": "/sitemap", "destination": "/sitemap.xml" },
     {
-      "source": "latest.js",
+      "source": "/sa/latest.js",
       "destination": "https://sa.crocoder.dev/latest.js"
+    },
+    {
+      "source": "/sa/noscript.gif",
+      "destination": "https://sa.crocoder.dev/noscript.gif"
     }
   ],
   "redirects": [
