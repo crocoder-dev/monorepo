@@ -1,7 +1,11 @@
 {
   "rewrites": [
     { "source": "/feed", "destination": "/feed.xml" },
-    { "source": "/sitemap", "destination": "/sitemap.xml" }
+    { "source": "/sitemap", "destination": "/sitemap.xml" },
+    {
+      "source": "latest.js",
+      "destination": "https://sa.crocoder.dev/latest.js"
+    }
   ],
   "redirects": [
     { "source": "/jobs", "destination": "/" },
