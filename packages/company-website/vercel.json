@@ -9,6 +9,10 @@
     {
       "source": "/sa/noscript.gif",
       "destination": "https://sa.crocoder.dev/noscript.gif"
+    },
+    {
+      "source": "/va/vitals",
+      "destination": "https://vitals.vercel-analytics.com/v1/vitals"
     }
   ],
   "redirects": [
