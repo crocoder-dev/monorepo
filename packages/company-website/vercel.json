@@ -1,7 +1,19 @@
 {
   "rewrites": [
     { "source": "/feed", "destination": "/feed.xml" },
-    { "source": "/sitemap", "destination": "/sitemap.xml" }
+    { "source": "/sitemap", "destination": "/sitemap.xml" },
+    {
+      "source": "/sa/latest.js",
+      "destination": "https://sa.crocoder.dev/latest.js"
+    },
+    {
+      "source": "/sa/noscript.gif",
+      "destination": "https://sa.crocoder.dev/noscript.gif"
+    },
+    {
+      "source": "/va/vitals",
+      "destination": "https://vitals.vercel-analytics.com/v1/vitals"
+    }
   ],
   "redirects": [
     { "source": "/jobs", "destination": "/" },
