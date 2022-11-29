@@ -4,7 +4,7 @@ const BLOCKED_COUNTRY = 'HR';
 
 export const config = {
   // Only run the middleware on the home route
-  matcher: '/',
+  matcher: '^(?!/blocked).*$',
 };
 
 export default function middleware(request) {
