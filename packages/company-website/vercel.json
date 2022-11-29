@@ -62,10 +62,5 @@
       "memory": 256,
       "maxDuration": 5
     }
-  },
-  "routes": {
-    "src": "/",
-    "middlewarePath": "block",
-    "continue": true
   }
 }
