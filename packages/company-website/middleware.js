@@ -12,7 +12,7 @@ export default function middleware(request) {
 
   const { country } = geolocation(request);
 
-  console.log(country);
+  console.log(country, request.url);
 
   if (country === BLOCKED_COUNTRY) {
     url.pathname = '/blocked';
