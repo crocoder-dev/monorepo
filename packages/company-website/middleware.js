@@ -18,7 +18,4 @@ export default function middleware(request) {
     url.pathname = '/blocked';
     return Response.redirect(url);
   }
-
-  // Return a new redirect response
-  return Response.redirect(request.url);
 }
