@@ -1,7 +1,5 @@
 import { geolocation } from '@vercel/edge';
 
-const BLOCKED_COUNTRY = 'HR';
-
 export const config = {
   // Only run the middleware on the home route
   matcher: ['/', '/blog', '/blog/:any'],
@@ -13,9 +11,7 @@ export default function middleware(request) {
 
   const { country } = geolocation(request);
 
-  console.log(country, request.url);
-
-  if (country === BLOCKED_COUNTRY) {
+  if (country === 'RU' || country === 'BY') {
     url.pathname = '/blocked';
     return Response.redirect(url);
   }
