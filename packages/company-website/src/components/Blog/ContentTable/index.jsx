@@ -7,7 +7,7 @@ const Table = ({ tocData }) => (
   <ul className={styles.table}>
     {tocData.map(({ value, id, children }) => (
       <li key={id}>
-        <BlogLink href={`#${id}`}>{value}</BlogLink>
+        <BlogLink toc href={`#${id}`}>{value}</BlogLink>
         {children && <Table tocData={children} />}
       </li>
     ))}
