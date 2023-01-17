@@ -526,8 +526,152 @@ input.flat().reduce((accumulator, currentValue) => {
   }
   return accumulator;
 }, {});
+
 ```
 
 </ListToggle>
+
+## High performing students
+
+You are given an array of objects representing a group of students, each with a name and an array of test scores. Your task is to use map, filter, and reduce to calculate the average test score for each student, and then return an array of objects containing only the students who have an average score above 90.
+
+<ListToggle title="Solution">
+
+```javascript
+const students = [
+  { name: "Alice", scores: [90, 85, 92] },
+  { name: "Bob", scores: [75, 80, 85] },
+  { name: "Charlie", scores: [90, 95, 85] },
+  { name: "David", scores: [100, 100, 100] }
+];
+
+// Use map to calculate the average test score for each student
+const studentAverages = students.map(student => {
+  const sum = student.scores.reduce((acc, score) => acc + score);
+  return { name: student.name, average: sum / student.scores.length };
+});
+
+// Use filter to only select students with an average above 90
+const highPerformers = studentAverages.filter(student => student.average > 90);
+
+console.log(highPerformers);
+
+```
+</ListToggle>
+
+<NonHSubtitle>Output</NonHSubtitle>
+
+```javascript
+Copy code
+[ { name: 'Alice', average: 89 }, { name: 'Charlie', average: 90 }, { name: 'David', average: 100 } ]
+
+```
+
+In this example, we first use **`map`** to iterate over the students, and for each student we use **`reduce`** to sum all of their scores and then we divide the sum by the number of scores to get the average.
+Finally, we use **`filter`** to only include students who have an average score above 90.
+
+## High Priced Product Categories
+
+You are given an array of objects representing a collection of products, each with a name, price, and category. Your task is to use map, filter, and reduce to calculate the average price of products in each category, and then return an array of objects containing only the categories that have an average price above a certain threshold.
+
+
+<ListToggle title="Solution">
+```javascript
+
+const products = [
+  { name: "Product 1", price: 20, category: "Electronics" },
+  { name: "Product 2", price: 30, category: "Clothes" },
+  { name: "Product 3", price: 40, category: "Electronics" },
+  { name: "Product 4", price: 50, category: "Clothes" },
+  { name: "Product 5", price: 60, category: "Clothes" },
+  { name: "Product 6", price: 70, category: "Electronics" },
+  { name: "Product 7", price: 80, category: "Clothes" },
+  { name: "Product 8", price: 90, category: "Electronics" },
+];
+
+// Use map to create a dictionary with category as the key and an array of products as the value
+const productsByCategory = products.reduce((acc, product) => {
+  const category = product.category;
+  if (!acc[category]) {
+    acc[category] = [];
+  }
+  acc[category].push(product);
+  return acc;
+}, {});
+
+// Use map to calculate the average price for each category
+const avgPriceByCategory = Object.keys(productsByCategory).map(category => {
+  const sum = productsByCategory[category].reduce((acc, product) => acc + product.price, 0);
+  return { category: category, average: sum / productsByCategory[category].length };
+});
+
+// Use filter to only select categories with an average above a certain threshold
+cons highPricedCategories = avgPriceByCategory.filter(category => category.average > 50);
+console.log(highPricedCategories);
+
+```
+</ListToggle>
+
+<NonHSubtitle>Output</NonHSubtitle>
+
+```javascript
+
+[ { category: 'Clothes', average: 62.5 }, { category: 'Electronics', average: 70 } ]
+
+```
+
+In this example, we first use **`reduce`** to group the products by category, we then use **`map`** to iterate over the categories, after which use **`reduce`** again to sum all of the prices and divide by the number of products in that category to get the average price.
+Then we use filter to only include categories with an average price above a certain threshold.
+
+## HR VS IT Department
+
+You are given an array of objects representing a collection of employees, each with a name, salary, and department. Your task is to use map, filter, and reduce to calculate the average salary for each department and then return an array of objects containing only the departments that have an average salary above a certain threshold.
+
+<ListToggle title="Solution">
+```javascript
+
+const employees = [
+  { name: "John", salary: 50000, department: "IT" },
+  { name: "Jane", salary: 60000, department: "HR" },
+  { name: "Bob", salary: 55000, department: "IT" },
+  { name: "Sophie", salary: 75000, department: "HR" },
+  { name: "Mike", salary: 65000, department: "IT" },
+  { name: "Emily", salary: 80000, department: "HR" },
+  { name: "David", salary: 70000, department: "IT" },
+];
+
+// Use reduce to create a dictionary with department as the key and an array of employee objects as the value
+const employeesByDepartment = employees.reduce((acc, employee) => {
+  const department = employee.department;
+  if (!acc[department]) {
+    acc[department] = [];
+  }
+  acc[department].push(employee);
+  return acc;
+}, {});
+
+// Use map to calculate the average salary for each department
+const avgSalaryByDepartment = Object.keys(employeesByDepartment).map(department => {
+  const sum = employeesByDepartment[department].reduce((acc, employee) => acc + employee.salary, 0);
+  return { department: department, average: sum / employeesByDepartment[department].length };
+});
+
+// Use filter to only select departments with an average above a certain threshold
+const highPaidDepartments = avgSalaryByDepartment.filter(department => department.average > 65000);
+console.log(highPaidDepartments);
+
+```
+</ListToggle>
+
+<NonHSubtitle>Output</NonHSubtitle>
+
+```javascript
+
+[ { department: 'HR', average: 74000 } ]
+
+```
+
+In this example, we first use **`reduce`** to group the employees by department, we then use **`map`** to iterate over the departments, after which we use **`reduce`** again to sum all salaries and divide by the number of employees in that department to get the average salary.
+Finally, we use **`filter`** to only include departments with an average salary above a certain threshold.
 
 export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
