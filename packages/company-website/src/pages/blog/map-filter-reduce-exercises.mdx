@@ -573,9 +573,11 @@ const students = [
 <NonHSubtitle>Result</NonHSubtitle>
 
 ```javascript
-[ { name: 'Alice', average: 89 },
+[ 
+  { name: 'Alice', average: 89 },
   { name: 'Charlie', average: 90 },
-  { name: 'David', average: 100 } ]
+  { name: 'David', average: 100 }
+]
 ```
   </Column>
 </Row>
@@ -598,8 +600,6 @@ const studentAverages = students.map(student => {
 
 // Use filter to only select students with an average above 90
 const highPerformers = studentAverages.filter(student => student.average > 90);
-
-console.log(highPerformers);
 ```
 
 In this example, we first use **`map`** to iterate over the students, and for each student we use **`reduce`** to sum all of their scores and then we divide the sum by the number of scores to get the average.
@@ -641,8 +641,10 @@ const products = [
 <NonHSubtitle>Result</NonHSubtitle>
 
 ```javascript
-[ { category: 'Clothes', average: 62.5 },
-  { category: 'Electronics', average: 70 } ]
+[ 
+  { category: 'Clothes', average: 62.5 },
+  { category: 'Electronics', average: 70 }
+]
 ```
   </Column>
 </Row>
@@ -661,8 +663,8 @@ const products = [
   { name: "Product 8", price: 90, category: "Electronics" },
 ];
 
-// Use map to create a dictionary with category as the key
-and an array of products as the value
+/* Use map to create a dictionary with category as the key
+and an array of products as the value */
 const productsByCategory = products.reduce((acc, product) => {
   const category = product.category;
   if (!acc[category]) {
@@ -679,8 +681,7 @@ const avgPriceByCategory = Object.keys(productsByCategory).map(category => {
 });
 
 // Use filter to only select categories with an average above a certain threshold
-cons highPricedCategories = avgPriceByCategory.filter(category => category.average > 50);
-console.log(highPricedCategories);
+const highPricedCategories = avgPriceByCategory.filter(category => category.average > 50);
 ```
 
 This code is using JavaScript's **`reduce`** and **`map`** methods to process an array of products and group them by category, calculate the average price of each category, and then **`filter`** the categories that have an average price greater than 50.
@@ -730,7 +731,9 @@ const employees = [
 <NonHSubtitle>Result</NonHSubtitle>
 
 ```javascript
-[ { department: 'HR', average: 74000 } ]
+[
+  { department: 'HR', average: 74000 }
+]
 ```
   </Column>
 </Row>
@@ -749,7 +752,8 @@ const employees = [
   { name: "David", salary: 70000, department: "IT" },
 ];
 
-// Use reduce to create a dictionary with department as the key and an array of employee objects as the value
+/* Use reduce to create a dictionary with department as the key
+and an array of employee objects as the value */
 const employeesByDepartment = employees.reduce((acc, employee) => {
   const department = employee.department;
   if (!acc[department]) {
@@ -767,7 +771,6 @@ const avgSalaryByDepartment = Object.keys(employeesByDepartment).map(department 
 
 // Use filter to only select departments with an average above a certain threshold
 const highPaidDepartments = avgSalaryByDepartment.filter(department => department.average > 65000);
-console.log(highPaidDepartments);
 ```
 
 In this example, we first use **`reduce`** to group the employees by department, we then use **`map`** to iterate over the departments, after which we use **`reduce`** again to sum all salaries and divide by the number of employees in that department to get the average salary.
