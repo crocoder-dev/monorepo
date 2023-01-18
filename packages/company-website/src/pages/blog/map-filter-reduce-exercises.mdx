@@ -89,6 +89,13 @@ input.map(function (num) {
 // or written with Arrow function
 input.map((num) => Math.pow(num, 2));
 ```
+This code defines an array called input which contains the numbers 1 through 5.
+It then uses the **`map()`** method to iterate through each element of the array, which are numbers.
+
+For each number, it applies the function passed to it, which is **`Math.pow(num, 2)`**, raising the number to the power of 2.
+Then it returns the new array with the squared value of each element of the input array.
+
+The second version is the same as the first version but it uses arrow function instead of anonymous function.
 
 </ListToggle>
 
@@ -404,6 +411,14 @@ input
   .join(" ");
 ```
 
+This code defines a function called **`createNumeronym`** that takes in a word as an argument, and returns a new word consisting of the first letter, the length of the word minus 2, and the last letter of the original word.
+It then takes a string input, which is "Every developer likes to mix kubernetes and javascript", split it into an array of words using **`.split(" ").`**
+
+In order to iterate through each word in the array it uses **`.map()`**, and for each word that has a length of 4 or more characters, it calls the **`createNumeronym`** function on that word, and replaces it with the returned value. For words that are shorter than 4 characters, it keeps the original word.
+
+Finally, it uses the **`join()`** method to join the array of modified words back into a single string.
+The second version is the same as the first version but it uses arrow function and conditional operator.
+
 </ListToggle>
 
 ## n! with Map and Reduce
@@ -526,7 +541,6 @@ input.flat().reduce((accumulator, currentValue) => {
   }
   return accumulator;
 }, {});
-
 ```
 
 </ListToggle>
@@ -534,6 +548,37 @@ input.flat().reduce((accumulator, currentValue) => {
 ## High performing students
 
 You are given an array of objects representing a group of students, each with a name and an array of test scores. Your task is to use map, filter, and reduce to calculate the average test score for each student, and then return an array of objects containing only the students who have an average score above 90.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+- [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+- [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+- [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+
+<Row>
+  <Column>
+
+<NonHSubtitle>Input</NonHSubtitle>
+
+```javascript
+const students = [
+  { name: "Alice", scores: [90, 85, 92] },
+  { name: "Bob", scores: [75, 80, 85] },
+  { name: "Charlie", scores: [90, 95, 85] },
+  { name: "David", scores: [100, 100, 100] }
+];
+```
+  </Column>
+  <Column>
+
+<NonHSubtitle>Result</NonHSubtitle>
+
+```javascript
+[ { name: 'Alice', average: 89 },
+  { name: 'Charlie', average: 90 },
+  { name: 'David', average: 100 } ]
+```
+  </Column>
+</Row>
 
 <ListToggle title="Solution">
 
@@ -555,29 +600,56 @@ const studentAverages = students.map(student => {
 const highPerformers = studentAverages.filter(student => student.average > 90);
 
 console.log(highPerformers);
-
-```
-</ListToggle>
-
-<NonHSubtitle>Output</NonHSubtitle>
-
-```javascript
-Copy code
-[ { name: 'Alice', average: 89 }, { name: 'Charlie', average: 90 }, { name: 'David', average: 100 } ]
-
 ```
 
 In this example, we first use **`map`** to iterate over the students, and for each student we use **`reduce`** to sum all of their scores and then we divide the sum by the number of scores to get the average.
 Finally, we use **`filter`** to only include students who have an average score above 90.
+</ListToggle>
 
 ## High Priced Product Categories
 
 You are given an array of objects representing a collection of products, each with a name, price, and category. Your task is to use map, filter, and reduce to calculate the average price of products in each category, and then return an array of objects containing only the categories that have an average price above a certain threshold.
 
+<NonHSubtitle>Helpful links</NonHSubtitle>
+- [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+- [Array.prototype.push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
+- [Array.prototype.keys()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/keys)
+- [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+- [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+
+
+<Row>
+  <Column>
+
+<NonHSubtitle>Input</NonHSubtitle>
+
+```javascript
+const products = [
+  { name: "Product 1", price: 20, category: "Electronics" },
+  { name: "Product 2", price: 30, category: "Clothes" },
+  { name: "Product 3", price: 40, category: "Electronics" },
+  { name: "Product 4", price: 50, category: "Clothes" },
+  { name: "Product 5", price: 60, category: "Clothes" },
+  { name: "Product 6", price: 70, category: "Electronics" },
+  { name: "Product 7", price: 80, category: "Clothes" },
+  { name: "Product 8", price: 90, category: "Electronics" },
+];
+```
+  </Column>
+  <Column>
+
+<NonHSubtitle>Result</NonHSubtitle>
+
+```javascript
+[ { category: 'Clothes', average: 62.5 },
+  { category: 'Electronics', average: 70 } ]
+```
+  </Column>
+</Row>
 
 <ListToggle title="Solution">
-```javascript
 
+```javascript
 const products = [
   { name: "Product 1", price: 20, category: "Electronics" },
   { name: "Product 2", price: 30, category: "Clothes" },
@@ -589,7 +661,8 @@ const products = [
   { name: "Product 8", price: 90, category: "Electronics" },
 ];
 
-// Use map to create a dictionary with category as the key and an array of products as the value
+// Use map to create a dictionary with category as the key
+and an array of products as the value
 const productsByCategory = products.reduce((acc, product) => {
   const category = product.category;
   if (!acc[category]) {
@@ -608,28 +681,64 @@ const avgPriceByCategory = Object.keys(productsByCategory).map(category => {
 // Use filter to only select categories with an average above a certain threshold
 cons highPricedCategories = avgPriceByCategory.filter(category => category.average > 50);
 console.log(highPricedCategories);
-
 ```
+
+This code is using JavaScript's **`reduce`** and **`map`** methods to process an array of products and group them by category, calculate the average price of each category, and then **`filter`** the categories that have an average price greater than 50.
+
+It starts by using the **`reduce`** method on the array of products and an empty object as an initial accumulator. The callback function passed to **`reduce`** takes in two arguments: an accumulator object and the current product.
+It then assigns the product's category to a variable category, and checks if the accumulator object already contains a key for this category. If it doesn't, it creates a new key on the accumulator object with an empty array as its value.
+Then it pushes the current product into the array of the corresponding category and returns the accumulator object.
+
+In the end, **`productsByCategory`** will be an object where each key is a category name, and the value is an array of products that belong to that category.
+Next, it uses **`Object.keys(productsByCategory)`** to extract the keys (category names) of the **`productsByCategory`** object and then **`map`** method to iterate over these keys and calculate the average price of products in each category.
+It calculates the sum of prices of all products in each category using **`reduce`** method and divides this sum with the number of products in that category.
+
+Finally, it filters the categories that have an average price greater than 50 using **`filter`** method, and logs the final result to the console.
+
 </ListToggle>
-
-<NonHSubtitle>Output</NonHSubtitle>
-
-```javascript
-
-[ { category: 'Clothes', average: 62.5 }, { category: 'Electronics', average: 70 } ]
-
-```
-
-In this example, we first use **`reduce`** to group the products by category, we then use **`map`** to iterate over the categories, after which use **`reduce`** again to sum all of the prices and divide by the number of products in that category to get the average price.
-Then we use filter to only include categories with an average price above a certain threshold.
 
 ## HR VS IT Department
 
 You are given an array of objects representing a collection of employees, each with a name, salary, and department. Your task is to use map, filter, and reduce to calculate the average salary for each department and then return an array of objects containing only the departments that have an average salary above a certain threshold.
 
-<ListToggle title="Solution">
-```javascript
+<NonHSubtitle>Helpful links</NonHSubtitle>
+- [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+- [Array.prototype.push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
+- [Array.prototype.keys()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/keys)
+- [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+- [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
+<Row>
+  <Column>
+
+<NonHSubtitle>Input</NonHSubtitle>
+
+```javascript
+const employees = [
+  { name: "John", salary: 50000, department: "IT" },
+  { name: "Jane", salary: 60000, department: "HR" },
+  { name: "Bob", salary: 55000, department: "IT" },
+  { name: "Sophie", salary: 75000, department: "HR" },
+  { name: "Mike", salary: 65000, department: "IT" },
+  { name: "Emily", salary: 80000, department: "HR" },
+  { name: "David", salary: 70000, department: "IT" },
+];
+```
+  </Column>
+  <Column>
+
+<NonHSubtitle>Result</NonHSubtitle>
+
+```javascript
+[ { department: 'HR', average: 74000 } ]
+```
+  </Column>
+</Row>
+
+
+<ListToggle title="Solution">
+
+```javascript
 const employees = [
   { name: "John", salary: 50000, department: "IT" },
   { name: "Jane", salary: 60000, department: "HR" },
@@ -659,19 +768,10 @@ const avgSalaryByDepartment = Object.keys(employeesByDepartment).map(department 
 // Use filter to only select departments with an average above a certain threshold
 const highPaidDepartments = avgSalaryByDepartment.filter(department => department.average > 65000);
 console.log(highPaidDepartments);
-
-```
-</ListToggle>
-
-<NonHSubtitle>Output</NonHSubtitle>
-
-```javascript
-
-[ { department: 'HR', average: 74000 } ]
-
 ```
 
 In this example, we first use **`reduce`** to group the employees by department, we then use **`map`** to iterate over the departments, after which we use **`reduce`** again to sum all salaries and divide by the number of employees in that department to get the average salary.
 Finally, we use **`filter`** to only include departments with an average salary above a certain threshold.
+</ListToggle>
 
 export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
