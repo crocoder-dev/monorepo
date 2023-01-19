@@ -89,13 +89,11 @@ input.map(function (num) {
 // or written with Arrow function
 input.map((num) => Math.pow(num, 2));
 ```
-This code defines an array called input which contains the numbers 1 through 5.
-It then uses the **`map()`** method to iterate through each element of the array, which are numbers.
+This code defines an array called input which contains the numbers 1 through 5. It then uses the **`map()`** method to iterate through each element of the array, which are numbers.
 
-For each number, it applies the function passed to it, which is **`Math.pow(num, 2)`**, raising the number to the power of 2.
-Then it returns the new array with the squared value of each element of the input array.
+For each number, it applies the function passed to it, which is **`Math.pow(num, 2)`**, raising the number to the power of 2. Then it returns the new array with the squared value of each element of the input array.
 
-The second version is the same as the first version but it uses arrow function instead of anonymous function.
+The second version is the same as the first version but it uses **`Arrow function`** instead of anonymous function.
 
 </ListToggle>
 
@@ -150,6 +148,12 @@ input
   .filter((num) => num > 0)
   .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 ```
+
+This code is using two higher-order functions, **`filter`** and **`reduce`**, to filter an array of numbers and then sum the remaining numbers.
+
+The code first filters the input array to only include numbers greater than 0 using **`filter`** method and the callback function checks if the number is greater than 0. Then, it uses the reduce method to iterate through the filtered array and add each number to the **`accumulator`** (starting at 0), returning the sum of all the numbers greater than 0 in the input array.
+
+The code is also written with **`Arrow function`** which are shorthand for writing function expressions that behave similarly to regular functions while being more consise.
 
 </ListToggle>
 
@@ -207,6 +211,14 @@ input.reduce(
 );
 ```
 
+This code is working with an array of numbers and it is performing two operations on the array: sorting it, and then calculating its mean and median.
+
+First, the **`sort`** method is used to sort the input array in ascending order. The function passed to the sort method compares two elements of the array, 'a' and 'b', and returns a negative number if 'a' should come before 'b', a positive number if 'b' should come before 'a', and 0 if they are equal. In this case, the function simply subtracts 'b' from 'a', so that the array is sorted in ascending order. The **`reduce`** method is then used to iterate through the sorted array and calculate the mean and median.
+
+Furthermore, the function first adds the **`currentValue`** divided by the array length to the **`mean`** property of the accumulator object. Then, it uses an **`if`** statement to check if the current element is the median of the array. If so, it assigns the current element to the median property of the accumulator object.
+
+Finally, the function returns the **`accumulator`** object with the updated mean and median values, after iterating through the entire array.
+
 </ListToggle>
 
 ## Get name initials
@@ -262,6 +274,14 @@ input
   .join("");
 ```
 
+This code is working with a string of words and it is performing three operations on the string: splitting it, mapping the first letter of each word, and then joining them back together.
+
+First, the **`split`** method is used to split the input string into an array of words using a space **`(" ")`** as the separator. Then, the **`map`** method is used to iterate through the array of words and create a new array by applying a function to each word. The function passed to the **`map`** method takes one argument, word, which is the current element being processed, and it returns the first letter of the word by using the bracket notation to access the first character of the string.
+
+Finally, the **`join`** method is used to join all the elements of the new array of first letters back into a single string, with no separator.
+
+The code is also written with **`Arrow function`** which are shorthand for writing function expressions that behave similarly to regular functions while being more consise.
+
 </ListToggle>
 
 ## Age difference from the youngest and oldest
@@ -299,7 +319,7 @@ const input = [
     age: 67,
   },
   {
-    name: "Jeniffer",
+    name: "Jennifer",
     age: 65,
   },
 ];
@@ -340,7 +360,7 @@ const input = [
     age: 67,
   },
   {
-    name: "Jeniffer",
+    name: "Jennifer",
     age: 65,
   },
 ];
@@ -349,6 +369,14 @@ const ages = input.map((person) => person.age);
 
 [Math.min(...ages), Math.max(...ages), Math.max(...ages) - Math.min(...ages)];
 ```
+
+This code is working with an array of objects, each representing a person with properties name and age. It performs three operations: mapping the age of each person, calculating the minimum, maximum, and range of the ages.
+
+First, the **`map`** method is used to iterate through the array of objects, and create a new array by applying a function to each person object. The function passed to the **`map`** method takes one argument, person, which is the current element being processed, and it returns the value of the age property of the person object.
+
+The **`Math.min`** method is then used with the spread operator **`(...)`** to find the minimum value of the ages array, followed by the **`Math.max`** method to find the maximum value.
+
+Finally, the difference between the max and min is calculated and returned in an array.
 
 </ListToggle>
 
@@ -411,13 +439,13 @@ input
   .join(" ");
 ```
 
-This code defines a function called **`createNumeronym`** that takes in a word as an argument, and returns a new word consisting of the first letter, the length of the word minus 2, and the last letter of the original word.
-It then takes a string input, which is "Every developer likes to mix kubernetes and javascript", split it into an array of words using **`.split(" ").`**
+This code defines a function called **`createNumeronym`** that takes in a word as an argument, and returns a new word consisting of the first letter, the length of the word minus 2, and the last letter of the original word. It then takes a string input, which is "Every developer likes to mix kubernetes and javascript", split it into an array of words using **`.split(" ")`**.
 
 In order to iterate through each word in the array it uses **`.map()`**, and for each word that has a length of 4 or more characters, it calls the **`createNumeronym`** function on that word, and replaces it with the returned value. For words that are shorter than 4 characters, it keeps the original word.
 
 Finally, it uses the **`join()`** method to join the array of modified words back into a single string.
-The second version is the same as the first version but it uses arrow function and conditional operator.
+
+The second version is the same as the first version but it uses **`Arrow function`** and **`Conditional operator`**.
 
 </ListToggle>
 
@@ -477,6 +505,14 @@ new Array(input)
   .map((currentValue, index) => index + 1)
   .reduce((accumulator, currentValue) => accumulator * currentValue);
 ```
+
+This code is working with a number input, it creates an array of that length filled with null values and then performs two operations on that array: mapping each element to its **`index`** + 1, and then reducing the array to the product of all its elements.
+
+First, new **`Array(input).fill(null)`** creates a new array with the length of input and fills it with null values. Then, the **`map`** method is used to iterate through the array and create a new array by applying a function to each element. The function passed to the **`map`** method takes two arguments, **`currentValue`** and **`index`**, and it returns the value of the **`index`** plus 1, effectively mapping each element to its **`index`** + 1.
+
+Finally, the **`reduce`** method is used to iterate through the new array and calculate the product of all its elements. The function passed to the **`reduce`** method takes two arguments, **`accumulator`** and **`currentValue`**, and it multiplies the **`currentValue`** to the **`accumulator`** and returns the new value of the **`accumulator`**.
+
+The code is also written with **`Arrow function`** which are shorthand for writing function expressions that behave similarly to regular functions while being more consise.
 
 </ListToggle>
 
@@ -543,6 +579,14 @@ input.flat().reduce((accumulator, currentValue) => {
 }, {});
 ```
 
+This code is working with an array of arrays, flattening it and then counting the occurrences of each character in the flattened array.
+
+First, the **`flat`** method is used to flatten the array of arrays into a single array of characters. Then, the **`reduce`** method is used to iterate through the flattened array and count the occurrences of each character. The function passed to the **`reduce`** method takes two arguments, **`accumulator`** and **`currentValue`**.
+
+The function checks if the **`currentValue`** already exists in the **`accumulator`** object, if it does, it increments the value by 1 and if not, it assigns the value 1 to that key, effectively counting the occurrences of each character in the flattened array.
+
+Finally, the function returns the **`accumulator`** object with the count of each character in the flattened array.
+
 </ListToggle>
 
 ## High performing students
@@ -600,8 +644,14 @@ const studentAverages = students.map(student => {
 const highPerformers = studentAverages.filter(student => student.average > 90);
 ```
 
-In this example, we first use **`map`** to iterate over the students, and for each student we use **`reduce`** to sum all of their scores and then we divide the sum by the number of scores to get the average.
-Finally, we use **`filter`** to only include students who have an average score above 90.
+This code is working with an array of objects representing students and their test scores, it performs two operations: calculating the average test score for each student and then filtering the students with an average test score above 90.
+
+First, the **`map`** method is used to iterate through the array of students, and create a new array by applying a function to each **`student`** object. The function passed to the **`map`** method takes one argument, **`student`**, which is the current element being processed.
+
+It calculates the sum of all the test scores using the **`reduce`** method on the scores array and then returns an object with the student's name and average test score which is the sum of scores divided by the number of scores. Then, the **`filter`** method is used to iterate through the array of student averages, and create a new array by applying a function to each **`student`** object.
+
+The function passed to the **`filter`** method takes one argument, **`student`**, which is the current element being processed, and it returns a Boolean value that indicates whether the student's average test score is greater than 90 or not.
+
 </ListToggle>
 
 ## High Priced Product Categories
@@ -684,15 +734,15 @@ const highPricedCategories = avgPriceByCategory.filter(category => category.aver
 
 This code is using JavaScript's **`reduce`** and **`map`** methods to process an array of products and group them by category, calculate the average price of each category, and then **`filter`** the categories that have an average price greater than 50.
 
-It starts by using the **`reduce`** method on the array of products and an empty object as an initial accumulator. The callback function passed to **`reduce`** takes in two arguments: an accumulator object and the current product.
-It then assigns the product's category to a variable category, and checks if the accumulator object already contains a key for this category. If it doesn't, it creates a new key on the accumulator object with an empty array as its value.
-Then it pushes the current product into the array of the corresponding category and returns the accumulator object.
+It starts by using the **`reduce`** method on the array of products and an empty object as an initial **`accumulator`**. The **`callback`** function passed to **`reduce`** takes in two arguments: an **`accumulator`** object and the current **`product`**.
+
+It assigns the product's category to a variable category, and checks if the **`accumulator`** object already contains a key for this category. If it doesn't, it creates a new key on the **`accumulator`** object with an empty array as its value. It then pushes the current **`product`** into the array of the corresponding category and returns the **`accumulator`** object.
 
 In the end, **`productsByCategory`** will be an object where each key is a category name, and the value is an array of products that belong to that category.
-Next, it uses **`Object.keys(productsByCategory)`** to extract the keys (category names) of the **`productsByCategory`** object and then **`map`** method to iterate over these keys and calculate the average price of products in each category.
-It calculates the sum of prices of all products in each category using **`reduce`** method and divides this sum with the number of products in that category.
 
-Finally, it filters the categories that have an average price greater than 50 using **`filter`** method, and logs the final result to the console.
+Next, it uses **`Object.keys(productsByCategory)`** to extract the keys (category names) of the **`productsByCategory`** object and then **`map`** method to iterate over these keys and calculate the average price of products in each category. It calculates the sum of prices of all products in each category using **`reduce`** method and divides this sum with the number of products in that category.
+
+Finally, it filters the categories that have an average price greater than 50 using **`filter`** method.
 
 </ListToggle>
 
@@ -771,8 +821,18 @@ const avgSalaryByDepartment = Object.keys(employeesByDepartment).map(department 
 const highPaidDepartments = avgSalaryByDepartment.filter(department => department.average > 65000);
 ```
 
-In this example, we first use **`reduce`** to group the employees by department, we then use **`map`** to iterate over the departments, after which we use **`reduce`** again to sum all salaries and divide by the number of employees in that department to get the average salary.
-Finally, we use **`filter`** to only include departments with an average salary above a certain threshold.
+This code is working with an array of objects representing employees and their salaries and department. It performs three operations: creating a dictionary with **`department`** as the key and an array of **`employee`** objects as the value, calculating the average salary for each department, and filtering the departments with an average salary above a certain threshold.
+
+First, the **`reduce`** method is used to iterate through the array of employees, and create a dictionary object by applying a function to each **`employee`** object. The function passed to the **`reduce`** method takes two arguments, **`acc`** and **`employee`**, where **`acc`** is the **`accumulator`** object, initially set to an empty object, and **`employee`** is the current element being processed.
+
+The function first gets the department from the current **`employee`** object, and if the department does not exist in the **`accumulator`** object, it creates an array for that department. Then it pushes the current **`employee`** object to the array for that department. Finally, it returns the **`accumulator`** object with the updated **`department`** and **`employee`** arrays.
+
+The **`Object.keys`** method is then used to get all the departments from the **`accumulator`** object, then the **`map`** method is used to iterate through the departments and create a new array by applying a function to each **`department`**. The function passed to the **`map`** method takes one argument, **`department`**, which is the current element being processed.
+
+It first calculates the sum of all the salary of employees in that department using the **`reduce`** method on the **`department`** array and then returns an object with the department name and average salary which is the sum of salary divided by the number of employees in that **`department`**.
+
+Finally, the **`filter`** method is used to iterate through the array of department averages, and create a new array by applying a function to each **`department`** object. The function passed to the **`filter`** method takes one argument, **`department`**, which is the current element being processed, and it returns a Boolean value that indicates whether the department's average salary is greater than 65000 or not.
+
 </ListToggle>
 
 export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
