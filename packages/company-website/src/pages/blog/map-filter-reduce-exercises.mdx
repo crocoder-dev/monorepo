@@ -14,7 +14,7 @@ export const meta = {
   category: "Learn JavaScript",
   image: blogHeader,
   date: 1619474400000,
-  updatedAt: 1674064497540,
+  updatedAt: 1674513198634,
   author: "davidabram",
   editor: "velimirujevic",
   abstract:
@@ -184,7 +184,7 @@ const input = [12, 46, 32, 64];
 <NonHSubtitle>Result</NonHSubtitle>
 
 ```javascript
-  { mean: 38.5, median: 32 }
+  { mean: 38.5, median: 39 }
 ```
 
   </Column>
@@ -201,8 +201,19 @@ input.reduce(
   (accumulator, currentValue, index, array) => {
     accumulator.mean += currentValue / array.length;
 
-    if (Math.abs(index + 1 - array.length / 2) < 1) {
-      accumulator.median = currentValue;
+    if (array.length % 2 === 0) {
+      // if the array has an even number of elements
+      if (index === array.length / 2 - 1) {
+        accumulator.median += currentValue;
+      } else if (index === array.length / 2) {
+        accumulator.median += currentValue;
+        accumulator.median /= 2;
+      }
+    } else {
+      // if the array has an odd number of elements
+      if (index === (array.length - 1) / 2) {
+        accumulator.median = currentValue;
+      }
     }
 
     return accumulator;
