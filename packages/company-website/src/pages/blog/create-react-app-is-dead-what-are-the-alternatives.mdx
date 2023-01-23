@@ -5,7 +5,7 @@ import ContentTable from "../../components/Blog/ContentTable";
 export const meta = {
     id: "create-react-app-is-dead-what-are-the-alternatives",
     title: "Create React app is dead! What are the alternatives?",
-    description: "Create React App (CRA) is a popular tool for creating new React projects, but it seems that its days may be numbered due to a lack of recent updates and a high number of open pull requests. Alternatives offer more advanced features and capabilities, such as superior performance, faster development times, and extensive plugin compatibility. While CRA may be "dead", the React ecosystem is still thriving, and there are many other tools available for building React applications that are well-supported, actively maintained and built on the latest best practices."
+    description: 'Create React App (CRA) is a popular tool for creating new React projects, but it seems that its days may be numbered due to a lack of recent updates and a high number of open pull requests. Alternatives offer more advanced features and capabilities, such as superior performance, faster development times, and extensive plugin compatibility. While CRA may be "dead", the React ecosystem is still thriving, and there are many other tools available for building React applications that are well-supported, actively maintained and built on the latest best practices.',
     category: "Learn JavaScript",
     image: blogHeader,
     date: 1674342628465,
@@ -15,6 +15,8 @@ export const meta = {
     abstract:"Create React App seems abandoned and dead. I want to show you some great alternatives we personally use in CroCoder. T3 Stack is a web development stack created by Theo that focuses on simplicity, modularity, and full-stack typesafety. Its core pieces are Next.js, TypeScript, and Tailwind CSS. T3 stack is a great alternative to Create React App (CRA) because it offers superior performance, faster development time and actively maintained. Vite + React is a great alternative to Create React App (CRA) because it offers superior performance and faster development time. Additionally, Next.js is a frontend framework that is built on top of React and is designed to improve the performance, user experience, and SEO of web applications. It provides an out-of-the-box solution for server-side rendering (SSR) of React components, which allows for simple indexable HTML to be sent to the user, making it easier for web crawlers to read the text content of the application and improving its visibility in search engines.",
     pageType: "blog-posting"
 };
+
+
 
 [Create React App (CRA)](https://github.com/facebook/create-react-app) was once the go-to tool for creating new React projects. It provided a simple and easy-to-use command-line interface (CLI) for setting up a new React codebase, complete with a development server, automatic transpilation, and more. 
 
@@ -38,6 +40,7 @@ Overall, Vite + React is a great alternative to Create React App because it offe
 The website you are reading it right now is built using Vite + React, and we are very happy with it. With minimal configuration, we have added static build + [Islands architecure](https://www.patterns.dev/posts/islands-architecture/) support, and we are able to deploy it to Vercel in a matter of minutes. 
 
 Try it out yourself and check out the [Vite docs](https://vitejs.dev/guide/#scaffolding-your-first-vite-project)!
+
 ```bash
 # Create Vite + React app using npm
 npm create vite@latest vite-react-app -- --template react-ts
@@ -105,5 +108,7 @@ One of the key benefits of using an alternative to Create React App is that they
 Another benefit of using an alternative to Create React App is that they often have a more active and engaged community. For example, Next.js has a large and active community, with many developers sharing their experiences and solutions through online tutorials and forums. This can be incredibly valuable for developers who are new to React or who are looking for help and support with specific issues or challenges.
 
 In summary, while Create React App may be "dead", the React ecosystem is still alive and well. There are many alternatives available that can provide an equally good or even better development experience, and it's worth considering them for your next React project. Whether you choose Next.js, Remix, vite + react, or another alternative, you can be confident that you're using a tool that is well-supported, actively maintained, and built on the latest best practices.
+
+
 
 export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
