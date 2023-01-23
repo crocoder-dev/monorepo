@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import StatusQuoDemo from './components/Blog/ImperativeHandlePost/StatusQuoDemo';
 import UncontrolledDemo from './components/Blog/ImperativeHandlePost/UncontrolledDemo';
 import Cards from './components/OurClients/Cards';
+import ListOfItemsDemo from './components/Blog/DOMPost/ListOfItems/demo';
 
 import reportWebVitals from './web-vitals/report';
 import sendToVercelAnalytics from './web-vitals';
@@ -20,6 +21,7 @@ const components = {
   StatusQuoDemo,
   UncontrolledDemo,
   Cards,
+  ListOfItemsDemo,
 };
 
 const hydrate = (Component, root, props) => {

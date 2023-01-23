@@ -6,10 +6,12 @@ import Demo from "../../components/Blog/CodeExample/Demo";
 import BlogLayout from "../../Layouts/BlogLayout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
 import ContentTable from "../../components/Blog/ContentTable";
+import ListOfItemsDemo from "../../components/Blog/DOMPost/ListOfItems/demo";
+import Island from "../../components/Island";
 
 export const meta = {
   id: "the-dom-exercises",
-  title: "The DOM - Code Exercises",
+  title: "JavaScript DOM - Code Exercises",
   description:
     "The DOM or the Document Object Model of the page is created after the web page is loaded. Learn some DOM manuipulation with these exercises.",
   category: "Learn JavaScript",
@@ -222,6 +224,77 @@ firstLis.forEach((li) => (li.textContent = "first"));
 
 lastLis.forEach((li) => (li.textContent = "last"));
 ```
+
+</ListToggle>
+
+
+## List of items
+
+You are building a web page that displays a list of items. The user should be able to add new items to the list and edit the text of the items. Your task is to use the DOM API to create the necessary elements, add event listeners to them, and manipulate the elements as the user interacts with the page.
+
+
+<Row>
+
+  <Column>
+
+```html
+<div id="list-app">
+<div>
+```
+
+  </Column>
+
+  <Column>
+
+<Demo>
+
+  <Island deferUntil="visible">
+    <ListOfItemsDemo />
+  </Island>
+
+</Demo>
+
+  </Column>
+
+</Row>
+
+<ListToggle title="Solution">
+
+```javascript
+const app = document.getElementById("list-app");
+
+// Create the necessary elements
+const list = document.createElemeent("ul");
+const input = document.createElement("input");
+input.setAttribute("type", "text");
+const addButton = document.createElement("button");
+addButton.innerHTML = "Create New";
+
+// Add event listeners to the elements
+addButton.addEventListener("click", function() {
+    const newItem = document.createElement("li");
+    newItem.innerHTML = 'New item';
+    list.appendChild(newItem);
+    input.value = "";
+});
+
+list.addEventListener("click", function(event) {
+    if (event.target.tagName === "li") {
+        const text = prompt("Enter new text:");
+        event.target.innerHTML = text;
+    }
+});
+
+app.appendChild(input);
+app.appendChild(addButton);
+```
+
+In this code snippet, we create three elements: list which is an unordered list, input which is a text input, and addButton which is a button element.
+We use the setAttribute method to set the type of the input to "text".
+Then, we use the addEventListener method to add event listeners to the elements. When the user clicks the add button, the function inside the event listener will create a new li element, set its text to the value of the input, and append it to the list. When the user clicks on an item in the list, the function inside the event listener will prompt the user for new text and set the text of the item to the new text.
+Finally, we use the appendChild method to add the elements to the body of the web page.
+
+Please note that this is a simplified example and you might want to add some error handling, validation, and more features to your application.
 
 </ListToggle>
 
