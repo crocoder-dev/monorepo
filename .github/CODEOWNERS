@@ -107,13 +107,14 @@
 /packages/company-website/src/content/images/blogs/callback-hell.jpg @stefanskoricdev
 /packages/company-website/src/content/images/blogs/component-libraries-an-overlooked-part-of-your-brand.jpg @stefanskoricdev
 /packages/company-website/src/content/images/blogs/component-libraries-an-overlooked-part-of-your-brand/ @stefanskoricdev
+/packages/company-website/src/content/images/blogs/create-react-app-is-dead-what-are-the-alternatives.jpg @davidabram
 /packages/company-website/src/content/images/blogs/dom.png @stefanskoricdev
 /packages/company-website/src/content/images/blogs/how-to-clone-object-in-javascript.png @stefanskoricdev
 /packages/company-website/src/content/images/blogs/how-to-perfect-your-cv-entry-level-developer.png @stefanskoricdev
 /packages/company-website/src/content/images/blogs/how-to-properly-showcase-your-coding-projects.jpg @stefanskoricdev
 /packages/company-website/src/content/images/blogs/map-filter-reduce.png @stefanskoricdev
 /packages/company-website/src/content/images/blogs/question-card-background.png @stefanskoricdev
-/packages/company-website/src/content/images/blogs/react-input-component-clear-value-after-input.jpg @stefanskoricdev
+/packages/company-website/src/content/images/blogs/react-input-component-clear-value-after-input.jpg @davidabram
 /packages/company-website/src/content/images/blogs/what-should-be-included-in-an-internal-component-library.jpg @davidabram
 /packages/company-website/src/content/images/crocoder-??????????????.png @davidabram
 /packages/company-website/src/content/images/hero.png @stefanskoricdev
@@ -138,6 +139,7 @@
 /packages/company-website/src/pages/blog/block-russia-using-cloudfront.mdx @stefanskoricdev
 /packages/company-website/src/pages/blog/callbacks-exercises.mdx @stefanskoricdev
 /packages/company-website/src/pages/blog/component-libraries-an-overlooked-part-of-your-brand.mdx @stefanskoricdev
+/packages/company-website/src/pages/blog/create-react-app-is-dead-what-are-the-alternatives.mdx @davidabram
 /packages/company-website/src/pages/blog/how-to-clone-object-in-javascript.mdx @stefanskoricdev
 /packages/company-website/src/pages/blog/how-to-perfect-your-cv-entry-level-developer.mdx @stefanskoricdev
 /packages/company-website/src/pages/blog/how-to-properly-showcase-your-coding-projects.mdx @stefanskoricdev
