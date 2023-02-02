@@ -1,4 +1,4 @@
-import blogHeader from "../../content/images/blogs/dom.png?preset=responsive";
+import blogHeader from "../../content/images/blogs/dom.jpg?preset=responsive";
 import Row from "../../components/Blog/CodeExample/Row";
 import Column from "../../components/Blog/CodeExample/Column";
 import ListToggle from "../../components/Blog/CodeExample/ListToggle";
@@ -6,16 +6,18 @@ import Demo from "../../components/Blog/CodeExample/Demo";
 import BlogLayout from "../../Layouts/BlogLayout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
 import ContentTable from "../../components/Blog/ContentTable";
+import ListOfItemsDemo from "../../components/Blog/DOMPost/ListOfItems/demo";
+import Island from "../../components/Island";
 
 export const meta = {
   id: "the-dom-exercises",
-  title: "The DOM - Code Exercises",
+  title: "JavaScript DOM - Code Exercises",
   description:
     "The DOM or the Document Object Model of the page is created after the web page is loaded. Learn some DOM manuipulation with these exercises.",
   category: "Learn JavaScript",
   image: blogHeader,
   date: 1619463600000,
-  updatedAt: 1619463600000,
+  updatedAt: 1675249865796,
   author: "davidabram",
   editor: "velimirujevic",
   abstract:
@@ -94,6 +96,10 @@ fruitList.forEach((fruit) => {
 });
 ```
 
+This code creates a constant array **`fruitList`** with three elements, **`apple`**, **`banana`**, and **`tomato`**. It then selects an unordered list element from the HTML document using **`document.querySelector('ul')`**.
+
+Using the **`forEach`** method on the **`fruitList`** array, the code creates a new list item element for each fruit in the list, sets its text content to the name of the fruit, and appends it as a child to the unordered list element. This will dynamically add the list of fruits as list items in the HTML document.
+
 </ListToggle>
 
 ## CroCoder logo
@@ -149,6 +155,10 @@ imgElement.src = imageSrc;
 
 divElement.appendChild(imgElement);
 ```
+
+This code creates a constant **`imageSrc`** with a string value of an image URL. It then selects a div element from the HTML document using **`document.querySelector('div')`**.
+
+The code then creates an **`img`** element using **`document.createElement('img')`** and sets its **`src`** attribute to the value of **`imageSrc`**. Finally, the code appends the **`img`** element as a child to the **`div`** element using **`divElement.appendChild(imgElement)`**. This will dynamically add the image from the URL specified in **`imageSrc`** as an element inside the **`div`** in the HTML document.
 
 </ListToggle>
 
@@ -222,6 +232,88 @@ firstLis.forEach((li) => (li.textContent = "first"));
 
 lastLis.forEach((li) => (li.textContent = "last"));
 ```
+
+This code is using JavaScript to select and manipulate HTML elements. The first line uses the **`querySelectorAll`** method to find all the first children **`li`** elements within **`ul`** elements and spread them into an array **`firstLis`**.
+
+The second line does the same for all the last children **`li`** elements within **`ul`** elements and spread them into an array **`lastLis`**. Then, the **`forEach`** method is used to iterate over both arrays and modify the **`textContent`** property of each **`li`** element to be "first" for the elements in **`firstLis`** and "last" for the elements in **`lastLis`**.
+
+</ListToggle>
+
+
+## List of items
+
+You are building a web page that displays a list of items. The user should be able to add new items to the list and edit the text of the items. Your task is to use the DOM API to create the necessary elements, add event listeners to them, and manipulate the elements as the user interacts with the page.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [Document.getElementById()](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
+- [Document.createElement()](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+- [EventTarget.addEventListener()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+
+
+<Row>
+
+  <Column>
+
+```html
+<div id="list-app">
+<div>
+```
+
+  </Column>
+
+  <Column>
+
+<Demo>
+
+  <Island deferUntil="visible">
+    <ListOfItemsDemo />
+  </Island>
+
+</Demo>
+
+  </Column>
+
+</Row>
+
+<ListToggle title="Solution">
+
+```javascript
+const app = document.getElementById("list-app");
+
+// Create the necessary elements
+const list = document.createElemeent("ul");
+const input = document.createElement("input");
+input.setAttribute("type", "text");
+const addButton = document.createElement("button");
+addButton.innerHTML = "Create New";
+
+// Add event listeners to the elements
+addButton.addEventListener("click", function() {
+    const newItem = document.createElement("li");
+    newItem.innerHTML = 'New item';
+    list.appendChild(newItem);
+    input.value = "";
+});
+
+list.addEventListener("click", function(event) {
+    if (event.target.tagName === "li") {
+        const text = prompt("Enter new text:");
+        event.target.innerHTML = text;
+    }
+});
+
+app.appendChild(input);
+app.appendChild(addButton);
+```
+
+In this code snippet, we created three elements: **`list`** which is an unordered list, **`input`** which is a text input, and **`addButton`** which is a button element.
+
+We use the **`setAttribute`** method to set the type of the input to "text". Then, we use the **`addEventListener`** method to add event listeners to the elements. When the user clicks the add button, the function inside the event listener will create a new **`li`** element, set its text to the value of the input, and append it to the list. When the user clicks on an item in the list, the function inside the event listener will prompt the user for new text and set the text of the item to the new text.
+
+Finally, we use the **`appendChild`** method to add the elements to the body of the web page.
+
+Please note that this is just a simplified example. You might want to add some error handling, validation, and more features when building your own application.
 
 </ListToggle>
 
