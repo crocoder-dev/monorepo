@@ -3,6 +3,7 @@
 /.vscode/settings.json @crocoder-dev/crocoder-team
 /packages/company-website/api/contacts.js @crocoder-dev/crocoder-team
 /packages/company-website/public/media/crocoder-font.svg @crocoder-dev/crocoder-team
+/packages/company-website/src/components/Blog/DOMPost/ListOfItems/demo.jsx @crocoder-dev/crocoder-team
 /packages/company-website/src/components/Blog/ImperativeHandlePost/index.module.scss @crocoder-dev/crocoder-team
 /packages/company-website/src/components/Blog/ImperativeHandlePost/StatusQuoDemo/index.jsx @crocoder-dev/crocoder-team
 /packages/company-website/src/components/Blog/ImperativeHandlePost/UncontrolledDemo/index.jsx @crocoder-dev/crocoder-team
