@@ -7,6 +7,10 @@
       "destination": "https://sa.crocoder.dev/latest.js"
     },
     {
+      "source": "/sa/auto-events.js",
+      "destination": "https://sa.crocoder.dev/auto-events.js"
+    },
+    {
       "source": "/sa/noscript.gif",
       "destination": "https://sa.crocoder.dev/noscript.gif"
     },
