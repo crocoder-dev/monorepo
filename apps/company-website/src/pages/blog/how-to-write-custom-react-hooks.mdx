@@ -8,6 +8,7 @@ import NonHSubtitle from "../../components/Blog/NonHSubtitle";
 import ContentTable from "../../components/Blog/ContentTable";
 import Island from "../../components/Island";
 import SimpleMouseTracker from "../../components/Blog/ReactHooksPost/SimpleMouseTracker/demo";
+import SimpleButtonClickTracker from "../../components/Blog/ReactHooksPost/SimpleButtonClickTracker/demo";
 
 export const meta = {
   id: "how-to-write-custom-react-hooks",
@@ -112,6 +113,14 @@ Finally, the **`MouseTracker`** component is exported as the default export from
 
 You need to create a custom hook that tracks the number of clicks on a button in a React component and provides a way for the component to increment the count.
 
+<Demo>
+
+  <Island deferUntil="visible">
+    <SimpleButtonClickTracker />
+  </Island>
+
+</Demo>
+
 <NonHSubtitle>Helpful links</NonHSubtitle>
 
 - [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
@@ -120,11 +129,11 @@ You need to create a custom hook that tracks the number of clicks on a button in
 <ListToggle title="Solution">
 
 ```tsx
-import { useState, useEffect } from 'react';
-const useClickCounter = () => {
+import { useState } from 'react';
+export const useClickCounter = () => {
   const [count, setCount] = useState(0);
   const increment = () => setCount(prevCount => prevCount + 1);
-  return [count, increment];
+  return [count, increment] as const;
 };
 // Use the hook in a component
 import React from 'react';
