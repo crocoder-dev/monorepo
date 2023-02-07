@@ -10,6 +10,7 @@ import Cards from './components/OurClients/Cards';
 import ListOfItemsDemo from './components/Blog/DOMPost/ListOfItems/demo';
 import SimpleMouseTracker from "./components/Blog/ReactHooksPost/SimpleMouseTracker/demo";
 import SimpleButtonClickTracker from "./components/Blog/ReactHooksPost/SimpleButtonClickTracker/demo";
+import NextLevelButtonClickTracker from "./components/Blog/ReactHooksPost/NextLevelButtonClickTracker/demo";
 
 import reportWebVitals from './web-vitals/report';
 import sendToVercelAnalytics from './web-vitals';
@@ -26,6 +27,7 @@ const components = {
   ListOfItemsDemo,
   SimpleMouseTracker,
   SimpleButtonClickTracker,
+  NextLevelButtonClickTracker,
 };
 
 const hydrate = (Component, root, props) => {

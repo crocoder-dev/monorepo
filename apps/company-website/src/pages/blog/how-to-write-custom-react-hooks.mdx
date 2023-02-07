@@ -9,6 +9,7 @@ import ContentTable from "../../components/Blog/ContentTable";
 import Island from "../../components/Island";
 import SimpleMouseTracker from "../../components/Blog/ReactHooksPost/SimpleMouseTracker/demo";
 import SimpleButtonClickTracker from "../../components/Blog/ReactHooksPost/SimpleButtonClickTracker/demo";
+import NextLevelButtonClickTracker from "../../components/Blog/ReactHooksPost/NextLevelButtonClickTracker/demo";
 
 export const meta = {
   id: "how-to-write-custom-react-hooks",
@@ -170,15 +171,23 @@ Create a custom hook in React that tracks the number of times a button has been 
 - [Array.prototype.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 - [Math.abs()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs)
 
+<Demo>
+
+  <Island deferUntil="visible">
+    <NextLevelButtonClickTracker />
+  </Island>
+
+</Demo>
+
 <ListToggle title="Solution">
 
 ```tsx
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 interface UseClickTrackerState {
   count: number;
   lastClicked: number | null;
 }
-const useClickTracker = (): [UseClickTrackerState, () => void] => {
+export const useClickTracker = (): [UseClickTrackerState, () => void] => {
   const [state, setState] = useState<UseClickTrackerState>({
     count: 0,
     lastClicked: null,
