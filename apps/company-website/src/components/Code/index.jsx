@@ -5,11 +5,14 @@ import javascript from 'react-syntax-highlighter/dist/cjs/languages/prism/javasc
 import jsx from 'react-syntax-highlighter/dist/cjs/languages/prism/jsx';
 import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash';
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript';
+import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
 
 SyntaxHighlighter.registerLanguage('javascript', javascript);
 SyntaxHighlighter.registerLanguage('jsx', jsx);
 SyntaxHighlighter.registerLanguage('bash', bash);
 SyntaxHighlighter.registerLanguage('typescript', typescript);
+SyntaxHighlighter.registerLanguage('tsx', tsx);
+
 
 const Code = ({ children }) => {
   const className = children.props.className || '';
