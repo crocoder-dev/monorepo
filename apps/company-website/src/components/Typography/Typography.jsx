@@ -33,6 +33,7 @@ const Typography = ({
       'label',
       'blockquote',
       'time',
+      'li',
     ].includes(element)
   ) {
     Component = element;

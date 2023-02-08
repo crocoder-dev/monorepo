@@ -1,0 +1,440 @@
+import blogHeader from "../../content/images/blogs/how-to-write-custom-react-hooks.jpg?preset=responsive";
+import Column from "../../components/Blog/CodeExample/Column";
+import Row from "../../components/Blog/CodeExample/Row";
+import ListToggle from "../../components/Blog/CodeExample/ListToggle";
+import Demo from "../../components/Blog/CodeExample/Demo";
+import BlogLayout from "../../Layouts/BlogLayout";
+import NonHSubtitle from "../../components/Blog/NonHSubtitle";
+import ContentTable from "../../components/Blog/ContentTable";
+import Island from "../../components/Island";
+import SimpleMouseTracker from "../../components/Blog/ReactHooksPost/SimpleMouseTracker/demo";
+import SimpleButtonClickTracker from "../../components/Blog/ReactHooksPost/SimpleButtonClickTracker/demo";
+import NextLevelButtonClickTracker from "../../components/Blog/ReactHooksPost/NextLevelButtonClickTracker/demo";
+import UseFetchDataDemo from "../../components/Blog/ReactHooksPost/useFetchData/demo";
+import UseDebouncedSearchDemo from "../../components/Blog/ReactHooksPost/useDebouncedSearch/demo";
+
+export const meta = {
+  id: "how-to-write-custom-react-hooks",
+  title: "How to write custom React hooks? - Code Exercises",
+  description:
+    "Custom React hooks are user-defined functions that allow developers to reuse stateful logic and side effects from React components in a clean and reusable way. Try to solve the given exercises!",
+  category: "Learn JavaScript",
+  image: blogHeader,
+  date: 1675873546123,
+  updatedAt: 1675873546123,
+  author: "davidabram",
+  editor: "velimirujevic",
+  abstract:
+    "Unlock the full potential of **React** with custom hooks! In this blog post, we'll go through some exercises that can help you level up your react skills by writing custom hooks in **TypeScript**. From state management to performance optimization, you'll learn how to create reusable logic for your React components and make your code more efficient and scalable. Every exercise has a brief description of the problem, starting code and relevant links. Try to solve the problems without taking a peek at the solution.",
+  pageType: "blog-posting"
+};
+
+Unlock the full potential of **React** with custom hooks! In this blog post, we'll go through some exercises that can help you level up your react skills by writing custom hooks in **TypeScript**. From state management to performance optimization, you'll learn how to create reusable logic for your React components and make your code more efficient and scalable. Every exercise has a brief description of the problem, starting code and relevant links. Try to solve the problems without taking a peek at the solution.
+
+I would suggest using [vite-react-app](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) to create a new project for this tutorial. It's a great tool that allows you to create a new React project with a single command.
+
+```bash
+# Create Vite + React app using npm
+npm create vite@latest vite-react-app -- --template react-ts
+
+# Create Vite + React app using yarn
+yarn create vite --template react-ts
+
+# Create Vite + React app using pnpm
+pnpm create vite --template react-ts
+```
+
+If you need some additional help, you can contact me directly.
+
+<br />
+***
+<br />
+
+**Custom React hooks** are user-defined functions that allow you to extract and reuse stateful logic and side effects from your React components. 
+
+They let you encapsulate and share behavior between multiple components in a clean and reusable way. By using custom hooks, you can reduce the amount of code you write and make it easier to test as well as maintain your React applications.
+
+Custom hooks can also help improve performance by allowing you to share state updates across multiple components and avoid unnecessary re-renders.
+
+<br />
+<br />
+
+<ContentTable tocData={props.toc} />
+
+<br />
+<br />
+
+## useMousePosition
+
+Write a simple custom hook in TypeScript that keeps track of the mouse position on the screen. 
+
+**pssst** - Use eventListener that listens for 'mousemove' events.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [useState](https://beta.reactjs.org/reference/react/useState)
+- [useEffect](https://beta.reactjs.org/reference/react/useEffect)
+- [EventTarget.addEventListener()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+- [EventTarget.removeEventListener()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener)
+
+<NonHSubtitle>Result</NonHSubtitle>
+
+<Demo>
+
+  <Island deferUntil="visible">
+    <SimpleMouseTracker />
+  </Island>
+
+</Demo>
+
+<ListToggle title="Solution">
+```tsx
+import { useState, useEffect } from 'react';
+export const useMousePosition = (): [{ x: number, y: number },
+React.Dispatch<React.SetStateAction<{ x: number, y: number }>>] => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      setPosition({ x: event.clientX, y: event.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+  return [position, setPosition];
+};
+// Use the hook in a component
+import React from 'react';
+import { useMousePosition } from './useMousePosition';
+const MouseTracker: React.FC = () => {
+  const [position, setPosition] = useMousePosition();
+  return (
+    <div>
+      <p>X: {position.x}</p>
+      <p>Y: {position.y}</p>
+    </div>
+  );
+};
+export default MouseTracker;
+```
+
+This code is a simple implementation of a custom hook in React with TypeScript. The custom hook is called **`useMousePosition`** and it returns the current mouse position on the screen, which is represented as an object with **`x`** and **`y`** properties.
+
+The hook uses the **`useState`** and **`useEffect`** hooks from React to manage the state and side-effects of the component. The **`useState`** hook is used to create a state variable **`position`** that stores the current mouse position, and a function **`setPosition`** that updates the state.
+
+The **`useEffect`** hook is used to add a **`mousemove`** event listener to the window. The listener updates the state with the current mouse position when the mouse moves. The **`useEffect`** hook also returns a cleanup function that removes the event listener when the component unmounts.
+
+The custom hook is then used in a component called **`MouseTracker`** that displays the current mouse position on the screen. The component uses the **`useMousePosition`** hook to get the current mouse position, and then displays the **`x`** and **`y`** values in a **`div`** element.
+
+Finally, the **`MouseTracker`** component is exported as the default export from the module, making it possible to import and use the component in other parts of the application.
+
+</ListToggle>
+
+## useClickCounter
+
+You need to create a custom hook that tracks the number of clicks on a button in a React component and provides a way for the component to increment the count.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [useState](https://beta.reactjs.org/reference/react/useState)
+- [const assertions](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html#const-assertions)
+
+<NonHSubtitle>Result</NonHSubtitle>
+
+<Demo>
+
+  <Island deferUntil="visible">
+    <SimpleButtonClickTracker />
+  </Island>
+
+</Demo>
+
+<ListToggle title="Solution">
+
+```tsx
+import { useState } from 'react';
+export const useClickCounter = () => {
+  const [count, setCount] = useState(0);
+  const increment = () => setCount(prevCount => prevCount + 1);
+  return [count, increment] as const;
+};
+
+// Use the hook in a component
+import React from 'react';
+import { useClickCounter } from './useClickCounter';
+const ClickCounter: React.FC = () => {
+  const [count, increment] = useClickCounter();
+  return (
+    <div>
+      <p>Button has been clicked {count} times</p>
+      <button onClick={increment}>Click me</button>
+    </div>
+  );
+};
+export default ClickCounter;
+```
+
+The **`useClickCounter`** custom hook uses the **`useState`** hook to keep track of the number of clicks on a button in a component. The **`useState`** hook returns an array with two elements: the current state value, and a function to update the state. In this case, the state is the **`count`** of clicks, which is initially set to 0.
+
+The **`increment`** function is created to increment the count when the button is clicked. The function uses the **`setCount`** updater function returned by the **`useState`** hook to update the count by adding 1 to the previous count value.
+
+The hook then returns an array that contains the **`count`** and the **`increment`** function.
+
+The **`ClickCounter`** component imports the **`useClickCounter`** hook and calls it to get the count and increment function. The component then displays the number of clicks and uses the increment function as the **`onClick`** handler for the button.
+
+</ListToggle>
+
+## useClickTracker
+
+Create a custom hook in React that tracks the number of times a button has been clicked and the time of the most recent click. The hook should provide two pieces of state: **`count`** and **`lastClicked`**, and it should also provide a way for the component to increment the count.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [useState](https://beta.reactjs.org/reference/react/useState)
+- [useCallback](https://beta.reactjs.org/reference/react/useCallback)
+
+<NonHSubtitle>Result</NonHSubtitle>
+
+<Demo>
+
+  <Island deferUntil="visible">
+    <NextLevelButtonClickTracker />
+  </Island>
+
+</Demo>
+
+<ListToggle title="Solution">
+
+```tsx
+import { useState, useCallback } from 'react';
+interface UseClickTrackerState {
+  count: number;
+  lastClicked: number | null;
+}
+export const useClickTracker = (): [UseClickTrackerState, () => void] => {
+  const [state, setState] = useState<UseClickTrackerState>({
+    count: 0,
+    lastClicked: null,
+  });
+  const incrementCount = useCallback(() => {
+    setState(prevState => ({
+      count: prevState.count + 1,
+      lastClicked: Date.now(),
+    }));
+  }, [setState]);
+  return [state, incrementCount] as const;
+};
+```
+
+The custom hook **`useClickTracker`** provides a way for the component to track the number of times a button has been clicked and the time of the most recent click. The hook exports an array of two elements: **`state`** and **`incrementCount`**. The **`state`** object contains two properties: **`count`** and **`lastClicked`**. **`count`** keeps track of the number of times the button has been clicked, and **`lastClicked`** keeps track of the timestamp of the most recent click.
+
+The hook uses the **`useState`** hook to manage the state of the component. The initial state of the component is an object with **`count`** set to 0 and **`lastClicked`** set to **`null`**. The **`setState`** function is used to update the state whenever the button is clicked.
+
+```tsx
+import React from 'react';
+import { useClickTracker } from './useClickTracker';
+const ButtonClickTracker: React.FC = () => {
+  const [state, incrementCount] = useClickTracker();
+  return (
+    <div>
+      <p>Button has been clicked {state.count} times</p>
+      <p>
+        Last clicked at:{' '}
+        {state.lastClicked ? new Date(state.lastClicked).toLocaleString() : 'Never'}
+      </p>
+      <button onClick={incrementCount}>Click me</button>
+    </div>
+  );
+};
+export default ButtonClickTracker;
+```
+
+The hook also uses the **`useCallback`** hook to ensure that the **`incrementCount`** function is only created once, even if the component is re-rendered multiple times. This can improve performance by avoiding the creation of unnecessary functions.
+
+The component **`ButtonClickTracker`** imports the hook and calls it using the **`useClickTracker`** hook. The hook returns an array with two elements: **`state`** and **`incrementCount`**. The component uses the **`state`** object to display the number of times the button has been clicked and the time of the most recent click. The component also uses the **`incrementCount`** function as the **`onClick`** handler for the button.
+
+</ListToggle>
+
+## useFetchData
+
+Create a custom hook to interact with a REST API and fetch data.
+
+**pssst** - you can use the [JSONPlaceholder](https://jsonplaceholder.typicode.com/posts) API to test your hook.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [useState](https://beta.reactjs.org/reference/react/useState)
+- [useEffect](https://beta.reactjs.org/reference/react/useEffect)
+- [const assertions](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html#const-assertions)
+- [fetch()](https://developer.mozilla.org/en-US/docs/Web/API/fetch)
+
+<NonHSubtitle>Result</NonHSubtitle>
+
+<Demo>
+
+  <Island deferUntil="visible">
+    <UseFetchDataDemo />
+  </Island>
+
+</Demo>
+
+<ListToggle title="Solution">
+
+```tsx
+import { useState, useEffect } from 'react';
+
+interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
+
+export const useFetchData = (url: string) => {
+  const [data, setData] = useState<Post[] | null>(null);
+  const [error, setError] = useState<{message: string} | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        setData(data);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [url]);
+
+  return [data, error, loading] as const;
+};
+
+// Use the hook in a component
+import React from 'react';
+import { useFetchData } from './useFetchData';
+
+const DataFetcher: React.FC = () => {
+  const [data, error, loading] = useFetchData('https://jsonplaceholder.typicode.com/posts');
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  if (!data) return <p>No data</p>;
+
+  return (
+    <ul>
+      {data.map((item) => (
+        <li key={item.id}>{item.title}</li>
+      ))}
+    </ul>
+  );
+};
+
+export default DataFetcher;
+```
+
+The code is a custom React hook named useFetchData that makes it easier to fetch data from a specified URL and display it in a React component.
+
+The hook uses the useState hook to manage the state of the data being fetched, an error that may occur, and whether the data is currently being loaded.
+
+The hook uses the useEffect hook to make an asynchronous call to fetch the data from the URL. If the fetch is successful, it updates the state with the fetched data. If there is an error, it updates the state with the error. It also updates the loading state while the data is being fetched.
+
+In a component, the hook is used by calling useFetchData and passing in the URL to fetch data from. The hook returns an array with the data, error, and loading state, which can be destructured into separate variables.
+
+The component then uses conditional rendering to display either a "Loading..." message, an error message, or the fetched data. The fetched data is displayed as a list of items, each item being a title from the data.
+
+</ListToggle>
+
+## useDebouncedSearch
+
+Create a custom hook that implements a debounced search feature. The hook should receive an input value and a function that makes a search. The hook should debounce the search function calls, waiting for the user to stop typing for a certain amount of time before actually executing the search.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [useState](https://beta.reactjs.org/reference/react/useState)
+- [useEffect](https://beta.reactjs.org/reference/react/useEffect)
+- [setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
+
+<NonHSubtitle>Result</NonHSubtitle>
+
+<Demo>
+
+  <Island deferUntil="visible">
+    <UseDebouncedSearchDemo />
+  </Island>
+
+</Demo>
+
+
+<ListToggle title="Solution">
+
+```tsx
+import { useState, useEffect } from 'react';
+
+export const useDebouncedSearch = (value: string, search: (value: string) => void, wait: number) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, wait);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, wait]);
+
+  useEffect(() => {
+    search(debouncedValue);
+  }, [debouncedValue, search]);
+
+  return [debouncedValue];
+};
+
+// Use the hook in a component
+import React, { useState } from 'react';
+import { useDebouncedSearch } from './useDebouncedSearch';
+
+const SearchComponent: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedSearchTerm] = useDebouncedSearch(searchTerm, handleSearch, 500);
+
+  const handleSearch = (value: string) => {
+    console.log(`Searching for: ${value}`);
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
+      />
+      <p>Debounced search term: {debouncedSearchTerm}</p>
+    </div>
+  );
+};
+
+export default SearchComponent;
+```
+
+The custom hook useDebouncedSearch allows you to implement a debounced search feature in your component. It takes three parameters: value, search, and wait.
+
+The hook uses two useEffect hooks to create the debouncing behavior. The first useEffect sets a timeout whenever the value or wait parameters change. The timeout updates the state debouncedValue with the latest value after waiting for wait milliseconds.
+
+The second useEffect hook then executes the search function with the latest debouncedValue whenever it changes.
+
+In the SearchComponent component, we use the useDebouncedSearch hook and pass in the input value, a handleSearch function, and a wait time of 500 milliseconds. The component also has a state searchTerm that updates with the input value.
+
+The useDebouncedSearch hook returns the debouncedSearchTerm state, which we use to display in the component. The component also calls the handleSearch function with the debounced search term whenever it changes.
+
+With this custom hook, the search function will only be executed after the user stops typing for 500 milliseconds, rather than being called with every keystroke.
+
+</ListToggle>
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

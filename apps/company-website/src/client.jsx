@@ -8,6 +8,11 @@ import StatusQuoDemo from './components/Blog/ImperativeHandlePost/StatusQuoDemo'
 import UncontrolledDemo from './components/Blog/ImperativeHandlePost/UncontrolledDemo';
 import Cards from './components/OurClients/Cards';
 import ListOfItemsDemo from './components/Blog/DOMPost/ListOfItems/demo';
+import SimpleMouseTracker from "./components/Blog/ReactHooksPost/SimpleMouseTracker/demo";
+import SimpleButtonClickTracker from "./components/Blog/ReactHooksPost/SimpleButtonClickTracker/demo";
+import NextLevelButtonClickTracker from "./components/Blog/ReactHooksPost/NextLevelButtonClickTracker/demo";
+import UseFetchDataDemo from "./components/Blog/ReactHooksPost/useFetchData/demo";
+import UseDebouncedSearchDemo from "./components/Blog/ReactHooksPost/useDebouncedSearch/demo";
 
 import reportWebVitals from './web-vitals/report';
 import sendToVercelAnalytics from './web-vitals';
@@ -22,6 +27,11 @@ const components = {
   UncontrolledDemo,
   Cards,
   ListOfItemsDemo,
+  SimpleMouseTracker,
+  SimpleButtonClickTracker,
+  NextLevelButtonClickTracker,
+  UseFetchDataDemo,
+  UseDebouncedSearchDemo,
 };
 
 const hydrate = (Component, root, props) => {
