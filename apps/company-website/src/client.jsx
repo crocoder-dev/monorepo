@@ -11,6 +11,8 @@ import ListOfItemsDemo from './components/Blog/DOMPost/ListOfItems/demo';
 import SimpleMouseTracker from "./components/Blog/ReactHooksPost/SimpleMouseTracker/demo";
 import SimpleButtonClickTracker from "./components/Blog/ReactHooksPost/SimpleButtonClickTracker/demo";
 import NextLevelButtonClickTracker from "./components/Blog/ReactHooksPost/NextLevelButtonClickTracker/demo";
+import UseFetchDataDemo from "./components/Blog/ReactHooksPost/useFetchData/demo";
+import UseDebouncedSearchDemo from "./components/Blog/ReactHooksPost/useDebouncedSearch/demo";
 
 import reportWebVitals from './web-vitals/report';
 import sendToVercelAnalytics from './web-vitals';
@@ -28,6 +30,8 @@ const components = {
   SimpleMouseTracker,
   SimpleButtonClickTracker,
   NextLevelButtonClickTracker,
+  UseFetchDataDemo,
+  UseDebouncedSearchDemo,
 };
 
 const hydrate = (Component, root, props) => {
