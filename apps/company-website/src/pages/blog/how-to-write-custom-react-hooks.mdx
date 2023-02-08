@@ -16,10 +16,10 @@ export const meta = {
   title: "How to write custom React hooks?",
   description:
     "Custom React hooks are user-defined functions that allow developers to reuse stateful logic and side effects from React components in a clean and reusable way. Try to solve the given exercises!",
-  category: "Learn JavaScript",
+  category: "Learn TypeScript",
   image: blogHeader,
-  date: 1619474400000,
-  updatedAt: 1674513198634,
+  date: 1675873546123,
+  updatedAt: 1675873546123,
   author: "davidabram",
   editor: "velimirujevic",
   abstract:
@@ -53,6 +53,13 @@ Custom hooks can also help improve performance by allowing you to share state up
 
 Write a simple custom hook in TypeScript that keeps track of the mouse position on the screen.
 
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [useState](https://beta.reactjs.org/reference/react/useState)
+- [useEffect](https://beta.reactjs.org/reference/react/useEffect)
+
+<NonHSubtitle>Result</NonHSubtitle>
+
 <Demo>
 
   <Island deferUntil="visible">
@@ -60,11 +67,6 @@ Write a simple custom hook in TypeScript that keeps track of the mouse position 
   </Island>
 
 </Demo>
-
-<NonHSubtitle>Helpful links</NonHSubtitle>
-
-- [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-- [Math.pow()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow)
 
 <ListToggle title="Solution">
 ```tsx
@@ -114,6 +116,12 @@ Finally, the **`MouseTracker`** component is exported as the default export from
 
 You need to create a custom hook that tracks the number of clicks on a button in a React component and provides a way for the component to increment the count.
 
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [useState](https://beta.reactjs.org/reference/react/useState)
+
+<NonHSubtitle>Result</NonHSubtitle>
+
 <Demo>
 
   <Island deferUntil="visible">
@@ -121,11 +129,6 @@ You need to create a custom hook that tracks the number of clicks on a button in
   </Island>
 
 </Demo>
-
-<NonHSubtitle>Helpful links</NonHSubtitle>
-
-- [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
-- [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 
 <ListToggle title="Solution">
 
@@ -167,9 +170,10 @@ Create a custom hook in React that tracks the number of times a button has been 
 
 <NonHSubtitle>Helpful links</NonHSubtitle>
 
-- [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
-- [Array.prototype.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
-- [Math.abs()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs)
+- [useState](https://beta.reactjs.org/reference/react/useState)
+- [useCallback](https://beta.reactjs.org/reference/react/useCallback)
+
+<NonHSubtitle>Result</NonHSubtitle>
 
 <Demo>
 
@@ -228,6 +232,171 @@ export default ButtonClickTracker;
 The hook also uses the **`useCallback`** hook to ensure that the **`incrementCount`** function is only created once, even if the component is re-rendered multiple times. This can improve performance by avoiding the creation of unnecessary functions.
 
 The component **`ButtonClickTracker`** imports the hook and calls it using the **`useClickTracker`** hook. The hook returns an array with two elements: **`state`** and **`incrementCount`**. The component uses the **`state`** object to display the number of times the button has been clicked and the time of the most recent click. The component also uses the **`incrementCount`** function as the **`onClick`** handler for the button.
+
+</ListToggle>
+
+## Task 4
+
+Create a custom hook to interact with a REST API and fetch data.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [useState](https://beta.reactjs.org/reference/react/useState)
+- [useEffect](https://beta.reactjs.org/reference/react/useEffect)
+
+<NonHSubtitle>Result</NonHSubtitle>
+
+
+<ListToggle title="Solution">
+
+```tsx
+import { useState, useEffect } from 'react';
+
+const useFetchData = (url: string) => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        setData(data);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [url]);
+
+  return [data, error, loading];
+};
+
+// Use the hook in a component
+import React from 'react';
+import { useFetchData } from './useFetchData';
+
+const DataFetcher: React.FC = () => {
+  const [data, error, loading] = useFetchData('https://jsonplaceholder.typicode.com/posts');
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  if (!data) return <p>No data</p>;
+
+  return (
+    <ul>
+      {data.map((item: any) => (
+        <li key={item.id}>{item.title}</li>
+      ))}
+    </ul>
+  );
+};
+
+export default DataFetcher;
+```
+
+- The **`useFetchData`** custom hook accepts a **`url`** argument and returns an array of three values: **`data`**, **`error`**, and **`loading`**.
+- **`useState`** is used to manage the state of these three values:
+  - **`data`** is the data that is fetched from the API, which is initially set to **`null`**.
+  - **`error`** is an error message if something goes wrong during the fetch, which is initially set to **`null`**.
+  - **`loading`** is a flag to indicate whether the data is currently being fetched, which is initially set to **`false`**.
+- **`useEffect`** is used to perform the actual fetch when the component that uses the hook is rendered.
+  - It makes a GET request to the API using the **`fetch`** function and converts the response to JSON using **`response.json()`**.
+  - If the fetch is successful, the data is set using **`setData`** and the loading flag is turned off using **`setLoading(false)`**.
+  - If there is an error, the error message is set using **`setError`** and the loading flag is turned off using **`setLoading(false)`**.
+  - The dependency array **`[url]`** ensures that the effect is only run when the **`url`** argument changes.
+- In the component, the **`useFetchData`** hook is used to retrieve the data, error, and loading values.
+  - If **`loading`** is **`true`**, the component returns a loading message.
+  - If **`error`** is not `null
+    
+The custom hook is defined in the **`useFetchData`** function, which takes a URL as a parameter. This hook has three state variables: **`data`**, **`error`**, and **`loading`**.
+    
+The **`useEffect`** hook is used to fetch data from the provided URL. It sets the **`loading`** state to **`true`** before making the fetch request, and sets it to **`false`** after either successfully fetching the data or encountering an error. If the fetch request is successful, it sets the **`data`** state with the received data. If an error occurs, it sets the **`error`** state with the error.
+    
+The custom hook is then used in the **`DataFetcher`** component. It calls the **`useFetchData`** hook with a URL of '**[https://jsonplaceholder.typicode.com/posts](https://jsonplaceholder.typicode.com/posts)**' to fetch data. The component then displays either a loading message, an error message, or a list of fetched data items, depending on the state of **`loading`**, **`error`**, and **`data`**.
+    
+Create a custom hook that implements a debounced search feature. The hook should receive an input value and a function that makes a search. The hook should debounce the search function calls, waiting for the user to stop typing for a certain amount of time before actually executing the search.
+
+</ListToggle>
+
+## Task 5
+
+Create a custom hook that implements a debounced search feature. The hook should receive an input value and a function that makes a search. The hook should debounce the search function calls, waiting for the user to stop typing for a certain amount of time before actually executing the search.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [useState](https://beta.reactjs.org/reference/react/useState)
+- [useEffect](https://beta.reactjs.org/reference/react/useEffect)
+
+<NonHSubtitle>Result</NonHSubtitle>
+
+
+<ListToggle title="Solution">
+
+```tsx
+Import { useState, useEffect } from 'react';
+
+const useDebouncedSearch = (value: string, search: (value: string) => void, wait: number) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, wait);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, wait]);
+
+  useEffect(() => {
+    search(debouncedValue);
+  }, [debouncedValue, search]);
+
+  return [debouncedValue];
+};
+
+// Use the hook in a component
+import React, { useState } from 'react';
+import { useDebouncedSearch } from './useDebouncedSearch';
+
+const SearchComponent: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedSearchTerm] = useDebouncedSearch(searchTerm, handleSearch, 500);
+
+  const handleSearch = (value: string) => {
+    console.log(`Searching for: ${value}`);
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
+      />
+      <p>Debounced search term: {debouncedSearchTerm}</p>
+    </div>
+  );
+};
+
+export default SearchComponent;
+```
+
+- The custom hook **`useDebouncedSearch`** takes three parameters: **`value`**, **`search`**, and **`wait`**.
+- The hook uses two **`useEffect`** hooks to implement the debouncing behavior.
+- The first **`useEffect`** hook sets a timeout whenever the **`value`** or **`wait`** parameters change. The timeout updates the state **`debouncedValue`** with the latest **`value`** after **`wait`** milliseconds.
+- The second **`useEffect`** hook executes the **`search`** function with the latest **`debouncedValue`** whenever it changes.
+- In the **`SearchComponent`** component, we use the custom hook and pass in the input value, a **`handleSearch`** function, and a **`wait`** time of 500 milliseconds.
+- The component also has a state **`searchTerm`** that updates with the input value.
+- The custom hook returns the **`debouncedSearchTerm`** state, which we use to display in the component.
+- The component also calls the **`handleSearch`** function with the debounced search term whenever it changes.
+
+With this custom hook, the search function will only be executed after 500 milliseconds after the user stops typing, rather than being called with every single keystroke.
 
 </ListToggle>
 
