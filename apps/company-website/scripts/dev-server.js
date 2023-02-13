@@ -5,7 +5,7 @@ import express from 'express';
 import { createServer as createViteServer } from 'vite';
 import chokidar from 'chokidar';
 
-const PORT = 3000;
+const PORT = 5000;
 
 const dir = dirname('../');
 
