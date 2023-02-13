@@ -1,0 +1,4 @@
+/** @type {import("tailwindcss").Config} */
+module.exports = {
+  presets: [require("@crocoder-dev/tailwind-config")],
+};
