@@ -13,6 +13,7 @@ import SimpleButtonClickTracker from "./components/Blog/ReactHooksPost/SimpleBut
 import NextLevelButtonClickTracker from "./components/Blog/ReactHooksPost/NextLevelButtonClickTracker/demo";
 import UseFetchDataDemo from "./components/Blog/ReactHooksPost/useFetchData/demo";
 import UseDebouncedSearchDemo from "./components/Blog/ReactHooksPost/useDebouncedSearch/demo";
+import CrocDemo from "./components/Blog/ConditionalPost/croc/demo";
 
 import reportWebVitals from './web-vitals/report';
 import sendToVercelAnalytics from './web-vitals';
@@ -32,6 +33,7 @@ const components = {
   NextLevelButtonClickTracker,
   UseFetchDataDemo,
   UseDebouncedSearchDemo,
+  CrocDemo,
 };
 
 const hydrate = (Component, root, props) => {
