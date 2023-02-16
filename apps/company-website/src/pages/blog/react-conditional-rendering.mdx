@@ -86,22 +86,22 @@ Let's try to understand what's going on by using the **`&&`** operator with diff
 
 ```tsx
     /* This won't render anything ✅ */
-    <span>{false && <div>👋</div>}</span>
+    <>{false && <div>👋</div>}</>
 
     /* This will render 0 😡 */
-    <span>{0 && <div>👋</div>}</span>
+    <>{0 && <div>👋</div>}</>
 
     /* This won't render anything ✅ */
-    <span>{""  && <div>👋</div>}</span>
+    <>{""  && <div>👋</div>}</>
 
     /* This won't render anything ✅ */
-    <span>{null && <div>👋</div>}</span>
+    <>{null && <div>👋</div>}</>
 
     /* This won't render anything ✅ */
-    <span>{undefined && <div>👋</div>}</span>
+    <>{undefined && <div>👋</div>}</>
 
     /* This will render NaN 😡 */
-    <span>{NaN && <div>👋</div>}</span>
+    <>{NaN && <div>👋</div>}</>
 ```
 In JavaScript, the **`&&`** operator checks if both the left and right operands are true. If the left operand is false, the right operand is never checked, and the **`&&`** operator returns the left operand.
 
@@ -113,7 +113,7 @@ The same goes for NaN.
 
 ```tsx
     /* This will render NaN 😡 */
-    <span>{NaN && <div>👋</div>}</span>
+    <>{NaN && <div>👋</div>}</>
 ```
 
 So, how do we fix this?
@@ -124,10 +124,10 @@ There are a few ways to fix this problem. The first (and the best) way is to use
 
 ```tsx
     /* This won't render anything ✅ */
-    <span>{0 ? <div>👋</div> : null}</span>
+    <>{0 ? <div>👋</div> : null}</>
 
     /* This won't render anything ✅ */
-    <span>{NaN ? <div>👋</div> : null}</span>
+    <>{NaN ? <div>👋</div> : null}</>
 
 ```
 
@@ -138,16 +138,16 @@ The **`!!`** operator is used to convert a value to a Boolean. It is essentially
 
 ```tsx
     /* This won't render anything ✅ */
-    <span>{Boolean(0) && <div>👋</div>}</span>
+    <>{Boolean(0) && <div>👋</div>}</>
 
     /* This won't render anything ✅ */
-    <span>{Boolean(NaN) && <div>👋</div>}</span>
+    <>{Boolean(NaN) && <div>👋</div>}</>
 
     /* This won't render anything ✅ */
-    <span>{!!0 && <div>👋</div>}</span>
+    <>{!!0 && <div>👋</div>}</>
 
     /* This won't render anything ✅ */
-    <span>{!!NaN && <div>👋</div>}</span>
+    <>{!!NaN && <div>👋</div>}</>
 ```
 
 ## Conclusion
