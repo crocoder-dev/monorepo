@@ -1,12 +1,17 @@
-export default function Example() {
+import PostItem from "./components/post-item";
+
+export default async function Home() {
+  const request = await fetch('https://jsonplaceholder.typicode.com/posts');
+  const posts = await request.json();
+
   return (
-    <div className="bg-gray-900 py-24 px-6 sm:py-32 lg:px-8">
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">Support center</h2>
-        <p className="mt-6 text-lg leading-8 text-gray-300">
-          Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-          fugiat veniam occaecat fugiat aliqua.
-        </p>
+    <div className="w-screen flex justify-center">
+      <div className="flex-center w-full max-w-5xl">
+        {
+          (posts as any[] ).map(post => {
+            return <PostItem key={post.id} post={post}></PostItem>
+          })
+        }
       </div>
     </div>
   )
