@@ -6,7 +6,7 @@ export default function PostItem({post}: {post:Post}) {
     <ul role="list" className="divide-y divide-gray-200">
       <li
         key={post.id}
-        className="relative bg-white py-4 px-4 hover:bg-gray-50 border-b-2 border-blue-200"
+        className="relative bg-white py-4 px-4 hover:bg-gray-50 border-b-2 border-blue-200 transition-all duration-200"
       >
         <div className="flex justify-between space-x-3">
           <div className="w-full flex-1">

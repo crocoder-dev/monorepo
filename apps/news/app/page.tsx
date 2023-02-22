@@ -5,10 +5,10 @@ export default async function Home() {
   const posts = await request.json();
 
   return (
-    <div className="w-screen flex justify-center">
-      <div className="flex-center w-full max-w-5xl">
+    <div className="flex justify-center">
+      <div className="flex-center w-full px-4 max-w-5xl font-sans">
         {
-          (posts as any[] ).map(post => {
+          (posts as any[]).map(post => {
             return <PostItem key={post.id} post={post}></PostItem>
           })
         }
