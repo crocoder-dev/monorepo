@@ -13,9 +13,9 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
+      <body className="font-sans">
         <Nav></Nav>
-        <div className="relative top-10">{children}</div>
+        <div className="relative top-12">{children}</div>
       </body>
     </html>
   )

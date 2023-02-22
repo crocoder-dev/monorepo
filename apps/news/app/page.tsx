@@ -6,7 +6,7 @@ export default async function Home() {
 
   return (
     <div className="flex justify-center">
-      <div className="flex-center w-full px-4 max-w-5xl font-sans">
+      <div className="flex-center w-full px-4 max-w-5xl">
         {
           (posts as any[]).map(post => {
             return <PostItem key={post.id} post={post}></PostItem>
