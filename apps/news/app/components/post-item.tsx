@@ -10,9 +10,7 @@ export default function PostItem({post}: {post:Post}) {
       >
         <div className="flex justify-between space-x-3">
           <div className="w-full flex-1">
-            <Link href={{
-                  pathname: `/articles/${post.id}`,
-                }} className="block focus:outline-none">
+            <Link id={`/articles/${post.id}`} scroll={false} href={`/articles/${post.id}`} className="block focus:outline-none scroll-mt-16">
               <span className="absolute inset-0" aria-hidden="true" />
               <p className="truncate text-2xl font-bold text-sky-800">{post.title}</p>
               <p className="truncate text-lg text-gray-500">AUTOMATION | TODAY</p>

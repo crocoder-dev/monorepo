@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import Main from "./components/main";
 import Nav from "./components/nav";
 
 export default function RootLayout({
@@ -15,7 +16,8 @@ export default function RootLayout({
       <head />
       <body className="font-sans">
         <Nav></Nav>
-        <div className="relative top-12">{children}</div>
+        <Main>{children}</Main>
+        {/* <div className="relative top-12">{children}</div> */}
       </body>
     </html>
   )
