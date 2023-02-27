@@ -1,24 +1,19 @@
-import Link from "next/link";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-export default function PostItem({post}: {post:Post}) {
-  
+export default function PostItem({post, setOpen, open}: {post:Post, setOpen: any, open: any}) {
   return (
-    <ul role="list" className="divide-y divide-gray-200">
-      <li
-        key={post.id}
-        className="relative bg-white py-4 px-4 hover:bg-gray-50 border-b-2 border-blue-200 transition-all duration-200"
-      >
-        <div className="flex justify-between space-x-3">
-          <div className="w-full flex-1">
-            <Link id={`/articles/${post.id}`} scroll={false} href={`/articles/${post.id}`} className="block focus:outline-none scroll-mt-16">
-              <span className="absolute inset-0" aria-hidden="true" />
-              <p className="truncate text-2xl font-bold text-sky-800">{post.title}</p>
-              <p className="truncate text-lg text-gray-500">AUTOMATION | TODAY</p>
-            </Link>
-          </div>
+    <li className="flex justify-between space-x-3 relative bg-white py-4 px-4 hover:bg-gray-50 border-b-2 border-blue-200">
+      <div className="w-full flex-1">
+        <div className="block focus:outline-none scroll-mt-16 cursor-pointer" onClick={() => (open === post.id ? setOpen(null) : setOpen(post.id))}>
+          <h1 className="truncate text-2xl font-bold text-sky-800">{post.title}</h1>
+          <p className="truncate text-lg text-gray-500">AUTOMATION | TODAY</p>
         </div>
-      </li>
-    </ul>
+        <div className={`transition-all ease-in-out duration-200 ${open === post.id ? 'visible max-h-screen' : 'invisible max-h-0'}`}>
+          <img className="m-0 pt-3 w-full" src="https://miro.medium.com/max/1000/1*KDMx1YspSrBcFJG-NDZgDg.png" alt="" />
+          <p className="py-4">{post.body}</p>
+        </div>
+      </div>
+    </li>
   );
 }
 
@@ -27,5 +22,6 @@ export type Post = {
     title: string,
     category: string,
     date: string,
-    content: string
+    content: string,
+    body: string
 }

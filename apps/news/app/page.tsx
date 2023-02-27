@@ -1,18 +1,36 @@
+"use client"
+import { useEffect, useState } from "react";
 import PostItem from "./components/post-item";
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
-export default async function Home() {
-  const request = await fetch('https://jsonplaceholder.typicode.com/posts');
-  const posts = await request.json();
+export default function Home() {
+
+  const [posts, setPosts] = useState([]);
+  const [open, setOpen] = useState(null);
+
+  const [parent, enableAnimations] = useAutoAnimate(/* optional config */)
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setPosts(result);
+        },
+        (error) => {
+        }
+      )
+  }, [])
 
   return (
     <div className="flex justify-center">
-      <div className="flex-center w-full px-4 max-w-5xl">
+      <ul ref={parent} className="flex-center w-full px-4 max-w-5xl">
         {
           (posts as any[]).map(post => {
-            return <PostItem key={post.id} post={post}></PostItem>
+            return <PostItem key={post.id} post={post} open={open} setOpen={setOpen}></PostItem>
           })
         }
-      </div>
+      </ul>
     </div>
   )
 }
