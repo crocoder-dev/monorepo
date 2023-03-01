@@ -4,6 +4,14 @@ manifest:
   version: 1.0
 
 automations:
+  deleted:
+    if:
+      - {{ has.deleted_files }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'deleted-files'
+          color: '#DF9C04'
   estimated_time_to_review:
     if:
       - true
@@ -20,7 +28,7 @@ automations:
       - action: add-label@v1
         args:
           label: 'safe-changes'
-      # - action: approve@v1
+      - action: approve@v1
 
   the_right_reviewer:
     if: 
@@ -30,10 +38,12 @@ automations:
         args:
           comment: |
             {{ repo | explainRankByGitBlame(gt=25) }}
-      # - action: add-reviewers@v1
-      #   args:
-      #     reviewers: {{ repo | rankByGitBlame(gt=25) }}
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | rankByGitBlame(gt=25) }}
 
+has:
+  deleted_files: {{ source.diff.files | map(attr='new_file') | match(term='/dev/null') | some }}
 calc:
   etr: {{ branch | estimatedReviewTime }}
 is:
