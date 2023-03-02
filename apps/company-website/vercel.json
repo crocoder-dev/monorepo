@@ -24,7 +24,8 @@
     { "source": "/search", "destination": "/" },
     { "source": "/jobs/(.*)", "destination": "/" },
     { "source": "/search/(.*)", "destination": "/" },
-    { "source": "/post-a-job", "destination": "/" }
+    { "source": "/post-a-job", "destination": "/" },
+    { "source": "/blog/how-to-clone-object-in-javascript", "destination": "/blog/how-to-clone-object-in-javascript"}
   ],
   "headers": [
     {

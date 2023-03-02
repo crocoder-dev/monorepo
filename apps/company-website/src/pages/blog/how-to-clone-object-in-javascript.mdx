@@ -1,435 +1,84 @@
-import blogHeader from "../../content/images/blogs/how-to-clone-object-in-javascript.png?preset=responsive";
-import BlogLayout from "../../Layouts/BlogLayout";
-import NonHSubtitle from "../../components/Blog/NonHSubtitle";
-import ContentTable from "../../components/Blog/ContentTable";
+import blogHeader from '../../content/images/blogs/how-to-clone-object-in-javascript.png?preset=responsive';
+import BlogLayout from '../../Layouts/BlogLayout';
+import NonHSubtitle from '../../components/Blog/NonHSubtitle';
+import ContentTable from '../../components/Blog/ContentTable';
 
 export const meta = {
-  id: "how-to-clone-object-in-javascript",
-  title: "All the ways you can clone an object in JavaScript",
+  id: 'how-to-clone-object-in-javascript',
+  title: 'Clone any object in JavaScript',
   description:
-    "In JavaScript, you cannot clone an object just by assigning its value to another variable, but you can use any of these techniques to shallow or deep clone an object!",
-  category: "Code Bits",
+    'Cloning in JavaScript can be shallow or deep. Shallow cloning is achieved with the object spread operator, while deep cloning is done with JSON.stringify() and JSON.parse(). Deep cloning has limitations and can be resource-intensive. The newer structuredClone() method can handle more complex objects, but it\'s not supported in all browsers',
+  category: 'Code Bits',
   image: blogHeader,
   date: 1635894000000,
-  updatedAt: 1635894000000,
-  author: "davidabram",
-  editor: "velimirujevic",
+  updatedAt: 1677713640324,
+  author: 'davidabram',
+  editor: 'velimirujevic',
   abstract:
-    "In JavaScript, object cloning isn't as obvious as it seems. You can't just assign the value of one object to another variable and create a copy of it. The problem is related to the data types you can use in JavaScript.There are two groups of JavaScript data types; primitive values and objects. Primitive values are Boolean, Null, Undefined, Number, BigInt, String & Symbol. Objects are all other data types that are collections of properties (including Arrays!).The big difference between primitive values and objects happens when you try using the `=` operator.",
-  pageType: "blog-posting"
+    "This article explains the concepts of shallow and deep cloning in JavaScript. Shallow cloning creates a new object based on an existing object but only copies the properties of the original object at the top level, whereas deep cloning copies all the nested objects and their properties. The article describes different methods for shallow and deep cloning, such as the object spread operator, JSON.stringify() and JSON.parse(), and the newer structuredClone() method. It also highlights the limitations of these methods and provides some guidance on when to use each one.",
+  pageType: 'blog-posting',
 };
 
-In JavaScript, object cloning isn't as obvious as it seems. You can't just assign the value of one object to another variable and create a copy of it. The problem is related to the data types you can use in JavaScript.
+Cloning an object in JavaScript refers to the process of creating a copy of an existing object or value. This process allows developers to manipulate or store objects or values separately, or to prevent changes to one object from affecting another.
 
-There are two groups of JavaScript data types; **primitive values** and **objects**. Primitive values are Boolean, Null, Undefined, Number, BigInt, String & Symbol. Objects are all other data types that are collections of properties (including Arrays!).
-
-The big difference between primitive values and objects is shown when using the `=` operator.
-
-<br />
-
-## Primitives
-
-When working with primitives, the `=` operator creates a copy of the original variable. We call this 'passing by value'.
-
-```javascript
-var smiles = "😀😁😆";
-
-// '😀😁😆'
-console.log(smiles);
-
-var animals = smiles;
-
-// '😀😁😆'
-console.log(animals);
-
-animals = "🐺🦊🐻";
-
-// '🐺🦊🐻'
-console.log(animals);
-
-// '😀😁😆'
-console.log(smiles);
-```
-
-Variable 'smiles' is a primitive value which means that the variable 'animals' in the line `var animals = smiles;` becomes a copy of the variable 'smiles'.
-
-When you change the value of the variable 'animals' in the line `animals = '🐺🦊🐻';`, it doesn't change the value of the variable 'smiles'.
-
-## Objects
-
-When working with objects, the `=` operator creates an 'alias' to the original object, it doesn’t create a new object. We call this 'passing by reference'.
-
-```javascript
-var drinks = {
-  cocktail: "🍹",
-  coffee: "☕",
-  beer: "🍺",
-};
-
-// { cocktail: '🍹', coffee: '☕', beer: '🍺' }
-console.log(drinks);
-
-var foods = drinks;
-
-// { cocktail: '🍹', coffee: '☕', beer: '🍺' }
-console.log(foods);
-
-foods.cocktail = "🍤";
-foods.coffee = "🧁";
-foods.beer = "🍖";
-
-// { cocktail: '🍤', coffee: '🧁', beer: '🍖' }
-console.log(foods);
-
-// { cocktail: '🍤', coffee: '🧁', beer: '🍖' }
-console.log(drinks);
-```
-
-The type of variable 'drinks' is an object, which means variable 'foods' in the line `var foods = drinks;` becomes a reference to the value of the variable 'drinks'.
-
-When you change the value of the properties of variable 'foods' in the lines `foods.cocktail = '🍤'; foods.coffee = '🧁'; foods.beer = '🍖';`, it changes the value of properties of variable 'drinks'.
-
-'Passing by reference' complicates the cloning process of the objects, you cannot use a simple variable assignment to copy a non-primitive value.
-
-Hopefully, the next examples will help you learn some of the techniques for cloning objects.
-
-<br />
-
-<NonHSubtitle>Helpful links</NonHSubtitle>
-
-- [MDN Data Structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
-
-<br />
-<br />
+However, there are different types of cloning methods available, and it's essential to be aware of the limitations and capabilities of each cloning method and choose the appropriate one based on the specific needs of the project.
 
 <ContentTable tocData={props.toc} />
 
-<br />
-<br />
+## Shallow and Deep clone
 
-## Shallow Clone
+In JavaScript, when you clone a value, it's usually shallow, which means that changes to deeply nested values will be visible in both the clone and the original. You can create a [shallow clone](https://developer.mozilla.org/en-US/docs/Glossary/Shallow_copy) using the object spread operator. If you add or change a property directly on the shallow clone, it only affects the clone, not the original. However, if you add or change a deeply nested property, it affects both the clone and the original.
 
-'Shallow cloning' is an act of object cloning where you copy all the properties of an object to a newly created object, but the non-primitive properties are copied by reference.
+A [deep clone](https://developer.mozilla.org/en-US/docs/Glossary/Deep_copy), on the other hand, copies an object's properties one by one but invokes itself recursively when it finds a reference to another object, creating a clone of that object as well. This can be important to make sure that two pieces of code don't accidentally share an object and unknowingly manipulate each other's state.
 
-```javascript
-const object = {
-  laptop: "💻",
-  smiles: ["😀", "😁", "😆"],
-  animals: {
-    wolf: "🐺",
-    fox: "🦊",
-  },
-  alien: Symbol("👽"),
-};
+It's important to note that deep cloning can be more resource-intensive than shallow cloning, especially for large objects. Therefore, you should choose the appropriate clone method based on your specific needs.
 
-const clonedObject = shallowCopy(object);
+## Shallow cloning
 
-// { laptop: '💻', smiles: ['😀', '😁', '😆'],  animals: { wolf: '🐺', fox: '🦊' }, alien: Symbol('👽')}
-console.log(clonedObject);
+The [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) in JavaScript is a useful tool for creating a new object that is based on an existing object.
 
-object.laptop = "🍹";
-object.animals.bear = "🐻";
-object.smiles = 42;
+When used with an object, it iterates over the enumerable properties of the original object and copies them one by one to a new object. The new object has the same properties and values as the original object, but it is a distinct object in memory.
 
-// { laptop: '🍹', smiles: 42,  animals: { wolf: '🐺', fox: '🦊', bear: '🐻' }, alien: Symbol('👽')}
-console.log(object);
-
-// { laptop: '💻', smiles: ['😀', '😁', '😆'],  animals: { wolf: '🐺', fox: '🦊', bear: '🐻' }, alien: Symbol('👽')}
-console.log(clonedObject);
+```js
+const copiedObject = { ...originalObject };
 ```
 
-If you change the value of the properties of the non-primitive properties of the original object, you will change the value in the clonedObject.
+If the original object contains any nested objects, the spread operator will create references to those nested objects rather than copying them.
 
-As you can see in the line `object.animals.bear = '🐻';` we are changing the property of the non-primitive property 'animals' in the original object. It changes the `clonedObject.animals.bear` because it was passed by reference.
+This means that changes made to the nested objects in the new object will also affect the original object because both objects are referencing the same underlying nested objects in memory.
 
-<br />
-<br />
+## Deep cloning
 
-### Using Spread syntax
+When working with JavaScript, developers often need to make copies of objects or values in order to manipulate or store them separately. [JSON.stringify()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) and [JSON.parse()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) are two built-in methods in JavaScript that can be used to create a deep clone of an object.
 
-The Spread syntax (...) is a proposal that was accepted in ECMAScript 2018. It destructures the object and keys while copying their values onto a new object.
+The process of deep cloning an object creates a completely new object with its own set of properties and values so that any changes made to the clone do not affect the original object.
 
-```javascript
-const object = {
-  laptop: "💻",
-  smiles: ["😀", "😁", "😆"],
-  animals: {
-    wolf: "🐺",
-    fox: "🦊",
-  },
-  alien: Symbol("👽"),
-};
-
-const clonedObject = { ...object };
-
-// { laptop: '💻', smiles: ['😀', '😁', '😆'],  animals: { wolf: '🐺', fox: '🦊' }, alien: Symbol('👽')}
-console.log(clonedObject);
+```js
+const copiedObject = JSON.parse(JSON.stringify(originalObject));
 ```
 
-<NonHSubtitle>Helpful links</NonHSubtitle>
+However, **`JSON.stringify()`** and **`JSON.parse()`** have some limitations. They cannot be used to clone functions, which can be problematic in certain cases. Additionally, they cannot be used to clone objects that have circular references, which are objects that reference themselves in a loop.
 
-- [MDN Spread Syntax (...)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
-- [Object Rest/Spread Properties for ECMAScript](https://github.com/tc39/proposal-object-rest-spread)
+Finally, symbols or objects with properties that are symbols cannot be cloned using these methods. Therefore, developers need to be aware of these limitations and consider alternative methods, such as custom deep-cloning algorithms provided by libraries like [Lodash](https://lodash.com/).
 
-<br />
-<br />
+## Structured cloning
 
-### Using Object.assign()
+The [structuredClone()](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) method was introduced not that long ago and is used to create a deep copy of an object in JavaScript.
 
-By using this method you will clone all of the property values from one or more source objects to a target object.
+It's similar to **`JSON.stringify()`** and **`JSON.parse()`**, but it has some advantages over these methods. For example, structured cloning can handle more complex objects than JSON, such as objects that contain binary data or cyclic object graphs.
 
-It's also used for merging multiple objects into a single object with combined properties.
+However, there are still some limitations to structured cloning. It cannot handle prototypes, functions, and some values like Error and DOM nodes.
 
-```javascript
-const object = {
-  laptop: "💻",
-  smiles: ["😀", "😁", "😆"],
-  animals: {
-    wolf: "🐺",
-    fox: "🦊",
-  },
-  alien: Symbol("👽"),
-};
-
-const clonedObject = Object.assign({}, object);
-
-// { laptop: '💻', smiles: ['😀', '😁', '😆'],  animals: { wolf: '🐺', fox: '🦊' }, alien: Symbol('👽')}
-console.log(clonedObject);
+```js
+const copiedObject = structuredClone(originalObject);
 ```
+It's important to note that the **`structuredClone()`** method is not supported in every browser. While it is supported in modern versions of Firefox, Chrome, and Safari, it is not currently supported in Internet Explorer or Microsoft Edge.
 
-<NonHSubtitle>Helpful links</NonHSubtitle>
+Additionally, some older browsers may not support it either. As with any web technology, it's important to test for [browser compatibility](https://caniuse.com/mdn-api_structuredclone) before using it in production.
 
-- [MDN Object.assign()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 
-<br />
-<br />
-
-### Using Object.entries & Object.fromEntries
-
-Object.entries() transforms the object to an array of arrays containing the key names and the values of the original object properties.
-
-Sounds confusing?
-
-In our example, object `Object.entries(object)` result looks something like this: `[['laptop', '💻'], ['smiles', ['😀', '😁', '😆']], ...]`.
-
-Object.fromEntries() takes the array of arrays and transforms it back to an object.
-
-```javascript
-const object = {
-  laptop: "💻",
-  smiles: ["😀", "😁", "😆"],
-  animals: {
-    wolf: "🐺",
-    fox: "🦊",
-  },
-  alien: Symbol("👽"),
-};
-
-const clonedObject = Object.fromEntries(Object.entries(object));
-
-// { laptop: '💻', smiles: ['😀', '😁', '😆'],  animals: { wolf: '🐺', fox: '🦊' }, alien: Symbol('👽')}
-console.log(clonedObject);
-```
-
-<NonHSubtitle>Helpful links</NonHSubtitle>
-
-- [MDN Object.entries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
-- [MDN Object.fromEntries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries)
-
-<br />
-<br />
-
-## Deep Clone
-
-Deep cloning is an act of object cloning where you copy all the properties of an object to a newly created object and to all of the properties of all non-primitive properties of that object, and so on recursively.
-
-You will get a true clone of an object you want to clone; it's doesn't reference any value of the original object.
-
-```javascript
-const object = {
-  laptop: "💻",
-  smiles: ["😀", "😁", "😆"],
-  animals: {
-    wolf: "🐺",
-    fox: "🦊",
-  },
-  alien: Symbol("👽"),
-};
-
-const clonedObject = shallowCopy(object);
-
-// { laptop: '💻', smiles: ['😀', '😁', '😆'],  animals: { wolf: '🐺', fox: '🦊' }, alien: Symbol('👽')}
-console.log(clonedObject);
-
-object.laptop = "🖨️";
-object.animals.bear = "🐻";
-object.smiles = 42;
-
-// { laptop: '🖨️', smiles: 42,  animals: { wolf: '🐺', fox: '🦊', bear: '🐻' }, alien: Symbol('👽')}
-console.log(object);
-
-// { laptop: '💻', smiles: ['😀', '😁', '😆'],  animals: { wolf: '🐺', fox: '🦊' }, alien: Symbol('👽')}
-console.log(clonedObject);
-```
-
-<br />
-<br />
-
-### Using JSON.stringify & JSON.parse
-
-JSON.stringify() & JSON.parse() way of deep cloning offers an easy but unreliable deep cloning because it tends to lose some data along the way (Valid JSON data types don't include functions, symbols and undefined). Also, it is extremely slow for larger objects.
-
-```javascript
-const object = {
-  laptop: "💻",
-  smiles: ["😀", "😁", "😆"],
-  animals: {
-    wolf: "🐺",
-    fox: "🦊",
-  },
-  alien: Symbol("👽"),
-};
-
-const clonedObject = JSON.parse(JSON.stringify(object));
-
-// { laptop: '💻', smiles: ['😀', '😁', '😆'],  animals: { wolf: '🐺', fox: '🦊' } }
-console.log(clonedObject);
-```
-
-As you can see from the example, 'Symbol' isn't a valid JSON data type; 'alien' property is ignored in the JSON.stringify() and is missing in the clonedObject.
-
-<NonHSubtitle>Helpful links</NonHSubtitle>
-
-- [MDN JSON.stringify()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
-- [MDN JSON.parse()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
-
-<br />
-<br />
-
-### [Node.js ONLY] Using v8.serialize & v8.deserialize
-
-v8.serialize() & v8.deserialize() is only available in Node.js environments. Unfortunately, it returns an error when trying to serialize objects that have symbols or functions as their properties.
-
-```javascript
-const v8 = require("v8");
-
-const object = {
-  laptop: "💻",
-  smiles: ["😀", "😁", "😆"],
-  animals: {
-    wolf: "🐺",
-    fox: "🦊",
-  },
-  alien: Symbol("👽"),
-};
-
-const clonedObject = v8.deserialize(v8.serialize(object));
-
-// Uncaught Error: Symbol(👽) could not be cloned.
-console.log(clonedObject);
-```
-
-The example returns an error with a `Uncaught Error: Symbol(👽) could not be cloned.` message. If you remove the 'alien' property from the object, the code works.
-
-<NonHSubtitle>Helpful links</NonHSubtitle>
-
-- [Node.js docs v8.serialize()](https://nodejs.org/api/v8.html#v8serializevalue)
-- [Node.js docs v8.deserialize()](https://nodejs.org/api/v8.html#v8deserializebuffer)
-
-<br />
-<br />
-
-## Using external libraries
-
-The following methods are just some examples of cloning using popular external libraries and it's in no way an exhaustive list.
-
-<br />
-<br />
-
-### Using $.extend()
-
-This is a shallow and deep cloning method from a very popular jQuery library. From a usability standpoint it functions almost the same as the Object.assign(). If you pass true as the first argument, the $.extend() method will deep clone.
-
-It works nicely in legacy projects that don't support Object.assign() or Spread Syntax (older than Chrome 45, Firefox 34 or Node.js 4.0.0).
-
-```javascript
-const object = {
-  laptop: "💻",
-  smiles: ["😀", "😁", "😆"],
-  animals: {
-    wolf: "🐺",
-    fox: "🦊",
-  },
-  alien: Symbol("👽"),
-};
-
-// deep cloning -> value of the first argument is true
-const clonedObject = $.extend(true, {}, object);
-
-// { laptop: '💻', smiles: ['😀', '😁', '😆'],  animals: { wolf: '🐺', fox: '🦊' }, alien: Symbol('👽')}
-console.log(clonedObject);
-```
-
-<NonHSubtitle>Helpful links</NonHSubtitle>
-
-- [jQuery docs jquery.extend()](https://api.jquery.com/jquery.extend/)
-
-<br />
-<br />
-
-### Using \_.clone()
-
-Underscore clone() is also a shallow cloning method, and it's a method from a somewhat popular library but it doesn't support deep cloning.
-
-```javascript
-const object = {
-  laptop: "💻",
-  smiles: ["😀", "😁", "😆"],
-  animals: {
-    wolf: "🐺",
-    fox: "🦊",
-  },
-  alien: Symbol("👽"),
-};
-
-const clonedObject = _.clone(object);
-
-// { laptop: '💻', smiles: ['😀', '😁', '😆'],  animals: { wolf: '🐺', fox: '🦊' }, alien: Symbol('👽')}
-console.log(clonedObject);
-```
-
-<NonHSubtitle>Helpful links</NonHSubtitle>
-
-- [Underscore docs \_.clone()](http://underscorejs.org/#clone)
-
-<br />
-<br />
-
-### Using \_.cloneDeep()
-
-The last method we'll cover is a deep clone method, \_.cloneDeep(), which recursively copies properties from an object and keeps the object's inheritance.
-
-Lodash is a well-tested and popular library and what's great about it is that you can import each function individually.
-
-```javascript
-const object = {
-  laptop: "💻",
-  smiles: ["😀", "😁", "😆"],
-  animals: {
-    wolf: "🐺",
-    fox: "🦊",
-  },
-  alien: Symbol("👽"),
-};
-
-const clonedObject = _.cloneDeep(object);
-
-// { laptop: '💻', smiles: ['😀', '😁', '😆'],  animals: { wolf: '🐺', fox: '🦊' }, alien: Symbol('👽')}
-console.log(clonedObject);
-```
-
-<NonHSubtitle>Helpful links</NonHSubtitle>
-
-- [Lodash docs \_.cloneDeep()](https://lodash.com/docs/4.17.15#cloneDeep)
-
-export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
+export default (props) => (
+  <BlogLayout meta={meta} {...props}>
+    {props.children}
+  </BlogLayout>
+);
