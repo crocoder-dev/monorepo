@@ -23,7 +23,7 @@ export default function Posts({posts}: {posts:Post[]}) {
   }
 
   return (
-    <div className="flex justify-center flex-col">
+    <div className="flex justify-center items-center flex-col">
       <button onClick={()=> get()}>Button</button>
       <ul ref={parent} className="flex-center w-full px-4 max-w-5xl">
         {
