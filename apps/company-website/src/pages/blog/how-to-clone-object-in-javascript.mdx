@@ -57,7 +57,7 @@ The process of deep cloning an object creates a completely new object with its o
 const copiedObject = JSON.parse(JSON.stringify(originalObject));
 ```
 
-However, ```*JSON.stringify()*``` and ```*JSON.parse()*``` have some limitations. They cannot be used to clone functions, which can be problematic in certain cases. Additionally, they cannot be used to clone objects that have circular references, which are objects that reference themselves in a loop.
+However, **`JSON.stringify()`** and **`JSON.parse()`** have some limitations. They cannot be used to clone functions, which can be problematic in certain cases. Additionally, they cannot be used to clone objects that have circular references, which are objects that reference themselves in a loop.
 
 Finally, symbols or objects with properties that are symbols cannot be cloned using these methods. Therefore, developers need to be aware of these limitations and consider alternative methods, such as custom deep-cloning algorithms provided by libraries like [Lodash](https://lodash.com/).
 
@@ -65,14 +65,14 @@ Finally, symbols or objects with properties that are symbols cannot be cloned us
 
 The [structuredClone()](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) method was introduced not that long ago and is used to create a deep copy of an object in JavaScript.
 
-It's similar to ```*JSON.stringify()*``` and ```*JSON.parse()*```, but it has some advantages over these methods. For example, structured cloning can handle more complex objects than JSON, such as objects that contain binary data or cyclic object graphs.
+It's similar to **`JSON.stringify()`** and **`JSON.parse()`**, but it has some advantages over these methods. For example, structured cloning can handle more complex objects than JSON, such as objects that contain binary data or cyclic object graphs.
 
 However, there are still some limitations to structured cloning. It cannot handle prototypes, functions, and some values like Error and DOM nodes.
 
 ```js
 const copiedObject = structuredClone(originalObject);
 ```
-It's important to note that the ```*structuredClone()*``` method is not supported in every browser. While it is supported in modern versions of Firefox, Chrome, and Safari, it is not currently supported in Internet Explorer or Microsoft Edge.
+It's important to note that the **`structuredClone()`** method is not supported in every browser. While it is supported in modern versions of Firefox, Chrome, and Safari, it is not currently supported in Internet Explorer or Microsoft Edge.
 
 Additionally, some older browsers may not support it either. As with any web technology, it's important to test for [browser compatibility](https://caniuse.com/mdn-api_structuredclone) before using it in production.
 
