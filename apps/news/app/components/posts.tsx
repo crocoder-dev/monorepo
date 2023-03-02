@@ -9,8 +9,22 @@ export default function Posts({posts}: {posts:Post[]}) {
 
   const [parent] = useAutoAnimate(/* optional config */)
 
+  const get = () => {
+    fetch('http://localhost:3000/api/post')
+    .then(res => res.json())
+    .then(
+      (result) => {
+        console.log(result)
+      },
+      (error) => {
+        
+      }
+    )
+  }
+
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center flex-col">
+      <button onClick={()=> get()}>Button</button>
       <ul ref={parent} className="flex-center w-full px-4 max-w-5xl">
         {
           (posts).map((post) => {

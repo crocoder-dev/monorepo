@@ -2,9 +2,9 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function PostItem({post, setOpen, open}: {post:Post, setOpen: any, open: any}) {
   return (
-    <li className="flex justify-between space-x-3 relative bg-white hover:bg-gray-50 border-b-2 border-blue-200 cursor-pointer">
+    <li className="flex justify-between space-x-3 relative bg-white hover:bg-gray-50 border-b-2 border-blue-200">
       <div className="w-full flex-1">
-        <div onClick={() => (open === post.id ? setOpen(null) : setOpen(post.id))} className="block focus:outline-none scroll-mt-16 px-4 py-4">
+        <div onClick={() => (open === post.id ? setOpen(null) : setOpen(post.id))} className="block focus:outline-none scroll-mt-16 px-4 py-4 cursor-pointer">
           <h1 className="text-2xl font-bold text-sky-800 select-none">{post.title}</h1>
           <p className="text-lg text-gray-500 select-none">AUTOMATION | TODAY</p>
         </div>

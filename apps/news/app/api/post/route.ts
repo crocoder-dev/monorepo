@@ -1,4 +1,5 @@
 import { extract } from '@extractus/article-extractor'
+import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
   console.log(request);
@@ -7,5 +8,6 @@ export async function GET(request: Request) {
 
   const article = await extract(input, options);
 
-  return Response.json({article});
+  //return Response.json({article});
+  return NextResponse.json({article});
 }
