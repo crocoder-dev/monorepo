@@ -2,6 +2,7 @@
 * @crocoder-dev/crocoder-team
 /.cm/gitstream.cm @crocoder-dev/crocoder-team
 /.vscode/settings.json @crocoder-dev/crocoder-team
+/apps/company-website/api/nostr.js @crocoder-dev/crocoder-team
 /apps/company-website/scripts/dev-server.js @crocoder-dev/crocoder-team
 /apps/company-website/src/client.jsx @crocoder-dev/crocoder-team
 /apps/company-website/src/components/Blog/ConditionalPost/croc/demo.tsx @crocoder-dev/crocoder-team
