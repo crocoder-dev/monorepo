@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/api/nostr", "destination": "/.well-known/nostr.json" },
+    { "source": "/.well-known/nostr.json", "destination": "/api/nostr" },
     { "source": "/feed", "destination": "/feed.xml" },
     { "source": "/sitemap", "destination": "/sitemap.xml" },
     {
