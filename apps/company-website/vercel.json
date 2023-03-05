@@ -1,6 +1,5 @@
 {
   "rewrites": [
-    { "source": "/api/nostr", "destination": "/.well-known/nostr.json"},
     { "source": "/feed", "destination": "/feed.xml" },
     { "source": "/sitemap", "destination": "/sitemap.xml" },
     {
@@ -69,6 +68,10 @@
       "maxDuration": 5
     },
     "api/nostr.js": {
+      "memory": 256,
+      "maxDuration": 5
+    },
+    "/.well-known/nostr.json.js": {
       "memory": 256,
       "maxDuration": 5
     }
