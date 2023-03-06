@@ -24,6 +24,7 @@
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
     "eslint": "^8.34.0",
+    "openai": "^3.2.1",
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.2.2",
     "turbo": "^1.7.4",
