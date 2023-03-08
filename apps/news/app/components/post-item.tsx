@@ -1,16 +1,22 @@
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function PostItem({post, setOpen, open}: {post:Post, setOpen: any, open: any}) {
+  const date = new Date(post.publishedAt)
   return (
     <li className="flex justify-between space-x-3 relative bg-white hover:bg-gray-50 border-b-2 border-blue-200">
       <div className="w-full flex-1">
         <div onClick={() => (open === post.id ? setOpen(null) : setOpen(post.id))} className="block focus:outline-none scroll-mt-16 px-4 py-4 cursor-pointer">
           <h1 className="text-2xl font-bold text-sky-800 select-none">{post.title}</h1>
-          <p className="text-lg text-gray-500 select-none">AUTOMATION | TODAY</p>
+          <p className="text-lg text-gray-500 select-none">{post.category} | {date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear()}</p>
         </div>
-        <div className={`px-4 transition-all ease-in-out duration-200 ${open === post.id ? 'visible max-h-screen' : 'invisible max-h-0'}`}>
-          <img className="m-0 pt-3 w-full" src="https://miro.medium.com/max/1000/1*KDMx1YspSrBcFJG-NDZgDg.png" alt="" />
-          <p className="py-4">{post.body}</p>
+        <div className={`px-4 transition-all ease-in-out duration-200 ${open === post.id ? 'visible max-h-[200rem]' : 'invisible max-h-0'}`}>
+          <div className="flex justify-center m-0 pt-3 w-full">
+            <img className="max-h-500px" src={post.img} alt="post image" />
+          </div>
+          <div className="">
+            Author: {post.author}
+          </div>
+          <p className="py-4 flex flex-col gap-4" dangerouslySetInnerHTML={{ __html: post.summary }}></p>
+          <a className="block mb-2 hover:text-sky-500" href={post.url}>{post.url}</a>
         </div>
       </div>
     </li>
@@ -20,8 +26,10 @@ export default function PostItem({post, setOpen, open}: {post:Post, setOpen: any
 export type Post = {
     id: number,
     title: string,
+    author: string
     category: string,
-    date: string,
-    content: string,
-    body: string
+    publishedAt: string,
+    summary: string,
+    img: string,
+    url: string
 }

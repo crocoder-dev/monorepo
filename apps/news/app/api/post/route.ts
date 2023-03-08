@@ -15,19 +15,23 @@ export async function POST(request: NextRequest) {
   const response = new Response(request.body);
   const { url } = await response.json();
 
-  const options = {descriptionLengthThreshold: 1000, wordsPerMinute: 150, contentLengthThreshold: 200, descriptionTruncateLen: 1500};
+  const options = {descriptionLengthThreshold: 100, wordsPerMinute: 150, contentLengthThreshold: 200, descriptionTruncateLen: 150};
 
   const article = await extract(url, options);
+
+  if (!article.content) {
+    throw new Error();
+  }
 
   const escapeRegExp = (string: string) => {
     return string.replace(/<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g, '');
   }
 
-  const openAiData = await summarize(escapeRegExp(article.content as string), 3);
+  const openAiData = await summarize(escapeRegExp(article.content), 3);
 
   const data = {
     author: article.author,
-    publishedAt: new Date(article.published as string).getTime(),
+    publishedAt: new Date(article.published as string || new Date()).getTime(),
     url: article.url,
     title: article.title,
     img: article.image,

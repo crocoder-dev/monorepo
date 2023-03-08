@@ -20,6 +20,8 @@ export default function Posts({posts}: {posts:Post[]}) {
       } 
   
       const data = await response.json();
+      data.data.id = 123123
+      posts.unshift(data.data)
       console.log(data);
     } catch (err) {
       console.error(err);
@@ -34,7 +36,7 @@ export default function Posts({posts}: {posts:Post[]}) {
       </div>
       <ul ref={parent} className="flex-center w-full px-4 max-w-5xl">
         {
-          (posts).map((post) => {
+          posts.map((post) => {
             return <PostItem key={post.id} post={post} open={open} setOpen={setOpen}></PostItem>
           })
         }
