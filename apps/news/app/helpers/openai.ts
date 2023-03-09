@@ -9,11 +9,12 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 async function summarize(text: string, num_paragraphs: number) {
-  const prompt = `Please summarize the following text in ${num_paragraphs} paragraphs and wrap each paragraph in html p element:\n${text}`;
+  const prompt = `Please summarize the following text in ${num_paragraphs} paragraphs:\n${text}`;
 
   const completions = await openai.createCompletion({
     model: model_engine,
     prompt: prompt,
+    temperature: 0.1,
     n: 1,
     max_tokens: 1000,
   });
@@ -40,6 +41,10 @@ async function categorise(text: string) {
   });
 
   const category = completions.data.choices[0]?.text?.trim();
+
+  if (!category) {
+    throw  new Error();
+  }
 
   return category;
 }

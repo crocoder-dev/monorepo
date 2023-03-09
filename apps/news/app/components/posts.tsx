@@ -11,6 +11,8 @@ export default function Posts({posts}: {posts:Post[]}) {
 
   const [parent] = useAutoAnimate(/* optional config */)
 
+  const [newPost, setPost] = useState<Post[]>([])
+
   const get = async () => {
     try {
       const response = await fetch('/api/post', {method: 'POST', body: JSON.stringify({url: inputRef?.current?.value })})
@@ -20,9 +22,8 @@ export default function Posts({posts}: {posts:Post[]}) {
       } 
   
       const data = await response.json();
-      data.data.id = 123123
-      posts.unshift(data.data)
-      console.log(data);
+      data.data.id = 1234;
+      setPost([data.data])
     } catch (err) {
       console.error(err);
     }
@@ -36,7 +37,7 @@ export default function Posts({posts}: {posts:Post[]}) {
       </div>
       <ul ref={parent} className="flex-center w-full px-4 max-w-5xl">
         {
-          posts.map((post) => {
+          newPost.map((post) => {
             return <PostItem key={post.id} post={post} open={open} setOpen={setOpen}></PostItem>
           })
         }

@@ -1,6 +1,26 @@
 import { extract } from '@extractus/article-extractor'
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { summarize } from '../../helpers/openai';
+
+const escapeRegExp = (string: string) => {
+  return string.replace(/<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g, '');
+}
+
+const articleSchema = z.object({
+  content: z.string(),
+  url: z.string(),
+  title: z.string(),
+  published: z.string(),
+  author: z.string(),
+  image: z.string(),
+  source: z.string(),
+});
+
+const openAiDataSchema = z.object({
+  summary: z.string(),
+  category: z.string(),
+});
 
 export async function GET(request: Request) {
   const input = 'https://www.cnbc.com/2022/09/21/what-another-major-rate-hike-by-the-federal-reserve-means-to-you.html';
@@ -19,25 +39,29 @@ export async function POST(request: NextRequest) {
 
   const article = await extract(url, options);
 
-  if (!article.content) {
+  const parsed = articleSchema.safeParse(article);
+
+  if (!parsed.success) {
     throw new Error();
   }
 
-  const escapeRegExp = (string: string) => {
-    return string.replace(/<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g, '');
+  const openAiData = await summarize(escapeRegExp(parsed.data.content), 3);
+
+  const openAiDataParsed = openAiDataSchema.safeParse(openAiData);
+
+  if (!openAiDataParsed.success) {
+    throw new Error();
   }
 
-  const openAiData = await summarize(escapeRegExp(article.content), 3);
-
   const data = {
-    author: article.author,
-    publishedAt: new Date(article.published as string || new Date()).getTime(),
-    url: article.url,
-    title: article.title,
-    img: article.image,
-    category: openAiData.category,
-    organization: article.source,
-    summary: openAiData.summary
+    author: parsed.data.author,
+    publishedAt: new Date(parsed.data.published).getTime(),
+    url: parsed.data.url,
+    title: parsed.data.title,
+    img: parsed.data.image,
+    category: openAiDataParsed.data.category,
+    organization: parsed.data.source,
+    summary: openAiDataParsed.data.summary.split('\n\n')
   }
 
   return NextResponse.json({data});
