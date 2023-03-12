@@ -1,0 +1,73 @@
+import blogHeader from "../../content/images/blogs/best-react-component-libraries-2022.jpg?preset=responsive";
+import BlogLayout from "../../Layouts/BlogLayout";
+import ContentTable from "../../components/Blog/ContentTable";
+import Dockerfile0 from "../../components/Blog/DockerPost/NodeImage/Dockerfiles/Dockerfile.0?raw";
+
+export const meta = {
+  id: "node-docker-image",
+  title:
+    "Node Docker image",
+  description:
+    "",
+  category: "Docker",
+  image: blogHeader,
+  date: 1678659672751,
+  updatedAt: 1678659672751,
+  author: "davidabram",
+  editor: "velimirujevic",
+  abstract:
+    "",
+  pageType: "blog-posting"
+};
+
+```docker
+FROM node
+
+COPY . .
+
+RUN npm install
+
+CMD ["npm", "run", "dev"]
+```
+
+
+```docker
+# Start with a base image that has Node.js installed
+FROM node
+
+# Copy the contents of the current directory (where the Dockerfile is located) 
+# into the container's file system
+COPY . .
+
+# Run the "npm install" command inside the container to install any required 
+# Node.js packages specified in the "package.json" file.
+RUN npm install
+
+# Define the command that will be executed when the container is started
+# This will start the Node.js application using the "npm run dev" command.
+CMD ["npm", "run", "dev"]
+```
+
+```docker
+FROM node:19.7-alpine3.16
+
+COPY . .
+
+RUN npm install
+
+CMD ["npm", "run", "dev"]
+```
+
+https://hub.docker.com/_/node
+
+Using a specific version of the Node.js image (such as node:19.7-alpine3.16) is better than using the latest version of the image for a few reasons.
+
+Firstly, when you use a specific version, you can be sure that the image will behave in the same way every time you use it. If you use the latest version, there may be changes that could break your application or cause bugs.
+
+Secondly, using a specific version can help you reproduce the exact same environment that you used to build and test your application. This is important because you want to make sure that your application behaves the same way in production as it did during testing.
+
+Thirdly, using a specific version can help you avoid introducing security vulnerabilities that may be present in the latest version. By using a specific version, you can make sure that you're not accidentally exposing your application to security risks.
+
+Lastly, if your application depends on a specific version of Node.js or other dependencies, using a specific version of the image can help ensure that everything works together smoothly.
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
