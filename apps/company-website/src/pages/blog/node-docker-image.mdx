@@ -5,7 +5,7 @@ import ContentTable from "../../components/Blog/ContentTable";
 export const meta = {
   id: "node-docker-image",
   title:
-    "Node Docker image",
+    "BLAZINGLY FAST Node.js app in Docker",
   description:
     "",
   category: "Docker",
@@ -18,6 +18,94 @@ export const meta = {
     "",
   pageType: "blog-posting"
 };
+
+<ContentTable tocData={props.toc} />
+
+## Explicitly set Docker base image tag
+
+If you set a tag for your base image, it ensures that the same image will always be used when building your Docker image. This means that your Docker image will behave consistently no matter where it is used.
+
+I personally suggest using the latest LTS or current version of Node.js pinned to the minor version (as of March 13th that would be 18.15 or 19.7). This way you will always get the latest security patches and bug fixes, but still have a consistent build.
+
+I recommend using the Alpine version of the Node.js image. This version is smaller and faster to build compared to the default Debian-based image. 
+
+Additionally, using a smaller image reduces the attack surface area, making it more difficult for attackers to exploit vulnerabilities. This approach also helps prevent issues that could occur from updates to the base image that may cause problems with our application.
+
+When we apply all this, we get a Dockerfile that looks like
+
+```docker
+FROM node:19.7-alpine3.16
+
+COPY . .
+
+RUN npm install
+
+CMD "npm" "start"
+```
+
+## Don't use npm script to run your node app
+
+
+```javascript
+const http = require('http');
+
+function handle(signal) {
+  console.log(`Received signal: ${signal}`);
+}
+process.on('SIGHUP', handle);
+
+const server = http.createServer();
+
+server.listen(3000);
+```
+
+```json
+{
+  "scripts": {
+    "start": "node index.js"
+  }
+}
+```
+
+```docker
+FROM node:19.7-alpine3.16
+
+COPY . .
+
+RUN npm install
+
+CMD "npm" "start"
+```
+
+```bash
+docker build . -t npm-start-test-image
+
+docker run -d --name npm-start-test-container npm-start-test
+
+docker kill --signal=SIGHUP npm-start-test-container
+```
+
+```docker
+FROM node:19.7-alpine3.16
+
+COPY . .
+
+RUN npm install
+
+CMD "node" "server.js"
+```
+
+## Specify what files and where should be copied
+
+## Run containers as a non-root user
+
+## Set NODE_ENV=production
+
+## Use Cache Mounts
+
+## Use multi-stage builds
+
+## Properly mount secrets into Docker image
 
 ```docker
 FROM node
@@ -57,17 +145,6 @@ RUN npm install
 CMD ["npm", "run", "dev"]
 ```
 
-```docker
-FROM node:19.7-alpine3.16
-
-WORKDIR /usr/src/app
-
-COPY . .
-
-RUN npm install
-
-CMD ["npm", "run", "dev"]
-```
 
 ```docker
 FROM node:19.7-alpine3.16
@@ -79,8 +156,6 @@ COPY package*.json ./
 RUN npm install
 
 COPY ./src/ .
-
-RUN npm install
 
 CMD ["npm", "run", "dev"]
 ```
@@ -100,21 +175,111 @@ USER node
 
 COPY --chown=node:node ./src/ .
 
+CMD ["npm", "run", "dev"]
+```
+
+```docker
+FROM node:19.7-alpine3.16
+
+ENV NODE_ENV production
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm ci --only-production
+   
+COPY ./src/ .
+
+USER node
+
+COPY --chown=node:node ./src/ .
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]
+```
+
+```docker
+FROM node:19.7-alpine3.16
+
+ENV NODE_ENV production
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm ci --only-production
+   
+COPY ./src/ .
+
+USER node
+
+COPY --chown=node:node ./src/ .
+
 RUN npm install
 
 CMD ["npm", "run", "dev"]
 ```
 
+```docker
+FROM node:19.7-alpine3.16
+
+ENV NODE_ENV production
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN --mount=type=cache,target=/usr/src/app/.npm \
+  npm set cache /usr/src/app/.npm && \
+  npm ci --only=production
+   
+COPY ./src/ .
+
+USER node
+
+COPY --chown=node:node ./src/ .
+
+RUN npm install
+
+CMD ["npm", "run", "dev"]
+```
+
+```docker
+FROM node:19.6-bullseye-slim AS base
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+FROM base as dev
+
+RUN --mount=type=cache,target=/usr/src/app/.npm \
+  npm set cache /usr/src/app/.npm && \
+  npm install
+
+COPY . .
+
+CMD ["npm", "run", "dev"]
+
+FROM base as production
+
+ENV NODE_ENV production
+
+RUN --mount=type=cache,target=/usr/src/app/.npm \
+  npm set cache /usr/src/app/.npm && \
+  npm ci --only=production
+
+USER node
+
+COPY --chown=node:node ./src/ .
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]
+```
+
 https://hub.docker.com/_/node
-
-Using a specific version of the Node.js image (such as node:19.7-alpine3.16) is better than using the latest version of the image for a few reasons.
-
-Firstly, when you use a specific version, you can be sure that the image will behave in the same way every time you use it. If you use the latest version, there may be changes that could break your application or cause bugs.
-
-Secondly, using a specific version can help you reproduce the exact same environment that you used to build and test your application. This is important because you want to make sure that your application behaves the same way in production as it did during testing.
-
-Thirdly, using a specific version can help you avoid introducing security vulnerabilities that may be present in the latest version. By using a specific version, you can make sure that you're not accidentally exposing your application to security risks.
-
-Lastly, if your application depends on a specific version of Node.js or other dependencies, using a specific version of the image can help ensure that everything works together smoothly.
 
 export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

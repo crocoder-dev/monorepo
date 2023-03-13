@@ -5,7 +5,7 @@ import BlogLink from '../BlogLink';
 
 const Table = ({ tocData }) => (
   <ul className={styles.table}>
-    {tocData.map(({ value, id, children }) => (
+    {tocData?.map(({ value, id, children }) => (
       <li key={id}>
         <BlogLink toc href={`#${id}`}>{value}</BlogLink>
         {children && <Table tocData={children} />}
