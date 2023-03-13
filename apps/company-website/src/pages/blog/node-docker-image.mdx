@@ -31,7 +31,7 @@ I recommend using the Alpine version of the Node.js image. This version is small
 
 Additionally, using a smaller image reduces the attack surface area, making it more difficult for attackers to exploit vulnerabilities. This approach also helps prevent issues that could occur from updates to the base image that may cause problems with our application.
 
-When we apply all this, we get a Dockerfile that looks like
+When we apply all this, we get a Dockerfile that looks something like:
 
 ```docker
 FROM node:19.7-alpine3.16
@@ -45,6 +45,25 @@ CMD "npm" "start"
 
 ## Don't use npm script to run your node app
 
+To give you full context for this, I need to detour a bit and explain how signals work in Linux and Unix systems.
+
+If you are certian that you don't need to know how signals work, you can skip to [this section]() to get the updated dockerfile.
+
+### The signals problem explained in painful detail
+
+In Linux and Unix systems, you can send signals to a running program or service to interact with it. It's a bit like semaphore lights that tell you to stop or start driving. There are lots of different signals, and each of them has an assigned number.
+
+Signal 15 named SIGTERM is used to tell a process to shut down. Signal 9, SIGKILL is the most well-known because it lets you forcefully terminate a process.
+
+If you want to run and stop Dockerized Node.js applications properly, your app should receive these signals properly and shouldn't ignore them. 
+
+When you run your Dockerized Node.js application using npm start, npm will start your application and then wait for it to exit. This means that if you send a signal to your container, it will be sent to npm, not your application. This is a problem because npm does not handle signals, so it will not be able to properly shut down your application.
+
+### An example that proves the npm scripts problem
+
+So lets run an example that shows this issue.
+
+Lets create a new folder and write `server.js` that sets up an HTTP server that listens on port 3000. It also registers a handler function to handle the SIGHUP signal. SIGHUP was originally designed to notify the process of a serial line drop, like old telephony stuff.
 
 ```javascript
 const http = require('http');
@@ -59,6 +78,17 @@ const server = http.createServer();
 server.listen(3000);
 ```
 
+The require('http') statement loads the built-in HTTP module in Node.js, which provides an easy way to create HTTP servers and clients.
+
+The handle(signal) function is called whenever the process receives the SIGHUP signal. The console.log() statement logs a message indicating that the signal has been received.
+
+The process.on('SIGHUP', handle) statement registers the handle() function to be called when the SIGHUP signal is received by the process.
+
+Finally, the http.createServer() statement creates an HTTP server that listens on port 3000.
+
+After we have saved `server.js`, let's run `npm init -f`. This should generate our `package.json`.
+
+
 ```json
 {
   "scripts": {
@@ -66,6 +96,9 @@ server.listen(3000);
   }
 }
 ```
+The important this is that our `package.json`, has start script like in the previos code snippet.
+
+Let's create a `Dockerfile` file with our current `Dockerfile` setup.
 
 ```docker
 FROM node:19.7-alpine3.16
@@ -77,13 +110,24 @@ RUN npm install
 CMD "npm" "start"
 ```
 
+Lets open a terminal and run some commands.
+
 ```bash
 docker build . -t npm-start-test-image
 
-docker run -d --name npm-start-test-container npm-start-test
+docker run --name npm-start-test-container npm-start-test
 
+# open another terminal (or tab) 
 docker kill --signal=SIGHUP npm-start-test-container
 ```
+
+The first command `docker build . -t npm-start-test-image` builds a Docker image from the Dockerfile in the current directory (.) and tags it with the name npm-start-test-image.
+
+The second command `docker run -d --name npm-start-test-container npm-start-test` starts a container from the image npm-start-test-image, in detached mode (-d), and names it npm-start-test-container.
+
+Finally, the third command `docker kill --signal=SIGHUP npm-start-test-container` sends a SIGHUP signal to the running container named npm-start-test-container using the docker kill command. The --signal=SIGHUP option specifies that the signal being sent is SIGHUP.
+
+And after running our last command, 
 
 ```docker
 FROM node:19.7-alpine3.16
@@ -94,6 +138,12 @@ RUN npm install
 
 CMD "node" "server.js"
 ```
+
+### More issues with signals not being handled properly
+
+This is especially true for programs that run as process ID 1 (PID) on Linux. These programs are treated differently than other processes.
+
+### The better CMD option
 
 ## Specify what files and where should be copied
 
