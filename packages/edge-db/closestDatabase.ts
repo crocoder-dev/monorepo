@@ -51,6 +51,14 @@ export const getClosestDatabaseURL = (lat: number, long: number) => {
   return closestDatabase;
 };
 
+export const getWriteableDatabase = async() => {
+  return new Kysely<DB>({
+    dialect: new PlanetScaleDialect({
+      url: databaseInfos[0]?.DB_URL,
+    }),
+  });
+}
+
 export const getClosestEdgeDatabase = async (lat: number, long: number) => {
   return new Kysely<DB>({
     dialect: new PlanetScaleDialect({

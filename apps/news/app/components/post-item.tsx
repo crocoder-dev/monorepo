@@ -1,3 +1,4 @@
+"use client"
 
 export default function PostItem({post, setOpen, open}: {post:Post, setOpen: any, open: any}) {
   const date = new Date(post?.publishedAt)
@@ -8,14 +9,14 @@ export default function PostItem({post, setOpen, open}: {post:Post, setOpen: any
           <h1 className="text-2xl font-bold text-sky-800 select-none">{post?.title}</h1>
           <p className="text-lg text-gray-500 select-none">{post?.category} | {date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear()}</p>
         </div>
-        <div className={`px-4 transition-all ease-in-out duration-200 ${open === post?.id ? 'visible post-item' : 'invisible max-h-0'}`}>
+        <div className={`px-4 transition-all ease-in-out duration-200 ${open === post?.id ? 'visible max-h-[75em]' : 'invisible max-h-0'}`}>
           <div className="flex justify-center m-0 pt-3 w-full">
             <img className="max-h-500px" src={post?.img} alt="post image" />
           </div>
           <div className="">
             Author: {post?.author}
           </div>
-          {post.summary.map(summary=> {
+          {post.summary.split('\n\n').map(summary=> {
             return <p className="py-4 flex flex-col gap-4">{summary}</p>
           })}
           <a className="inline-block mb-2 text-sky-300 hover:text-sky-500" href={post?.url}>{post?.url}</a>
@@ -31,7 +32,7 @@ export type Post = {
     author: string
     category: string,
     publishedAt: string,
-    summary: string[],
+    summary: string,
     img: string,
     url: string
 }
