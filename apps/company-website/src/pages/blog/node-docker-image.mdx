@@ -233,13 +233,13 @@ FROM node:19.7-alpine3.16
 
 RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
 
+ENV NODE_ENV production
+
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 
 RUN npm install
-
-COPY ./src/ .
 
 USER node
 
@@ -256,99 +256,42 @@ Most Node.js developers associate this setting with installing production-relate
 
 Some Node.js frameworks and libraries will only use their best performance and security configurations when NODE_ENV is set to production. This is important to remember, even if you don't agree with how frameworks work.
 
-For example, [Express documentation](https://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production) recommends setting this variable to improve performance and security. If you forget to do this, you might experience a significant impact on performance, as explained in a [blog post by Dynatrace](https://www.dynatrace.com/news/blog/the-drastic-effects-of-omitting-node-env-in-your-express-js-applications/).
+For example, [Express documentation](https://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production) recommends setting this variable to improve performance and security. If you forget to do this, you might experience a significant impact on performance, as explained in this great [blog post by Dynatrace](https://www.dynatrace.com/news/blog/the-drastic-effects-of-omitting-node-env-in-your-express-js-applications/).
 
-
-
-## Use Cache Mounts
-
-## Use multi-stage builds
-
-## Properly mount secrets into Docker image
-
-```docker
-FROM node
-
-COPY . .
-
-RUN npm install
-
-CMD ["npm", "run", "dev"]
-```
-
-
-```docker
-# Start with a base image that has Node.js installed
-FROM node
-
-# Copy the contents of the current directory (where the Dockerfile is located) 
-# into the container's file system
-COPY . .
-
-# Run the "npm install" command inside the container to install any required 
-# Node.js packages specified in the "package.json" file.
-RUN npm install
-
-# Define the command that will be executed when the container is started
-# This will start the Node.js application using the "npm run dev" command.
-CMD ["npm", "run", "dev"]
-```
+Furthermore, we want to install only production dependencies, but we don't want to update package-lock.json file. In this case we can use `npm ci` command instead of `npm install`.
 
 ```docker
 FROM node:19.7-alpine3.16
 
-COPY . .
-
-RUN npm install
-
-CMD ["npm", "run", "dev"]
-```
-
-
-```docker
-FROM node:19.7-alpine3.16
-
-WORKDIR /usr/src/app
-
-COPY package*.json ./
-
-RUN npm install
-
-COPY ./src/ .
-
-CMD ["npm", "run", "dev"]
-```
-
-```docker
-FROM node:19.7-alpine3.16
-
-WORKDIR /usr/src/app
-
-COPY package*.json ./
-
-RUN npm install
-
-COPY ./src/ .
-
-USER node
-
-COPY --chown=node:node ./src/ .
-
-CMD ["npm", "run", "dev"]
-```
-
-```docker
-FROM node:19.7-alpine3.16
-
-ENV NODE_ENV production
+RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
 
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 
 RUN npm ci --only-production
-   
-COPY ./src/ .
+
+USER node
+
+COPY --chown=node:node ./src/ .
+
+CMD ["dumb-init", "node", "server.js"]
+```
+
+## Indicate what ports to EXPOSE
+
+Let other Dockerized Node.js app users know which port the application expects to be listening on by including that information in the Dockerfile. You'll still need to make sure the port is available when the application runs, but this will help users understand what to expect!
+
+```docker
+FROM node:19.7-alpine3.16
+
+RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm ci --only-production
 
 USER node
 
@@ -356,35 +299,23 @@ COPY --chown=node:node ./src/ .
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+CMD ["dumb-init", "node", "server.js"]
 ```
+
+## Use Cache Mounts
+
+When you build a Docker image, you use a Dockerfile which has a series of steps. Each step creates a new layer, which is like a file system that contains the changes made in that step. Docker uses layer caching to speed up the build process by reusing files from previous layers if they haven't changed.
+
+However, there are some cases where Docker can't use layer caching, such as when a file is changed in a later step. This means Docker has to recreate all the layers after the change, even if they haven't actually been modified. This can slow down the build process.
+
+To solve this problem, Docker introduced a feature called [cache mount](https://docs.docker.com/build/cache/). With cache mount, you can mount a directory from your computer's file system into the Docker container while you're building the image. Any files in that directory can be used by Docker to speed up the build process. This means you can cache dependencies or build artifacts outside of the Docker build context, which can make the build process much faster.
+
+Lets update our Dockerfile to use cache mount for npm dependencies.
 
 ```docker
 FROM node:19.7-alpine3.16
 
-ENV NODE_ENV production
-
-WORKDIR /usr/src/app
-
-COPY package*.json ./
-
-RUN npm ci --only-production
-   
-COPY ./src/ .
-
-USER node
-
-COPY --chown=node:node ./src/ .
-
-RUN npm install
-
-CMD ["npm", "run", "dev"]
-```
-
-```docker
-FROM node:19.7-alpine3.16
-
-ENV NODE_ENV production
+RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
 
 WORKDIR /usr/src/app
 
@@ -393,20 +324,30 @@ COPY package*.json ./
 RUN --mount=type=cache,target=/usr/src/app/.npm \
   npm set cache /usr/src/app/.npm && \
   npm ci --only=production
-   
+
 COPY ./src/ .
 
 USER node
 
 COPY --chown=node:node ./src/ .
 
-RUN npm install
+EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+CMD ["dumb-init", "node", "server.js"]
 ```
 
+## Use multi-stage builds
+
+Multi-stage environments in Docker are a way to make images smaller and faster. 
+
+Normally, Docker images include everything needed to build and run an application, which can make them big and slow. With multi-stage environments, the Dockerfile is split into different stages, each of which builds and packages a different part of the application. Each stage can use a different base image and only include the necessary files, which makes the images smaller and faster. For example, one stage might compile the source code and package it, and another stage might package the binary file into a minimal image with only the necessary dependencies to run the application. This makes the images more efficient and easier to manage.
+
+Let take a look at updated multi-stage Dockerfile and then we can discuss what's going on.
+
 ```docker
-FROM node:19.6-bullseye-slim AS base
+FROM node:19.7-alpine3.16 as base
+
+RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
 
 WORKDIR /usr/src/app
 
@@ -418,9 +359,9 @@ RUN --mount=type=cache,target=/usr/src/app/.npm \
   npm set cache /usr/src/app/.npm && \
   npm install
 
-COPY . .
+COPY ./src/ .
 
-CMD ["npm", "run", "dev"]
+CMD ["dumb-init", "node", "server.js"]
 
 FROM base as production
 
@@ -436,8 +377,78 @@ COPY --chown=node:node ./src/ .
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+CMD ["dumb-init", "node", "server.js"]
 ```
 
+The "base stage" is the first step in building our project's container image. It sets up the foundation of the image by using a pre-existing image called node:19.7-alpine3.16, which is a small and efficient version of Node.js. We also install a program called dumb-init, which helps manage processes within the container. Finally, we create a working directory at /usr/src/app and copy our project's package.json and package-lock.json files there.
+
+Next, we have a "dev stage" that builds on top of the base stage. This stage is meant for development and makes it faster to install dependencies by caching the node_modules directory. We use a technique called "cache mounting" to accomplish this. We also copy our source code from the ./src/ directory into the container.
+
+Finally, we have a "production stage" that's similar to the dev stage, but meant for running our project in a production environment. It also uses cache mounting to speed up the dependency installation process. We run a different command called npm ci to install the production dependencies. Additionally, we change the user of the container to "node" to run it with reduced privileges.
+
+To build the Docker image, you can run the following command:
+
+```bash
+docker build -t dockerized-node-app .
+```
+This will build the image and tag it with the name dockerized-node-app.
+
+To run the dev stage of the container, you can use the following command:
+
+```bash
+docker run -it --rm -p 3000:3000 dockerized-node-app:dev
+```
+
+This will start a container using the dev stage of the dockerized-node-app image.
+
+To run the production stage of the container, you can use the following command:
+
+```bash
+docker run -it --rm -p 3000:3000 dockerized-node-app:production
+```
+
+This will start a container using the production stage of the dockerized-node-app image and expose port 3000 to the host.
+
+## Copy-pastable Imporved Blazingly fast Dockerfile
+
+Here you, go copy-paste this Dockerfile and you are good to go.
+
+Just beware, you still need to add your own source code and other stuff. 😁😁😁
+
+```docker
+FROM node:19.7-alpine3.16 as base
+
+RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+FROM base as dev
+
+RUN --mount=type=cache,target=/usr/src/app/.npm \
+  npm set cache /usr/src/app/.npm && \
+  npm install
+
+COPY ./src/ .
+
+CMD ["dumb-init", "node", "server.js"]
+
+FROM base as production
+
+ENV NODE_ENV production
+
+RUN --mount=type=cache,target=/usr/src/app/.npm \
+  npm set cache /usr/src/app/.npm && \
+  npm ci --only=production
+
+USER node
+
+COPY --chown=node:node ./src/ .
+
+EXPOSE 3000
+
+CMD ["dumb-init", "node", "server.js"]
+```
 
 export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
