@@ -127,7 +127,9 @@ The second command `docker run -d --name npm-start-test-container npm-start-test
 
 Finally, the third command `docker kill --signal=SIGHUP npm-start-test-container` sends a SIGHUP signal to the running container named npm-start-test-container using the docker kill command. The --signal=SIGHUP option specifies that the signal being sent is SIGHUP.
 
-And after running our last command, 
+And after running our last command, we expect that SIGHUP signal will be handled by our application, but it is not. Npm scripts are not forwarding signals properly.
+
+By changing our `Dockerfile` to use `CMD "node" "server.js"` instead of `CMD "npm" "start"`, we can fix this issue.
 
 ```docker
 FROM node:19.7-alpine3.16
@@ -139,9 +141,17 @@ RUN npm install
 CMD "node" "server.js"
 ```
 
+By re-running the before-mentioned bash scripts, we can see that the SIGHUP signal is now forwareded properly, and logged by our Dockerized Node.js app.
+
 ### More issues with signals not being handled properly
 
-This is especially true for programs that run as process ID 1 (PID) on Linux. These programs are treated differently than other processes.
+In Docker, there are two ways to specify the CMD directive in the Dockerfile - shellform notation `CMD "node" "server.js"` and execform notation `CMD ["node", "server.js"]`. With shellform notation, a shell interpreter wraps the process, which can cause problems with signal forwarding. The execform notation, on the other hand, directly spawns a process without a shell interpreter, ensuring signals are properly forwarded.
+
+In a Unix-like operating system, the process with PID 1 is usually the init process, which is the first process that is started by the kernel during the boot process. The init process is responsible for starting and stopping other system processes, as well as performing other system initialization tasks.
+
+When a Docker container is started, the process that is specified in the Dockerfile with the CMD or ENTRYPOINT directive is started with PID 1. This is because the Docker runtime treats the process specified in CMD or ENTRYPOINT as the container's main process, which is equivalent to the init process in a traditional Unix system.
+
+Running the container's main process as PID 1 can cause some issues when handling certain signals, such as SIGTERM, because the kernel treats PID 1 differently from other process identifiers. To avoid unexpected behavior, it is recommended to use a tool like dumb-init or tini to run the container's main process as a child process of an init-like process, which can handle signals properly.
 
 ### The better CMD option
 
