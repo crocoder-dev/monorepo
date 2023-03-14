@@ -250,6 +250,16 @@ CMD ["dumb-init", "node", "server.js"]
 
 ## Set NODE_ENV=production
 
+Although it may appear redundant, specifying this environment variable is necessary.
+
+Most Node.js developers associate this setting with installing production-related dependencies, but it has other effects that you need to know about.
+
+Some Node.js frameworks and libraries will only use their best performance and security configurations when NODE_ENV is set to production. This is important to remember, even if you don't agree with how frameworks work.
+
+For example, [Express documentation](https://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production) recommends setting this variable to improve performance and security. If you forget to do this, you might experience a significant impact on performance, as explained in a [blog post by Dynatrace](https://www.dynatrace.com/news/blog/the-drastic-effects-of-omitting-node-env-in-your-express-js-applications/).
+
+
+
 ## Use Cache Mounts
 
 ## Use multi-stage builds
