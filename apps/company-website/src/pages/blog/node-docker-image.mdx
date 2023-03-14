@@ -220,6 +220,34 @@ To make your Dockerfile faster and more efficient, it's best to split the COPY c
 
 ## Run containers as a non-root user
 
+When you run Docker containers as the default "root" user, it means that any process running inside the container has unrestricted access to the underlying host system. This could be a security risk if a container is compromised or if a malicious user gains access to it. Running as root would allow them to potentially execute harmful commands or access sensitive system files on the host. Additionally, running as root could cause accidental damage to the host system.
+
+To avoid these risks, it's important to run Docker containers as a non-root user. By doing this, you can prevent the container from accessing or modifying system files outside of its own container. This helps to isolate the container and improve the overall security of your system.
+
+To run a Docker container as a non-root user, you can specify a non-root user in the Dockerfile or when running the container using the --user flag. Just make sure that any files or directories mounted into the container have the correct permissions for the non-root user to access and modify them.
+
+Base Node.js docker image has already a user called node. You can use it to run your application.
+
+```docker
+FROM node:19.7-alpine3.16
+
+RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY ./src/ .
+
+USER node
+
+COPY --chown=node:node ./src/ .
+
+CMD ["dumb-init", "node", "server.js"]
+```
+
 ## Set NODE_ENV=production
 
 ## Use Cache Mounts
