@@ -101,22 +101,10 @@ export async function POST(request: NextRequest) {
 
   const category = await categorise(summary);
 
-  const data = {
-    author,
-    publishedAt: published ? new Date(published).getTime() : new Date().getTime(),
-    url,
-    title,
-    img: image,
-    category,
-    organization: source,
-    summary,
-    slug: "",
-  }
-
   const publishedAt = published ? new Date(published) : new Date();
 
   const conn = connect(dbconfig);
-
+  
   await conn.execute('INSERT INTO Post (updatedAt, publishedAt, category, title, img, summary, url, slug, author, organization) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
     new Date(),
     publishedAt,
@@ -130,5 +118,5 @@ export async function POST(request: NextRequest) {
     source,
   ]);
 
-  return NextResponse.json({data});
+  return NextResponse.json({ success: true });
 }
