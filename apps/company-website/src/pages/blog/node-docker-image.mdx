@@ -5,19 +5,24 @@ import ContentTable from "../../components/Blog/ContentTable";
 export const meta = {
   id: "node-docker-image",
   title:
-    "BLAZINGLY FAST Node.js app in Docker",
+    "Dockerfile for BLAZINGLY FAST Dockerized Node.js apps",
   description:
-    "",
+    "Learn how to create perfomant and secure docker image and avoid issues with signals when running Node.js applications with npm scripts in this article. Discover how using a smaller Alpine-based image can reduce attack surface and why it's recommended to use execform notation in the Dockerfile's CMD directive.",
   category: "Docker",
   image: blogHeader,
   date: 1678659672751,
   updatedAt: 1678659672751,
   author: "davidabram",
   editor: "velimirujevic",
-  abstract:
-    "",
+  abstract: "Learn how to set an explicit Docker base image tag and avoid issues with signals when running Node.js applications with npm scripts in this article. Discover how using a smaller Alpine-based image can reduce attack surface and why it's recommended to use execform notation in the Dockerfile's CMD directive.",
   pageType: "blog-posting"
 };
+
+If you're tired of your Node.js app's Docker image being slower than a snail on a salt lick and more insecure than a password that's just the word "password," then you've come to the right place.
+
+In this article, we'll take you through some best practices for creating a Dockerfile that can make your Node.js app run faster, more securely, and more efficiently. We'll cover topics like setting the Docker base image tag, avoiding npm scripts, properly handling signals, and running containers as a non-root user.
+
+By following these practices, you can create a Docker image that's faster, more secure, and more easily managed, so you can focus on developing your Node.js app rather than worrying about its deployment.
 
 <ContentTable tocData={props.toc} />
 
