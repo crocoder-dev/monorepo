@@ -25,7 +25,7 @@ export const meta = {
 
 If you set a tag for your base image, it ensures that the same image will always be used when building your Docker image. This means that your Docker image will behave consistently no matter where it is used.
 
-I personally suggest using the latest LTS or current version of Node.js pinned to the minor version (as of March 13th that would be 18.15 or 19.7). This way you will always get the latest security patches and bug fixes, but still have a consistent build.
+I personally suggest using the latest LTS or current version of Node.js pinned to the minor version (as of March 13th that would be 18.15 or 19.7, but check out node at [hub.docker](https://hub.docker.com/_/node)). This way you will always get the latest security patches and bug fixes, but still have a consistent build.
 
 I recommend using the Alpine version of the Node.js image. This version is smaller and faster to build compared to the default Debian-based image. 
 
@@ -151,11 +151,72 @@ In a Unix-like operating system, the process with PID 1 is usually the init proc
 
 When a Docker container is started, the process that is specified in the Dockerfile with the CMD or ENTRYPOINT directive is started with PID 1. This is because the Docker runtime treats the process specified in CMD or ENTRYPOINT as the container's main process, which is equivalent to the init process in a traditional Unix system.
 
-Running the container's main process as PID 1 can cause some issues when handling certain signals, such as SIGTERM, because the kernel treats PID 1 differently from other process identifiers. To avoid unexpected behavior, it is recommended to use a tool like dumb-init or tini to run the container's main process as a child process of an init-like process, which can handle signals properly.
+Running the container's main process as PID 1 can cause some issues when handling certain signals because the kernel treats PID 1 differently from other process identifiers. To avoid unexpected behavior, it is recommended to use a tool like [dumb-init](https://github.com/Yelp/dumb-init) or [tini](https://github.com/krallin/tini) to run the container's main process as a child process of an init-like process, which can handle signals properly.
+
 
 ### The better CMD option
 
+So let's put together everything we have disscussed so far, and create a `Dockerfile` that will run our Node.js app.
+
+We will be using [dumb-init](https://github.com/Yelp/dumb-init) as our init-like process.
+
+```docker
+FROM node:19.7-alpine3.16
+
+RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+
+COPY . .
+
+RUN npm install
+
+CMD ["dumb-init", "node", "server.js"]
+```
+
 ## Specify what files and where should be copied
+
+To make your Dockerfile more reliable and easier to understand, it's a good idea to use absolute paths for your WORKDIR. This ensures that your file paths are always correct, no matter where your container is running.
+
+Another tip is to use WORKDIR instead of using multiple instructions like `RUN ["cd ..", "&&", "node", "server.js"]`. These can be confusing and difficult to maintain. With WORKDIR, you can set the working directory for all subsequent instructions in your Dockerfile, making it clear and simple to follow.
+
+```docker
+FROM node:19.7-alpine3.16
+
+RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+
+WORKDIR /usr/src/app
+
+COPY . .
+
+RUN npm install
+
+CMD ["dumb-init", "node", "server.js"]
+```
+
+It's important to split the `COPY` command in the Dockerfile for performance reasons.
+
+When you run the docker build command, Docker first checks if any of the previously built layers can be reused from cache. This saves time and speeds up the overall build process.
+
+In the current Dockerfile, the COPY command copies everything in the current directory to the container's working directory. This means that all the application source code, as well as the package.json file, are copied. If you make any changes to your source code and run docker build again, Docker will have to rebuild the entire image from scratch, including running npm install. This can take a long time and slow down your development process.
+
+```docker
+FROM node:19.7-alpine3.16
+
+RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY ./src/ .
+
+CMD ["dumb-init", "node", "server.js"]
+```
+
+In the updated Dockerfile, the first COPY command only copies the package.json and package-lock.json files to the container's working directory. This means that Docker can reuse the cache for the npm install step if there are no changes to package.json. This saves time and speeds up the overall build process. After running npm install, the second COPY command copies only the relevant parts of the code to the container's working directory. This ensures that Docker can still use the cache for any unchanged layers and further speeds up the build process.
+
+To make your Dockerfile faster and more efficient, it's best to split the COPY command and only copy the files that are necessary for your application. This helps to save time and resources by preventing Docker from rebuilding the entire image from scratch every time you make changes to your source code.
 
 ## Run containers as a non-root user
 
@@ -340,6 +401,5 @@ EXPOSE 3000
 CMD ["npm", "run", "dev"]
 ```
 
-https://hub.docker.com/_/node
 
 export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
