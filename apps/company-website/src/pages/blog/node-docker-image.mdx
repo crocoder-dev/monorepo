@@ -169,7 +169,7 @@ We will be using [dumb-init](https://github.com/Yelp/dumb-init) as our init-like
 ```docker
 FROM node:19.7-alpine3.16
 
-RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+RUN apk update && apk add --no-cache dumb-init
 
 COPY . .
 
@@ -187,7 +187,7 @@ Another tip is to use WORKDIR instead of using multiple instructions like **`RUN
 ```docker
 FROM node:19.7-alpine3.16
 
-RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+RUN apk update && apk add --no-cache dumb-init
 
 WORKDIR /usr/src/app
 
@@ -207,7 +207,7 @@ In the current Dockerfile, the COPY command copies everything in the current dir
 ```docker
 FROM node:19.7-alpine3.16
 
-RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+RUN apk update && apk add --no-cache dumb-init
 
 WORKDIR /usr/src/app
 
@@ -237,7 +237,7 @@ Base Node.js docker image has already a user called node. You can use it to run 
 ```docker
 FROM node:19.7-alpine3.16
 
-RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+RUN apk update && apk add --no-cache dumb-init
 
 ENV NODE_ENV production
 
@@ -269,7 +269,7 @@ Furthermore, we only want to install production dependencies, but we don't want 
 ```docker
 FROM node:19.7-alpine3.16
 
-RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+RUN apk update && apk add --no-cache dumb-init
 
 WORKDIR /usr/src/app
 
@@ -291,7 +291,7 @@ Let other Dockerized Node.js app users know which port the application expects t
 ```docker
 FROM node:19.7-alpine3.16
 
-RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+RUN apk update && apk add --no-cache dumb-init
 
 WORKDIR /usr/src/app
 
@@ -321,7 +321,7 @@ Let's update our Dockerfile to use cache mount for npm dependencies.
 ```docker
 FROM node:19.7-alpine3.16
 
-RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+RUN apk update && apk add --no-cache dumb-init
 
 WORKDIR /usr/src/app
 
@@ -353,7 +353,7 @@ Let's take a look at the updated multi-stage Dockerfile and then discuss it afte
 ```docker
 FROM node:19.7-alpine3.16 as base
 
-RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+RUN apk update && apk add --no-cache dumb-init
 
 WORKDIR /usr/src/app
 
@@ -424,7 +424,7 @@ Just beware, you still need to add your own source code and other stuff. üòÅüò
 ```docker
 FROM node:19.7-alpine3.16 as base
 
-RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+RUN apk update && apk add --no-cache dumb-init
 
 WORKDIR /usr/src/app
 
