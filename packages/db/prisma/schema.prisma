@@ -21,7 +21,7 @@ model Post {
   publishedAt  DateTime?
   category     String?
   title        String
-  img          String?
+  img          String?  @db.LongText
   summary      String   @db.LongText
   url          String
   slug         String

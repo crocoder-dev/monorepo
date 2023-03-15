@@ -10,7 +10,7 @@ const dbconfig = {
 }
 
 const api_key = env.OPEN_AI_SECRET_KEY;
-const model_engine = 'text-davinci-002';
+const model_engine = 'text-davinci-003';
 
 const configuration = new Configuration({
     apiKey: api_key,
@@ -27,14 +27,16 @@ const OpenAIApiResponse = z.object({
 });
 
 async function summarize(text: string, num_paragraphs: number) {
-  const prompt = `Please summarize the following text in ${num_paragraphs} paragraphs and max text length of 1500 characters:\n${text}`;
+  const prompt = `Please summarize the text below in ${num_paragraphs} paragraphs and max text length of each paragraph is 500 characters:\n\n Text: "${text}"`;
 
   const response = await openai.createCompletion({
     model: model_engine,
     prompt: prompt,
-    temperature: 0.1,
+    temperature: 0,
     n: 1,
     max_tokens: 1000,
+    frequency_penalty: 0.0,
+    presence_penalty: 0.0
   });
 
   const parsedResponse = OpenAIApiResponse.parse(response);
@@ -45,13 +47,16 @@ async function summarize(text: string, num_paragraphs: number) {
 }
 
 async function categorise(text: string) {
-  const prompt = `What is the category of the following text (example: AUTOMATION, PROGRAMMING):\n${text}`;
+  const prompt = `What is the category of the text below, let the category be one word:\n\n Text: "${text}"`;
 
   const response = await openai.createCompletion({
     model: model_engine,
     prompt: prompt,
+    temperature: 0,
     n: 1,
-    max_tokens: 15
+    max_tokens: 15,
+    frequency_penalty: 0.0,
+    presence_penalty: 0.0
   });
 
   const parsedResponse = OpenAIApiResponse.parse(response);

@@ -16,7 +16,7 @@ export default function PostItem({post, setOpen, open}: {post:Post, setOpen: any
 
   // const date = publishedAt ? new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(new Date(publishedAt)) : null;
 
-  const categoryDate = [`${category}`, `${date}`].filter(Boolean).join(' | ');
+  const categoryDate = [`${category?.toUpperCase()}`, `${date}`].filter(Boolean).join(' | ');
 
   return (
     <li className="flex justify-between space-x-3 relative bg-white hover:bg-gray-50 border-b-2 border-blue-200">
@@ -28,8 +28,8 @@ export default function PostItem({post, setOpen, open}: {post:Post, setOpen: any
         <div className={`px-4 transition-all ease-in-out duration-200 ${open === id ? 'block' : 'hidden'}`}>
           {img ? <div className="flex justify-center m-0 pt-3 w-full"><img className="max-h-[500px]" src={img} alt="post image" /></div> : null}
           {author ? <div>{`Author: ${author}`}</div> : null}
-          {summary.split('\n\n').map(summary=> {
-            return <p key={summary} className="py-4 flex flex-col gap-4">{summary}</p>
+          {summary.split('\n\n').map((summary, i)=> {
+            return <p key={id + '-' + i} className="py-4 flex flex-col gap-4">{summary}</p>
           })}
           <a target="_blank" className="inline-block mb-2 text-sky-300 hover:text-sky-500" href={url}>{url}</a>
         </div>
