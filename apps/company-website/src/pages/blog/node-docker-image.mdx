@@ -342,6 +342,8 @@ EXPOSE 3000
 CMD ["dumb-init", "node", "server.js"]
 ```
 
+Just one more things, you should enable [BuildKit](https://docs.docker.com/build/buildkit/#getting-started) to use cache mount.
+
 ## Use multi-stage builds
 
 Multi-stage environments in Docker are a means to make images smaller and faster. 
