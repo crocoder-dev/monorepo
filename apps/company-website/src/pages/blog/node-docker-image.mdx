@@ -11,7 +11,7 @@ export const meta = {
   category: "Docker",
   image: blogHeader,
   date: 1678659672751,
-  updatedAt: 1678659672751,
+  updatedAt: 1678964999695,
   author: "davidabram",
   editor: "velimirujevic",
   abstract:
@@ -367,9 +367,9 @@ RUN --mount=type=cache,target=/usr/src/app/.npm \
   npm set cache /usr/src/app/.npm && \
   npm install
 
-COPY ./src/ .
+COPY . .
 
-CMD ["dumb-init", "node", "server.js"]
+CMD ["dumb-init", "node", "server-dev.js"]
 
 FROM base as production
 
@@ -390,7 +390,7 @@ CMD ["dumb-init", "node", "server.js"]
 
 The "base stage" is the first step in building our project's container image. It sets up the foundation of the image by using a pre-existing image called **`node:19.7-alpine3.16`**, which is a small and efficient version of Node.js. We also install a program called dumb-init, which helps manage processes within the container. Finally, we create a working directory at **/usr/src/app** and copy our project's package.json and package-lock.json files there.
 
-Next, we have a "dev stage" that builds on top of the base stage. This stage is meant for development and makes it faster to install dependencies by caching the **node_modules** directory. We use a technique called "cache mounting" to accomplish this. We also copy our source code from the **`./src/`** directory into the container.
+Next, we have a "dev stage" that builds on top of the base stage. This stage is meant for development and makes it faster to install dependencies by caching the **node_modules** directory. We use a technique called "cache mounting" to accomplish this. We also copy our source code and everything else (like config, eslint, etc.) from the root directory into the container.
 
 Finally, we have a "production stage" that's similar to the dev stage but meant for running our project in a production environment. It also uses cache mounting to speed up the dependency installation process. We run a different command called **`npm ci`** to install the production dependencies. Additionally, we change the user of the container to "node" so as to run it with reduced privileges.
 
@@ -438,9 +438,9 @@ RUN --mount=type=cache,target=/usr/src/app/.npm \
   npm set cache /usr/src/app/.npm && \
   npm install
 
-COPY ./src/ .
+COPY . .
 
-CMD ["dumb-init", "node", "server.js"]
+CMD ["dumb-init", "node", "server-dev.js"]
 
 FROM base as production
 
