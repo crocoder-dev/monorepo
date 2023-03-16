@@ -5,7 +5,9 @@
 /apps/company-website/api/nostr.js @crocoder-dev/crocoder-team
 /apps/company-website/scripts/dev-server.js @crocoder-dev/crocoder-team
 /apps/company-website/src/client.jsx @crocoder-dev/crocoder-team
+/apps/company-website/src/components/Blog/BlogLink/index.jsx @crocoder-dev/crocoder-team
 /apps/company-website/src/components/Blog/ConditionalPost/croc/demo.tsx @crocoder-dev/crocoder-team
+/apps/company-website/src/components/Blog/ContentTable/index.jsx @crocoder-dev/crocoder-team
 /apps/company-website/src/components/Blog/ReactHooksPost/ @crocoder-dev/crocoder-team
 /apps/company-website/src/components/Code/index.jsx @crocoder-dev/crocoder-team
 /apps/company-website/src/components/Typography/Typography.jsx @crocoder-dev/crocoder-team
