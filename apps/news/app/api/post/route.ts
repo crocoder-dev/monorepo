@@ -27,7 +27,13 @@ const OpenAIApiResponse = z.object({
 });
 
 async function summarize(text: string, num_paragraphs: number) {
-  const prompt = `Please summarize the text below in ${num_paragraphs} paragraphs and max text length of each paragraph is 500 characters:\n\n Text: "${text}"`;
+  const prompt = `Please summarize the text below in ${num_paragraphs} paragraphs and max text length of each paragraph is 500 characters, return the text :\n\n Text: "${text}" 
+  Example: "Working with computers has been a part of our lives for more than 150 years, but the interfaces have been limited by the capabilities of the machine. Voice-driven interfaces, such as Alexa, have been a big step forward, but the connection established with visual and non-verbal cues is still missing. Soul Machines believes that their Digital People can fill this void by combining CGI with autonomous animation and a Digital Brain.
+
+  Soul Machines starts by scanning a real person and annotating every muscle contraction in their face before feeding it to a machine learning model. This produces a tremendous amount of data, but it is integral to the normalization process. The Digital Brain is what brings this all to life, allowing Digital People to observe subtle nuances and react in emotive ways in real-time.
+
+  Digital People have the potential to unlock digital systems for everyone in the world. They could be used to augment medical appointments and education, providing judgment free 1:1 education with infinite patience. By combining biology with digital technologies, Soul Machines is asking the question: what if we went back to a more natural interface?"
+  `;
 
   const response = await openai.createCompletion({
     model: model_engine,
