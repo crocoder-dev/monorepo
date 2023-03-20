@@ -13,3 +13,19 @@ model Example {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Post {
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  publishedAt  DateTime?
+  category     String?
+  title        String
+  img          String?  @db.LongText
+  summary      String   @db.LongText
+  insight      String?   @db.LongText
+  url          String
+  slug         String
+  author       String?
+  organization String?
+}
