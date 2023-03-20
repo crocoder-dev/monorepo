@@ -52,6 +52,26 @@ async function summarize(text: string, num_paragraphs: number) {
   return summary;
 }
 
+async function generateInsight(text: string) {
+  const prompt = `Pretend you are a group of CTOs, VPs of engienering and software architects and create an opinion of this text:\n\n Text: "${text}"`;
+
+  const response = await openai.createCompletion({
+    model: model_engine,
+    prompt: prompt,
+    temperature: 0,
+    n: 1,
+    max_tokens: 1000,
+    frequency_penalty: 0.0,
+    presence_penalty: 0.0
+  });
+
+  const parsedResponse = OpenAIApiResponse.parse(response);
+
+  const insight = parsedResponse.data.choices[0]?.text?.trim();
+
+  return insight;
+}
+
 async function categorise(text: string) {
   const prompt = `What is the category of the text below, let the category be one word:\n\n Text: "${text}"`;
 
@@ -73,7 +93,7 @@ async function categorise(text: string) {
 }
 
 const escapeRegExp = (string: string) => {
-  return string.replace(/<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g, '');
+  return string.replace(/<(?:("[^"]*")|('[^']*')|([^'">]+))*>/g, '');
 }
 
 const articleSchema = z.object({
@@ -110,19 +130,26 @@ export async function POST(request: NextRequest) {
     throw new Error('Summary couldn\'t be open-aied.');
   }
 
+  const insight = await generateInsight(escapeRegExp(content));
+
+  if(!insight) {
+    throw new Error('Insight couldn\'t be open-aied.');
+  }
+
   const category = await categorise(summary);
 
   const publishedAt = published ? new Date(published) : new Date();
 
   const conn = connect(dbconfig);
   
-  await conn.execute('INSERT INTO Post (updatedAt, publishedAt, category, title, img, summary, url, slug, author, organization) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+  await conn.execute('INSERT INTO Post (updatedAt, publishedAt, category, title, img, summary, insight, url, slug, author, organization) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
     new Date(),
     publishedAt,
     category,
     title,
     image,
     summary,
+    insight,
     url,
     "",
     author,

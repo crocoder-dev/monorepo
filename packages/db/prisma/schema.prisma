@@ -23,6 +23,7 @@ model Post {
   title        String
   img          String?  @db.LongText
   summary      String   @db.LongText
+  insight      String?   @db.LongText
   url          String
   slug         String
   author       String?
