@@ -27,12 +27,12 @@ export default function PostItem({post}: {post:Post}) {
         <div className="px-4">
           {/* {img ? <div className="flex justify-center m-0 pt-3 w-full"><img className="max-h-[500px]" src={img} alt="post image" /></div> : null} */}
           {/* {author ? <div>{`Author: ${author}`}</div> : null} */}
-          <span className="font-bold">Summary: </span>
+          <span className="font-bold">TL;DR: </span>
           {summary.split('\n\n').map((summary, i)=> {
             return <p key={id + '-' + i} className="py-4 flex flex-col gap-4">{summary}</p>
           })}
           {insight ? <p className="py-4 flex flex-col gap-4"><span className="font-bold">Insight: </span>{insight}</p> : null}
-          <a target="_blank" rel="noopener noreferrer" className="inline-block mb-2 text-sky-300 underline underline-offset-4 hover:text-sky-500" href={url}>You can read the full articel here...</a>
+          <span className="px-1.5 py-0.5 bg-blue-300 rounded">&#10145;</span>&nbsp;<a target="_blank" rel="noopener noreferrer" className="inline-block mb-2 text-sky-500 underline underline-offset-4 hover:text-sky-300" href={url}>You can read the full article here...</a>
         </div>
       </div>
     </li>
