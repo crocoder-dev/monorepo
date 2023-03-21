@@ -72,6 +72,26 @@ async function generateInsight(text: string) {
   return insight;
 }
 
+async function generateEmoji(text: string) {
+  const prompt = `Generate one emoji based on given title of text:\n\n Text: "${text}"`;
+
+  const response = await openai.createCompletion({
+    model: model_engine,
+    prompt: prompt,
+    temperature: 0,
+    n: 1,
+    max_tokens: 1000,
+    frequency_penalty: 0.0,
+    presence_penalty: 0.0
+  });
+
+  const parsedResponse = OpenAIApiResponse.parse(response);
+
+  const insight = parsedResponse.data.choices[0]?.text?.trim();
+
+  return insight;
+}
+
 async function categorise(text: string) {
   const prompt = `What is the category of the text below, let the category be one word:\n\n Text: "${text}"`;
 
@@ -136,13 +156,19 @@ export async function POST(request: NextRequest) {
     throw new Error('Insight couldn\'t be open-aied.');
   }
 
+  const emoji = await generateEmoji(escapeRegExp(title));
+
+  if(!emoji) {
+    throw new Error('Emoji couldn\'t be open-aied.');
+  }
+
   const category = await categorise(summary);
 
   const publishedAt = published ? new Date(published) : new Date();
 
   const conn = connect(dbconfig);
   
-  await conn.execute('INSERT INTO Post (updatedAt, publishedAt, category, title, img, summary, insight, url, slug, author, organization) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+  await conn.execute('INSERT INTO Post (updatedAt, publishedAt, category, title, img, summary, insight,emoji, url, slug, author, organization) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
     new Date(),
     publishedAt,
     category,
@@ -150,6 +176,7 @@ export async function POST(request: NextRequest) {
     image,
     summary,
     insight,
+    emoji,
     url,
     "",
     author,

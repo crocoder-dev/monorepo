@@ -8,8 +8,9 @@ export default function PostItem({post}: {post:Post}) {
     summary,
     // img,
     url,
-    // publishedAt,
-    insight
+    publishedAt,
+    insight,
+    emoji
   } = post;
 
 
@@ -21,7 +22,7 @@ export default function PostItem({post}: {post:Post}) {
     <li className="flex justify-between space-x-3 relative">
       <div className="w-full flex-1">
         <div className="block focus:outline-none scroll-mt-16 px-4 py-4">
-          <h1 className="text-2xl font-bold text-sky-800 underline underline-offset-8">{title}</h1>
+          <h1 className="text-2xl font-bold text-sky-800">{emoji} <span className="underline underline-offset-8">{title}</span></h1>
           {/* <p className="text-lg text-gray-500 select-none">{categoryDate}</p> */}
         </div>
         <div className="px-4">
@@ -46,7 +47,8 @@ export type Post = {
   category?: string,
   publishedAt?: string,
   summary: string,
-  insight: string,
+  insight?: string,
+  emoji?: string,
   img?: string,
   url: string
 }
