@@ -139,6 +139,7 @@ export async function POST(request: NextRequest) {
     title: `${emojii} ${title}`,
     summary,
     insight,
+    emojii,
     url,
     author,
     organization: source,
