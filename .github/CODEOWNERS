@@ -17,4 +17,3 @@
 /apps/news/pages/api/example.ts @crocoder-dev/crocoder-team
 /apps/news/public/favicon.ico @crocoder-dev/crocoder-team
 /apps/news/styles/globals.css @crocoder-dev/crocoder-team
-/packages/db/prisma/schema.prisma @crocoder-dev/crocoder-team
