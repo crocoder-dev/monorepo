@@ -8,8 +8,6 @@ const config = {
     appDir: true,
     // Enables hot-reload and easy integration for local packages
     transpilePackages: [
-      "@crocoder-dev/db",
-      "@crocoder-dev/edge-db"
     ],
   },
   // We already do linting on GH actions

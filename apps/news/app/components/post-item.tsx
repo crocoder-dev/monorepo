@@ -3,12 +3,12 @@ export default function PostItem({post}: {post:Post}) {
   const {
     id,
     title,
-    category,
-    author,
+    // category,
+    // author,
     summary,
-    img,
+    // img,
     url,
-    publishedAt,
+    // publishedAt,
     insight
   } = post;
 
