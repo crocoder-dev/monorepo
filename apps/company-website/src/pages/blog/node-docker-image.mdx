@@ -252,8 +252,6 @@ FROM node:19.7-alpine3.16
 
 RUN apk update && apk add --no-cache dumb-init
 
-ENV NODE_ENV production
-
 WORKDIR /usr/src/app
 
 COPY package*.json ./
@@ -284,6 +282,8 @@ FROM node:19.7-alpine3.16
 
 RUN apk update && apk add --no-cache dumb-init
 
+ENV NODE_ENV production
+
 WORKDIR /usr/src/app
 
 COPY package*.json ./
@@ -305,6 +305,8 @@ Let other Dockerized Node.js app users know which port the application expects t
 FROM node:19.7-alpine3.16
 
 RUN apk update && apk add --no-cache dumb-init
+
+ENV NODE_ENV production
 
 WORKDIR /usr/src/app
 
@@ -335,6 +337,8 @@ Let's update our Dockerfile to use cache mount for npm dependencies.
 FROM node:19.7-alpine3.16
 
 RUN apk update && apk add --no-cache dumb-init
+
+ENV NODE_ENV production
 
 WORKDIR /usr/src/app
 
