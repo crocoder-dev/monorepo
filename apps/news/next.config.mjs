@@ -4,11 +4,12 @@
 const config = {
   reactStrictMode: true,
   swcMinify: true,
+  transpilePackages: [
+    "@crocoder-dev/db",
+  ],
   experimental: {
     appDir: true,
-    // Enables hot-reload and easy integration for local packages
-    transpilePackages: [
-    ],
+    esmExternals: 'loose',
   },
   // We already do linting on GH actions
   eslint: {

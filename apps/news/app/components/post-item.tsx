@@ -41,14 +41,14 @@ export default function PostItem({post}: {post:Post}) {
 }
 
 export type Post = {
-  id: number,
+  id?: number | null,
   title: string,
-  author?: string
-  category?: string,
-  publishedAt?: string,
+  author?: string | null,
+  category?: string | null,
+  publishedAt?: Date | null,
   summary: string,
-  insight?: string,
-  emoji?: string,
-  img?: string,
+  insight: string,
+  emoji?: string | null,
+  img?: string | null,
   url: string
 }

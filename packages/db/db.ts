@@ -1,14 +1,22 @@
-import { drizzle } from 'drizzle-orm/planetscale-serverless';
+import { drizzle, PlanetScaleDatabase } from 'drizzle-orm/planetscale-serverless';
+import { connect, Connection } from '@planetscale/database';
 
-import { connect } from '@planetscale/database';
+let connection: Connection | null = null;
+let db: PlanetScaleDatabase | null = null;
 
-// create the connection
-const connection = connect({
-  host: process.env['DATABASE_HOST'],
-  username: process.env['DATABASE_USERNAME'],
-  password: process.env['DATABASE_PASSWORD'],
-});
+const getDB = () => {
+  if (!connection) {
+    connection = connect({
+      url: process.env.DATABASE_URL,
+    });
+  }
 
-const db = drizzle(connection);
+  if (connection && !db) {
+    db = drizzle(connection);
+  }
 
-export default db;
+  return db!;
+}
+
+
+export { getDB }; 

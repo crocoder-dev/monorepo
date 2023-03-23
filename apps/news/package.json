@@ -10,10 +10,10 @@
     "lint": "SKIP_ENV_VALIDATION=true next lint"
   },
   "dependencies": {
+    "@crocoder-dev/db": "^1.0.0",
     "@crocoder-dev/tailwind-config": "*",
     "@extractus/article-extractor": "^7.2.9",
     "@next/font": "13.2.3",
-    "@planetscale/database": "^1.6.0",
     "next": "13.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -2,12 +2,9 @@ import { extract } from '@extractus/article-extractor'
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Configuration, OpenAIApi } from 'openai';
-import { connect } from '@planetscale/database';
 import { env } from '../../../env/server.mjs';
-
-const dbconfig = {
-  url: env.DATABASE_URL
-}
+import { getDB } from '@crocoder-dev/db';
+import { posts } from '@crocoder-dev/db/schema';
 
 const api_key = env.OPEN_AI_SECRET_KEY;
 const model_engine = 'text-davinci-003';
@@ -51,7 +48,7 @@ async function summarize(text: string, num_paragraphs: number) {
 }
 
 async function generateInsight(text: string) {
-  const prompt = `Pretend you are a group of CTOs, VPs of engienering and software architects and create an opinion of this text:\n\n Text: "${text}"`;
+  const prompt = `Pretend you are a group of CTOs, VPs of engienering and software architects and create an opinion of this article. Please don't refer yourself as a group of people.\n\n Article: "${text}"`;
 
   const response = await openai.createCompletion({
     model: model_engine,
@@ -164,22 +161,14 @@ export async function POST(request: NextRequest) {
 
   const publishedAt = published ? new Date(published) : new Date();
 
-  const conn = connect(dbconfig);
-  
-  await conn.execute('INSERT INTO Post (updatedAt, publishedAt, category, title, img, summary, insight,emoji, url, slug, author, organization) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
-    new Date(),
-    publishedAt,
-    category,
+  const db = await getDB();
+
+  await db.insert(posts).values({
     title,
-    image,
     summary,
     insight,
-    emoji,
-    url,
-    "",
-    author,
-    source,
-  ]);
+    url
+  });
 
   return NextResponse.json({ success: true });
 }
