@@ -5,6 +5,7 @@ import {
   varchar,
   timestamp,
   longtext
+  InferModel,
 } from 'drizzle-orm/mysql-core';
 
 export const editions = mysqlTable('editions', {
@@ -28,3 +29,6 @@ export const posts = mysqlTable('posts', {
   organization: varchar('organization', { length: 191 }),
   editionId: int('edition_id'),
 });
+
+export type Post = InferModel<typeof posts>
+export type Edition = InferModel<typeof editions>

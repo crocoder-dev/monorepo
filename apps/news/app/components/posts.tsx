@@ -1,6 +1,7 @@
-import PostItem, { Post } from "./post-item";
+import PostItem from "./post-item";
+import { Post } from '@crocoder-dev/db/schema';
 
-export default function Posts({posts}: {posts:Post[]}) {
+export default function Posts({posts}: {posts: Post[]}) {
 
   return (
     <div className="flex justify-center items-center flex-col">
