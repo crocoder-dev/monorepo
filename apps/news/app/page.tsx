@@ -1,18 +1,12 @@
 import Posts from "./components/posts";
-import { connect } from '@planetscale/database';
-import { env } from '../env/server.mjs';
-import { Post } from './components/post-item';
-
-const dbconfig = {
-  url: env.DATABASE_URL
-}
+import { getDB } from '@crocoder-dev/db';
+import { posts as databasePosts } from '@crocoder-dev/db/schema';
 
 export default async function Home() {
 
-  const connection = await connect(dbconfig);
-  const queryResult = await connection.execute('SELECT * FROM Post');
+  const db = getDB();
 
-  const posts = queryResult.rows as Post[];
+  const posts = await db.select().from(databasePosts);
 
   return (
     <Posts posts={posts} />

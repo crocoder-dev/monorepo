@@ -1,114 +1,18 @@
 import { extract } from '@extractus/article-extractor'
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { Configuration, OpenAIApi } from 'openai';
-import { connect } from '@planetscale/database';
+import { Configuration, OpenAIApi, ChatCompletionRequestMessageRoleEnum } from 'openai';
 import { env } from '../../../env/server.mjs';
-
-const dbconfig = {
-  url: env.DATABASE_URL
-}
+import { getDB } from '@crocoder-dev/db';
+import { posts } from '@crocoder-dev/db/schema';
 
 const api_key = env.OPEN_AI_SECRET_KEY;
-const model_engine = 'text-davinci-003';
 
 const configuration = new Configuration({
     apiKey: api_key,
 });
 
 const openai = new OpenAIApi(configuration);
-
-const OpenAIApiResponse = z.object({
-    data: z.object({
-      choices: z.object({
-        text: z.string().optional(),
-      }).array(),
-    })
-});
-
-async function summarize(text: string, num_paragraphs: number) {
-  const prompt = `Please summarize the text below in ${num_paragraphs} paragraphs and max text length of each paragraph is 500 characters, return the text :\n\n Text: "${text}" 
-  Example: "Working with computers has been a part of our lives for more than 150 years, but the interfaces have been limited by the capabilities of the machine. Voice-driven interfaces, such as Alexa, have been a big step forward, but the connection established with visual and non-verbal cues is still missing. Soul Machines believes that their Digital People can fill this void by combining CGI with autonomous animation and a Digital Brain.
-
-  Soul Machines starts by scanning a real person and annotating every muscle contraction in their face before feeding it to a machine learning model. This produces a tremendous amount of data, but it is integral to the normalization process. The Digital Brain is what brings this all to life, allowing Digital People to observe subtle nuances and react in emotive ways in real-time.
-  `;
-
-  const response = await openai.createCompletion({
-    model: model_engine,
-    prompt: prompt,
-    temperature: 0,
-    n: 1,
-    max_tokens: 1000,
-    frequency_penalty: 0.0,
-    presence_penalty: 0.0
-  });
-
-  const parsedResponse = OpenAIApiResponse.parse(response);
-
-  const summary = parsedResponse.data.choices[0]?.text?.trim();
-
-  return summary;
-}
-
-async function generateInsight(text: string) {
-  const prompt = `Pretend you are a group of CTOs, VPs of engienering and software architects and create an opinion of this text:\n\n Text: "${text}"`;
-
-  const response = await openai.createCompletion({
-    model: model_engine,
-    prompt: prompt,
-    temperature: 0,
-    n: 1,
-    max_tokens: 800,
-    frequency_penalty: 0.0,
-    presence_penalty: 0.0
-  });
-
-  const parsedResponse = OpenAIApiResponse.parse(response);
-
-  const insight = parsedResponse.data.choices[0]?.text?.trim();
-
-  return insight;
-}
-
-async function generateEmoji(text: string) {
-  const prompt = `Generate one emoji based on given title of text:\n\n Text: "${text}"`;
-
-  const response = await openai.createCompletion({
-    model: model_engine,
-    prompt: prompt,
-    temperature: 0,
-    n: 1,
-    max_tokens: 1000,
-    frequency_penalty: 0.0,
-    presence_penalty: 0.0
-  });
-
-  const parsedResponse = OpenAIApiResponse.parse(response);
-
-  const insight = parsedResponse.data.choices[0]?.text?.trim();
-
-  return insight;
-}
-
-async function categorise(text: string) {
-  const prompt = `What is the category of the text below, let the category be one word:\n\n Text: "${text}"`;
-
-  const response = await openai.createCompletion({
-    model: model_engine,
-    prompt: prompt,
-    temperature: 0,
-    n: 1,
-    max_tokens: 15,
-    frequency_penalty: 0.0,
-    presence_penalty: 0.0
-  });
-
-  const parsedResponse = OpenAIApiResponse.parse(response);
-
-  const category = parsedResponse.data.choices[0]?.text?.trim();
-
-  return category;
-}
 
 const escapeRegExp = (string: string) => {
   return string.replace(/<(?:("[^"]*")|('[^']*')|([^'">]+))*>/g, '');
@@ -131,55 +35,115 @@ export async function POST(request: NextRequest) {
 
   const options = {descriptionLengthThreshold: 100, wordsPerMinute: 150, contentLengthThreshold: 200, descriptionTruncateLen: 150};
 
-  const article = await extract(url, options);
+
+  const headers = new Headers({
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
+});
+
+
+  const article = await extract(url, options, { headers: headers as unknown as string[] });
 
   const {
     author,
     published,
     title,
-    image,
     source,
     content
   } = articleSchema.parse(article);
 
-  const summary = await summarize(escapeRegExp(content), 2);
+  const messages = [
+    {
+      role: "user" as ChatCompletionRequestMessageRoleEnum,
+      content: `Don't mention any external resources. Please summarize the article below in 2 paragraphs and max text length of each paragraph is 500 characters, return the text :\n\n Text: "${escapeRegExp(content)}"`,
+    }
+  ];
+
+  const gpt35turboResponse = z.object({
+    data: z.object({
+      choices: z.object({
+        message: z.object({
+          content: z.string(),
+        })
+      }).array(),
+    })
+});
+
+  const summarizeResponse = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: messages,
+  });
+
+
+  const summary = gpt35turboResponse.parse(summarizeResponse).data.choices[0]?.message.content
 
   if(!summary) {
     throw new Error('Summary couldn\'t be open-aied.');
   }
 
-  const insight = await generateInsight(escapeRegExp(content));
+  console.log(summary);
+
+  messages.push({
+    role: "assistant" as ChatCompletionRequestMessageRoleEnum,
+    content: summary,
+  }, 
+  {
+    role: "user" as ChatCompletionRequestMessageRoleEnum,
+    content: `Pretend you are a group of CTOs, VPs of engienering and software architects and create a brief opinion of this article. Please refer yourself as we. Please be kind if you don't agree with the article. Don't include any text except that opinion.`,
+  });
+
+  const insightResponse = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: messages,
+    temperature: 0.7,
+    frequency_penalty: 0.5,
+    presence_penalty: 0.5
+  });
+
+  const insight = gpt35turboResponse.parse(insightResponse).data.choices[0]?.message.content
 
   if(!insight) {
     throw new Error('Insight couldn\'t be open-aied.');
   }
 
-  const emoji = await generateEmoji(escapeRegExp(title));
+  console.log(insight);
 
-  if(!emoji) {
-    throw new Error('Emoji couldn\'t be open-aied.');
+  messages.push({
+    role: "assistant" as ChatCompletionRequestMessageRoleEnum,
+    content: insight,
+  },
+  {
+    role: "user" as ChatCompletionRequestMessageRoleEnum,
+    content: `Generate single emojii that describes the article the best. Don't include any text except that one emojii`,
+  });
+
+  const emojiiResponse = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: messages,
+    temperature: 1,
+  });
+
+
+  const emojii = gpt35turboResponse.parse(emojiiResponse).data.choices[0]?.message.content
+
+  if(!emojii) {
+    throw new Error('Emojii couldn\'t be open-aied.');
   }
 
-  const category = await categorise(summary);
+  console.log(emojii);
 
   const publishedAt = published ? new Date(published) : new Date();
 
-  const conn = connect(dbconfig);
-  
-  await conn.execute('INSERT INTO Post (updatedAt, publishedAt, category, title, img, summary, insight,emoji, url, slug, author, organization) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
-    new Date(),
-    publishedAt,
-    category,
-    title,
-    image,
+  const db = await getDB();
+
+  await db.insert(posts).values({
+    title: `${emojii} ${title}`,
     summary,
     insight,
-    emoji,
     url,
-    "",
     author,
-    source,
-  ]);
+    organization: source,
+    publishedAt,
+  });
 
   return NextResponse.json({ success: true });
 }
