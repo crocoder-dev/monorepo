@@ -1,5 +1,4 @@
 import Posts from "./components/posts";
-import { Post } from './components/post-item';
 import { getDB } from '@crocoder-dev/db';
 import { posts as databasePosts } from '@crocoder-dev/db/schema';
 

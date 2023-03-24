@@ -4,7 +4,7 @@ import {
   serial,
   varchar,
   timestamp,
-  longtext
+  longtext,
   InferModel,
 } from 'drizzle-orm/mysql-core';
 
