@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
 
   const headers = new Headers({
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
-});
+  });
 
 
   const article = await extract(url, options, { headers: headers as unknown as string[] });
@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
         })
       }).array(),
     })
-});
+  });
 
   const summarizeResponse = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
@@ -139,7 +139,6 @@ export async function POST(request: NextRequest) {
     title: `${emojii} ${title}`,
     summary,
     insight,
-    emojii,
     url,
     author,
     organization: source,
