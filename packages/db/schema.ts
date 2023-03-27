@@ -30,5 +30,5 @@ export const posts = mysqlTable('posts', {
   editionId: int('edition_id'),
 });
 
-export type Post = InferModel<typeof posts>
-export type Edition = InferModel<typeof editions>
+export type Post = InferModel<typeof posts>;
+export type Edition = InferModel<typeof editions>;
