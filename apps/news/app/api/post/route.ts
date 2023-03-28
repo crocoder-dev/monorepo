@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
   const messages = [
     {
       role: "user" as ChatCompletionRequestMessageRoleEnum,
-      content: `Don't mention any external resources. Please summarize the article below in 2 paragraphs and max text length of each paragraph is 500 characters, return the text :\n\n Text: "${escapeRegExp(content)}"`,
+      content: `Don't mention any external resources. Please summarize the article below in 2 paragraphs and max text length of each paragraph is 300 characters, return the text :\n\n Text: "${escapeRegExp(content)}"`,
     }
   ];
 
