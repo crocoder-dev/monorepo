@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { Configuration, OpenAIApi, ChatCompletionRequestMessageRoleEnum } from 'openai';
 import { env } from '../../../env/server.mjs';
 import { getDB } from '@crocoder-dev/db';
-import { posts } from '@crocoder-dev/db/schema';
+import { editions, posts } from '@crocoder-dev/db/schema';
 
 const api_key = env.OPEN_AI_SECRET_KEY;
 
@@ -31,7 +31,7 @@ const articleSchema = z.object({
 
 export async function POST(request: NextRequest) {
   const response = new Response(request.body);
-  const { url } = await response.json();
+  const { url, editionId } = await response.json();
 
   const options = {descriptionLengthThreshold: 100, wordsPerMinute: 150, contentLengthThreshold: 200, descriptionTruncateLen: 150};
 
@@ -143,6 +143,7 @@ export async function POST(request: NextRequest) {
     author,
     organization: source,
     publishedAt,
+    editionId
   });
 
   return NextResponse.json({ success: true });
