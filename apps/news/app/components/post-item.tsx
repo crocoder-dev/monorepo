@@ -21,7 +21,7 @@ export default function PostItem({post}: {post:Post}) {
             return <p key={id + '-' + i} className="py-4 text-justify">{i === 0 ? (<span>📰<span className="font-semibold underline">TL;DR -</span> </span>) : null}<span className='text-gray-800'>{summary}</span></p>
           })}
           {insight ? <p className="py-4 text-justify">💡<span className="font-semibold underline">Insight -</span> <span className='text-gray-800'>{insight}</span></p> : null}
-          <span className="px-1.5 py-0.5">➡️</span>&nbsp;<a target="_blank" rel="noopener noreferrer" title={url} className="inline-block italic mb-2 font-semibold text-sky-600 underline underline-offset-4 hover:text-sky-300" href={url}>You can read the full article here...</a>
+          <span className="px-1.5 py-0.5">➡️</span>&nbsp;<a target="_blank" rel="noopener noreferrer" title={url} className="inline-block mb-2 font-semibold text-sky-600 underline underline-offset-4 hover:text-sky-300" href={url}>You can read the full article here...</a>
         </div>
       </div>
     </li>
