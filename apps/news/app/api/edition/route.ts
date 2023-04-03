@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
-import { env } from '../../../env/server.mjs';
 import { getDB } from '@crocoder-dev/db';
 import { editions } from '@crocoder-dev/db/schema';
 

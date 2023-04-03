@@ -1,9 +1,8 @@
 import Posts from "./components/posts";
 import { getDB } from '@crocoder-dev/db';
-import { Edition } from "@crocoder-dev/db/schema";
 import { posts as databasePosts } from '@crocoder-dev/db/schema';
 import { editions as databaseEditions } from '@crocoder-dev/db/schema';
-import { eq, or, desc } from 'drizzle-orm/expressions';
+import { eq, desc } from 'drizzle-orm/expressions';
 import { sql } from 'drizzle-orm';
 
 export default async function Home() {

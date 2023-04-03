@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { Configuration, OpenAIApi, ChatCompletionRequestMessageRoleEnum } from 'openai';
 import { env } from '../../../env/server.mjs';
 import { getDB } from '@crocoder-dev/db';
-import { editions, posts } from '@crocoder-dev/db/schema';
+import { posts } from '@crocoder-dev/db/schema';
 
 const api_key = env.OPEN_AI_SECRET_KEY;
 
