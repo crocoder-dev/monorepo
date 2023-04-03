@@ -12,21 +12,21 @@
   "dependencies": {
     "@crocoder-dev/db": "^1.0.0",
     "@crocoder-dev/tailwind-config": "*",
-    "@extractus/article-extractor": "^7.2.9",
-    "@next/font": "13.2.3",
-    "next": "13.2.3",
+    "@extractus/article-extractor": "^7.2.11",
+    "@next/font": "13.2.4",
+    "next": "13.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "zod": "^3.20.6"
+    "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@types/node": "18.14.2",
-    "@types/react": "18.0.28",
+    "@types/node": "18.15.10",
+    "@types/react": "18.0.29",
     "@types/react-dom": "18.0.11",
-    "autoprefixer": "^10.4.13",
+    "autoprefixer": "^10.4.14",
     "dotenv-cli": "^7.1.0",
-    "eslint": "^8.35.0",
-    "eslint-config-next": "13.2.3",
+    "eslint": "^8.36.0",
+    "eslint-config-next": "13.2.4",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7"
   }
