@@ -5,8 +5,10 @@ import {
   varchar,
   timestamp,
   longtext,
-  InferModel,
 } from 'drizzle-orm/mysql-core';
+import {
+  InferModel,
+} from 'drizzle-orm';
 
 export const editions = mysqlTable('editions', {
   id: serial('id').primaryKey(),

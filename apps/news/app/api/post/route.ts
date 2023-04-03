@@ -31,7 +31,7 @@ const articleSchema = z.object({
 
 export async function POST(request: NextRequest) {
   const response = new Response(request.body);
-  const { url } = await response.json();
+  const { url, editionId } = await response.json();
 
   const options = {descriptionLengthThreshold: 100, wordsPerMinute: 150, contentLengthThreshold: 200, descriptionTruncateLen: 150};
 
@@ -143,6 +143,7 @@ export async function POST(request: NextRequest) {
     author,
     organization: source,
     publishedAt,
+    editionId
   });
 
   return NextResponse.json({ success: true });
