@@ -1,11 +1,7 @@
-import "../styles/globals.css";
-import Nav from "./components/nav";
+import '../styles/globals.css';
+import Nav from './components/nav';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       {/*
@@ -14,9 +10,13 @@ export default function RootLayout({
       */}
       <head />
       <body className="font-sans">
-        <Nav></Nav>
+        <Nav />
         <div className="relative top-12">{children}</div>
+        <script async defer src="/sa/latest.js"></script>
+        <noscript>
+          <img src="/sa/noscript.gif" alt="" />
+        </noscript>
       </body>
     </html>
-  )
+  );
 }
