@@ -1,11 +1,11 @@
 import PostItem from "./post-item";
 import { Edition, Post } from '@crocoder-dev/db/schema';
 
-export default function Posts({posts, edition}: {posts: Post[], edition: Edition}) {
+export default function Posts({posts, edition}: {posts: Post[], edition: Pick<Edition, "title" | "date">}) {
 
   const {title, date} = edition;
 
-  const dateFormated = new Intl.DateTimeFormat('en-GB', { weekday: 'long',month: 'long', day: 'numeric'}).format(date)
+  const dateFormated = new Intl.DateTimeFormat('en-GB', { weekday: 'long',month: 'long', day: 'numeric'}).format(date);
 
   return (
     <div className="flex justify-center items-center flex-col">
