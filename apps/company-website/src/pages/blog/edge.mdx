@@ -1,0 +1,39 @@
+import blogHeader from "../../content/images/blogs/how-to-properly-showcase-your-coding-projects.jpg?preset=responsive";
+import BlogLayout from "../../Layouts/BlogLayout";
+
+export const meta = {
+  id: "edge",
+  title: "EDGE",
+  description:
+    "",
+  category: "",
+  image: blogHeader,
+  date: 1680525775308,
+  updatedAt: 1680525775308,
+  author: "davidabram",
+  editor: "velimirujevic",
+  abstract:
+    "",
+  pageType: "blog-posting"
+};
+
+Databases can be difficult to work with, and new tools that improve the developer experience often come at a performance cost.
+Prisma is an excellent tool for working with SQL databases in TypeScript, but it comes with some technical debt from version 1.
+The performance of Prisma can be slow, especially in serverless environments, due to its reliance on a large GraphQL binding.
+Cold starts with Prisma can take as long as 3 seconds, which is much slower than other serverless functions.
+Prisma is difficult to use on the edge due to its dependence on native Rust code and JavaScript binaries that only run in Node.
+Database.js is a new tool that provides primitives for the best possible performance in serverless and edge runtimes, but it does not have the same developer experience as Prisma.
+Drizzle is another tool that provides a high-performance way to query databases, and the speaker plans to explore it further in future videos.
+
+The ability to get data on the edge without performance penalties is impressive.
+Moving the server close to the user can result in faster response times, but it can also increase the total distance traveled if there's more than one request being made.
+It's easy to run into distance problems if you're doing SQL and then doing more SQL within a request, which is almost always going to happen.
+Ideally, every request would make one query, but that's not always possible.
+It often makes sense to put the server as close to the database as possible and deal with the distance of travel from the server to the user.
+Edge is great at getting bytes to the user as fast as possible, but it's not great at synchronizing the bytes correctly between the database and the user.
+Most companies are starting to recommend Regional Edge, where you run Edge functions in a specific region.
+It's probably the right decision to run Edge functions as close as possible to the server to avoid taking a bigger penalty.
+The right approach to database Edge render SSR cache Lambda is still an open question.
+In the meantime, your Edge function should be as close as possible to your server to get the best performance.
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
