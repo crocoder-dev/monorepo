@@ -1,6 +1,6 @@
 import Posts from "../../components/posts";
 import { getDB } from "@crocoder-dev/db";
-import { editions as databaseEditions } from '@crocoder-dev/db/schema';
+import { editions } from '@crocoder-dev/db/schema';
 import { posts as databasePosts } from '@crocoder-dev/db/schema';
 import { eq } from 'drizzle-orm/expressions';
 import { redirect } from "next/navigation";
@@ -9,7 +9,7 @@ export default async function Editions(context: any) {
   const  { id } = context.params;
   const db = getDB();
 
-  const editionWithPosts = await db.select({...databaseEditions, post: databasePosts}).from(databaseEditions).innerJoin(databasePosts, eq(databaseEditions.id, databasePosts.editionId)).where(eq(databaseEditions.id, id));
+  const editionWithPosts = await db.select({ title: editions.title, date: editions.date, post: databasePosts}).from(editions).innerJoin(databasePosts, eq(editions.id, databasePosts.editionId)).where(eq(editions.id, id));
   
   if (editionWithPosts.length === 0) {
     redirect('/');

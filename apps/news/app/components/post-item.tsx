@@ -1,6 +1,6 @@
 import { Post } from '@crocoder-dev/db/schema';
 
-export default function PostItem({post}: {post:Post}) {
+export default function PostItem({post}: {post: Pick<Post, "id" | "title" | "summary" | "url" | "insight">}) {
   
   const {
     id,
@@ -17,7 +17,7 @@ export default function PostItem({post}: {post:Post}) {
           <h1 className="text-2xl font-semibold"><span className="underline underline-offset-7">{title}</span></h1>
         </div>
         <div className="px-4">
-          {summary.split('\n\n').map((summary, i)=> {
+          {summary.split('\n\n').map((summary: string, i: number)=> {
             return <p key={id + '-' + i} className="py-4 text-justify">{i === 0 ? (<span>📰<span className="font-semibold underline">TL;DR -</span> </span>) : null}<span className='text-gray-800'>{summary}</span></p>
           })}
           {insight ? <p className="py-4 text-justify">💡<span className="font-semibold underline">Insight -</span> <span className='text-gray-800'>{insight}</span></p> : null}
