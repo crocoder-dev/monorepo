@@ -5,6 +5,7 @@ import { Configuration, OpenAIApi, ChatCompletionRequestMessageRoleEnum } from '
 import { env } from '../../../env/server.mjs';
 import { getDB } from '@crocoder-dev/db';
 import { posts } from '@crocoder-dev/db/schema';
+import { headers } from 'next/headers';
 
 const api_key = env.OPEN_AI_SECRET_KEY;
 
@@ -28,20 +29,32 @@ const articleSchema = z.object({
   source: z.string().optional(),
 });
 
+const inputSchema = z.object({
+  url: z.string(),
+  editionId: z.number(),
+  order: z.number().optional(),
+});
+
 
 export async function POST(request: NextRequest) {
+  const headersList = headers();
+  if( headersList.get('Authorization') !== process.env.API_KEY) {
+    return NextResponse.json({ success: false });
+  }
+  
   const response = new Response(request.body);
-  const { url, editionId } = await response.json();
+  const params = await response.json();
+
+  const { url, editionId, order } = inputSchema.parse(params);
 
   const options = {descriptionLengthThreshold: 100, wordsPerMinute: 150, contentLengthThreshold: 200, descriptionTruncateLen: 150};
 
-
-  const headers = new Headers({
+  const uaheaders = new Headers({
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
   });
 
 
-  const article = await extract(url, options, { headers: headers as unknown as string[] });
+  const article = await extract(url, options, { headers: uaheaders as unknown as string[] });
 
   const {
     author,
@@ -143,7 +156,8 @@ export async function POST(request: NextRequest) {
     author,
     organization: source,
     publishedAt,
-    editionId
+    editionId,
+    order,
   });
 
   return NextResponse.json({ success: true });

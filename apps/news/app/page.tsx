@@ -11,12 +11,16 @@ export default async function Home() {
 
   const lastEdition = db.select().from(databaseEditions).orderBy(desc(databaseEditions.date)).limit(1).as('lastEdition');
   const editionWithPosts = await db.select({title: sql<string>`lastEdition.title`, date: sql<Date>`lastEdition.date`, post: databasePosts}).from(lastEdition).innerJoin(databasePosts, eq(lastEdition.id, databasePosts.editionId));
-  
+
+  if(editionWithPosts.length === 0) {
+    return null;
+  }
+
   const posts = editionWithPosts.map(e => e.post);
 
-  const {post: _, ...edition} = editionWithPosts[0]!;
+  const {title, date} = editionWithPosts[0]!;
 
   return (
-    <Posts posts={posts} edition={{...edition, date: new Date(edition.date)}}/>
+    <Posts posts={posts} edition={{title, date: new Date(date)}}/>
   )
 }

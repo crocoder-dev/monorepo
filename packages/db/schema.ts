@@ -5,6 +5,7 @@ import {
   varchar,
   timestamp,
   longtext,
+  uniqueIndex,
 } from 'drizzle-orm/mysql-core';
 import {
   InferModel,
@@ -15,8 +16,11 @@ export const editions = mysqlTable('editions', {
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
   date: timestamp('date').notNull(),
-  title : varchar('title', { length: 191 }).notNull(),
-});
+  title: varchar('title', { length: 191 }).notNull(),
+  slug: varchar('slug', { length: 191 }).notNull(),
+}, (editions) => ({
+  slugIndex: uniqueIndex('slug_idx').on(editions.slug),
+}));
 
 export const posts = mysqlTable('posts', {
   id: serial('id').primaryKey(),
@@ -30,6 +34,7 @@ export const posts = mysqlTable('posts', {
   author: varchar('author', { length: 191 }),
   organization: varchar('organization', { length: 191 }),
   editionId: int('edition_id'),
+  order: int('order'),
 });
 
 export type Post = InferModel<typeof posts>;
