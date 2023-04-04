@@ -9,6 +9,7 @@ export const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
   DATABASE_URL: z.string(),
   OPEN_AI_SECRET_KEY: z.string(),
+  API_KEY: z.string(),
 });
 
 /**

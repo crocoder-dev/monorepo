@@ -38,7 +38,7 @@ const inputSchema = z.object({
 
 export async function POST(request: NextRequest) {
   const headersList = headers();
-  if( headersList.get('Authorization') !== process.env.API_KEY) {
+  if( headersList.get('Authorization') !== env.API_KEY) {
     return NextResponse.json({ success: false });
   }
   
@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
   const messages = [
     {
       role: "user" as ChatCompletionRequestMessageRoleEnum,
-      content: `Don't mention any external resources. Please summarize the article below in 2 paragraphs and max text length of each paragraph is 300 characters, return the text :\n\n Text: "${escapeRegExp(content)}"`,
+      content: `Don't mention any external resources. Please summarize the article below in 2 paragraphs and try to keep the text length of each paragraph below 300 characters, return the text :\n\n Text: "${escapeRegExp(content)}"`,
     }
   ];
 
@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
   }, 
   {
     role: "user" as ChatCompletionRequestMessageRoleEnum,
-    content: `Pretend you are a group of CTOs, VPs of engienering and software architects and create a brief opinion of this article. Please refer yourself as we. Please be kind if you don't agree with the article. Don't include any text except that opinion.`,
+    content: `Pretend you are a group of CTOs, VPs of engieneering and software architects and create a brief opinion of this article. Please refer to yourself as we. Please be kind if you disagreeagree with the article. Don't include any text except that opinion. Keep the response under 400 characters.`,
   });
 
   const insightResponse = await openai.createChatCompletion({
