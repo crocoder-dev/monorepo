@@ -1,4 +1,6 @@
+"use client"
 import { Post } from '@crocoder-dev/db/schema';
+import { MouseEventHandler } from 'react';
 
 export default function PostItem({post}: {post: Pick<Post, "id" | "title" | "summary" | "url" | "insight">}) {
   
@@ -9,6 +11,12 @@ export default function PostItem({post}: {post: Pick<Post, "id" | "title" | "sum
     url,
     insight,
   } = post;
+  
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
+    event.preventDefault();
+
+    window.open(`${url}?ref=news.crocoder.dev`);
+  };
 
   return (
     <li className="flex justify-between space-x-3 relative border-b-sky-400 border-b-4 py-10 first:pt-0 last:border-b-0">
@@ -21,7 +29,7 @@ export default function PostItem({post}: {post: Pick<Post, "id" | "title" | "sum
             return <p key={id + '-' + i} className="py-4 text-justify">{i === 0 ? (<span>📰<span className="font-semibold underline">TL;DR -</span> </span>) : null}<span className='text-gray-800'>{summary}</span></p>
           })}
           {insight ? <p className="py-4 text-justify">💡<span className="font-semibold underline">Insight -</span> <span className='text-gray-800'>{insight}</span></p> : null}
-          <span className="px-1.5 py-0.5">➡️</span>&nbsp;<a target="_blank" rel="noopener noreferrer" title={url} className="inline-block mb-2 font-semibold text-sky-600 underline underline-offset-4 hover:text-sky-300" href={url}>You can read the full article here...</a>
+          <span className="px-1.5 py-0.5">➡️</span>&nbsp;<a onClick={handleClick} target="_blank" rel="noopener noreferrer" title={url} className="inline-block mb-2 font-semibold text-sky-600 underline underline-offset-4 cursor-pointer hover:text-sky-300">You can read the full article here...</a>
         </div>
       </div>
     </li>
