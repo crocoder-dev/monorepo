@@ -10,10 +10,10 @@ export default function PostItem({post}: {post: Pick<Post, "id" | "title" | "sum
   } = post;
   
   return (
-    <li className="flex justify-between space-x-3 relative border-b-sky-400 border-b-4 py-10 first:pt-0 last:border-b-0">
+    <article className="flex justify-between space-x-3 relative border-b-sky-400 border-b-4 py-10 first:pt-0 last:border-b-0">
       <div className="w-full flex-1">
         <div className="block scroll-mt-16 px-4 py-4">
-          <h1 className="text-2xl font-semibold"><span className="underline underline-offset-7">{title}</span></h1>
+          <h2 className="text-2xl font-semibold"><span className="underline underline-offset-7">{title}</span></h2>
         </div>
         <div className="px-4">
           {summary.split('\n\n').map((summary: string, i: number)=> {
@@ -23,6 +23,6 @@ export default function PostItem({post}: {post: Pick<Post, "id" | "title" | "sum
           <span className="px-1.5 py-0.5">➡️</span>&nbsp;<a target="_blank" href={`${url}?ref=news.crocoder.dev`} rel="noopener noreferrer" title={url} className="inline-block mb-2 font-semibold text-sky-600 underline underline-offset-4 cursor-pointer hover:text-sky-300">You can read the full article here...</a>
         </div>
       </div>
-    </li>
+    </article>
   );
 }
