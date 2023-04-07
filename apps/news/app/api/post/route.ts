@@ -47,6 +47,9 @@ export async function POST(request: NextRequest) {
 
   const { url, editionId, order } = inputSchema.parse(params);
 
+  const newUrl = new URL(url);
+  newUrl.search = '';
+
   const options = {descriptionLengthThreshold: 100, wordsPerMinute: 150, contentLengthThreshold: 200, descriptionTruncateLen: 150};
 
   const uaheaders = new Headers({
@@ -152,7 +155,7 @@ export async function POST(request: NextRequest) {
     title: `${emojii} ${title}`,
     summary,
     insight,
-    url,
+    url: newUrl.href,
     author,
     organization: source,
     publishedAt,
