@@ -10,8 +10,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       */}
       <head />
       <body className="font-sans">
-        <Nav />
-        <div className="relative top-12">{children}</div>
+        {/* <Nav /> */}
+        <div className="pt-6">{children}</div>
         <script async defer src="/sa/latest.js"></script>
         <noscript>
           <img src="/sa/noscript.gif" alt="" />
