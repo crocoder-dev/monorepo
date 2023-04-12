@@ -67,12 +67,17 @@ export async function POST(request: NextRequest) {
     content
   } = articleSchema.parse(article);
 
-  const articleAuthor = (author ? author : source);
+  let articleAuthor;
+  if (author) {
+    articleAuthor = author;
+  } else {
+    articleAuthor = url.replace(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)\.[^\/\n]+(.*)$/, "");
+  }
 
   const messages = [
     {
       role: "user" as ChatCompletionRequestMessageRoleEnum,
-      content: `Don't mention any external resources. The author of this post is ${articleAuthor}. Please summarize the article below in 2 paragraphs and try to keep the text length of each paragraph below 300 characters, return the text :\n\n Text: "${escapeRegExp(content)}"`,
+      content: `Don't mention any external resources. Please summarize the article below in 2 paragraphs and try to keep the text length of each paragraph below 300 characters, return the text :\n\n Text: "${escapeRegExp(content)} \n\n The author of this aticle is ${articleAuthor}."`,
     }
   ];
 
