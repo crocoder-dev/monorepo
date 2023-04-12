@@ -7,6 +7,8 @@ import { redirect } from "next/navigation";
 
 export const revalidate = 300;
 
+export const runtime = 'experimental-edge';
+
 export default async function Editions(context: { params: { slug: string } }) {
   const  { slug } = context.params;
   const db = getDB();

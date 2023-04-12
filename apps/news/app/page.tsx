@@ -5,8 +5,6 @@ import { editions as databaseEditions } from '@crocoder-dev/db/schema';
 import { eq, desc, lte, asc } from 'drizzle-orm/expressions';
 import { sql } from 'drizzle-orm';
 
-export const revalidate = 300;
-
 export default async function Home() {
 
   const db = getDB();
