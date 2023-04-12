@@ -5,15 +5,14 @@ import { posts as databasePosts } from '@crocoder-dev/db/schema';
 import { eq } from 'drizzle-orm/expressions';
 import { redirect } from "next/navigation";
 
+export const revalidate = 300;
+
 export default async function Editions(context: { params: { slug: string } }) {
   const  { slug } = context.params;
   const db = getDB();
 
   const editionWithPosts = await db.select({ title: editions.title, date: editions.date, post: databasePosts}).from(editions).innerJoin(databasePosts, eq(editions.id, databasePosts.editionId)).where(eq(editions.slug, slug));
 
-  const allpsots = await db.select().from(databasePosts);
-  console.log(slug);
-  
   if (editionWithPosts.length === 0) {
     redirect('/');
   }
