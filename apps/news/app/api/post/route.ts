@@ -67,12 +67,7 @@ export async function POST(request: NextRequest) {
     content
   } = articleSchema.parse(article);
 
-  let articleAuthor;
-  if (author) {
-    articleAuthor = author;
-  } else {
-    articleAuthor = url.replace(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)\.[^\/\n]+(.*)$/, "");
-  }
+  const articleAuthor = (author ? author : source);
 
   const messages = [
     {
