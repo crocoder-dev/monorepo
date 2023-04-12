@@ -5,7 +5,7 @@ import { posts as databasePosts } from '@crocoder-dev/db/schema';
 import { eq } from 'drizzle-orm/expressions';
 import { redirect } from "next/navigation";
 
-export const revalidate = 300;
+export const revalidate = 1800;
 
 export const runtime = 'experimental-edge';
 
