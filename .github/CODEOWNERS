@@ -3,6 +3,12 @@
 /.cm/gitstream.cm @crocoder-dev/crocoder-team
 /.github/workflows/pr.yml @crocoder-dev/crocoder-team
 /.vscode/settings.json @crocoder-dev/crocoder-team
+/apps/admin/.vscode/settings.json @crocoder-dev/crocoder-team
+/apps/admin/app/api/auth.ts @crocoder-dev/crocoder-team
+/apps/admin/app/sign-in/page.tsx @crocoder-dev/crocoder-team
+/apps/admin/app/sign-up/page.tsx @crocoder-dev/crocoder-team
+/apps/admin/public/favicon.ico @crocoder-dev/crocoder-team
+/apps/admin/styles/globals.css @crocoder-dev/crocoder-team
 /apps/company-website/api/nostr.js @crocoder-dev/crocoder-team
 /apps/company-website/scripts/dev-server.js @crocoder-dev/crocoder-team
 /apps/company-website/src/client.jsx @crocoder-dev/crocoder-team
