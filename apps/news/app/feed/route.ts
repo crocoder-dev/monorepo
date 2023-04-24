@@ -33,4 +33,4 @@ export async function GET(type: 'rss' | 'json' = 'rss') {
     default:
       return new NextResponse(feed.rss2(), { headers: { 'Content-Type': 'application/xml' } });
   }
-};
+}
