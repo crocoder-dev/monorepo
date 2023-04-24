@@ -1,9 +1,10 @@
 import { Feed } from 'feed';
-import siteConfig from '../content/site-config.json';
+import siteConfig from '../../content/site-config.json';
+import { NextResponse } from 'next/server';
 
 const { siteUrl } = siteConfig;
 
-const createFeed = (type: 'rss' | 'json' = 'rss') => {
+export async function GET(type: 'rss' | 'json' = 'rss') {
   const feed = new Feed({
     title: 'Tech Leadership Roundup',
     description: 'Tech news tailored for CTOs, VPs of engineering and Tech Leads.',
@@ -27,11 +28,9 @@ const createFeed = (type: 'rss' | 'json' = 'rss') => {
   
   switch (type) {
     case 'json':
-      return [feed.json1(), 'application/feed+json'];
+      return new NextResponse(feed.json1(), { headers: { 'Content-Type': 'application/json' } });
     case 'rss':
     default:
-      return [feed.rss2(), 'application/rss+xml'];
+      return new NextResponse(feed.rss2(), { headers: { 'Content-Type': 'application/xml' } });
   }
 };
-
-export default createFeed;
