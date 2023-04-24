@@ -17,6 +17,25 @@ export const meta = {
   pageType: "blog-posting"
 };
 
+## Serverless and Edge functions
+
+Serverless functions has changed the way we build web applications. You don't have to worry about managing servers or infrastructure, you can focus on writing code and adding new features to their applications.
+
+You write the code of the function, deploy it and the cloud provider exposes the functions endpoint, manages and automatically scales the resources based on the incoming requests.
+
+Sounds great, until you hit the dreaded [cold start](https://mikhail.io/serverless/coldstarts/aws/).
+
+Most of the cold starts add about 50 to 500ms overhead, but there are cases where cold starts can get up to 2 to 3 sec. For example, hitting cold start while connecting to a db via prisma ORM in a node.js serverless function [https://github.com/prisma/prisma/issues/10724](took over 2.5 seconds). [https://www.prisma.io/blog/prisma-and-serverless-73hbgKnZ6t](Prisma team have solved the issue) while I was writing the article, so better bump your Prisma verison.
+
+Not so long ago Edge functions were presented; a serverless function that run at the Edge. Edge functions differ a bit from serverless functions, usually they run on a restricted, sandboxed runtime, physically closer to the user and without any cold start.
+
+So before we start moving your serverless functions to the edge, let's take a deeper look at the downsides of edge functions.
+
+## Global Edge functions
+
+
+
+
 Edge functions are serverless functions run at the Edge.
 
 https://www.cloudping.co/grid
