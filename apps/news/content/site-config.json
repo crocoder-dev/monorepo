@@ -1,0 +1,26 @@
+{
+  "siteTitle": "Tech Leadership Roundup",
+  "siteTitleShort": "TLR",
+  "siteDescription":
+    "Tech news tailored for CTOs, VPs of engineering and Tech Leads.",
+  "siteUrl": "https://news.crocoder.dev/",
+  "logoUrl": "https://crocoder.dev/images/logo.png",
+  "company": {
+    "name": "CroCoder, Inc.",
+    "street": "Lanište 3D",
+    "city": "Zagreb",
+    "region": "Zagreb",
+    "postalCode": "10000",
+    "country": "Croatia"
+  },
+  "themeColor": "#000",
+  "backgroundColor": "#fff",
+  "logo": "/icon.png",
+  "social": {
+    "twitter": "https://twitter.com/crocoderdev",
+    "linkedin": "https://www.linkedin.com/company/crocoderdev",
+    "github": "https://github.com/crocoder-dev",
+    "youtube": "https://www.youtube.com/channel/UCWU6cnq4hp4LnunPhP-sAqA",
+    "instagram": "https://www.instagram.com/crocoder.dev/"
+  }
+}
