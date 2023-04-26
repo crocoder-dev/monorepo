@@ -149,12 +149,15 @@ export async function POST(request: NextRequest) {
 
   console.log(emojii);
 
+  const splitEmoji = emojii.split(' ');
+  console.log(splitEmoji[0]);
+
   const publishedAt = published ? new Date(published) : new Date();
 
   const db = await getDB();
 
   await db.insert(posts).values({
-    title: `${emojii} ${title}`,
+    title: `${splitEmoji[0]} ${title}`,
     summary,
     insight,
     url: newUrl.href,
