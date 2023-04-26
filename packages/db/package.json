@@ -6,7 +6,8 @@
   "types": "./db.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "push": "drizzle-kit push:mysql"
+    "push": "drizzle-kit push:mysql",
+    "generate": "drizzle-kit generate:mysql"
   },
   "keywords": [],
   "author": "",
