@@ -16,6 +16,8 @@ export const editions = mysqlTable('editions', {
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
   date: timestamp('date').notNull(),
+  description: longtext('description'),
+  abstract:  longtext('abstract'),
   title: varchar('title', { length: 191 }).notNull(),
   slug: varchar('slug', { length: 191 }).notNull(),
 }, (editions) => ({
