@@ -27,9 +27,13 @@ Sounds great, until you hit the dreaded [cold start](https://mikhail.io/serverle
 
 Most of the cold starts add about 50 to 500ms overhead, but there are cases where cold starts can get up to 2 to 3 sec. For example, hitting cold start while connecting to a db via prisma ORM in a node.js serverless function [took over 2.5 seconds](https://github.com/prisma/prisma/issues/10724). [Prisma team have solved the issue](https://www.prisma.io/blog/prisma-and-serverless-73hbgKnZ6t) while I was writing the article, so better bump your Prisma verison.
 
-Not so long ago Edge functions were presented; a serverless function that run at the Edge. Edge functions differ a bit from serverless functions, usually they run on a restricted, sandboxed runtime, physically closer to the user and without any cold start.
+Not so long ago Edge functions were presented; a serverless function that run at the Edge. Edge functions differ a bit from serverless functions, usually they run on a restricted, sandboxed runtime, physically closer to the user, distrubuted through all the edge centers and without any cold start.
 
-So before we start moving your serverless functions to the edge, let's take a deeper look at the downsides of edge functions.
+So before we start blindly moving your serverless functions to the edge, let's take a deeper look at how we can use edge functions.
+
+## Regional Edge functions
+
+
 
 ## Global Edge functions
 
