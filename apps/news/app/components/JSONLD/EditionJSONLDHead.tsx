@@ -1,4 +1,4 @@
-import { Edition } from '@crocoder-dev/db/schema';
+import { Edition, Post } from '@crocoder-dev/db/schema';
 import siteConfig from '../../../content/site-config.json';
 
 const formatDate = (date: Date) => {
@@ -15,8 +15,14 @@ const formatDate = (date: Date) => {
   return [year, month, day].join('-');
 };
 
-export default function EditionJSONLDHead({ edition }: {edition: Pick<Edition, "title" | "date" | "abstract" | "description" | "slug">}) {
-  const {title, slug, description, date, abstract} = edition; 
+export default function EditionJSONLDHead({ edition, posts }: {posts: Post[], edition: Pick<Edition, "title" | "date" | "abstract" | "description" | "slug" | "createdAt" | "updatedAt">}) {
+  const {title, slug, description, date, abstract, createdAt, updatedAt} = edition;
+
+  const postsText = posts.map((e) => {
+    const { title, summary, insight, } = e;
+
+    return `${title} \n\n📰TL;DR - ${summary} \n\n💡Insigth - ${insight}`;
+  });
 
   const dateFormated = new Intl.DateTimeFormat('en-GB', { weekday: 'long',month: 'long', day: 'numeric'}).format(date);
   return (
@@ -26,7 +32,8 @@ export default function EditionJSONLDHead({ edition }: {edition: Pick<Edition, "
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           '@context': 'http://schema.org/',
-          '@type': 'BlogPosting',
+          '@type': 'Article',
+          url: `${siteConfig.siteUrl}${slug}`,
           mainEntityOfPage: {
             '@type': 'WebPage',
             '@id': `${siteConfig.siteUrl}${slug}`,
@@ -46,9 +53,11 @@ export default function EditionJSONLDHead({ edition }: {edition: Pick<Edition, "
           name: `${title} - ${dateFormated}`,
           description,
           abstract,
-          dateCreated: formatDate(date),
+          dateCreated: formatDate(createdAt as Date),
           datePublished: formatDate(date),
-          dateModified: formatDate(date),
+          dateModified: formatDate(updatedAt as Date),
+          headline: `${title} - ${dateFormated}`,
+          articleBody: postsText.join('\n\n')
         }),
       }}
     />
