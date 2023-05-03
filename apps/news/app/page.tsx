@@ -13,10 +13,6 @@ export default async function Home() {
 
   const db = getDB();
 
-  const editions2 = await db.select().from(databaseEditions)
-
-  console.log(editions2)
-
   const lastEdition = db.select().from(databaseEditions).where(lte(databaseEditions.date, new Date())).orderBy(desc(databaseEditions.date)).limit(1).as('lastEdition');
   
   const editionWithPosts = await db.select({title: sql<string>`lastEdition.title`, slug: sql<string>`lastEdition.slug`, description: sql<string>`lastEdition.description`, abstract: sql<string>`lastEdition.abstract`, createdAt: sql<Date>`lastEdition.created_at`, updatedAt: sql<Date>`lastEdition.updated_at`, date: sql<Date>`lastEdition.date`, post: databasePosts}).from(lastEdition).innerJoin(databasePosts, eq(lastEdition.id, databasePosts.editionId)).orderBy(asc(databasePosts.order));
