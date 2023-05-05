@@ -13,7 +13,7 @@ export default async function Editions(context: { params: { slug: string } }) {
   const  { slug } = context.params;
   const db = getDB();
 
-  const editionWithPosts = await db.select({ title: editions.title, date: editions.date, post: databasePosts}).from(editions).innerJoin(databasePosts, eq(editions.id, databasePosts.editionId)).where(eq(editions.slug, slug));
+  const editionWithPosts = await db.select({ title: editions.title, date: editions.date, slug: editions.slug, description: editions.description, abstract: editions.abstract, updatedAt: editions.updatedAt, createdAt: editions.createdAt, post: databasePosts}).from(editions).innerJoin(databasePosts, eq(editions.id, databasePosts.editionId)).where(eq(editions.slug, slug));
 
   if (editionWithPosts.length === 0) {
     redirect('/');

@@ -14,7 +14,8 @@ export default async function Home() {
   const db = getDB();
 
   const lastEdition = db.select().from(databaseEditions).where(lte(databaseEditions.date, new Date())).orderBy(desc(databaseEditions.date)).limit(1).as('lastEdition');
-  const editionWithPosts = await db.select({title: sql<string>`lastEdition.title`, date: sql<Date>`lastEdition.date`, post: databasePosts}).from(lastEdition).innerJoin(databasePosts, eq(lastEdition.id, databasePosts.editionId)).orderBy(asc(databasePosts.order));
+  
+  const editionWithPosts = await db.select({title: sql<string>`lastEdition.title`, slug: sql<string>`lastEdition.slug`, description: sql<string>`lastEdition.description`, abstract: sql<string>`lastEdition.abstract`, createdAt: sql<Date>`lastEdition.created_at`, updatedAt: sql<Date>`lastEdition.updated_at`, date: sql<Date>`lastEdition.date`, post: databasePosts}).from(lastEdition).innerJoin(databasePosts, eq(lastEdition.id, databasePosts.editionId)).orderBy(asc(databasePosts.order));
 
   if(editionWithPosts.length === 0) {
     return null;
@@ -22,9 +23,9 @@ export default async function Home() {
 
   const posts = editionWithPosts.map(e => e.post);
 
-  const {title, date} = editionWithPosts[0]!;
+  const {title, date, abstract, description, slug, updatedAt, createdAt} = editionWithPosts[0]!;
 
   return (
-    <Posts posts={posts} edition={{title, date: new Date(date)}}/>
+    <Posts posts={posts} edition={{title, date: new Date(date), abstract, slug, description, updatedAt, createdAt}}/>
   )
 }
