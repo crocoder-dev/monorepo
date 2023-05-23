@@ -1,0 +1,32 @@
+{
+  "name": "@crocoder-dev/after-work-talks",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "with-env": "dotenv -e ../../.env --",
+    "dev": "npm run with-env next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@crocoder-dev/db": "^1.0.0",
+    "@crocoder-dev/tailwind-config": "*",
+    "@next/font": "13.2.4",
+    "next": "13.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/node": "18.15.10",
+    "@types/react": "18.0.29",
+    "@types/react-dom": "18.0.11",
+    "autoprefixer": "^10.4.14",
+    "dotenv-cli": "^7.1.0",
+    "eslint": "^8.36.0",
+    "eslint-config-next": "13.2.4",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7"
+  }
+}
