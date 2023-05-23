@@ -1,0 +1,199 @@
+import blogHeader from "../../content/images/blogs/misusing-agile-is-holding-your-team-back.png?preset=responsive"
+import BlogLayout from "../../Layouts/BlogLayout";
+import ContentTable from "../../components/Blog/ContentTable";
+
+export const meta = {
+    id: "typescript-enums-good-bad-and-ugly",
+    title: "Typescript Enums: The Good, The Bad, and The Ugly",
+    description:
+    "",
+    image: blogHeader,
+    date: 1685008800000,
+    updatedAt: 1685008800000,
+    author: "davidabram",
+    editor: "velimirujevic",
+    abstract:
+    "",
+    pageType: "blog-posting"
+};
+
+Enums, short for "enumerations," are a type of data structure commonly found in programming languages. An enum defines a set of named values, typically representing a collection of related constants or options.
+
+Instead of using arbitrary values or strings to represent these options, you can use an enum to enforce type safety and provide a clear and predefined list of choices.
+
+https://github.com/rbuckton/proposal-enum
+
+<ContentTable tocData={props.toc} />
+
+## The Good
+
+```typescript
+
+enum Role {
+  User = 10,
+  Admin = 50
+}
+
+```
+
+```typescript
+
+const userRole = Role.User;
+
+if(userRole >= Role.Admin) {
+  console.log("User is admin");
+}
+
+```
+
+```typescript
+
+const userRole = Role.User;
+
+if(userRole !== Role.User  userRole !== Role.Admin) {
+  // Error: This comparison appears to be unintentional because the types 'Role.User' and 'Role.Admin' have no overlap.
+}
+
+```
+
+```typescript
+
+enum ShapeKind {
+  Circle = "CIRCLE",
+  Square = "SQUARE",
+  Triangle = "TRIANGLE"
+}
+// https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#discriminated-unions
+
+// Shape type definition using discriminated unions
+type Shape =
+  | { kind: ShapeKind.Circle; radius: number }
+  | { kind: ShapeKind.Square; x: number }
+  | { kind: ShapeKind.Triangle; x: number; y: number };
+
+// returns area of a shape
+function area(s: Shape) {
+  switch(s.kind) {
+    case ShapeKind.Circle:
+      return Math.PI * s.radius * s.radius;
+    case ShapeKind.Square:
+      return s.x * s.x;
+    case ShapeKind.Triangle:
+      return (s.x * s.y) / 2;
+    default:
+      throw new Error('Invalid shape');
+  }
+}
+
+```
+## The Bad
+
+```typescript
+
+enum ShapeKind {
+  Circle = "CIRCLE",
+  Square = "SQUARE",
+  Triangle = "TRIANGLE"
+}
+
+const circle = ShapeKind.Circle;
+
+if(circle === "CIRCLE") {
+  console.log("Circle");
+}
+
+```
+
+```typescript
+
+type ShapeKind = "CIRCLE" | "SQUARE" | "TRIANGLE";
+
+```
+
+
+
+## The Ugly
+
+```typescript
+
+const enum ResponseState {
+  Empty,
+  Loading,
+  Failure,
+  Success,
+};
+
+// Why can we iterate over an enum?
+for (const r in ResponseState) {
+  console.log(r);
+}
+
+```
+
+
+## Enums in other languages
+
+
+```java
+
+enum States {
+    //...
+    MASSACHUSETTS("Massachusetts",  "MA",   6981974),
+    MICHIGAN     ("Michigan",       "MI",   10077331);
+
+    private final String full;
+    private final String abbr;
+    private final Integer population;
+
+    private States(String full, String abbr, Integer population) {
+        this.full = full;
+        this.abbr = abbr;
+        this.population = population;
+    }
+
+    public String getFullName() {
+        return full;
+    }
+
+    public String getAbbreviatedName() {
+        return abbr;
+    }
+
+    public Integer getPopulation(){
+        return population;
+    }
+}
+
+```
+
+```rust 
+
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+    UpdateUser(User)
+}
+
+struct User {
+    username: String,
+    email: String,
+    age: i32
+}
+
+fn main() {
+    let message_move = Message::Move { x: 10, y: 20 };
+    let message_write = Message::Write(String::from("Hello, world!"));
+    let message_change_color = Message::ChangeColor(255, 255, 255);
+    let message_update_user = Message::UpdateUser(User {
+        username: String::from("davidabram"),
+        email: String::from("hello@crocoder.dev"),
+        age: 33
+    });
+}
+
+```
+
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;

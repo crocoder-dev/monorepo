@@ -7,6 +7,8 @@ import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash';
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript';
 import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
 import docker from 'react-syntax-highlighter/dist/cjs/languages/prism/docker';
+import rust from 'react-syntax-highlighter/dist/cjs/languages/prism/rust';
+import java from 'react-syntax-highlighter/dist/cjs/languages/prism/java';
 
 
 SyntaxHighlighter.registerLanguage('javascript', javascript);
@@ -15,6 +17,8 @@ SyntaxHighlighter.registerLanguage('bash', bash);
 SyntaxHighlighter.registerLanguage('typescript', typescript);
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('docker', docker);
+SyntaxHighlighter.registerLanguage('rust', rust);
+SyntaxHighlighter.registerLanguage('java', java);
 
 
 const Code = ({ children }) => {
