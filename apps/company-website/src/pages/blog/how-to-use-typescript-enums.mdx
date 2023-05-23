@@ -21,11 +21,23 @@ Enums, short for "enumerations," are a type of data structure commonly found in 
 
 Instead of using arbitrary values or strings to represent these options, you can use an enum to enforce type safety and provide a clear and predefined list of choices.
 
-https://github.com/rbuckton/proposal-enum
+Before JavaScript gets their own [enums](https://github.com/rbuckton/proposal-enum), we are stuck with TypeScript. TypeScript enums seem to fit right in with types, interfaces and all-around typesafety that TypeScript, but there are curiously underutilazed in most ts codebases.
+
+```typescript
+
+enum TypeScript {
+  Good,
+  Bad,
+  Ugly,
+}
+
+```
 
 <ContentTable tocData={props.toc} />
 
 ## The Good
+
+In TypeScript, similarly to any other language, enums can be assinged number or string value. These values can't be reassigned later in the code.
 
 ```typescript
 
@@ -35,6 +47,7 @@ enum Role {
 }
 
 ```
+The cool part is that you can compare and manipulate enum values, so you can write something like:
 
 ```typescript
 
@@ -45,16 +58,23 @@ if(userRole >= Role.Admin) {
 }
 
 ```
+In this way you can always compare enum values and c
+
+If you create an conditional statement using enums which can't never satisfied, like in the code below, tsc will throw an compile time error.
 
 ```typescript
 
 const userRole = Role.User;
 
-if(userRole !== Role.User  userRole !== Role.Admin) {
-  // Error: This comparison appears to be unintentional because the types 'Role.User' and 'Role.Admin' have no overlap.
+if(userRole !== Role.User || userRole !== Role.Admin) {
+  // Error: This comparison appears to be unintentional 
+  // because the types 'Role.User' and 'Role.Admin' have no overlap.
 }
 
 ```
+
+When creating discriminated unions, you can use an enum as their kinds. This way your conditional statements using discriminated unions don't need to have hardcoded values and can have all the upsides of enums.
+
 
 ```typescript
 
@@ -63,7 +83,7 @@ enum ShapeKind {
   Square = "SQUARE",
   Triangle = "TRIANGLE"
 }
-// https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#discriminated-unions
+// 
 
 // Shape type definition using discriminated unions
 type Shape =
