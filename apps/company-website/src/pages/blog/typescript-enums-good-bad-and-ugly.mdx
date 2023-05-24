@@ -58,7 +58,9 @@ if(userRole >= Role.Admin) {
 }
 
 ```
-In this way you can always compare enum values and c
+
+In this way you can always compare the enum values create conditional statements based on them. For example, you can write an if statement that checks whether the userRole is greater than or equal to Role.Admin
+
 
 If you create an conditional statement using enums which can't never satisfied, like in the code below, tsc will throw an compile time error.
 
@@ -105,8 +107,116 @@ function area(s: Shape) {
   }
 }
 
+To summarize everyhting, good things about enums are:
+
+👉 Can be assigned either numeric or string values, and these values cannot be reassigned later in the code.
+
+👉 Enum values can be compared and manipulated, allowing for the creation of conditional statements based on them.
+
+👉 If a conditional statement using enums is constructed in a way that can never be satisfied, the TypeScript compiler (tsc) will throw a compile-time error, helping to catch potential issues.
+
+👉 Enums can be utilized as kinds in discriminated unions, enabling conditional statements without hardcoding values and leveraging the benefits of enums.
+
 ```
 ## The Bad
+
+Let's take the next example, and try to guess if '???' will be logged.
+
+```typescript
+enum TypeScript {
+  Good,
+  Bad,
+  Ugly,
+}
+
+const ts = TypeScript.Bad;
+
+if(ts) {
+  console.log('???')
+}
+
+```
+
+Of course, the answer is yes. But why? If you don't assign enum values, they will be assigned to 0, 1, 2, etc.
+
+Well that means that first enum value will be falsy, and every other value will be truthy. 😠
+
+Remember how you can't reassign the enum values? Well, that's not entirely true. You can do it, but you shouldn't.
+
+```typescript
+
+enum TypeScript {
+  Good,
+  Bad,
+  Ugly,
+}
+
+(TypeScript as any).Bestest = 3; // This works!
+
+```
+
+Can we try to make enums readonly or freeze them? 
+
+```typescript
+
+enum TypeScript {
+  Good,
+  Bad,
+  Ugly,
+}
+
+Object.freeze(TypeScript); // This works!
+
+(TypeScript as any).Bestest = 3; // This throws an error
+
+```
+
+How can we use Object.freeze on an enum? Well, 
+
+TypeScript enums are actually just a syntactic sugar for objects, under the hood they are just objects with keys and values. 
+
+Let's take a look at the compiled code:
+
+```typescript
+
+"use strict";
+var TypeScript;
+(function (TypeScript) {
+    TypeScript[TypeScript["Good"] = 0] = "Good";
+    TypeScript[TypeScript["Bad"] = 1] = "Bad";
+    TypeScript[TypeScript["Ugly"] = 2] = "Ugly";
+})(TypeScript || (TypeScript = {}));
+Object.freeze(TypeScript);
+TypeScript.Bestest = 3;
+
+```
+
+So our `TypeScript` enum is just an object that looks like:
+
+```typescript
+
+const TypeScript = {
+  0: "Good",
+  1: "Bad",
+  2: "Ugly",
+  Good: 0,
+  Bad: 1,
+  Ugly: 2,
+}
+
+```
+TL;DR -> Bad things about enums are:
+
+👉 TypeScript enums are essentially objects with keys and values.
+
+👉 When enum values are not explicitly assigned, they are automatically assigned numeric values starting from 0. This means that the first enum value is falsy, while every other value is truthy.
+
+👉 Although enum values are intended to be constants and should not be reassigned, it is technically possible to do so.
+
+
+## The Ugly
+
+If you have read the previous section, you can compare and manipulate enum values, so you can write something like:
 
 ```typescript
 
@@ -124,31 +234,46 @@ if(circle === "CIRCLE") {
 
 ```
 
+In the `if` statement above, we are comparing enum value with a string. This is a valid TypeScript code, but it's not a good practice.
+
+Why? Well, if you change the enum value, you will have to change the string value as well. This is a recipe for disaster.
+
+So you can rewrite the whole thing like this:
+
 ```typescript
 
 type ShapeKind = "CIRCLE" | "SQUARE" | "TRIANGLE";
 
+if(circle === "CIRCLE") {
+  console.log("Circle");
+}
+
 ```
 
+This way you can avoid using enums, and you can still have similiar level of type safety.
 
+In both of this examples, if you don't enforce enums, you will have random hardcoded strings in your codebase.
 
-## The Ugly
+If you haven't noticed, enums are objects, so you can iterate over an enum.
 
 ```typescript
 
 const enum ResponseState {
-  Empty,
   Loading,
   Failure,
   Success,
 };
 
-// Why can we iterate over an enum?
 for (const r in ResponseState) {
   console.log(r);
 }
 
 ```
+
+You would expect this code to log `Loading`, `Failure`, `Success`, but it will log `Loading`, `Failure`, `Success`, `0`, `1`, `2`.
+Take a look at previous section, and you will see how enum is compiled to an object.
+
+
 
 
 ## Enums in other languages
