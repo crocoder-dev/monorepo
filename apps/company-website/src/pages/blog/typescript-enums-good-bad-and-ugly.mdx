@@ -39,7 +39,7 @@ enum TypeScript {
 
 ## The Good
 
-In TypeScript, similarly to any other language, enums can be assigned to a number or a string value. These values can't be reassigned later in the code.
+In TypeScript, similarly to any other language, enum variants can be assigned to a number or a string value. These values can't be reassigned later in the code.
 
 ```typescript
 
@@ -49,7 +49,7 @@ enum Role {
 }
 
 ```
-The cool part is that you can compare and manipulate enum values, so you can write something like:
+The cool part is that you can compare and manipulate enum variant values, so you can write something like:
 
 ```typescript
 
@@ -61,7 +61,7 @@ if(userRole >= Role.Admin) {
 
 ```
 
-This way you can always compare the enum values create conditional statements based on them. For example, you can write an **`if`** statement that checks whether the **`userRole`** is greater than or equal to **`Role.Admin`**.
+This way you can always compare the enum variant values create conditional statements based on them. For example, you can write an **`if`** statement that checks whether the **`userRole`** is greater than or equal to **`Role.Admin`**.
 
 
 If you create a conditional statement using enums which can never be satisfied, like in the code below, **tsc** will throw an compile time error.
@@ -114,7 +114,7 @@ To summarize everything, the good things about enums are:
 
 👉 They can be assigned either numeric or string values, and these values cannot be reassigned later in the code.
 
-👉 Enum values can be compared and manipulated, allowing for the creation of conditional statements based on them.
+👉 Enum variant values can be compared and manipulated, allowing for the creation of conditional statements based on them.
 
 👉 If a conditional statement using enums is constructed in a way that can never be satisfied, the TypeScript compiler (tsc) will throw a compile-time error, helping to catch potential issues.
 
@@ -142,11 +142,12 @@ if(ts) {
 
 Of course, the answer is yes. But why is that?
 
-If you don't assign enum values, they will be assigned to 0, 1, 2, etc.
+If you don't assign enum variant values, they will be assigned to 0, 1, 2, etc.
 
-Well that means that first enum value will be falsy, and every other value will be truthy. 😠
+Well that means that first enum variant value will be falsy, and every other value will be truthy. 😠
 
-Remember how you can't reassign the enum values? Well, that's not entirely true. You can do it, but you shouldn't.
+
+Remember how you can't reassign the enum variant values? Well, that's not entirely true. You can do it, but you shouldn't.
 
 ```typescript
 
@@ -215,14 +216,14 @@ TL;DR -> The bad things about enums are:
 
 👉 TypeScript enums are essentially objects with keys and values.
 
-👉 When enum values are not explicitly assigned, they are automatically assigned numeric values starting from 0. This means that the first enum value is falsy, while every other value is truthy.
+👉 When enum variant values are not explicitly assigned, they are automatically assigned numeric values starting from 0. This means that the first enum value variant is falsy, while every other value is truthy.
 
-👉 Although enum values are intended to be constants and should not be reassigned, it is technically possible to do so.
+👉 Although enum variant values are intended to be constants and should not be reassigned, it is technically possible to do so.
 
 
 ## The Ugly
 
-If you have read the previous section, you can compare and manipulate enum values, so you can write something like:
+If you have read the previous section, you can compare and manipulate enum variant values, so you can write something like:
 
 ```typescript
 
@@ -242,7 +243,7 @@ if(circle === "CIRCLE") {
 
 In the **`if`** statement above, we are comparing an enum value with a string. This is a valid TypeScript code, but it's not a good practice.
 
-Why you ask? Well, if you change the enum value, you will have to change the string value as well. This is a recipe for disaster.
+Why you ask? Well, if you change the enum variant value, you will have to change the string value as well. This is a recipe for disaster.
 
 So you can rewrite the whole thing like this:
 
@@ -280,7 +281,7 @@ You would expect this code to log **`Loading`**, **`Failure`**, **`Success`**, b
 
 Take a look at the previous section, and you will see how an enum is compiled to an object.
 
-We can fix this issue by using **`const enum`** instead of **`enum`**.
+We can stop devs accidentally iterating over enums by using **`const enum`** instead of **`enum`**.
 
 ```typescript
 
