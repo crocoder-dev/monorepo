@@ -2,7 +2,7 @@ export default function Home() {
   const discordUrl = 'https://discord.gg/QTqArvv756';
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200 dark:bg-slate-700">
+    <div className="w-screen h-screen font-fira flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200 dark:bg-slate-700">
       <div className="flex items-center justify-center w-96 h-96 rounded-3xl bg-blue-300 shadow-xl dark:bg-slate-800">
         <a
           target="_blank"
