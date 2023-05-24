@@ -258,7 +258,7 @@ If you haven't noticed, enums are objects, so you can iterate over an enum.
 
 ```typescript
 
-const enum ResponseState {
+enum ResponseState {
   Loading,
   Failure,
   Success,
@@ -271,8 +271,34 @@ for (const r in ResponseState) {
 ```
 
 You would expect this code to log `Loading`, `Failure`, `Success`, but it will log `Loading`, `Failure`, `Success`, `0`, `1`, `2`.
+
 Take a look at previous section, and you will see how enum is compiled to an object.
 
+We can fix this issuse by using `const enum` instead of `enum`.
+
+```typescript
+
+const enum ResponseState {
+  Loading,
+  Failure,
+  Success,
+};
+
+const l = ResponseState.Loading;
+
+```
+
+The previous code will be compiled to:
+
+```typescript
+
+"use strict";
+;
+const l = 0 /* ResponseState.Loading */;
+
+```
+
+This way we can get enums without the runtime overhead, but... there are a lot of pitfalls with `const enum`. You should checkout [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/enums.html#const-enum-pitfalls) for more info.
 
 
 
