@@ -1,7 +1,9 @@
 'use client';
 
 import { ChangeEvent, FormEvent, useState } from 'react';
-import Upolad from '../components/upolad';
+import { UploadButton, UploadDropzone } from "@uploadthing/react";
+import { OurFileRouter } from "../api/uploadthing/core";
+import "@uploadthing/react/styles.css";
 
 export default function Devs() {
   const [formData, setFormData] = useState({
@@ -10,6 +12,7 @@ export default function Devs() {
     email: '',
     message: '',
     projects: '',
+    uploadThingLink: ''
   });
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -22,6 +25,8 @@ export default function Devs() {
       },
       body: JSON.stringify(formData),
     });
+
+    console.log(response)
 
     if (response.ok) {
       alert('Poslano :)');
@@ -95,7 +100,23 @@ export default function Devs() {
         </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="cv">Upload your CV:</label>
-          <Upolad />
+          <UploadButton<OurFileRouter>
+            endpoint="imageUploader"
+            onClientUploadComplete={(res) => {
+
+              if (res)  {
+                setFormData((prevFormData) => ({
+                  ...prevFormData,
+                  uploadThingLink: res[0].fileUrl,
+                }));
+              }
+              alert("Upload Completed");
+            }}
+            onUploadError={(error: Error) => {
+              // Do something with the error.
+              alert(`ERROR! ${error.message}`);
+            }}
+          />
         </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="message">Message for reader:</label>

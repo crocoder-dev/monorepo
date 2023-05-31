@@ -1,8 +1,7 @@
-/** app/api/uploadthing/core.ts */
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 const f = createUploadthing();
  
-const auth = (req: Request) => ({ id: "fakeId" }); // Fake auth function
+const auth = (req: Request) => ({ id: process.env.UPLOADTHING_SECRET }); // Fake auth function
  
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
