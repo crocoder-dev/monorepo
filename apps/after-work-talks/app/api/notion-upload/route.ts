@@ -6,18 +6,19 @@ const inputSchema = z.object({
   firstName: z.string(),
   lastName: z.string(),
   email: z.string(),
-  message: z.string().optional(),
-  projects: z.string().optional(),
-  uploadThingLink: z.string().optional(),
+  message: z.string(),
+  projects: z.string(),
+  uploadThingLink: z.string(),
 });
 
 const createContactObject = ({name, email, content, projects, uploadThingLink}: {name: string, email: string, content: string, projects: string, uploadThingLink: string}) => ({
   parent: {
-    database_id: process.env.NOTION_DATABASE_ID,
+    type: 'database_id',
+    database_id: process.env.NOTION_DATABASE_ID!,
   },
   properties: {
     title: {
-      rich_text: [
+      title: [
         {
           text: {
             content: name,
@@ -29,7 +30,14 @@ const createContactObject = ({name, email, content, projects, uploadThingLink}: 
       email,
     },
     projects: {
-      url: projects,
+      rich_text: [
+        {
+          type: 'text',
+          text: {
+            content: projects,
+          },
+        },
+      ],
     },
     uploadThingLink: {
       url: uploadThingLink,
@@ -62,7 +70,15 @@ export async function POST(request: NextRequest) {
 
   const { firstName, lastName, message, email, projects, uploadThingLink } = inputSchema.parse(params);
 
-  const notionResponse = await notion.pages.create(createContactObject({name: `${firstName} ${lastName}`, email, uploadThingLink, projects, content: message}));
+  const notionObject = createContactObject({
+    name: `${firstName} ${lastName}`,
+    email,
+    content: message,
+    projects,
+    uploadThingLink,
+  });
+
+  const notionResponse = await notion.pages.create(notionObject as any);
 
   return NextResponse.json({ success: true });
 }
