@@ -40,7 +40,14 @@ const createContactObject = ({name, email, content, projects, uploadThingLink}: 
       ],
     },
     uploadThingLink: {
-      url: uploadThingLink,
+      rich_text: [
+        {
+          type: 'text',
+          text: {
+            content: projects,
+          },
+        },
+      ],
     },
   },
   children: [
