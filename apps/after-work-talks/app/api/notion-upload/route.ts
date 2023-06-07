@@ -3,8 +3,7 @@ import { Client } from '@notionhq/client';
 import { z } from 'zod';
 
 const inputSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
+  name: z.string(),
   email: z.string(),
   message: z.string(),
   projects: z.string(),
@@ -75,10 +74,10 @@ export async function POST(request: NextRequest) {
   const params = await response.json();
 
 
-  const { firstName, lastName, message, email, projects, uploadThingLink } = inputSchema.parse(params);
+  const { name, message, email, projects, uploadThingLink } = inputSchema.parse(params);
 
   const notionObject = createContactObject({
-    name: `${firstName} ${lastName}`,
+    name,
     email,
     content: message,
     projects,

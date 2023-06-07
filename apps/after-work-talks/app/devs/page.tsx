@@ -7,13 +7,14 @@ import "@uploadthing/react/styles.css";
 
 export default function Devs() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     message: '',
     projects: '',
     uploadThingLink: ''
   });
+
+  const [fileUploaded, setFileUploaded] = useState(false);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -47,34 +48,20 @@ export default function Devs() {
     <div className="font-fira flex min-h-screen w-full items-center justify-center bg-slate-700 text-black">
       <form
         onSubmit={handleSubmit}
-        className="mt-4 flex h-fit max-w-[900px] flex-col gap-4 rounded-xl bg-slate-300 py-4 px-6"
+        className="mt-4 flex h-fit w-[500px] flex-col gap-4 rounded-xl bg-slate-300 py-4 px-6"
         action=""
       >
-        <div className="flex gap-4">
-          <div className="flex flex-col gap-1">
-            <label htmlFor="name">First name*:</label>
-            <input
-              id="firstName"
-              type="text"
-              placeholder="First name"
-              value={formData.firstName}
-              onChange={handleChange}
-              className="rounded-lg border-2 border-slate-600 bg-transparent py-2 px-4 focus:outline-none"
-              required
-            />
-          </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="lastName">Last name*:</label>
-            <input
-              id="lastName"
-              type="text"
-              placeholder="Last name"
-              value={formData.lastName}
-              onChange={handleChange}
-              className="rounded-lg border-2 border-slate-600 bg-transparent py-2 px-4 focus:outline-none"
-              required
-            />
-          </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="name">Name*:</label>
+          <input
+            id="firstName"
+            type="text"
+            placeholder="First name"
+            value={formData.name}
+            onChange={handleChange}
+            className="rounded-lg border-2 w-full border-slate-600 bg-transparent py-2 px-4 focus:outline-none"
+            required
+          />
         </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="email">Email*:</label>
@@ -104,11 +91,12 @@ export default function Devs() {
             endpoint="imageUploader"
             onClientUploadComplete={(res) => {
 
-              if (res)  {
+              if (res) {
                 setFormData((prevFormData) => ({
                   ...prevFormData,
                   uploadThingLink: res[0].fileUrl,
                 }));
+                setFileUploaded(true)
               }
               alert("Upload Completed");
             }}
@@ -117,6 +105,7 @@ export default function Devs() {
               alert(`ERROR! ${error.message}`);
             }}
           />
+          <div className='text-center'>{fileUploaded ? 'File uploaded' : 'No file uploaded'}</div>
         </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="message">Message for reader:</label>

@@ -9,7 +9,7 @@ export const ourFileRouter = {
   imageUploader: f
     // Set permissions and file types for this FileRoute
     .fileTypes(["image", "video", "blob"])
-    .maxSize("1GB")
+    .maxSize("4MB")
     .middleware(async (req) => {
       // This code runs on your server before upload
       const user = await auth(req);
