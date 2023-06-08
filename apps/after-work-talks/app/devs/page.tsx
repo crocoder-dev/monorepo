@@ -23,11 +23,10 @@ export default function Devs() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': process.env.NOTION_DATABASE_ID!
       },
       body: JSON.stringify(formData),
     });
-
-    console.log(response)
 
     if (response.ok) {
       alert('Poslano :)');
@@ -45,21 +44,22 @@ export default function Devs() {
   };
 
   return (
-    <div className="font-fira flex min-h-screen w-full items-center justify-center bg-slate-700 text-black">
+    // <div className="flex min-h-screen w-full items-center justify-center bg-slate-700 text-black">
+    <div className="flex min-h-screen w-full items-center justify-center shadow-2xl bg-gradient-radial from-blue-900 to-slate-900 text-white">
       <form
         onSubmit={handleSubmit}
-        className="mt-4 flex h-fit w-[500px] flex-col gap-4 rounded-xl bg-slate-300 py-4 px-6"
+        className="mt-4 flex h-fit w-[500px] flex-col gap-4 rounded-xl bg-slate-900 py-4 px-6 opacity-80"
         action=""
       >
         <div className="flex flex-col gap-1">
           <label htmlFor="name">Name*:</label>
           <input
-            id="firstName"
+            id="name"
             type="text"
-            placeholder="First name"
+            placeholder="Name"
             value={formData.name}
             onChange={handleChange}
-            className="rounded-lg border-2 w-full border-slate-600 bg-transparent py-2 px-4 focus:outline-none"
+            className="rounded-lg border-2 w-full border-slate-600 bg-slate-800 py-2 px-4 focus:outline-none"
             required
           />
         </div>
@@ -71,7 +71,7 @@ export default function Devs() {
             placeholder="Email"
             value={formData.email}
             onChange={handleChange}
-            className="rounded-lg border-2 border-slate-600 bg-transparent py-2 px-4 focus:outline-none"
+            className="rounded-lg border-2 border-slate-600 bg-slate-800 py-2 px-4 focus:outline-none"
             required
           />
         </div>
@@ -82,7 +82,7 @@ export default function Devs() {
             placeholder="Project links"
             value={formData.projects}
             onChange={handleChange}
-            className="min-h-[200px] rounded-lg border-2 border-slate-600 bg-transparent py-2 px-4 focus:outline-none"
+            className="min-h-[200px] rounded-lg border-2 border-slate-600 bg-slate-800 py-2 px-4 focus:outline-none"
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -114,10 +114,12 @@ export default function Devs() {
             placeholder="Message"
             value={formData.message}
             onChange={handleChange}
-            className="min-h-[200px] rounded-lg border-2 border-slate-600 bg-transparent py-2 px-4 focus:outline-none"
+            className="min-h-[200px] rounded-lg border-2 border-slate-600 bg-slate-800 py-2 px-4 focus:outline-none"
           />
         </div>
-        <button type="submit">Submit</button>
+        <div className="flex justify-center">
+          <button className='px-6 py-2 w-fit bg-indigo-700 shadow-xl transition-all rounded-full hover:bg-indigo-600 font-bold' type="submit">Submit</button>
+        </div>
       </form>
     </div>
   );

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Client } from '@notionhq/client';
 import { z } from 'zod';
+import { headers } from 'next/headers';
 
 const inputSchema = z.object({
   name: z.string(),
@@ -70,6 +71,11 @@ const createContactObject = ({name, email, content, projects, uploadThingLink}: 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
 export async function POST(request: NextRequest) {
+  const headersList = headers();
+  if( headersList.get('Authorization') !== process.env.NOTION_DATABASE_ID) {
+    return NextResponse.json({ success: false });
+  }
+  
   const response = new Response(request.body);
   const params = await response.json();
 
