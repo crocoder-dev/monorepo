@@ -45,10 +45,10 @@ export default function Devs() {
 
   return (
     // <div className="flex min-h-screen w-full items-center justify-center bg-slate-700 text-black">
-    <div className="flex min-h-screen w-full items-center justify-center shadow-2xl bg-gradient-radial from-blue-900 to-slate-900 text-white">
+    <div className="flex min-h-screen w-full items-start justify-center bg-gradient-radial from-blue-900 to-slate-900 text-white sm:items-center">
       <form
         onSubmit={handleSubmit}
-        className="mt-4 flex h-fit w-[500px] flex-col gap-4 rounded-xl bg-slate-900 py-4 px-6 opacity-80"
+        className="mt-0 flex h-fit w-[500px] flex-col gap-4 rounded-none bg-slate-900 py-4 px-6 opacity-80 shadow-2xl sm:rounded-xl sm:mt-4"
         action=""
       >
         <div className="flex flex-col gap-1">

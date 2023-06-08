@@ -3,7 +3,7 @@ export default function Home() {
 
   return (
     <div className="w-screen h-screen flex items-center justify-center bg-gradient-radial from-blue-900 to-zinc-900">
-      <div className="flex items-center justify-center w-96 h-96 rounded-3xl bg-slate-800 shadow-xl">
+      <div className="flex items-center justify-center w-96 h-96 rounded-3xl bg-slate-800 shadow-xl opacity-80">
         <a
           target="_blank"
           href={discordUrl}
