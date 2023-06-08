@@ -28,10 +28,12 @@ export default function Devs() {
       body: JSON.stringify(formData),
     });
 
-    if (response.ok) {
+    const data = await response.json();
+
+    if (data.success) {
       alert('Poslano :)');
     } else {
-        alert('Nesto ne valja :(');
+      alert('Nesto ne valja :(');
     }
   };
 
