@@ -10,6 +10,7 @@ export const serverSchema = z.object({
   UPLOADTHING_SECRET: z.string(),
   UPLOADTHING_APP_ID: z.string(),
   NOTION_DATABASE_ID: z.string(),
+  SITE_URL: z.string(),
 });
 
 /**
