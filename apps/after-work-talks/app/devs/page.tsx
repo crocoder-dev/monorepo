@@ -1,5 +1,6 @@
 'use client';
 
+import { redirect } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { UploadButton } from '@uploadthing/react';
 import { OurFileRouter } from '../api/uploadthing/core';
@@ -15,9 +16,9 @@ export default function Devs() {
     const response = await setData(data);
 
     if (response.success) {
-      alert('Form submitted!');
+      redirect('/');
     } else {
-      alert('Form submit failed!');
+      redirect('/');
     }
   }
   
@@ -68,21 +69,23 @@ export default function Devs() {
             name="uploadThingLink"
             className="hidden"
           />
-          <UploadButton<OurFileRouter>
-            endpoint="imageUploader"
-            onClientUploadComplete={(res) => {
-              if (res) {
-                setFileUploaded(true);
-                if (inputRef.current) {
-                  inputRef.current.value = res[0].fileUrl;
+          <div className={fileUploaded ? 'hidden' : ''}>
+            <UploadButton<OurFileRouter>
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                if (res) {
+                  setFileUploaded(true);
+                  if (inputRef.current) {
+                    inputRef.current.value = res[0].fileUrl;
+                  }
                 }
-              }
-            }}
-            onUploadError={(error: Error) => {
-              // Do something with the error.
-              alert(`ERROR! ${error.message}`);
-            }}
-          />
+              }}
+              onUploadError={(error: Error) => {
+                // Do something with the error.
+                alert(`ERROR! ${error.message}`);
+              }}
+            />
+          </div>
           <div className="text-center">{fileUploaded ? 'File uploaded' : 'No file uploaded'}</div>
         </div>
         <div className="flex flex-col gap-1">
