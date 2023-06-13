@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, useState } from 'react';
+import { useRef, useState } from 'react';
 import { UploadButton } from '@uploadthing/react';
 import { OurFileRouter } from '../api/uploadthing/core';
 import '@uploadthing/react/styles.css';
@@ -8,12 +8,8 @@ import { setData } from './actions';
 
 export default function Devs() {
   const [fileUploaded, setFileUploaded] = useState(false);
-  const [uploadThingLink, setUploadThingLink] = useState('');
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setUploadThingLink(value);
-  };
+  const inputRef = useRef<HTMLInputElement>(null);
   
   return (
     // <div className="flex min-h-screen w-full items-center justify-center bg-slate-700 text-black">
@@ -56,21 +52,20 @@ export default function Devs() {
         <div className="flex flex-col gap-1">
           <label htmlFor="cv">Upload your CV:</label>
           <input
+            ref={inputRef}
             type="text"
-            id="uploadThingUrl"
-            name="uploadThingUrl"
-            value={uploadThingLink}
-            onChange={handleChange}
+            id="uploadThingLink"
+            name="uploadThingLink"
             className="hidden"
           />
           <UploadButton<OurFileRouter>
             endpoint="imageUploader"
             onClientUploadComplete={(res) => {
               if (res) {
-                setUploadThingLink(res[0].fileUrl)
                 setFileUploaded(true);
-                alert('Upload Completed');
-                console.log(res)
+                if (inputRef.current) {
+                  inputRef.current.value = res[0].fileUrl;
+                }
               }
             }}
             onUploadError={(error: Error) => {

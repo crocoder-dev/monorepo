@@ -6,7 +6,7 @@ export async function setData(data: FormData) {
   const message = data.get('message');
   const projects = data.get('projects');
   const uploadThingLink = data.get('uploadThingLink');
-  console.log(uploadThingLink)
+  
   const formData = {
     name,
     email,

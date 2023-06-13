@@ -44,7 +44,7 @@ const createContactObject = ({name, email, content, projects, uploadThingLink}: 
         {
           type: 'text',
           text: {
-            content: projects,
+            content: uploadThingLink,
           },
         },
       ],
