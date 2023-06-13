@@ -1,4 +1,7 @@
 "use server"
+
+import { NextResponse } from "next/server";
+
  
 export async function setData(data: FormData) {
   const name = data.get('name');
@@ -6,7 +9,7 @@ export async function setData(data: FormData) {
   const message = data.get('message');
   const projects = data.get('projects');
   const uploadThingLink = data.get('uploadThingLink');
-  
+
   const formData = {
     name,
     email,
@@ -28,8 +31,8 @@ export async function setData(data: FormData) {
   const responseData = await response.json();
 
   if (responseData.success) {
-    console.log('Poslano :)');
+    return { success: true };
   } else {
-    console.log('Nesto ne valja :(');
+    return { success: false };
   }
 }

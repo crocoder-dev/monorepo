@@ -10,13 +10,23 @@ export default function Devs() {
   const [fileUploaded, setFileUploaded] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
+
+  async function formAction(data: FormData) {
+    const response = await setData(data);
+
+    if (response.success) {
+      alert('Form submitted!');
+    } else {
+      alert('Form submit failed!');
+    }
+  }
   
   return (
     // <div className="flex min-h-screen w-full items-center justify-center bg-slate-700 text-black">
     <div className="bg-gradient-radial flex min-h-screen w-full items-start justify-center from-blue-900 to-slate-900 text-white sm:items-center">
       <form
         className="mt-0 flex h-fit w-[500px] flex-col gap-4 rounded-none bg-slate-900 py-4 px-6 opacity-80 shadow-2xl sm:mt-4 sm:rounded-xl"
-        action={setData}
+        action={formAction}
       >
         <div className="flex flex-col gap-1">
           <label htmlFor="name">Name*:</label>
