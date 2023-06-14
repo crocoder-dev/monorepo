@@ -78,35 +78,30 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false });
   }
 
-  // const allowRequest = async (request: NextRequest) => {
-  //   try {
-  //     const ip = request.ip ?? '127.0.0.1';
-  
-  //     const ratelimit = new Ratelimit({
-  //       limiter: Ratelimit.fixedWindow(1, '30 s'),
-  //       /** Use fromEnv() to automatically load connection secrets from your environment
-  //        * variables. For instance when using the Vercel integration.
-  //        *
-  //        * This tries to load `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` from
-  //        * your environment using `process.env`.
-  //        */
-  //       redis: Redis.fromEnv(),
-  //     });
-  
-  //     const response = await ratelimit.limit(ip);
-  //     return response;
-  //   } catch (error) {
-  //     throw {
-  //       body: {
-  //         message: error,
-  //       },
-  //     };
-  //   }
-  // };
+  console.log('route')
+
+  const ip = headersList.get("x-real-ip") ?? '127.0.0.1';
+
+  console.log('ip', ip)
+
+  const ratelimit = new Ratelimit({
+    limiter: Ratelimit.fixedWindow(1, '300 s'),
+    redis: Redis.fromEnv(),
+  });
+
+  const ratelimitResponse = await ratelimit.limit(ip);
+
+  console.log(ratelimitResponse.success)
+
+  if (!ratelimitResponse.success) {
+    return NextResponse.json(
+      { error: `Too many requests, please try again in 5 minutes` },
+      { status: 429 }
+    );
+  }
   
   const response = new Response(request.body);
   const params = await response.json();
-
 
   const { name, message, email, projects, uploadThingLink } = inputSchema.parse(params);
 
