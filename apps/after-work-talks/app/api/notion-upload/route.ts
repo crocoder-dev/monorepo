@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
     uploadThingLink,
   });
 
-  const notionResponse = await notion.pages.create(notionObject as any);
+  await notion.pages.create(notionObject as any);
 
   return NextResponse.json({ success: true });
 }
