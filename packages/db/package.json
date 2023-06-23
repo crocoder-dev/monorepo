@@ -13,11 +13,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@planetscale/database": "^1.6.0",
-    "mysql2": "^2.3.3"
+    "@planetscale/database": "^1.7.0",
+    "mysql2": "^3.4.0"
   },
   "devDependencies": {
-    "dotenv-cli": "^7.1.0",
-    "drizzle-kit": "^0.17.3"
+    "dotenv-cli": "^7.2.1",
+    "drizzle-kit": "^0.19.2"
   }
 }
