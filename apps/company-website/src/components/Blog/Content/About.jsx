@@ -72,7 +72,7 @@ const About = ({ author }) => (
             .
             {author.calcom && (
               <>
-                <span>Or</span>
+                <span>{' '}You can also</span>
                 <a
                   rel="nofollow noopener noreferrer"
                   className={styles.link}
@@ -82,7 +82,7 @@ const About = ({ author }) => (
                   {' '}
                   Book a meeting
                 </a>
-                <span> with {author.name.slice(0, author.name.indexOf(' '))}</span>
+                <span> with {author.name.slice(0, author.name.indexOf(' '))}.</span>
               </>
             )}
           </Typography>
