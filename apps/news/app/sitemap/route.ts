@@ -15,7 +15,7 @@ export async function GET() {
       url: `${siteConfig.siteUrl}${e.slug}`,
       changefreq: 'monthly',
       priority: 1.0,
-      lastmod: e.updatedAt
+      lastmod: e.date
     }
   });
 
