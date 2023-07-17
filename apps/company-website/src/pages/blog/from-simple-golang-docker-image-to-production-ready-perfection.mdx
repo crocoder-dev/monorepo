@@ -5,7 +5,7 @@ import ContentTable from "../../components/Blog/ContentTable";
 
 export const meta = {
     id: "from-simple-golang-docker-image-to-production-ready-perfection",
-    title: "From simple golang docker image to production-ready perfection",
+    title: "From simple Golang docker image to production-ready perfection",
     description:
     "", 
     category: "Docker", 
@@ -46,7 +46,7 @@ In this Dockerfile, we use the official Golang base image, set the working direc
 To ensure stability and consistency, we'll pin the Golang version and switch to Debian for more robust build utilities:
 
 ```docker
-# Our first step is to pin the Golang version (1.20) to ensure stability.
+
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
 FROM golang:1.20-bullseye AS build
@@ -67,7 +67,7 @@ By specifying the Golang version, we ensure our image is built with the same ver
 To enhance runtime performance, we'll compile the Golang application during the build stage:
 
 ```docker
-# Our first step is to pin the Golang version (1.20) to ensure stability.
+
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
 FROM golang:1.20-bullseye AS build
@@ -79,10 +79,10 @@ COPY . .
 RUN go mod download
 
 # During this stage, we compile our application ahead of time, avoiding any runtime surprises.
-# The resulting binary, api-golang, will be our steadfast companion in the final leg of our journey.
-RUN go build -o api-golang
+# The resulting binary, web-app-golang, will be our steadfast companion in the final leg of our journey.
+RUN go build -o web-app-golang
 
-CMD ["./api-golang"]
+CMD ["./web-app-golang"]
 ```
 
 By compiling the application beforehand, we eliminate the need to compile it at runtime, leading to faster startup times.
@@ -92,14 +92,15 @@ By compiling the application beforehand, we eliminate the need to compile it at 
 To optimize caching and speed up the installation of dependencies, we'll copy only the necessary files:
 
 ```docker
-# Our first step is to pin the Golang version (1.20) to ensure stability.
+
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
 FROM golang:1.20-bullseye AS build
 
 WORKDIR /app 
 
-# Copy only files required to install dependencies (better layer caching)
+# We optimize our path to discovery, selecting only the files required to install dependencies. 🧭
+# With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
 RUN go mod download
@@ -107,10 +108,10 @@ RUN go mod download
 COPY . .
 
 # During this stage, we compile our application ahead of time, avoiding any runtime surprises.
-# Our trusty companion, CMD, sets the course for the /api-golang binary.
-RUN go build -o api-golang
+# The resulting binary, web-app-golang, will be our steadfast companion in the final leg of our journey.
+RUN go build -o web-app-golang
 
-CMD ["./api-golang"]
+CMD ["./web-app-golang"]
 ```
 
 By copying only the go.mod and go.sum files before running go mod download, we utilize Docker's caching mechanism effectively, reducing build times.
@@ -120,7 +121,7 @@ By copying only the go.mod and go.sum files before running go mod download, we u
 To create a smaller and more secure image, we'll embark on a two-stage journey:
 
 ```docker
-# Our first step is to pin the Golang version (1.20) to ensure stability.
+
 # Use separate stage for building image
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
@@ -128,7 +129,8 @@ FROM golang:1.20-bullseye AS build
 
 WORKDIR /app 
 
-# Copy only files required to install dependencies (better layer caching)
+# We optimize our path to discovery, selecting only the files required to install dependencies. 🧭
+# With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
 RUN go mod download
@@ -136,12 +138,12 @@ RUN go mod download
 COPY . .
 
 # During this stage, we compile our application ahead of time, avoiding any runtime surprises.
-# Our trusty companion, CMD, sets the course for the /api-golang binary.
-# Add flags to statically link binary
+# The resulting binary, web-app-golang, will be our steadfast companion in the final leg of our journey.
+# We strategically add flags to statically link our binary.
 RUN go build \
   -ldflags="-linkmode external -extldflags -static" \
   -tags netgo \
-  -o api-golang
+  -o web-app-golang
 
 # Use separate stage for deployable image
 FROM scratch
@@ -149,9 +151,9 @@ FROM scratch
 WORKDIR /
 
 # Copy the binary from the build stage
-COPY --from=build /app/api-golang api-golang
+COPY --from=build /app/web-app-golang api-golang
 
-CMD ["/api-golang"]
+CMD ["/web-app-golang"]
 ```
 
 The two-stage approach allows us to build the binary in one stage and use a minimal scratch image for the deployable container. This significantly reduces the image size and eliminates any unnecessary components, making it more secure.
@@ -161,7 +163,7 @@ The two-stage approach allows us to build the binary in one stage and use a mini
 To configure our Golang application for various environments, we'll add environment variables and port configurations:
 
 ```docker
-# Our first step is to pin the Golang version (1.20) to ensure stability.
+
 # Use separate stage for building image
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
@@ -169,7 +171,8 @@ FROM golang:1.20-bullseye AS build
 
 WORKDIR /app 
 
-# Copy only files required to install dependencies (better layer caching)
+# We optimize our path to discovery, selecting only the files required to install dependencies. 🧭
+# With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
 RUN go mod download
@@ -177,12 +180,12 @@ RUN go mod download
 COPY . .
 
 # During this stage, we compile our application ahead of time, avoiding any runtime surprises.
-# Our trusty companion, CMD, sets the course for the /api-golang binary.
-# Add flags to statically link binary
+# The resulting binary, web-app-golang, will be our steadfast companion in the final leg of our journey.
+# We strategically add flags to statically link our binary.
 RUN go build \
   -ldflags="-linkmode external -extldflags -static" \
   -tags netgo \
-  -o api-golang
+  -o web-app-golang
 
 # Use separate stage for deployable image
 FROM scratch
@@ -193,12 +196,12 @@ ENV GIN_MODE=release
 WORKDIR /
 
 # Copy the binary from the build stage
-COPY --from=build /app/api-golang api-golang
+COPY --from=build /app/web-app-golang api-golang
 
 # Indicate expected port
 EXPOSE 8080
 
-CMD ["/api-golang"]
+CMD ["/web-app-golang"]
 ```
 
 By setting environment variables like GIN_MODE=release and indicating the expected port (EXPOSE 8080), we ensure our application runs optimally in various environments.
@@ -208,7 +211,7 @@ By setting environment variables like GIN_MODE=release and indicating the expect
 For heightened security, we'll anchor our ship with a non-root user:
 
 ```docker
-# Our first step is to pin the Golang version (1.20) to ensure stability.
+
 # Use separate stage for building image
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
@@ -219,7 +222,8 @@ RUN useradd -u 1001 nonroot
 
 WORKDIR /app 
 
-# Copy only files required to install dependencies (better layer caching)
+# We optimize our path to discovery, selecting only the files required to install dependencies. 🧭
+# With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
 # Use cache mount to speed up install of existing dependencies
@@ -237,12 +241,12 @@ RUN go build \
   ./healthcheck/healthcheck.go
 
 # During this stage, we compile our application ahead of time, avoiding any runtime surprises.
-# Our trusty companion, CMD, sets the course for the /api-golang binary.
-# Add flags to statically link binary
+# The resulting binary, web-app-golang, will be our steadfast companion in the final leg of our journey.
+# We strategically add flags to statically link our binary.
 RUN go build \
   -ldflags="-linkmode external -extldflags -static" \
   -tags netgo \
-  -o api-golang
+  -o web-app-golang
 
 # Use separate stage for deployable image
 FROM scratch
@@ -259,7 +263,7 @@ COPY --from=build /etc/passwd /etc/passwd
 COPY --from=build /app/healthcheck/healthcheck healthcheck
 
 # Copy the app binary from the build stage
-COPY --from=build /app/api-golang api-golang
+COPY --from=build /app/web-app-golang api-golang
 
 # Use non-root user
 USER nonroot
@@ -267,7 +271,7 @@ USER nonroot
 # Indicate expected port
 EXPOSE 8080
 
-CMD ["/api-golang"]
+CMD ["/web-app-golang"]
 ```
 
 By using a non-root user (nonroot), we reduce the risk of potential security vulnerabilities.
@@ -277,7 +281,7 @@ By using a non-root user (nonroot), we reduce the risk of potential security vul
 As we sail through development waters, we'll make our lives easier with delightful tools like "air" for hot reloading and "dlv" for debugging:
 
 ```docker
-# Our first step is to pin the Golang version (1.20) to ensure stability.
+
 # Use separate stage for building image
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
@@ -286,7 +290,8 @@ FROM golang:1.20-bullseye AS build-base
 
 WORKDIR /app 
 
-# Copy only files required to install dependencies (better layer caching)
+# We optimize our path to discovery, selecting only the files required to install dependencies. 🧭
+# With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
 # Use cache mount to speed up install of existing dependencies
@@ -312,7 +317,7 @@ Now, our development voyage is smoother with hot reloading and debugging on the 
 Production awaits, and we'll tighten security and optimize our deployment with a final stage:
 
 ```docker
-# Our first step is to pin the Golang version (1.20) to ensure stability.
+
 # Use separate stage for building image
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
@@ -320,7 +325,8 @@ FROM golang:1.20-bullseye AS build-base
 
 WORKDIR /app 
 
-# Copy only files required to install dependencies (better layer caching)
+# We optimize our path to discovery, selecting only the files required to install dependencies. 🧭
+# With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
 # Use cache mount to speed up install of existing dependencies
@@ -353,11 +359,12 @@ RUN go build \
   ./healthcheck/healthcheck.go
 
 # During this stage, we compile our application ahead of time, avoiding any runtime surprises.
-# Add flags to statically link binary
+# The resulting binary, web-app-golang, will be our steadfast companion in the final leg of our journey.
+# We strategically add flags to statically link our binary.
 RUN go build \
   -ldflags="-linkmode external -extldflags -static" \
   -tags netgo \
-  -o api-golang
+  -o web-app-golang
 
 # Use separate stage for deployable image
 FROM scratch
@@ -374,7 +381,7 @@ COPY --from=build-production /etc/passwd /etc/passwd
 COPY --from=build-production /app/healthcheck/healthcheck healthcheck
 
 # Copy the app binary from the build stage
-COPY --from=build-production /app/api-golang api-golang
+COPY --from=build-production /app/web-app-golang api-golang
 
 # Use non-root user
 USER nonroot
@@ -382,7 +389,7 @@ USER nonroot
 # Indicate expected port
 EXPOSE 8080
 
-CMD ["/api-golang"]
+CMD ["/web-app-golang"]
 ```
 
 Now, our ship is battle-ready for the production storm!
