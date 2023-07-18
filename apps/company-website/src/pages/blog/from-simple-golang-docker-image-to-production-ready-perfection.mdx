@@ -121,8 +121,7 @@ By copying only the go.mod and go.sum files before running go mod download, we u
 To create a smaller and more secure image, we'll embark on a two-stage journey:
 
 ```docker
-
-# Use separate stage for building image
+# We establish a separate stage for building the app.
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
 FROM golang:1.20-bullseye AS build
@@ -145,13 +144,13 @@ RUN go build \
   -tags netgo \
   -o web-app-golang
 
-# Use separate stage for deployable image
+# The scratch base image welcomes us as a blank canvas for our prod stage.
 FROM scratch
 
 WORKDIR /
 
-# Copy the binary from the build stage
-COPY --from=build /app/web-app-golang api-golang
+# We transport the binary to our deployable image
+COPY --from=build /app/web-app-golang web-app-golang
 
 CMD ["/web-app-golang"]
 ```
@@ -164,7 +163,7 @@ To configure our Golang application for various environments, we'll add environm
 
 ```docker
 
-# Use separate stage for building image
+# We establish a separate stage for building the app.
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
 FROM golang:1.20-bullseye AS build
@@ -187,24 +186,24 @@ RUN go build \
   -tags netgo \
   -o web-app-golang
 
-# Use separate stage for deployable image
+# The scratch base image welcomes us as a blank canvas for our prod stage.
 FROM scratch
 
-# Set gin mode
+# By configuring the GIN_MODE environment variable, we determine whether our application will run in release or debug mode.
 ENV GIN_MODE=release
 
 WORKDIR /
 
-# Copy the binary from the build stage
-COPY --from=build /app/web-app-golang api-golang
+# We transport the binary to our deployable image
+COPY --from=build /app/web-app-golang web-app-golang
 
-# Indicate expected port
-EXPOSE 8080
+# By exposing port 3000, we signal to the Docker environment the intended entry point for our application.
+EXPOSE 3000
 
 CMD ["/web-app-golang"]
 ```
 
-By setting environment variables like GIN_MODE=release and indicating the expected port (EXPOSE 8080), we ensure our application runs optimally in various environments.
+By setting environment variables like ```GIN_MODE=release``` and indicating the expected port ```EXPOSE 3000```, we ensure our application runs optimally in various environments.
 
 ## Anchoring with Non-Root Users
 
@@ -212,7 +211,7 @@ For heightened security, we'll anchor our ship with a non-root user:
 
 ```docker
 
-# Use separate stage for building image
+# We establish a separate stage for building the app.
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
 FROM golang:1.20-bullseye AS build
@@ -233,13 +232,6 @@ RUN --mount=type=cache,target=/go/pkg/mod \
 
 COPY . .
 
-# Compile healthcheck
-RUN go build \
-  -ldflags="-linkmode external -extldflags -static" \
-  -tags netgo \
-  -o healthcheck \
-  ./healthcheck/healthcheck.go
-
 # During this stage, we compile our application ahead of time, avoiding any runtime surprises.
 # The resulting binary, web-app-golang, will be our steadfast companion in the final leg of our journey.
 # We strategically add flags to statically link our binary.
@@ -248,10 +240,10 @@ RUN go build \
   -tags netgo \
   -o web-app-golang
 
-# Use separate stage for deployable image
+# The scratch base image welcomes us as a blank canvas for our prod stage.
 FROM scratch
 
-# Set gin mode
+# By configuring the GIN_MODE environment variable, we determine whether our application will run in release or debug mode.
 ENV GIN_MODE=release
 
 WORKDIR /
@@ -259,17 +251,14 @@ WORKDIR /
 # Copy the passwd file
 COPY --from=build /etc/passwd /etc/passwd
 
-# Copy the healthcheck binary from the build stage
-COPY --from=build /app/healthcheck/healthcheck healthcheck
-
 # Copy the app binary from the build stage
-COPY --from=build /app/web-app-golang api-golang
+COPY --from=build /app/web-app-golang web-app-golang
 
 # Use non-root user
 USER nonroot
 
-# Indicate expected port
-EXPOSE 8080
+# By exposing port 3000, we signal to the Docker environment the intended entry point for our application.
+EXPOSE 3000
 
 CMD ["/web-app-golang"]
 ```
@@ -282,7 +271,7 @@ As we sail through development waters, we'll make our lives easier with delightf
 
 ```docker
 
-# Use separate stage for building image
+# We establish a separate stage for building the app.
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
 
@@ -318,7 +307,7 @@ Production awaits, and we'll tighten security and optimize our deployment with a
 
 ```docker
 
-# Use separate stage for building image
+# We establish a separate stage for building the app.
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
 FROM golang:1.20-bullseye AS build-base
@@ -351,13 +340,6 @@ RUN useradd -u 1001 nonroot
 
 COPY . .
 
-# Compile healthcheck
-RUN go build \
-  -ldflags="-linkmode external -extldflags -static" \
-  -tags netgo \
-  -o healthcheck \
-  ./healthcheck/healthcheck.go
-
 # During this stage, we compile our application ahead of time, avoiding any runtime surprises.
 # The resulting binary, web-app-golang, will be our steadfast companion in the final leg of our journey.
 # We strategically add flags to statically link our binary.
@@ -366,10 +348,10 @@ RUN go build \
   -tags netgo \
   -o web-app-golang
 
-# Use separate stage for deployable image
+# The scratch base image welcomes us as a blank canvas for our prod stage.
 FROM scratch
 
-# Set gin mode
+# By configuring the GIN_MODE environment variable, we determine whether our application will run in release or debug mode.
 ENV GIN_MODE=release
 
 WORKDIR /
@@ -377,17 +359,14 @@ WORKDIR /
 # Copy the passwd file
 COPY --from=build-production /etc/passwd /etc/passwd
 
-# Copy the healthcheck binary from the build stage
-COPY --from=build-production /app/healthcheck/healthcheck healthcheck
-
 # Copy the app binary from the build stage
-COPY --from=build-production /app/web-app-golang api-golang
+COPY --from=build-production /app/web-app-golang web-app-golang
 
 # Use non-root user
 USER nonroot
 
-# Indicate expected port
-EXPOSE 8080
+# By exposing port 3000, we signal to the Docker environment the intended entry point for our application.
+EXPOSE 3000
 
 CMD ["/web-app-golang"]
 ```
