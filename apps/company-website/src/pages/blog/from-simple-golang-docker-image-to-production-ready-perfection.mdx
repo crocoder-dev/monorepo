@@ -291,7 +291,8 @@ RUN --mount=type=cache,target=/go/pkg/mod \
 
 FROM build AS dev
 
-# Setup air and delve, via go install enhances development with hot reload capabilities and powerful debugging prowess
+# Setup air and delve, via go install enhances development
+# with hot reload capabilities and powerful debugging prowess
 RUN go install github.com/cosmtrek/air@latest && \
   go install github.com/go-delve/delve/cmd/dlv@latest
 
@@ -352,7 +353,8 @@ RUN --mount=type=cache,target=/go/pkg/mod \
 
 FROM build AS dev
 
-# Setup air and delve, via go install enhances development with hot reload capabilities and powerful debugging prowess
+# Setup air and delve, via go install enhances development
+# with hot reload capabilities and powerful debugging prowess
 RUN go install github.com/cosmtrek/air@latest && \
   go install github.com/go-delve/delve/cmd/dlv@latest
 
