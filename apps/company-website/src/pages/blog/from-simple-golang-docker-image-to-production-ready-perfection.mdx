@@ -225,7 +225,8 @@ WORKDIR /app
 # With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
-# Cache mounts speed up installation of existing dependencies, empowering our image to sail smoothly through vast dependency seas.
+# Cache mounts speed up installation of existing dependencies,
+# empowering our image to sail smoothly through vast dependency seas.
 RUN --mount=type=cache,target=/go/pkg/mod \
   --mount=type=cache,target=/root/.cache/go-build \
   go mod download
@@ -282,7 +283,8 @@ WORKDIR /app
 # With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
-# Cache mounts speed up installation of existing dependencies, empowering our image to sail smoothly through vast dependency seas.
+# Cache mounts speed up installation of existing dependencies,
+# empowering our image to sail smoothly through vast dependency seas.
 RUN --mount=type=cache,target=/go/pkg/mod \
   --mount=type=cache,target=/root/.cache/go-build \
   go mod download
@@ -342,7 +344,8 @@ WORKDIR /app
 # With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
-# Cache mounts speed up installation of existing dependencies, empowering our image to sail smoothly through vast dependency seas.
+# Cache mounts speed up installation of existing dependencies,
+# empowering our image to sail smoothly through vast dependency seas.
 RUN --mount=type=cache,target=/go/pkg/mod \
   --mount=type=cache,target=/root/.cache/go-build \
   go mod download
