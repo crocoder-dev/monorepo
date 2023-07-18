@@ -217,7 +217,7 @@ For heightened security, we'll anchor our ship with a non-root user:
 FROM golang:1.20-bullseye AS build
 
 # Add non-root user
-RUN useradd -u 1001 gopher
+RUN useradd -u 1001 crocoder
 
 WORKDIR /app 
 
@@ -257,7 +257,7 @@ COPY --from=build /etc/passwd /etc/passwd
 COPY --from=build /app/web-app-golang web-app-golang
 
 # Use non-root user
-USER gopher
+USER crocoder
 
 # By exposing port 3000, we signal to the Docker environment the intended entry point for our application.
 EXPOSE 3000
@@ -265,7 +265,7 @@ EXPOSE 3000
 CMD ["/web-app-golang"]
 ```
 
-By using a non-root user (gopher), we reduce the risk of potential security vulnerabilities.
+By using a non-root user (crocoder), we reduce the risk of potential security vulnerabilities.
 
 ## A Multistage Adventure with Development Delights
 
@@ -316,7 +316,7 @@ COPY --from=build /etc/passwd /etc/passwd
 COPY --from=build /app/web-app-golang web-app-golang
 
 # Use non-root user
-USER gopher
+USER crocoder
 
 # By exposing port 3000, we signal to the Docker environment the intended entry point for our application.
 EXPOSE 3000
@@ -365,7 +365,7 @@ CMD ["air", "-c", ".air.toml"]
 FROM build AS build-production
 
 # Add non-root user
-RUN useradd -u 1001 gopher
+RUN useradd -u 1001 crocoder
 
 COPY . .
 
@@ -393,7 +393,7 @@ COPY --from=build-production /etc/passwd /etc/passwd
 COPY --from=build-production /app/web-app-golang web-app-golang
 
 # Use non-root user
-USER gopher
+USER crocoder
 
 # By exposing port 3000, we signal to the Docker environment the intended entry point for our application.
 EXPOSE 3000
