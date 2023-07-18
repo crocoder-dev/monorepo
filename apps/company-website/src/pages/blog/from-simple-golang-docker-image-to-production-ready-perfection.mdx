@@ -189,7 +189,8 @@ RUN go build \
 # The scratch base image welcomes us as a blank canvas for our prod stage.
 FROM scratch
 
-# By configuring the GIN_MODE environment variable, we determine whether our application will run in release or debug mode.
+# By configuring the GIN_MODE environment variable,
+# we determine whether our application will run in release or debug mode.
 ENV GIN_MODE=release
 
 WORKDIR /
@@ -216,7 +217,7 @@ For heightened security, we'll anchor our ship with a non-root user:
 FROM golang:1.20-bullseye AS build
 
 # Add non-root user
-RUN useradd -u 1001 nonroot
+RUN useradd -u 1001 gopher
 
 WORKDIR /app 
 
@@ -242,19 +243,20 @@ RUN go build \
 # The scratch base image welcomes us as a blank canvas for our prod stage.
 FROM scratch
 
-# By configuring the GIN_MODE environment variable, we determine whether our application will run in release or debug mode.
+# By configuring the GIN_MODE environment variable,
+# we determine whether our application will run in release or debug mode.
 ENV GIN_MODE=release
 
 WORKDIR /
 
-# Copy the passwd file
+# We copy the passwd file, essential for our non-root user
 COPY --from=build /etc/passwd /etc/passwd
 
-# Copy the app binary from the build stage
+# We transport the binary to our deployable image
 COPY --from=build /app/web-app-golang web-app-golang
 
 # Use non-root user
-USER nonroot
+USER gopher
 
 # By exposing port 3000, we signal to the Docker environment the intended entry point for our application.
 EXPOSE 3000
@@ -262,7 +264,7 @@ EXPOSE 3000
 CMD ["/web-app-golang"]
 ```
 
-By using a non-root user (nonroot), we reduce the risk of potential security vulnerabilities.
+By using a non-root user (gopher), we reduce the risk of potential security vulnerabilities.
 
 ## A Multistage Adventure with Development Delights
 
@@ -298,19 +300,20 @@ CMD ["air", "-c", ".air.toml"]
 # The scratch base image welcomes us as a blank canvas for our prod stage.
 FROM scratch
 
-# By configuring the GIN_MODE environment variable, we determine whether our application will run in release or debug mode.
+# By configuring the GIN_MODE environment variable,
+# we determine whether our application will run in release or debug mode.
 ENV GIN_MODE=release
 
 WORKDIR /
 
-# Copy the passwd file
+# We copy the passwd file, essential for our non-root user
 COPY --from=build /etc/passwd /etc/passwd
 
-# Copy the app binary from the build stage
+# We transport the binary to our deployable image
 COPY --from=build /app/web-app-golang web-app-golang
 
 # Use non-root user
-USER nonroot
+USER gopher
 
 # By exposing port 3000, we signal to the Docker environment the intended entry point for our application.
 EXPOSE 3000
@@ -357,7 +360,7 @@ CMD ["air", "-c", ".air.toml"]
 FROM build AS build-production
 
 # Add non-root user
-RUN useradd -u 1001 nonroot
+RUN useradd -u 1001 gopher
 
 COPY . .
 
@@ -372,19 +375,20 @@ RUN go build \
 # The scratch base image welcomes us as a blank canvas for our prod stage.
 FROM scratch
 
-# By configuring the GIN_MODE environment variable, we determine whether our application will run in release or debug mode.
+# By configuring the GIN_MODE environment variable,
+# we determine whether our application will run in release or debug mode.
 ENV GIN_MODE=release
 
 WORKDIR /
 
-# Copy the passwd file
+# We copy the passwd file, essential for our non-root user
 COPY --from=build-production /etc/passwd /etc/passwd
 
-# Copy the app binary from the build stage
+# We transport the binary to our deployable image
 COPY --from=build-production /app/web-app-golang web-app-golang
 
 # Use non-root user
-USER nonroot
+USER gopher
 
 # By exposing port 3000, we signal to the Docker environment the intended entry point for our application.
 EXPOSE 3000
