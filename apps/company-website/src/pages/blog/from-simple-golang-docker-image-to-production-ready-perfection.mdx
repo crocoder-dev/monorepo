@@ -210,7 +210,6 @@ By setting environment variables like ```GIN_MODE=release``` and indicating the 
 For heightened security, we'll anchor our ship with a non-root user:
 
 ```docker
-
 # We establish a separate stage for building the app.
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
@@ -225,7 +224,7 @@ WORKDIR /app
 # With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
-# Use cache mount to speed up install of existing dependencies
+# Cache mounts speed up installation of existing dependencies, empowering our image to sail smoothly through vast dependency seas.
 RUN --mount=type=cache,target=/go/pkg/mod \
   --mount=type=cache,target=/root/.cache/go-build \
   go mod download
@@ -270,12 +269,10 @@ By using a non-root user (nonroot), we reduce the risk of potential security vul
 As we sail through development waters, we'll make our lives easier with delightful tools like "air" for hot reloading and "dlv" for debugging:
 
 ```docker
-
 # We establish a separate stage for building the app.
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
-
-FROM golang:1.20-bullseye AS build-base
+FROM golang:1.20-bullseye AS build
 
 WORKDIR /app 
 
@@ -283,21 +280,46 @@ WORKDIR /app
 # With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
-# Use cache mount to speed up install of existing dependencies
+# Cache mounts speed up installation of existing dependencies, empowering our image to sail smoothly through vast dependency seas.
 RUN --mount=type=cache,target=/go/pkg/mod \
   --mount=type=cache,target=/root/.cache/go-build \
   go mod download
 
-FROM build-base AS dev
+FROM build AS dev
 
-# Install air for hot reload & delve for debugging
+# Setup air and delve, via go install enhances development with hot reload capabilities and powerful debugging prowess
 RUN go install github.com/cosmtrek/air@latest && \
   go install github.com/go-delve/delve/cmd/dlv@latest
 
 COPY . .
 
 CMD ["air", "-c", ".air.toml"]
+
+# The scratch base image welcomes us as a blank canvas for our prod stage.
+FROM scratch
+
+# By configuring the GIN_MODE environment variable, we determine whether our application will run in release or debug mode.
+ENV GIN_MODE=release
+
+WORKDIR /
+
+# Copy the passwd file
+COPY --from=build /etc/passwd /etc/passwd
+
+# Copy the app binary from the build stage
+COPY --from=build /app/web-app-golang web-app-golang
+
+# Use non-root user
+USER nonroot
+
+# By exposing port 3000, we signal to the Docker environment the intended entry point for our application.
+EXPOSE 3000
+
+CMD ["/web-app-golang"]
 ```
+[Air](github.com/cosmtrek/air) is a fantastic tool that breathes life into our development environment. It facilitates hot reload, enabling us to witness our code changes come alive without manual intervention. With air, we shall experience the thrill of rapid development, as it monitors our codebase and gracefully restarts our application upon detecting any changes.
+
+[Delve](github.com/go-delve/delve/) or dlv is a powerful debugger, guiding us through the depths of our codebase. Equipped with its brilliant capabilities, we can traverse our application, inspect variables, and pinpoint the source of any bugs that may attempt to challenge our progress. Delve stands as a stalwart sentinel, guarding against the shadows of uncertainty.
 
 Now, our development voyage is smoother with hot reloading and debugging on the fly!
 
@@ -306,11 +328,10 @@ Now, our development voyage is smoother with hot reloading and debugging on the 
 Production awaits, and we'll tighten security and optimize our deployment with a final stage:
 
 ```docker
-
 # We establish a separate stage for building the app.
 # Next, we embrace the powerful and versatile Debian base image 🐳
 # This choice grants us easier access to essential build utilities and a robust development environment.
-FROM golang:1.20-bullseye AS build-base
+FROM golang:1.20-bullseye AS build
 
 WORKDIR /app 
 
@@ -318,14 +339,14 @@ WORKDIR /app
 # With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
-# Use cache mount to speed up install of existing dependencies
+# Cache mounts speed up installation of existing dependencies, empowering our image to sail smoothly through vast dependency seas.
 RUN --mount=type=cache,target=/go/pkg/mod \
   --mount=type=cache,target=/root/.cache/go-build \
   go mod download
 
-FROM build-base AS dev
+FROM build AS dev
 
-# Install air for hot reload & delve for debugging
+# Setup air and delve, via go install enhances development with hot reload capabilities and powerful debugging prowess
 RUN go install github.com/cosmtrek/air@latest && \
   go install github.com/go-delve/delve/cmd/dlv@latest
 
@@ -333,7 +354,7 @@ COPY . .
 
 CMD ["air", "-c", ".air.toml"]
 
-FROM build-base AS build-production
+FROM build AS build-production
 
 # Add non-root user
 RUN useradd -u 1001 nonroot
