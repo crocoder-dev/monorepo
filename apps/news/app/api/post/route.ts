@@ -154,7 +154,7 @@ export async function POST(request: NextRequest) {
 
   const publishedAt = published ? new Date(published) : new Date();
 
-  const db = await getDB();
+  const db = getDB();
 
   await db.insert(posts).values({
     title: `${splitEmoji[0]} ${title}`,

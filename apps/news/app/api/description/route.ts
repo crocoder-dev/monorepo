@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 
   const { editionId } = inputSchema.parse(params);
 
-  const db = await getDB();
+  const db = getDB();
 
   const posts = await db.select().from(databasePosts).where(eq(databasePosts.editionId, editionId));
 

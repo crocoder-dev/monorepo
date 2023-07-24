@@ -17,7 +17,7 @@ const cards = [
     image: skewImage,
     client: 'skew',
     imageAlt: 'Skew Logo',
-    url: 'https://skew.com/',
+    url: 'https://www.coinbase.com/blog/coinbase-to-acquire-leading-institutional-data-analytics-platform-skew',
   },
   {
     cardTitle: 'Searchmetrics',
