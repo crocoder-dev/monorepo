@@ -21,13 +21,15 @@ export async function POST(request: NextRequest) {
 
   const { title, date, slug } = inputSchema.parse(params);
 
-  const db = await getDB();
+  const db = getDB();
 
   await db.insert(editions).values({
     title,
     date: new Date(date),
     slug,
   });
+
+  
 
   return NextResponse.json({ success: true });
 }
