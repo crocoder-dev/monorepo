@@ -49,27 +49,42 @@ const About = ({ author }) => (
               author.name.indexOf(' '),
             )} on `}
             {author.twitter && (
-            <a
-              rel="nofollow noopener noreferrer"
-              className={styles.link}
-              target="_blank"
-              href={author.twitter}
-            >
-              Twitter
-            </a>
+              <a
+                rel="nofollow noopener noreferrer"
+                className={styles.link}
+                target="_blank"
+                href={author.twitter}
+              >
+                Twitter
+              </a>
             )}
             {author.twitter && author.linkedin && ' and '}
             {author.linkedin && (
-            <a
-              rel="nofollow noopener noreferrer"
-              className={styles.link}
-              target="_blank"
-              href={author.linkedin}
-            >
-              LinkedIn
-            </a>
+              <a
+                rel="nofollow noopener noreferrer"
+                className={styles.link}
+                target="_blank"
+                href={author.linkedin}
+              >
+                LinkedIn
+              </a>
             )}
             .
+            {author.calcom && (
+              <>
+                <span>{' '}You can also</span>
+                <a
+                  rel="nofollow noopener noreferrer"
+                  className={styles.link}
+                  target="_blank"
+                  href={author.calcom}
+                >
+                  {' '}
+                  Book a meeting
+                </a>
+                <span> with {author.name.slice(0, author.name.indexOf(' '))}.</span>
+              </>
+            )}
           </Typography>
         ) : null}
       </div>
