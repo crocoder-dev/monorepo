@@ -14,6 +14,7 @@ import NextLevelButtonClickTracker from "./components/Blog/ReactHooksPost/NextLe
 import UseFetchDataDemo from "./components/Blog/ReactHooksPost/useFetchData/demo";
 import UseDebouncedSearchDemo from "./components/Blog/ReactHooksPost/useDebouncedSearch/demo";
 import CrocDemo from "./components/Blog/ConditionalPost/croc/demo";
+import DownloadProgressDemo from "./components/Blog/DownloadProgressPost";
 
 import reportWebVitals from './web-vitals/report';
 import sendToVercelAnalytics from './web-vitals';
@@ -34,6 +35,7 @@ const components = {
   UseFetchDataDemo,
   UseDebouncedSearchDemo,
   CrocDemo,
+  DownloadProgressDemo,
 };
 
 const hydrate = (Component, root, props) => {

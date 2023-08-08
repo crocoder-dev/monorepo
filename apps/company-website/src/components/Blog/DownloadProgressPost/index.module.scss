@@ -1,0 +1,20 @@
+@import '../../../styles/main';
+
+.table {
+  margin-top: 0;
+  margin-bottom: 28px;
+  padding-left: 2em;
+
+  ul {
+    margin-bottom: 0;
+  }
+
+  li + li {
+    margin-top: 0.45em;
+  }
+}
+
+.content-title {
+  border-bottom: 1px solid;
+  padding-bottom: 0.3em;
+}

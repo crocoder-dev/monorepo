@@ -1,0 +1,29 @@
+import blogHeader from "../../content/images/blogs/callback-hell.jpg?preset=responsive";
+import BlogLayout from "../../Layouts/BlogLayout";
+import ContentTable from "../../components/Blog/ContentTable";
+import Island from "../../components/Island";
+
+export const meta = {
+  id: "download-progress-indicator-fetch",
+  title: "Download Progress Indicator with Fetch API",
+  description:
+    "",
+  category: "Learn JavaScript",
+  image: blogHeader,
+  date: 1691539200000,
+  updatedAt: 1691539200000,
+  author: "davidabram",
+  editor: "velimirujevic",
+  abstract:
+    "",
+  pageType: "blog-posting"
+};
+
+<ContentTable tocData={props.toc} />
+
+## Hello!
+
+<Island>
+</Island>
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
