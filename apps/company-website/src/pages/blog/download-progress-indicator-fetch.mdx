@@ -2,6 +2,7 @@ import blogHeader from "../../content/images/blogs/callback-hell.jpg?preset=resp
 import BlogLayout from "../../Layouts/BlogLayout";
 import ContentTable from "../../components/Blog/ContentTable";
 import Island from "../../components/Island";
+import DownloadProgressDemo from "../../components/Blog/DownloadProgressPost"; 
 
 export const meta = {
   id: "download-progress-indicator-fetch",
@@ -24,6 +25,7 @@ export const meta = {
 ## Hello!
 
 <Island>
+ <DownloadProgressDemo />
 </Island>
 
 export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
