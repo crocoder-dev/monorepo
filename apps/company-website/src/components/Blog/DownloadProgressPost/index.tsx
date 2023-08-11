@@ -31,30 +31,46 @@ async function getProgress(res, callback) {
 
 }
 
-let array = [];
-
-function log ({ recieved, contentLength, startTime, endTime }) {
-  const duration = endTime - startTime; // ms
-  const speed = recieved / duration; // bytes/ms
-  const remaining = contentLength - recieved; // bytes
-  const remainingTime = remaining / speed; // ms
-  console.log(`Recieved: ${recieved} bytes`);
-  console.log(`Content-Length: ${contentLength} bytes`);
-  console.log(`Duration: ${duration} ms`);
-  console.log(`Speed: ${speed} bytes/ms`);
-  console.log(`Remaining: ${remaining} bytes`);
-  console.log(`Remaining time: ${remainingTime} ms`);
-}
 
 const DownloadProgressDemo = () => {
 
+  const [duration, setDuration] = React.useState(0);
+  const [recieved, setRecieved] = React.useState(0);
+  const [contentLength, setContentLength] = React.useState(0);
+  const [progress, setProgress] = React.useState(0);
 
+  const log = React.useCallback(({ recieved, contentLength, startTime, endTime }) => {
+    const duration = endTime - startTime;
+    setDuration(d => d + duration);
+    setRecieved(recieved);
+      setContentLength(contentLength);
+    setProgress(Math.floor((recieved / contentLength) * 100));
+  }, []);
+
+  const speed = duration ? recieved / duration : 0;
+  const remaining = contentLength - recieved;
+  const remainingTime = remaining / speed;
+
+  const reset = () => {
+    setDuration(0);
+    setRecieved(0);
+    setContentLength(0);
+    setProgress(0);
+  }
 
   return (
     <>
       <label htmlFor="file">File progress:</label>
-      <progress id="file" max="100" value="0">0%</progress>
-      <button onClick={() => { fetchFile(log) }}>Download</button>
+      <progress id="file" max="100" value={progress}></progress>
+      <p>Recieved: {recieved} bytes</p>
+      <p>Content-Length: {contentLength} bytes</p>
+      <p>Duration: {duration} ms</p>
+      <p>Speed: {(speed * 0.008).toFixed(1)} Mb/s</p>
+      <p>Remaining: {remaining} bytes</p>
+      <p>Progress: {progress}%</p>
+      <p>Remaining time: {Math.round(remainingTime / 1000)} s</p>
+      <br />
+      <button onClick={() => { reset(); fetchFile(log) }}>Download</button>
     </>
   );
 };
