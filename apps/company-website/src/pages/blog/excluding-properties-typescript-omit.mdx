@@ -71,7 +71,7 @@ You might think you can just use Omit to get rid of, let's say, the "password" p
 Let's give it a whirl:
 
 ```typescript
-type BadResult = Omit<Union, "a">;
+type BadResult = Omit<Union, "password">;
 ```
 
 You'd imagine it'd drop "password" from both parts of the union, right? But hold up, TypeScript's got some quirks. Our new type BadResult is equivalent to `{}`. Weird...
