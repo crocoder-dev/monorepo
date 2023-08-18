@@ -1,4 +1,4 @@
-import blogHeader from "../../content/images/blogs/how-to-properly-showcase-your-coding-projects.jpg?preset=responsive";
+import blogHeader from "../../content/images/blogs/excluding-properties-typescript-omit.png?preset=responsive";
 import BlogLayout from "../../Layouts/BlogLayout";
 
 export const meta = {
@@ -17,7 +17,7 @@ export const meta = {
   pageType: "blog-posting"
 };
 
-Let's dive into the world of TypeScript and acquaint ourselves with the clever tool known as Omit. This little buddy is your reliable ally when you're cooking up a fresh type and want to leave out a couple of properties from a preexisting type.
+Let's dive into the world of TypeScript and acquaint ourselves with the clever tool known as Omit. This little rascal is your reliable ally when you're cooking up a fresh type and want to leave out a couple of properties from a preexisting type.
 
 ## How to use Omit
 
@@ -110,7 +110,7 @@ interface Shawarma {
 }
 ```
 
-But wait, there's more! TypeScript's about to sprinkle some magic. Enter the valiant `VeganShawarma` interface. 🌱🍽️ We're extending it from `Shawarma` with a twist! We're using the 'Omit' utility type to remove the 'protein' property from the 'Shawarma' and swap it with our tofu delight.
+But wait, there's more! TypeScript is about to sprinkle some magic. Enter the valiant `VeganShawarma` interface. 🌱🍽️ We're extending it from `Shawarma` with a twist! We're using the 'Omit' utility type to remove the 'protein' property from the 'Shawarma' and swap it with our tofu delight.
 
 ```typescript
 interface VeganShawarma extends Omit<Shawarma, 'protein'> {
@@ -122,7 +122,7 @@ Did you catch that? With a dash of 'Omit', we're crafting a fresh interface. We'
 
 ## Omit isn't strict at all
 
-We've stumbled upon a rather interesting phenomenon: those moments when you're almost expecting tsserver to promt an error, but TypeScript LSP just isn't interested in doing anything today.
+We've stumbled upon a rather interesting phenomenon: those moments when you're almost expecting the tsserver to prompt an error, but TypeScript LSP just isn't interested in doing anything today.
 
 Picture this: you've got this cool type setup with a `Person`:
 
@@ -154,7 +154,7 @@ So now, if you go for StrictOmit:
 ```typescript
 type NameOnly = StrictOmit<Person, 'email' | 'anyOtherRandomCrap'>;
 ```
-Boom! TypeScript's gonna give you a heads-up, saying, "Hold your horses! That 'anyOtherRandomCrap' isn't part of the `Person` type."
+Boom! TypeScript is gonna give you a heads-up, saying, "Hold your horses! That 'anyOtherRandomCrap' isn't part of the `Person` type."
 
 ## Make a rule to use StrictOmit rather than Omit
 
@@ -181,7 +181,7 @@ module.exports = {
 }
 ```
 
-The `@typescript-eslint/ban-types` now warns every developer to use StrictOmit rather Omit. You can downrank "error" to "warn" if you don't want to be on that breaks the build. 
+The `@typescript-eslint/ban-types` now warns every developer to use StrictOmit rather than Omit. You can downrank "error" to "warn" if you don't want to be on that breaks the build. 
 
 ## Conclusion
 
