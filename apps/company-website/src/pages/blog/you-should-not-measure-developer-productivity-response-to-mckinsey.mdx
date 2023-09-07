@@ -1,22 +1,18 @@
 import blogHeader from "../../content/images/blogs/what-is-cycle-time-in-software-development.png?preset=responsive"
 import BlogLayout from "../../Layouts/BlogLayout";
-import ContentTable from "../../components/Blog/ContentTable";
-import CycleTimeIllustration from "../../content/images/blogs/what-is-cycle-time-in-software-development/cycle-time-illustration.png?preset=responsive";
 import ResponsiveImage from "../../components/ResponsiveImage";
 
 export const meta = {
     id: "you-should-not-measure-developer-productivity-response-to-mckinsey",
     title: "No, you shouldn't measure developer productivity",
-    description:
-    "",
+    description: "",
     image: blogHeader,
     date: 1694163045000,
     updatedAt: 1694163045000,
     author: "davidabram",
     category: "After Work Talks",
     editor: "velimirujevic",
-    abstract:
-    "",
+    abstract: "",
     pageType: "blog-posting"
 };
 
@@ -82,4 +78,4 @@ In summary, the McKinsey article discussing software development productivity ha
 
 However, this conversation is far from over; it's just getting started. As software engineers, we must continue to delve into and refine our understanding of what constitutes meaningful measurement in our field. This journey presents its fair share of challenges, but it's through these challenges that we will uncover the genuine essence of software development productivity.
 
-export default (props) => <BlogLayout meta={meta} {..props}>{props.children}</BlogLayout>;
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
