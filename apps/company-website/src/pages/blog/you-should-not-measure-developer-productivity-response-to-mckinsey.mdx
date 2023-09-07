@@ -1,0 +1,85 @@
+import blogHeader from "../../content/images/blogs/what-is-cycle-time-in-software-development.png?preset=responsive"
+import BlogLayout from "../../Layouts/BlogLayout";
+import ContentTable from "../../components/Blog/ContentTable";
+import CycleTimeIllustration from "../../content/images/blogs/what-is-cycle-time-in-software-development/cycle-time-illustration.png?preset=responsive";
+import ResponsiveImage from "../../components/ResponsiveImage";
+
+export const meta = {
+    id: "you-should-not-measure-developer-productivity-response-to-mckinsey",
+    title: "No, you shouldn't measure developer productivity",
+    description:
+    "",
+    image: blogHeader,
+    date: 1694163045000,
+    updatedAt: 1694163045000,
+    author: "davidabram",
+    category: "After Work Talks",
+    editor: "velimirujevic",
+    abstract:
+    "",
+    pageType: "blog-posting"
+};
+
+### ...or at least don't measure it as McKinsey suggests.
+
+In the blazingly fast world of software development, a recent article by McKinsey about software development productivity has caused quite a buzz. It's generated strong reactions from software engineers, project managers, and industry experts. It's like a hot potato at a picnic, everyone's tossing their opinions around!  
+
+Now, It's my time at the picnic I'd like to join the conversation and take a closer look at the article's content. While I can agree with a few points McKinsey makes, these agreements are few and far between, and they don't really address the core issues they're trying to tackle. In line with the prevailing sentiment among software development professionals, I believe that this article falls short and misses the mark, potentially leading us in the wrong direction. 
+
+So, let's dive into the details of the McKinsey report and explore it further.
+
+Before we start dissecting the McKinsey article, let's first discuss the importance of measurement in software engineering. Measuring productivity, output and outcomes of technical department isn't something we should view as an adversary; it's actually a valuable tool for enhancing our processes and results. 
+
+However, the choice of what we measure and the reasons behind it play a crucial role in the success or failure of any measurement effort. McKinsey's suggestion to measure individual developer productivity is, in my view, misguided. I often emphasize that what sets software engineering apart from a mere craft is our approach to measurement. I advocate for metrics that align with positive outcomes and are grounded in empirical evidence, such as the DORA metrics.
+
+## Title 
+
+The fundamental flaw in the McKinsey article is its obsession with measuring individual developer productivity. This fixation on individual output perpetuates the myth of the "Rockstar programmer" – the notion that software development success hinges on the brilliance of individual developers. This belief is not only misguided but also detrimental to the collaborative nature of software engineering.
+
+Software development is a team sport, and true success is achieved through effective team contributions, not individual heroics. I often share stories of how my courses or insights have contributed to team success, but attempting to measure my individual productivity in that context is nonsensical. The same applies to any developer's contributions within a team.
+
+It's not about being a rockstar; it's about being an indispensable part of a stellar team.
+
+## Title
+
+The McKinsey article introduces a range of metrics beyond DORA's, seemingly intended to measure individual productivity, team effectiveness, and system-level performance. However, many of these metrics have no empirical backing.
+
+Customer satisfaction is indeed crucial, but it's a multifaceted metric that depends on the software's purpose and its intended audience. It's not something that can be boiled down to a single measurement due to its variability.
+
+Similar to customer satisfaction, reliability is context-specific. What's considered reliable in one application may not hold true for another. It's a subjective measure that can't be universally applied.
+
+Code reviews are undeniably important, but measuring code review velocity doesn't make any sense. Emphasing speed of code reviews means only more LGTMs and ChatGPT generated reviews which don't bring much value to the PR author.
+
+The McKinsey report suggests measuring productivity at the system, team, and individual levels, categorizing metrics into three groups: Dora metrics, space metrics, and additional metrics created by McKinsey. However, this classification seems arbitrary and does not align with the complexities of software development.
+
+The rest of the metrics proposed by McKinsey, such as velocity, story points completed, and interruptions, are overly simplistic and miss the nuances of software engineering. These metrics risk incentivizing developers to game the system and prioritize short-term gains over long-term productivity improvements.
+
+## Metrics shouldn't be targets
+
+Even the DORA metrics, as they stand, are trailing indicators of velocity and stability. You get more insights from following how the metrics change over time than comparing your organization metrics with 50th or 75th percentile of the whole industry.
+
+You need more context to properly understand what's going on in your organization than simply saying "bigger metric value better".
+
+For example, having a lower deployment frequency for a period in your organization can mean that there is an underlying problem with CI/CD, issues with allocating developers or even maybe there is a failure in organizing work. But even having a higher deployment frequency for a period can show that there are some problems in your organization. Are this deployments meaningful, do they bring any value to the customer?
+
+Simply put you can have some parts of the organization failing, while other parts are oblivious of these problems. Measuring bunch of metrics doesn't give you the full picture.
+
+## If a metric becomes a target, it ceases to be a good metric
+
+Goodhart's Law is a concept that basically says when you use a metric (like a number or a measurement) as a target, people will start optimizing for that metric, often at the expense of other important things. It's like when you're playing a game and you focus so much on getting a high score that you forget to have fun or play the game properly.
+
+If you evaluate developer productivity by measuring number of lines of code written, every developer will start writing more lines per feature, not caring about code quality or readability.
+
+If you evaluate developer productivity by number of PR review they have done, enjoy having non-sensically long review times and useless comments in the review.
+
+This is a reminder to you and McKinsey consultants that when you focus too much on one specific metric as a target, people will find ways to game the system or achieve that metric without necessarily achieving the broader, more important goals.
+
+Don't get so caught up in the numbers that you lose sight of what really matters.
+
+## Title
+
+In summary, the McKinsey article discussing software development productivity has stirred some controversy in the software engineering community, and for good reasons. The article's emphasis on evaluating individual developer productivity using questionable metrics reflects a misunderstanding of the collaborative nature of software development. It's crucial to select metrics carefully, tailor them to the context, and base them on solid evidence, as demonstrated by the Dora metrics. To advance our software development practices, we should resist the temptation of simplistic measurements and instead adopt a comprehensive, evidence-driven approach that values teamwork and continuous improvement.
+
+However, this conversation is far from over; it's just getting started. As software engineers, we must continue to delve into and refine our understanding of what constitutes meaningful measurement in our field. This journey presents its fair share of challenges, but it's through these challenges that we will uncover the genuine essence of software development productivity.
+
+export default (props) => <BlogLayout meta={meta} {..props}>{props.children}</BlogLayout>;
