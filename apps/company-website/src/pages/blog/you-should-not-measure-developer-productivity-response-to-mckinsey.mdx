@@ -38,27 +38,25 @@ It's not about being a rockstar; it's about being an indispensable part of a ste
 
 ## Evaluating Proposed Metrics
 
-The McKinsey article introduces a range of metrics beyond DORA's, seemingly intended to measure individual productivity, team effectiveness, and system-level performance. However, many of these metrics have no empirical backing.
+The McKinsey article introduces various metrics beyond the DORA metrics, seemingly aimed at measuring individual productivity, team effectiveness, and system-level performance. However, many of these metrics lack solid empirical support.
 
-Customer satisfaction is indeed crucial, but it's a multifaceted metric that depends on the software's purpose and its intended audience. It's not something that can be boiled down to a single measurement due to its variability.
+Customer satisfaction is undoubtedly crucial, but it's a multifaceted metric that depends on the software's purpose and its intended audience. It can't be distilled into a single measurement due to its variability.
 
-Similar to customer satisfaction, reliability is context-specific. What's considered reliable in one application may not hold true for another. It's a subjective measure that can't be universally applied.
+Similarly, reliability is context-specific. What's considered reliable in one application may not hold true for another. It's a subjective measure that can't be universally applied.
 
-Code reviews are undeniably important, but measuring code review velocity doesn't make any sense. Emphasing speed of code reviews means only more LGTMs and ChatGPT generated reviews which don't bring much value to the PR author.
+Code reviews are undeniably important, but measuring code review velocity doesn't quite add up. Focusing on the speed of code reviews can lead to superficial reviews that don't provide much value to the author of the pull request.
 
-The McKinsey report suggests measuring productivity at the system, team, and individual levels, categorizing metrics into three groups: Dora metrics, space metrics, and additional metrics created by McKinsey. However, this classification seems arbitrary and does not align with the complexities of software development.
+The McKinsey report suggests measuring productivity at the system, team, and individual levels, categorizing metrics into three groups: DORA metrics, space metrics, and additional metrics created by McKinsey. However, this classification seems arbitrary and doesn't align with the complexities of software development.
 
-The rest of the metrics proposed by McKinsey, such as velocity, story points completed, and interruptions, are overly simplistic and miss the nuances of software engineering. These metrics risk incentivizing developers to game the system and prioritize short-term gains over long-term productivity improvements.
+The other metrics proposed by McKinsey, such as velocity, story points completed, and interruptions, are overly simplistic and miss the nuances of software engineering. These metrics risk incentivizing developers to game the system and prioritize short-term gains over long-term productivity improvements.
 
 ## Understanding Organizational Performance Beyond Metrics
 
-Even the DORA metrics, as they stand, are trailing indicators of velocity and stability. You get more insights from following how the metrics change over time than comparing your organization metrics with 50th or 75th percentile of the whole industry.
+Even the DORA metrics, as they stand, are trailing indicators of velocity and stability. More insights can be gleaned from observing how the metrics change over time than from comparing your organization's metrics to industry percentiles.
 
-You need more context to properly understand what's going on in your organization than simply saying "bigger metric value better".
+To truly understand what's happening in your organization, you need more context than just saying "a bigger metric value is better." For instance, a lower deployment frequency may signal underlying problems with CI/CD or resource allocation, while a higher deployment frequency may not necessarily indicate success without assessing the value delivered to customers.
 
-For example, having a lower deployment frequency for a period in your organization can mean that there is an underlying problem with CI/CD, issues with allocating developers or even maybe there is a failure in organizing work. But even having a higher deployment frequency for a period can show that there are some problems in your organization. Are this deployments meaningful, do they bring any value to the customer?
-
-Simply put you can have some parts of the organization failing, while other parts are oblivious of these problems. Measuring bunch of metrics doesn't give you the full picture.
+In essence, a bundle of metrics doesn't provide the full organizational picture.
 
 ## The Pitfalls of Fixating on Metrics
 
