@@ -13,7 +13,7 @@ export const meta = {
     updatedAt: 1689628390000, 
     author: "davidabram",
     editor: "velimirujevic",
-    abstract: "In this article, the author takes readers on an exciting Dockerizing journey, transforming a basic Golang Docker image into a production-ready masterpiece. The article covers essential steps such as pinning versions, embracing Debian, optimizing caching, and compiling for performance. The author introduces a two-stage approach to reduce image size and enhance security. Environment configurations, non-root user anchoring, and delightful development tools like air and dlv are explored to improve the development experience. The article concludes with a final stage for production deployment, providing readers with valuable insights and skills to confidently deploy Golang applications using Docker.",
+    abstract: "In this article, the author takes the readers on an exciting Dockerizing journey, transforming a basic Golang Docker image into a production-ready masterpiece. The article covers essential steps such as pinning versions, embracing Debian, optimizing caching, and compiling for performance. The author introduces a two-stage approach to reduce image size and enhance security. Environment configurations, non-root user anchoring, and delightful development tools like air and dlv are explored to improve the development experience. The article concludes with a final stage for production deployment, providing the readers with valuable insights and skills to confidently deploy Golang applications using Docker.",
     pageType: "blog-posting"
 };
 
@@ -37,7 +37,7 @@ RUN go mod download
 CMD ["go", "run", "./main.go"]
 ```
 
-In this Dockerfile, we use the official Golang base image, set the working directory to /app, copy the application files, download module dependencies using go mod download, and finally run our Golang application with go run.
+In this Dockerfile, we use the official Golang base image, set the working directory to /app, copy the application files, download module dependencies using ```go mod download```, and finally run our Golang application with go run.
 
 ## Pinning Versions and Embracing Debian 
 
@@ -112,7 +112,7 @@ RUN go build -o web-app-golang
 CMD ["./web-app-golang"]
 ```
 
-By copying only the go.mod and go.sum files before running go mod download, we utilize Docker's caching mechanism effectively, reducing build times.
+By copying only the go.mod and go.sum files before running ```go mod download```, we utilize Docker's caching mechanism effectively, reducing build times.
 
 ## A Two-Stage Expedition
 
@@ -223,7 +223,7 @@ WORKDIR /app
 # With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
-# Cache mounts speed up installation of existing dependencies,
+# Cache mounts speed up the installation of existing dependencies,
 # empowering our image to sail smoothly through vast dependency seas.
 RUN --mount=type=cache,target=/go/pkg/mod \
   --mount=type=cache,target=/root/.cache/go-build \
@@ -267,7 +267,7 @@ By using a non-root user (crocoder), we reduce the risk of potential security vu
 
 ## A Multistage Adventure with Development Delights
 
-As we sail through development waters, we'll make our lives easier with delightful tools like "air" for hot reloading and "dlv" for debugging:
+As we sail through the development waters, we'll make our lives easier with delightful tools like "air" for hot reloading and "dlv" for debugging:
 
 ```docker
 # We establish a separate stage for building the app.
@@ -281,7 +281,7 @@ WORKDIR /app
 # With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
-# Cache mounts speed up installation of existing dependencies,
+# Cache mounts speed up the installation of existing dependencies,
 # empowering our image to sail smoothly through vast dependency seas.
 RUN --mount=type=cache,target=/go/pkg/mod \
   --mount=type=cache,target=/root/.cache/go-build \
@@ -289,7 +289,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
 
 FROM build AS dev
 
-# Setup air and delve, via go install enhances development
+# Setup air and delve, via go install enhances the development
 # with hot reload capabilities and powerful debugging prowess
 RUN go install github.com/cosmtrek/air@latest && \
   go install github.com/go-delve/delve/cmd/dlv@latest
@@ -343,7 +343,7 @@ WORKDIR /app
 # With this choice, we unlock the potential of better layer caching, improving our image's efficiency.
 COPY go.mod go.sum ./
 
-# Cache mounts speed up installation of existing dependencies,
+# Cache mounts speed up the installation of existing dependencies,
 # empowering our image to sail smoothly through vast dependency seas.
 RUN --mount=type=cache,target=/go/pkg/mod \
   --mount=type=cache,target=/root/.cache/go-build \
@@ -351,7 +351,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
 
 FROM build AS dev
 
-# Setup air and delve, via go install enhances development
+# Setup air and delve, via go install enhances the development
 # with hot reload capabilities and powerful debugging prowess
 RUN go install github.com/cosmtrek/air@latest && \
   go install github.com/go-delve/delve/cmd/dlv@latest
@@ -405,7 +405,7 @@ Now, our ship is battle-ready for the production storm!
 
 Ahoy, brave sailors! We've weathered rough waters and perfected our Golang Docker image from simple to production-ready. From pinning versions, embracing Debian, and optimizing caching, to multistaging, and delightful development tools, our Dockerizing journey is complete.
 
-You are now a skilled Docker captain, capable of steering your Golang applications towards smooth and secure deployments in any environment.
+You are now a skilled Docker captain, capable of steering your Golang applications toward smooth and secure deployments in any environment.
 
 Set your sails high, navigate the production seas, and may your Golang Docker images sail with pride! Fair winds, and happy coding! 🚢🐹🐊
 
