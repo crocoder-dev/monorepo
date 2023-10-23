@@ -17,17 +17,6 @@ const MostRecent = ({ pages }) => {
 
   return (
     <>
-      <div className={styles['title-wrapper']}>
-        <Typography
-          className={styles.title}
-          element="h2"
-          fontSize={36}
-          fontWeight={700}
-          color="gray_2"
-        >
-          Most recent posts
-        </Typography>
-      </div>
       <div className={styles.wrapper}>
         <article className={styles['featured-post']}>
           <a href={featuredPost.urlPath}>
