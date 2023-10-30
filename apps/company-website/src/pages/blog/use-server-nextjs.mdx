@@ -1,0 +1,24 @@
+import blogHeader from "../../content/images/blogs/stop-bikeshedding.png?preset=responsive";
+import BlogLayout from "../../Layouts/BlogLayout";
+import ResponsiveImage from "../../components/ResponsiveImage";
+import ContentTable from "../../components/Blog/ContentTable";
+
+export const meta = {
+  id: "use-server-nextjs",
+  title:
+    "What's \"use server\" in Next.js?",
+  description:
+    "",
+  category: "Learn JavaScript",
+  image: blogHeader,
+  date: 1698662116738,
+  updatedAt: 1698662116738,
+  author: "davidabram",
+  editor: "velimirujevic",
+  abstract:
+    "",
+  pageType: "blog-posting"
+};
+
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
