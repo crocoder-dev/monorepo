@@ -1,4 +1,4 @@
-import blogHeader from "../../content/images/blogs/stop-bikeshedding.png?preset=responsive";
+import blogHeader from "../../content/images/blogs/use-server-nextjs.png?preset=responsive";
 import BlogLayout from "../../Layouts/BlogLayout";
 import ResponsiveImage from "../../components/ResponsiveImage";
 import ContentTable from "../../components/Blog/ContentTable";
@@ -24,6 +24,13 @@ Server actions are a feature introduced in [Next.js 13.4](https://nextjs.org/blo
 
 Server actions are created by defining an asynchronous function with the `"use server"` directive at the top of the function body. These functions should have serializable arguments and a serializable return value based on the [React Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components) protocol.
 
+<br />
+<br />
+
+<ContentTable tocData={props.toc} />
+
+<br />
+<br />
 
 
 ## Enabling Server Actions
@@ -46,7 +53,7 @@ By setting `serverActions` to `true`, you are telling Next.js that you want to u
 
 The "use server" directive is a crucial part of Server Actions. It ensures that the function it is used in is executed only on the server. This is important for security and performance reasons, as you wouldn’t want sensitive server-side logic to be exposed or run on the client-side.
 
-Here is how you can write an Server Action:
+Here is how you can write a Server Action:
 
 ```javascript
 export default function ServerComponent() {
@@ -65,7 +72,7 @@ The arguments and return value of this function need to be transmitted between t
 
 
 
-## Comparing with the Traditional Approach
+## Compared to the Traditional Approach
 
 Before Server Actions, a common approach to handle server-side logic was to use API routes in Next.js. Here’s an example of how you might have done this:
 
