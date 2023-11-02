@@ -76,7 +76,7 @@ The arguments and return value of this function need to be transmitted between t
 
 Before Server Actions, a common approach to handle server-side logic was to use API routes in Next.js. Here’s an example of how you might have done this:
 
-### Without Server Actions (Using API Routes)
+**Without Server Actions (Using API Routes)**
 
 ```javascript
 // pages/api/createAccount.js
@@ -126,7 +126,7 @@ export default function SignupPage() {
 
 We have a separate API route `/api/createAccount` to handle the server-side logic of creating an account. The client-side form submission is handled in `SignupPage`, where a POST request is sent to the API route with the form data.
 
-### With Server Actions
+**With Server Actions**
 
 With Server Actions, you can simplify this process:
 
