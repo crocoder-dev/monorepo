@@ -1,0 +1,291 @@
+import blogHeader from "../../content/images/blogs/gitops-is-it-the-right-choice-for-your-devops.png?preset=responsive"
+import BlogLayout from "../../Layouts/BlogLayout";
+import ContentTable from "../../components/Blog/ContentTable";
+
+export const meta = {
+    id: "top-10-worst-javascript-keywords", 
+    title: "Top 10 worst JavaScript keywords",
+    description: "",
+    image: blogHeader,
+    date: 1700742891471,
+    updatedAt: 1700742891471,
+    category: "Learn JavaScript",
+    author: "davidabram",
+    editor: "velimirujevic",
+    abstract: "",
+    pageType: "blog-posting"
+};
+
+<ContentTable tocData={props.toc} />
+
+## intanceof
+
+The `instanceof` keyword doesn't really suck, but it does have its limitation and weird behaviours.  
+`instanceof` is used to verify whether the prototype property of a constructor appears anywhere in the prototype chain of an object and that often can yield unexpected results if the prototype chain has been modified. 🙄 
+
+```javascript
+
+function Dog(name) {
+  this.name = name;
+}
+
+let dog = new Dog("Rex");
+
+// Alter the prototype chain
+function Bird(name) {}
+Dog.prototype = Object.create(Bird.prototype);
+
+// instanceof fails because the prototype chain was altered
+console.log(dog instanceof Dog); // false
+
+```
+
+`instanceof` is not reliable for primitive data types such as strings, numbers, or booleans, because these types are not objects and do not have a prototype chain.
+
+```javascript
+let meaningOfLife = 42;
+
+// instanceof fails with primitives
+console.log(meaningOfLife instanceof Number); // false
+```
+
+Considering JavaScript's dynamic nature, what it's more important is whether an object can perform the tasks required—this concept, known as "duck typing," prioritizes an object's capabilities over its inheritance structure. `instanceof` if ususally used in niche situation where you are actively manipulating prototype.
+
+## == and !=
+
+
+While `==` is not a keyword, I dislike it so much I put it on The worst keyword list. The `==` and `!=` operators are often considered bad because they perform type coercion, which means they convert the types of the values being compared if they are not the same. 
+
+For example, when you compare `"0" == 0`, it returns true because the string `"0"` is coerced into a number before the comparison. Similarly, `true == 1` also returns `true` because true is coerced to the number `1`.
+
+It's generally recommended to use the `===` and `!==` operators instead, which are known as the "strict equality" and "strict inequality" operators, respectively. These operators do not perform type coercion, and they only return true if the values being compared have the same type and value. So, with strict equality, `"0" === 0` would return `false`, which is more intuitive and predictable.
+
+The only reason this is not higher on the list is because Kyle Simpson is a [great advocate for type coercions in JS](https://frontendmasters.com/teachers/kyle-simpson/).
+
+## delete
+
+The delete keyword's behavior is counterintuitive and almost always problematic. It's limited to object properties and doesn't touch immutable values like strings or numbers, nor does it work as expected with variables. 
+
+When you try to delete an array element, it merely sets that element to `undefined` without altering the array's size. Delete doesn't free up memory if the property being deleted references an object that's still referenced elsewhere. 
+
+Performance-wise, using delete can cause JavaScript engines to de-optimize due to alterations in the object's structure.
+All of these quirks make delete aweful for managing data structures efficiently in JavaScript.
+
+Delete has some great alternatives, for object you can reassign properties:
+
+```javascript
+
+let user = {
+  name: 'Alice',
+  age: 25,
+  email: 'alice@acme.com'
+};
+
+// Instead of delete user.age, we can set it to undefined
+user.age = undefined;
+
+console.log(user); // Output will show age as undefined
+
+```
+
+or even better use `Map`:
+
+```javascript
+let map = new Map();
+map.set('name', 'Alice');
+map.set('age', 25);
+map.set('email', 'alice@acme.com');
+
+// When you want to remove 'age'
+map.delete('age'); // This is efficient in a Map
+
+console.log(map); // Map will now contain the 'name' and 'email key
+// Map(2) {'name' => 'Alice', 'email' => 'alice@acme.com'}
+```
+
+For arrays you can use `Array.splice()`:
+
+```javascript
+let numbers = [1, 2, 3, 4, 5];
+
+// To remove the element at index 2 (the number 3)
+numbers.splice(2, 1); // First argument is the index, second is the number of elements to remove
+
+console.log(numbers); // Output will be [1, 2, 4, 5]
+```
+
+or `Array.filter()`
+
+```javascript
+let numbers = [1, 2, 3, 4, 5];
+
+// To create a new array without the number 3
+let filteredNumbers = numbers.filter(number => number !== 3);
+
+console.log(filteredNumbers); // Output will be [1, 2, 4, 5]
+```
+
+## new Function
+
+I will guess that you have probably not seen this used anywhere in code before.
+
+```javascript
+var add = new Function('a', 'b', 'return a + b');
+
+// Now we can call the function
+const result = add(2, 3)); // Output will be 5
+```
+
+How about just using a regular, old and trusty function?
+
+```javascript
+function add(a, b) {
+  return a + b;
+}
+```
+
+The downsides are many, I will just list some of them:
+
+**Security Risks**: Since it can run any code, if you use user input to create the function, it can potentially lead to security vulnerabilities, like arbitrary code execution.
+
+**Performance**: Functions created with `new Function` are not optimized by JavaScript engines as much as regular functions because they are generated at runtime.
+
+**Debugging Difficulties**: Code created with `new Function`are harder to debug, as they do not show up properly in stack traces and it's not as straightforward as named functions written directly in your codebase.
+
+**Scope Limitation**: Functions created using `new Function` do not have access to the local scope where they are created; they only have access to their own scope and the global scope, which limits their usefulness in modular and scoped JavaScript code.
+
+**Readability**: It makes code harder to read and maintain because it's not immediately clear what the hell is function doing, especially if the function body is constructed from concatenated strings or other dynamic means.
+
+The `new Function` is this low on the list just because it has far more evil twin called `eval`.
+
+The one, uh, seemingly useful thing about `new Function` is that you can easily create a function factory. Of course you can create a function factory without it. 
+
+```javascript
+function makeMultiplier(multiplier) {
+  return function (x) {
+    return x * multiplier;
+  };
+}
+
+// Create a function that will multiply its input by 2
+var double = makeMultiplier(2);
+
+console.log(double(3)); // Outputs: 6
+console.log(double(4)); // Outputs: 8
+
+// Create a function that will multiply its input by 10
+var tenTimes = makeMultiplier(10);
+
+console.log(tenTimes(3)); // Outputs: 30
+console.log(tenTimes(4)); // Outputs: 40
+```
+
+Personally I find this code easier to read and understand than having the whole body of the function stringifed.
+
+## void
+
+The `void` keyword has a pretty niche role, cementing it's position of being an oddball between all other keywords. 
+
+It's used to process an expression and then spit out `undefined`.
+
+If you are scratching your head, wondering why there is a need to go out of your way to get `undefined`, you are not alone.
+
+```javascript
+function myFunction() {
+  void 0; // Explicitly return undefined.
+}
+
+// When the function is called, it returns undefined.
+const result = myFunction();
+console.log(result); // Outputs: undefined
+```
+
+It doesn't do wonders for readability either; unless you're in the know, void won't make much sense at a glance. And when you're trying to get the same outcome that `void` offers, there's usually another way to do it that doesn't involve `void` at all. 
+
+```javascript 
+function myFunction() {
+    return undefined; // Explictly return undefined.
+}
+
+// When the function is called, it returns undefined.
+const result = myFunction();
+console.log(result); // Outputs: undefined
+```
+The one weird example where is fine to use `void` is within a hyperlink to execute JavaScript code without affecting the current page:
+
+```html
+<a href="javascript:void(0)" onclick="console.log('Link clicked without navigating away');">
+  Click Me!
+</a>
+```
+I mean, it's fine if you don't care about UX people yelling at you.
+
+
+
+
+## this
+
+Ah yes, `this`, my old nemesis, the source of countless bugs, the keyword that every developers greet with a weary sigh.
+
+So, why does `this` get such a bad rap? Well, it's all about context. `this` can change its value depending on where and how you call your function.
+
+Is it a method? Is `this` an object? Is it a regular function? Oops, `this` is now the global context (or `undefined` in strict mode). Used in an event handler? Surprise, `this` is the element that fired the event!
+
+It's not that scary, when you get the hang of it. There's `.bind()`, a magic binding spell that binds `this` to whatever object you dictate: 
+
+```javascript
+function greet() {
+    console.log(`Hello, I am ${this.name}`);
+}
+
+const greeter = { name: 'Bindy McBindFace' };
+const boundGreet = greet.bind(greeter);
+
+boundGreet(); // Outputs: 'Hello, I am Bindy McBindFace'
+```
+
+Alternatively, if you need to work with `this` on-the-fly, for immediate invocation use `.call()` spreading out arguments one by one, or `.apply()` squeezing them into a single array.
+
+```javascript
+function introduce(language, hobby) {
+    console.log(`Hello, I am ${this.name}, I love ${language} and ${hobby}`);
+}
+
+const user = { name: 'Caller McCallFace' };
+introduce.call(user, 'JavaScript', 'coding'); 
+// Outputs: 'Hello, I am Caller McCallFace, I love JavaScript and coding'
+introduce.apply(user, ['JavaScript', 'coding']); // Does the same as call
+```
+
+Even better, just use arrow functions:
+
+```javascript
+const hero = {
+    name: 'Dynamic Duo',
+    regularFunction: function() {
+        console.log(this.name); // Here, 'this' refers to 'hero'
+    },
+    arrowFunction: () => {
+      console.log(this.name); 
+      // 'this' is taken from the surrounding scope where 'arrowFunction' is defined
+    }
+};
+
+hero.regularFunction(); // Outputs: 'Dynamic Duo'
+hero.arrowFunction(); // Outputs: nil if global scope doesn't have a 'name' property
+```
+
+<br />
+
+In my opinion, it's the best to not use `this` at all.
+
+## 4. arguments
+
+## 3. var
+
+## 2. eval
+
+## 1. with
+
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
