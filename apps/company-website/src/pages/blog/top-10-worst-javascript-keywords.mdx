@@ -16,6 +16,24 @@ export const meta = {
     pageType: "blog-posting"
 };
 
+
+Could you run this code?
+
+```javascript
+Array(16).join('wat' - 1) + ' Batman!'
+```
+
+<br />
+
+It should light up the mood a bit, because this article isn't about JavaScript quirks. It's a about objectivly worst and most annoying features of the language.
+
+I have encountered uncountable amount of bugs written in the code because of these keywords. My hair gotten gray when I needed to support Internet Exlorer 7, where all the modern JavaScript keywords aren't availiable.
+
+Back in 2007 we didn't knew better. We have used the tools that were availiable. As JavaScript developers we had a saying back in the time: *"At least we don't code in [Silverlight](https://en.wikipedia.org/wiki/Microsoft_Silverlight)."*
+
+
+
+
 <ContentTable tocData={props.toc} />
 
 ## intanceof
@@ -281,11 +299,157 @@ In my opinion, it's the best to not use `this` at all.
 
 ## 4. arguments
 
-## 3. var
+The arguments keyword in JavaScript kinda works but is frustratingly clunky. It's a bit of a dinosaur in the modern JavaScript world. It's an array-like object that contains all the arguments passed to a function. 
 
-## 2. eval
+But here's the thing: it only looks like an array, which means you can't use all those array methods like slice or forEach directly on it.
 
-## 1. with
+If you want to use it in arrow functions, you are out of luck, `arguments` is shunned by these modern functions!
 
+Instead you can use the rest parameters.
+
+```javascript
+// Define a function using rest parameters to collect arguments
+function collectIngredients(...ingredients) {
+  console.log(ingredients); // This will be an array of all arguments passed
+}
+
+// Now you can pass as many ingredients as you want
+collectIngredients('eggs', 'flour', 'sugar', 'chocolate');
+// Output: ['eggs', 'flour', 'sugar', 'chocolate']
+```
+
+Simple, concise and without the problems mentioned before.
+
+## var
+
+`var` is my favorite keyword to stumble upon in legacy code.
+
+```javascript
+if (true) {
+  var globalPartyCrasher = "I'm everywhere!";
+}
+
+console.log(globalPartyCrasher); // "I'm everywhere!"
+```
+
+`var` doesn't care about your code blocks. 😎
+
+```javascript
+var cat = "Whiskers";
+console.log(cat); // Whiskers
+
+var cat = "Salem";
+console.log(cat); // Salem - Whiskers is no more.
+
+function adoptCat() {
+  var cat = "Garfield";
+  console.log(cat); // Garfield - Inside the function, Garfield has taken over.
+}
+
+adoptCat();
+console.log(cat); // Salem - Back outside, Salem reigns again.
+```
+`cat` can be redeclared and reassigned without any complaints from var, which can lead to some unexpected results if you're not careful.
+
+I mean, back in the days we only had `var` at our disposal. We were using it, but we weren't happy.
+
+Today in modern JavaScript we have `let` and `const`. Please use them over `var`.
+
+## eval
+
+`eval` is pure evil. I don't want to elaborte. Here is a non-so fictional story about it.
+
+Once upon a codebase in the year 2006, nestled in the dark corners of the World Wide Web, there existed a humble website. It was the pride and joy of a fledgling developer who, in his naivety, summoned the eval function to execute dynamically generated code snippets. This was a time of experimentation, where the dangers of executing unchecked user input were not fully understood by all.
+
+It began as a whisper, a mere line of code: eval(userInput). The developer had intended it to be a shortcut, a convenient way to add interactive features to the website. Little did he know, he had etched the beginnings of a digital necronomicon.
+
+Users came, interacting with the site, feeding it pieces of code, expressions of creativity in an innocent play. But among them lurked a shadow, a figure with knowledge arcane, who saw through the veil of innocence that covered the website. With a few keystrokes, this user crafted an incantation, a string of characters that when whispered to the eval function, would unleash chaos.
+
+The eval function, like an ancient deity awoken from its slumber, accepted the offering without judgment. It ran the malicious code, and the website's defenses crumbled like ancient ruins under the might of an earthquake. The server's heartbeat quickened, data spilled like blood from a wound, and the barrier between the site and the abyss eroded.
+
+The code, now a malevolent force, spread through the website's veins, injecting itself into every user session, every page, every corner of the once-peaceful digital realm. It morphed, replicated, and before long, it was not just the website that was haunted—the infection spread to the machines of every visitor, a digital plague born from a single line of eval.
+
+The developer watched in horror as his creation turned into a puppet for the shadow user's maleficent intent. The website, once a source of pride, became an eldritch abomination, consuming data and privacy in an insatiable frenzy. It was a lesson learned too late; the eval function was not just a tool, but a portal to digital damnation when fed the forbidden fruit of unsanitized input.
+
+In the aftermath, the web whispered tales of the cursed site, a cautionary lore passed among developers. The eval function became a symbol of hubris, a relic of the past that served as a warning: some shortcuts lead not to glory, but to the haunted depths of a nightmare.
+
+And so, the eval keyword was shunned, spoken of in hushed tones as the summoner of chaos, the bane of security, the specter of unpredictability—a relic best left in the shadows of the past, never to be invoked again.
+
+⚰️
+
+
+## with
+
+`with` is a pandora's box that I don't want to revisit. I am not sure whose idea this was, but this is one of the worst idea after the "billion dollar mistake `null`. It's deprecated for a really good reason.
+
+In the time bofore Google, developers wanted to deconstruct an object. So they used with.
+
+```javascript
+var mysteryBox = {
+  color: 'the color of the universe',
+  size: 'enigma',
+  contents: 'pandora\'s assortment'
+};
+
+with (mysteryBox) {
+  console.log(color);  // outputs: the color of the universe
+  console.log(size);   // outputs: enigma
+  console.log(contents); // outputs: pandora's assortment
+}
+
+```
+
+But wait what if we initialize a size variable outside the with scope?
+
+```javascript
+var size = 'bigger on the inside';
+
+with (mysteryBox) {
+  console.log(size);   // outputs: enigma, NOT bigger on the inside
+}
+```
+
+Well why stop there, we can use nested `with`!
+
+```javascript
+
+var outerBox = {
+  color: 'blue',
+  size: 'large',
+  innerBox: {
+    color: 'red',
+    size: 'small'
+  }
+};
+
+with (outerBox) {
+  console.log(color); // outputs: blue
+  console.log(size); // outputs: large
+
+  with (innerBox) {
+    console.log(color); // outputs: red
+    console.log(size); // outputs: small
+  }
+}
+```
+
+Using nested with statements in JavaScript is like trying to juggle chainsaws while blindfolded—not impossible, but not recommended and pretty dangerous.
+
+You shouldn't use `with`, you don't need to use `with`, the browser will scream at you for using `with`. Just don't do it.
+
+Destructure your objects when needed.
+
+```javascript
+const { color, size, contents } = mysteryBox;
+```
+
+That's all.
+
+
+## Conclusion
+
+The JavaScript keyword landscape is a bit like a wild party where everyone's invited, including some guests you wish had stayed home.
+
+Raise a glass to the quirks of JavaScript, a language where even the worst features have a place... preferably in a dusty corner of our legacy codebases. Cheers! 🥂
 
 export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
