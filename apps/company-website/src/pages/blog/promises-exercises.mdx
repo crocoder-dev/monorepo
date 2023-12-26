@@ -30,6 +30,7 @@ The outcome (resolve or reject) should be determined by a random condition, ensu
 
 - [setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
 - [Math.random()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
+- [Promise() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise)
 - [Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
 - [Promise.prototype.catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)
 
@@ -110,10 +111,8 @@ Each operation should be in seperate Promise and then chained together.
 
 <NonHSubtitle>Helpful links</NonHSubtitle>
 
-- [setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
-- [Math.random()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
+- [Promise() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise)
 - [Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
-- [Promise.prototype.catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)
 
 <Row>
 
@@ -173,6 +172,65 @@ Each function returns a Promise that performs an arithmetic operation and resolv
 The initial value is passed through the chain, undergoing each operation sequentially. 
 
 The final result is logged, demonstrating the cumulative effect of the chained operations.
+
+</ListToggle>
+
+
+## Fetch data in parallel
+
+Using **`fetchSimulator`** simulate fetching data from three different URLs in parallel. 
+
+Each "fetch" will be represented by a **`Promise`** that resolves after a delay taken from **`delays`** array. 
+
+Use **`Promise.all`** to wait for all these Promises to resolve and then process the results.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [Promise.all()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+- [Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
+
+<Row>
+
+  <Column>
+
+<NonHSubtitle>Input</NonHSubtitle>
+
+```javascript
+
+const delays = [800, 1200, 1000];
+
+const fetchSimulator = (url, delay) => {
+    return new Promise(resolve => setTimeout(() => resolve(`Data from ${url}`), delay));
+};
+
+```
+
+  </Column>
+
+</Row>
+
+<ListToggle title="Solution">
+
+const delays = [800, 1200, 1000];
+
+```javascript
+const fetchSimulator = (url, delay) => {
+  return new Promise(resolve => setTimeout(() => resolve(`Data from ${url}`), delay));
+};
+
+const data1 = fetchSimulator('https://crocoder.dev/data1', delays[0]);
+const data2 = fetchSimulator('https://crocoder.dev/data2', delays[1]);
+const data3 = fetchSimulator('https://crocoder.dev/data3', delays[2]);
+
+Promise.all([data1, data2, data3])
+  .then((responses) => {
+    console.log('All data fetched:', responses);
+  });
+
+```
+Three simulated fetch requests are created with different delays. **`Promise.all`** is used to wait for all these Promises to resolve.
+
+Once all Promises resolve, their results are processed together, showcasing the ability of **`Promise.all`** to synchronize multiple asynchronous operations.
 
 </ListToggle>
 
