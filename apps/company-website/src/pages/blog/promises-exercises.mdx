@@ -178,11 +178,11 @@ The final result is logged, demonstrating the cumulative effect of the chained o
 
 ## Fetch data in parallel
 
-Using **`fetchSimulator`** simulate fetching data from three different URLs in parallel. 
+Using fetchSimulator simulate fetching data from three different URLs in parallel. 
 
-Each "fetch" will be represented by a **`Promise`** that resolves after a delay taken from **`delays`** array. 
+Each "fetch" will be represented by a Promise that resolves after a delay taken from delays array. 
 
-Use **`Promise.all`** to wait for all these Promises to resolve and then process the results.
+Use Promise.all to wait for all these Promises to resolve and then process the results.
 
 <NonHSubtitle>Helpful links</NonHSubtitle>
 
@@ -238,11 +238,11 @@ Once all Promises resolve, their results are processed together, showcasing the 
 
 ## The fastest response wins
 
-Using **`fetchSimulator`** simulate fetching data from three different URLs with a twist. 
+Using fetchSimulator simulate fetching data from three different URLs with a twist. 
 
-Each "fetch" will be represented by a **`Promise`** that resolves after a delay taken from **`delays`** array. 
+Each "fetch" will be represented by a Promise that resolves after a delay taken from delays array. 
 
-Use **`Promise.race`** to get the fastest response!
+Use Promise.race to get the fastest response!
 
 <NonHSubtitle>Helpful links</NonHSubtitle>
 
@@ -291,9 +291,9 @@ Promise.race([data1, data2, data3])
 ```
 Each Promise is set to resolve after a different duration. 
 
-**`Promise.race`** is used to wait for only the first Promise to resolve. Once the first Promise resolves, its result is processed. 
+**`Promise.race()`** is used to wait for only the first Promise to resolve. Once the first Promise resolves, its result is processed. 
 
-This demonstrates how **`Promise.race`** can be used to handle scenarios where only the first completion (or error) in a group of asynchronous operations is of interest.
+This demonstrates how **`Promise.race()`** can be used to handle scenarios where only the first completion (or error) in a group of asynchronous operations is of interest.
 
 </ListToggle>
 
