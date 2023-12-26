@@ -22,12 +22,16 @@ export const meta = {
 
 ## 50% of the time works 100% of the time
 
-Create a JavaScript Promise that, after a delay of 2 seconds, either resolves with the message "Hello World" or rejects with the error message "Error occurred". The outcome (resolve or reject) should be determined by a random condition, ensuring a 50/50 chance of either occurring each time the code runs. Implement appropriate handlers for both resolution and rejection of the Promise.
+Create a JavaScript Promise that, after a delay of 2 seconds, either resolves with the message "Hello World" or rejects with the error message "Error occurred". 
+
+The outcome (resolve or reject) should be determined by a random condition, ensuring a 50/50 chance of either occurring each time the code runs.
 
 <NonHSubtitle>Helpful links</NonHSubtitle>
 
-- [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-- [Math.pow()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow)
+- [setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
+- [Math.random()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
+- [Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
+- [Promise.prototype.catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)
 
 <Row>
 
@@ -67,16 +71,16 @@ randomPromise
 
 ```javascript
 const randomPromise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        // Randomly decide whether to resolve or reject
-        const shouldResolve = Math.random() > 0.5;
+  setTimeout(() => {
+    // Randomly decide whether to resolve or reject
+    const shouldResolve = Math.random() > 0.5;
 
-        if (shouldResolve) {
-            resolve("Hello World");
-        } else {
-            reject("Error occurred");
-        }
-    }, 2000);
+    if (shouldResolve) {
+      resolve("Hello World");
+    } else {
+      reject("Error occurred");
+    }
+  }, 2000);
 });
 
 randomPromise
