@@ -1,0 +1,22 @@
+
+import blogHeader from "../../content/images/blogs/placeholder.png?preset=responsive";
+import BlogLayout from "../../Layouts/BlogLayout";
+
+export const meta = {
+    id: "hello",
+    title: "Hello", 
+    description: "",
+    category: "After work talks",
+    hideHeaderImage: true,
+    image: blogHeader,
+    date: 1703616983438,
+    updatedAt: 1703616983438,
+    author: "davidabram",
+    editor: "velimirujevic",
+    abstract: "",
+    pageType: "blog-posting"
+};
+
+Hello!
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
