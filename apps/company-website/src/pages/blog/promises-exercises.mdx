@@ -211,9 +211,9 @@ const fetchSimulator = (url, delay) => {
 
 <ListToggle title="Solution">
 
+```javascript
 const delays = [800, 1200, 1000];
 
-```javascript
 const fetchSimulator = (url, delay) => {
   return new Promise(resolve => setTimeout(() => resolve(`Data from ${url}`), delay));
 };
@@ -233,5 +233,69 @@ Three simulated fetch requests are created with different delays. **`Promise.all
 Once all Promises resolve, their results are processed together, showcasing the ability of **`Promise.all`** to synchronize multiple asynchronous operations.
 
 </ListToggle>
+
+
+
+## The fastest response wins
+
+Using **`fetchSimulator`** simulate fetching data from three different URLs with a twist. 
+
+Each "fetch" will be represented by a **`Promise`** that resolves after a delay taken from **`delays`** array. 
+
+Use **`Promise.race`** to get the fastest response!
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [Promise.race()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race)
+- [Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
+
+<Row>
+
+  <Column>
+
+<NonHSubtitle>Input</NonHSubtitle>
+
+```javascript
+
+const delays = [800, 1200, 1000];
+
+const fetchSimulator = (url, delay) => {
+    return new Promise(resolve => setTimeout(() => resolve(`Data from ${url}`), delay));
+};
+
+
+```
+
+  </Column>
+
+</Row>
+
+<ListToggle title="Solution">
+
+```javascript
+const delays = [800, 1200, 1000];
+
+const fetchSimulator = (url, delay) => {
+  return new Promise(resolve => setTimeout(() => resolve(`Data from ${url}`), delay));
+};
+
+const data1 = fetchSimulator('https://crocoder.dev/data1', delays[0]);
+const data2 = fetchSimulator('https://crocoder.dev/data2', delays[1]);
+const data3 = fetchSimulator('https://crocoder.dev/data3', delays[2]);
+
+Promise.race([data1, data2, data3])
+  .then((response) => {
+    console.log('This is the fastest response:', response);
+  });
+
+```
+Each Promise is set to resolve after a different duration. 
+
+**`Promise.race`** is used to wait for only the first Promise to resolve. Once the first Promise resolves, its result is processed. 
+
+This demonstrates how **`Promise.race`** can be used to handle scenarios where only the first completion (or error) in a group of asynchronous operations is of interest.
+
+</ListToggle>
+
 
 export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
