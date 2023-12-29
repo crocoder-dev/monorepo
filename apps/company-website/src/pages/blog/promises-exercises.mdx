@@ -298,4 +298,104 @@ This demonstrates how **`Promise.race()`** can be used to handle scenarios where
 </ListToggle>
 
 
+## Cancel a running Promise
+
+Create a Promise that simulates a data fetching operation with a delay. Introduce a cancellation token that can be used to cancel the Promise before it resolves. 
+
+If the operation is cancelled, the Promise should reject with a "Cancelled" message; otherwise, it should resolve normally.
+
+Cancel it!
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
+- [Promise() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise)
+- [Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
+- [Promise.prototype.catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)
+
+<Row>
+
+  <Column>
+
+<NonHSubtitle>Input</NonHSubtitle>
+
+```javascript
+function createCancellationToken() {
+    let cancel;
+    const token = new Promise((_, reject) => {
+        cancel = () => reject(new Error('Cancelled'));
+    });
+    return { token, cancel };
+}
+
+const { token, cancel } = createCancellationToken();
+
+const fetchPromise = fetchData(token);
+
+// Simulate user cancellation after 1.5 seconds
+setTimeout(() => {
+    cancel();
+}, 1500);
+
+fetchPromise
+    .then(data => console.log(data))
+    .catch(error => console.error(error.message));
+```
+
+  </Column>
+
+</Row>
+
+<ListToggle title="Solution">
+
+```javascript
+function createCancellationToken() {
+    let cancel;
+    const token = new Promise((_, reject) => {
+        cancel = () => reject(new Error('Cancelled'));
+    });
+    return { token, cancel };
+}
+
+function fetchData(cancellationToken) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Data fetched");
+        }, 3000);
+
+        cancellationToken.token.catch(() => {
+            reject(new Error('Operation cancelled'));
+        });
+    });
+}
+
+const { token, cancel } = createCancellationToken();
+
+const fetchPromise = fetchData({ token });
+
+// Simulate user cancellation after 1.5 seconds
+setTimeout(() => {
+    cancel();
+}, 1500);
+
+fetchPromise
+    .then(data => console.log(data))
+    .catch(error => console.error(error.message));
+```
+The `createCancellationToken` function is designed to generate a cancellation token along with a `cancel` function. This `cancel` function, upon invocation, leads to the rejection of the token's associated promise. 
+
+Concurrently, the `fetchData` function is structured to accept this cancellation token as a parameter, returning a Promise that signifies the ongoing data retrieval process.
+
+Within `fetchData`, a delay is emulated through a timeout, and simultaneously, a monitoring mechanism is established on the cancellation token. 
+
+In scenarios where the token's promise faces rejection, i.e., is cancelled, the function takes action to both clear the data fetching timeout and reject the fetch promise. 
+
+This fetch promise embodies the asynchronous nature of the data fetching task. The cancellation token is an integral part of this operation, as it is fed into the fetch promise. 
+
+In a typical flow, after a wait of 1.5 seconds, the `cancel` function is executed. This action triggers the rejection of the token's promise, consequently aborting the data fetch process. 
+
+To manage the outcomes of the fetch promise, the `.then` and `.catch` methods are employed for handling its resolved and rejected states, respectively.
+
+</ListToggle>
+
 export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
