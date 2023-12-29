@@ -382,7 +382,7 @@ fetchPromise
     .then(data => console.log(data))
     .catch(error => console.error(error.message));
 ```
-The `createCancellationToken` function is designed to generate a cancellation token along with a `cancel` function. This `cancel` function, upon invocation, leads to the rejection of the token's associated promise. 
+The **`createCancellationToken`** function is designed to generate a cancellation token along with a `cancel` function. This `cancel` function, upon invocation, leads to the rejection of the token's associated promise. 
 
 Concurrently, the `fetchData` function is structured to accept this cancellation token as a parameter, returning a Promise that signifies the ongoing data retrieval process.
 
@@ -397,5 +397,89 @@ In a typical flow, after a wait of 1.5 seconds, the `cancel` function is execute
 To manage the outcomes of the fetch promise, the `.then` and `.catch` methods are employed for handling its resolved and rejected states, respectively.
 
 </ListToggle>
+
+
+## ThePrimeagen's interview question
+
+This exercise is a ThePrimeagen's interview question: Create an asynchronous request queue that manages the execution of tasks, ensuring that no more than three tasks run simultaneously.
+
+Design a queue system that accepts promise factories (functions that return promises) and manages their execution. The queue should execute these promise factories, but must limit the number of concurrently running tasks to three. When one task completes, the next task in the queue should start.
+
+<NonHSubtitle>Steps to implement</NonHSubtitle>
+
+Implement a queue (can use an array for simplicity) to hold the promise factories.
+
+Create a function to manage the execution of tasks. This function should handle the invocation of promise factories and maintain the count of concurrently running tasks.
+
+Ensure that no more than three tasks are running at any given time. When a task completes, the next task in the queue (if any) should start.
+
+Create several promise factories that simulate async tasks with different durations.
+
+Add these factories to the queue and test if the queue correctly limits the concurrency and processes tasks in the order they were added.
+
+<NonHSubtitle>Helpful links</NonHSubtitle>
+
+- [setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
+- [Promise() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise)
+- [Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
+- [Promise.prototype.catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)
+
+
+<ListToggle title="Solution">
+
+```javascript
+class AsyncQueue {
+    constructor(concurrencyLimit) {
+        this.tasks = [];
+        this.runningTasks = 0;
+        this.concurrencyLimit = concurrencyLimit;
+    }
+
+    // Function to add tasks to the queue
+    enqueue(task) {
+        this.tasks.push(task);
+        this.runNext();
+    }
+
+    // Function to execute the next task
+    runNext() {
+        if (this.runningTasks < this.concurrencyLimit && this.tasks.length) {
+            const task = this.tasks.shift();
+            this.runningTasks++;
+            task().then(() => {
+                this.runningTasks--;
+                this.runNext();
+            });
+        }
+    }
+}
+
+// Creating the queue with a concurrency limit of 3
+const queue = new AsyncQueue(3);
+
+// Promise factory function
+const createTask = (duration) => {
+    return () => new Promise(resolve => {
+        console.log(`Task started (Duration: ${duration}ms)`);
+        setTimeout(() => {
+            console.log(`Task completed (Duration: ${duration}ms)`);
+            resolve();
+        }, duration);
+    });
+};
+
+// Adding tasks to the queue
+for (let i = 1; i <= 10; i++) {
+    queue.enqueue(createTask(i * 1000));
+}
+```
+The AsyncQueue class manages and regulates task execution, maintaining a concurrency limit of no more than three tasks at any given time. This is achieved through its enqueue method, which plays a crucial role in adding new tasks to the queue. Once a task is enqueued, the enqueue method promptly invokes the runNext function to assess whether the task can be initiated immediately. The runNext method checks the current count of active tasks; if this count falls below the predefined concurrency limit, the method proceeds to launch the next task in line, simultaneously updating the count of running tasks.
+
+Each task within this system is essentially a promise factory, designed to simulate an asynchronous operation. This is typically represented through the use of setTimeout, which allows each task to log both its initiation and completion, thereby mimicking the behavior of an asynchronous process. The completion of a task is a critical event, as it triggers the decrement of the running task count, creating room for additional tasks to be executed. Subsequently, the runNext method is called again to potentially initiate the next queued task, if available.
+
+This entire mechanism, as embodied by the AsyncQueue class, exemplifies a prevalent and practical pattern in software development. It is particularly relevant in scenarios requiring meticulous management of asynchronous tasks, where the control over task execution and the limitation of concurrency are of paramount importance. The use of queues and promise factories in this context is not only effective but also illustrates a common approach in handling similar challenges in various programming environments.
+
+</ListToggle>
+
 
 export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
