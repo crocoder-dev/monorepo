@@ -1,7 +1,7 @@
 import Column from "../../components/Blog/CodeExample/Column";
 import Row from "../../components/Blog/CodeExample/Row";
 import ListToggle from "../../components/Blog/CodeExample/ListToggle";
-import blogHeader from "../../content/images/blogs/placeholder.png?preset=responsive";
+import blogHeader from "../../content/images/blogs/promises-exercises.png?preset=responsive";
 import BlogLayout from "../../Layouts/BlogLayout";
 import NonHSubtitle from "../../components/Blog/NonHSubtitle";
 import ContentTable from "../../components/Blog/ContentTable";
@@ -9,15 +9,14 @@ import ContentTable from "../../components/Blog/ContentTable";
 export const meta = {
     id: "hello",
     title: "Promises - Code Exercises", 
-    description: "",
+    description: "Explore JavaScript Promises through practical exercises covering random resolution, chained arithmetic operations, parallel data fetching, fastest response determination, and cancellation. Enhance your asynchronous programming skills with concise code solutions and clear explanations. Discover a unique interview question from ThePrimeagen, challenging you to design an asynchronous request queue limiting concurrent tasks to three. Uncover effective methods for handling promises, simplifying error management, and producing resilient, easily maintainable code.",
     category: "LEARN JAVASCRIPT",
-    hideHeaderImage: true,
     image: blogHeader,
     date: 1703616983438,
     updatedAt: 1703616983438,
     author: "davidabram",
     editor: "velimirujevic",
-    abstract: "",
+    abstract: "This article dives into the world of JavaScript Promises with hands-on exercises, exploring essential concepts like random resolution, chained arithmetic operations, and parallel data fetching. The blog post equips developers with practical solutions for managing asynchronous tasks efficiently, streamlining error handling, and enhancing code readability. The blog includes a unique interview question by ThePrimeagen that challenges the reader to design an asynchronous request queue with a three-task concurrency limit.",
     pageType: "blog-posting"
 };
 
@@ -101,7 +100,7 @@ randomPromise
 ```
 The Promise is constructed with an executor function that invokes **`setTimeout`** to simulate a 2-second asynchronous operation.
 
-Within the **`setTimeout`** callback, a random boolean **`shouldResolve`** is determined using **`Math.random() > 0.5`**. This expression has a 50% chance to evaluate to true or false.
+Within the **`setTimeout`** callback, a random boolean **`shouldResolve`** is determined using **`Math.random() > 0.5`**. This expression has a 50% chance to evaluate a value as either true or false.
 
 The Promise is resolved with "Hello World" if shouldResolve is true, and rejected with "Error occurred" if false. **`Promise.then()`** and **`Promise.catch()`** methods are attached to the Promise to handle its resolution and rejection, respectively.
 
@@ -114,7 +113,7 @@ Each execution of this code has an equal probability of either resolving or reje
 
 Input a number, double it, increase it by 10, and then multiply by 3.
 
-Each operation should be in seperate Promise and then chained together.
+Each operation should be in a seperate Promise and then chained together.
 
 <NonHSubtitle>Helpful links</NonHSubtitle>
 
@@ -187,7 +186,7 @@ The final result is logged, demonstrating the cumulative effect of the chained o
 
 Using fetchSimulator simulate fetching data from three different URLs in parallel. 
 
-Each "fetch" will be represented by a Promise that resolves after a delay taken from delays array. 
+Each "fetch" will be represented by a Promise that resolves after a delay taken from the delays array. 
 
 Use Promise.all to wait for all these Promises to resolve and then process the results.
 
@@ -247,7 +246,7 @@ Once all Promises resolve, their results are processed together, showcasing the 
 
 Using fetchSimulator simulate fetching data from three different URLs with a twist. 
 
-Each "fetch" will be represented by a Promise that resolves after a delay taken from delays array. 
+Each "fetch" will be represented by a Promise that resolves after a delay taken from the delays array. 
 
 Use Promise.race to get the fastest response!
 
@@ -397,7 +396,7 @@ Within `fetchData`, a delay is emulated through a timeout, and simultaneously, a
 
 In scenarios where the token's promise faces rejection, i.e., is cancelled, the function takes action to both clear the data fetching timeout and reject the fetch promise. 
 
-This fetch promise embodies the asynchronous nature of the data fetching task. The cancellation token is an integral part of this operation, as it is fed into the fetch promise. 
+This fetch promise embodies the asynchronous nature of the data-fetching task. The cancellation token is an integral part of this operation, as it is fed into the fetch promise. 
 
 In a typical flow, after a wait of 1.5 seconds, the `cancel` function is executed. This action triggers the rejection of the token's promise, consequently aborting the data fetch process. 
 
@@ -410,7 +409,7 @@ To manage the outcomes of the fetch promise, the `.then` and `.catch` methods ar
 
 This exercise is a ThePrimeagen's interview question: Create an asynchronous request queue that manages the execution of tasks, ensuring that no more than three tasks run simultaneously.
 
-Design a queue system that accepts promise factories (functions that return promises) and manages their execution. The queue should execute these promise factories, but must limit the number of concurrently running tasks to three. When one task completes, the next task in the queue should start.
+Design a queue system that accepts promise factories (functions that return promises) and manages their execution. The queue should execute these promise factories but must limit the number of concurrently running tasks to three. When one task is completed, the next task in the queue should start.
 
 <NonHSubtitle>Steps to implement</NonHSubtitle>
 
@@ -418,7 +417,7 @@ Implement a queue (can use an array for simplicity) to hold the promise factorie
 
 Create a function to manage the execution of tasks. This function should handle the invocation of promise factories and maintain the count of concurrently running tasks.
 
-Ensure that no more than three tasks are running at any given time. When a task completes, the next task in the queue (if any) should start.
+Ensure that no more than three tasks are running at any given time. When a task is completed, the next task in the queue (if any) should start.
 
 Create several promise factories that simulate async tasks with different durations.
 
@@ -484,7 +483,7 @@ The AsyncQueue class manages and regulates task execution, maintaining a concurr
 
 Each task within this system is essentially a promise factory, designed to simulate an asynchronous operation. This is typically represented through the use of setTimeout, which allows each task to log both its initiation and completion, thereby mimicking the behavior of an asynchronous process. The completion of a task is a critical event, as it triggers the decrement of the running task count, creating room for additional tasks to be executed. Subsequently, the runNext method is called again to potentially initiate the next queued task, if available.
 
-This entire mechanism, as embodied by the AsyncQueue class, exemplifies a prevalent and practical pattern in software development. It is particularly relevant in scenarios requiring meticulous management of asynchronous tasks, where the control over task execution and the limitation of concurrency are of paramount importance. The use of queues and promise factories in this context is not only effective but also illustrates a common approach in handling similar challenges in various programming environments.
+This entire mechanism, as embodied by the AsyncQueue class, exemplifies a prevalent and practical pattern in software development. It is particularly relevant in scenarios requiring meticulous management of asynchronous tasks, where the control over task execution and the limitation of concurrency are of paramount importance. The use of queues and promise factories in this context is not only effective but also illustrates a common approach to handling similar challenges in various programming environments.
 
 </ListToggle>
 
