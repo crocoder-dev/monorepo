@@ -9,11 +9,11 @@ import ContentTable from "../../components/Blog/ContentTable";
 export const meta = {
     id: "hello",
     title: "Promises - Code Exercises", 
-    description: "Explore JavaScript Promises through practical exercises covering random resolution, chained arithmetic operations, parallel data fetching, fastest response determination, and cancellation. Enhance your asynchronous programming skills with concise code solutions and clear explanations. Discover a unique interview question from ThePrimeagen, challenging you to design an asynchronous request queue limiting concurrent tasks to three. Uncover effective methods for handling promises, simplifying error management, and producing resilient, easily maintainable code.",
+    description: "Explore JavaScript Promises with exercises on random resolution, chained arithmetic, parallel data fetching, fastest response, and cancellation. Improve your async skills with concise code and clear explanations. Learn effective methods for handling promises, simplifying errors, and creating resilient, maintainable code.",
     category: "LEARN JAVASCRIPT",
     image: blogHeader,
-    date: 1703616983438,
-    updatedAt: 1703616983438,
+    date: 1705592903000,
+    updatedAt: 1705592903000,
     author: "davidabram",
     editor: "velimirujevic",
     abstract: "This article dives into the world of JavaScript Promises with hands-on exercises, exploring essential concepts like random resolution, chained arithmetic operations, and parallel data fetching. The blog post equips developers with practical solutions for managing asynchronous tasks efficiently, streamlining error handling, and enhancing code readability. The blog includes a unique interview question by ThePrimeagen that challenges the reader to design an asynchronous request queue with a three-task concurrency limit.",
@@ -22,7 +22,7 @@ export const meta = {
 
 Promises in JavaScript are an essential tool for managing asynchronous operations with ease and clarity. They assure that a certain piece of work will be done at a later time. This is incredibly useful for tasks that need to wait for something else to finish, like fetching data from a website.
 
-Instead of juggling multiple callbacks, which can quickly become unwieldy and hard to follow, promises allow developers to chain operations in a linear and readable manner. This is done through .then() for successful operations, and .catch() for handling errors. This not only enhances code readability but also streamlines error handling, making the code more robust and maintainable.
+Instead of juggling multiple callbacks, which can quickly become unwieldy and hard to follow, promises allow developers to chain operations in a linear and readable manner. This is done through **`.then()`** for successful operations, and **`.catch()`** for handling errors. This not only enhances code readability but also streamlines error handling, making the code more robust and maintainable.
 
 <ContentTable tocData={props.toc} />
 
@@ -113,7 +113,7 @@ Each execution of this code has an equal probability of either resolving or reje
 
 Input a number, double it, increase it by 10, and then multiply by 3.
 
-Each operation should be in a seperate Promise and then chained together.
+Each operation should be in a separate Promise and then chained together.
 
 <NonHSubtitle>Helpful links</NonHSubtitle>
 
@@ -188,7 +188,7 @@ Using fetchSimulator simulate fetching data from three different URLs in paralle
 
 Each "fetch" will be represented by a Promise that resolves after a delay taken from the delays array. 
 
-Use Promise.all to wait for all these Promises to resolve and then process the results.
+Use **`Promise.all`** to wait for all these Promises to resolve and then process the results.
 
 <NonHSubtitle>Helpful links</NonHSubtitle>
 
@@ -248,7 +248,7 @@ Using fetchSimulator simulate fetching data from three different URLs with a twi
 
 Each "fetch" will be represented by a Promise that resolves after a delay taken from the delays array. 
 
-Use Promise.race to get the fastest response!
+Use **`Promise.race`** to get the fastest response!
 
 <NonHSubtitle>Helpful links</NonHSubtitle>
 
@@ -479,11 +479,11 @@ for (let i = 1; i <= 10; i++) {
     queue.enqueue(createTask(i * 1000));
 }
 ```
-The AsyncQueue class manages and regulates task execution, maintaining a concurrency limit of no more than three tasks at any given time. This is achieved through its enqueue method, which plays a crucial role in adding new tasks to the queue. Once a task is enqueued, the enqueue method promptly invokes the runNext function to assess whether the task can be initiated immediately. The runNext method checks the current count of active tasks; if this count falls below the predefined concurrency limit, the method proceeds to launch the next task in line, simultaneously updating the count of running tasks.
+The **`AsyncQueue`** class manages and regulates task execution, maintaining a concurrency limit of no more than three tasks at any given time. This is achieved through its enqueue method, which plays a crucial role in adding new tasks to the queue. Once a task is enqueued, the enqueue method promptly invokes the **`runNext`** function to assess whether the task can be initiated immediately. The **`runNext`** method checks the current count of active tasks; if this count falls below the predefined concurrency limit, the method proceeds to launch the next task in line, simultaneously updating the count of running tasks.
 
-Each task within this system is essentially a promise factory, designed to simulate an asynchronous operation. This is typically represented through the use of setTimeout, which allows each task to log both its initiation and completion, thereby mimicking the behavior of an asynchronous process. The completion of a task is a critical event, as it triggers the decrement of the running task count, creating room for additional tasks to be executed. Subsequently, the runNext method is called again to potentially initiate the next queued task, if available.
+Each task within this system is essentially a promise factory, designed to simulate an asynchronous operation. This is typically represented through the use of **`setTimeout`**, which allows each task to log both its initiation and completion, thereby mimicking the behavior of an asynchronous process. The completion of a task is a critical event, as it triggers the decrement of the running task count, creating room for additional tasks to be executed. Subsequently, the runNext method is called again to potentially initiate the next queued task, if available.
 
-This entire mechanism, as embodied by the AsyncQueue class, exemplifies a prevalent and practical pattern in software development. It is particularly relevant in scenarios requiring meticulous management of asynchronous tasks, where the control over task execution and the limitation of concurrency are of paramount importance. The use of queues and promise factories in this context is not only effective but also illustrates a common approach to handling similar challenges in various programming environments.
+This entire mechanism, as embodied by the **`AsyncQueue`** class, exemplifies a prevalent and practical pattern in software development. It is particularly relevant in scenarios requiring meticulous management of asynchronous tasks, where the control over task execution and the limitation of concurrency are of paramount importance. The use of queues and promise factories in this context is not only effective but also illustrates a common approach to handling similar challenges in various programming environments.
 
 </ListToggle>
 
