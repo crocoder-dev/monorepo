@@ -24,6 +24,13 @@ Promises in JavaScript are an essential tool for managing asynchronous operation
 
 Instead of juggling multiple callbacks, which can quickly become unwieldy and hard to follow, promises allow developers to chain operations in a linear and readable manner. This is done through **`.then()`** for successful operations, and **`.catch()`** for handling errors. This not only enhances code readability but also streamlines error handling, making the code more robust and maintainable.
 
+Also take a look at these exercises:
+
+- [JavaScript DOM](https://www.crocoder.dev/blog/the-dom-exercises/)
+- [Callbacks](https://www.crocoder.dev/blog/callbacks-exercises/)
+- [Map, Filter, Reduce](https://www.crocoder.dev/blog/map-filter-reduce-exercises/)
+- [React Hooks](https://www.crocoder.dev/blog/how-to-write-custom-react-hooks/)
+
 <ContentTable tocData={props.toc} />
 
 ## 50% of the time works 100% of the time
@@ -407,7 +414,7 @@ To manage the outcomes of the fetch promise, the `.then` and `.catch` methods ar
 
 ## ThePrimeagen's interview question
 
-This exercise is a ThePrimeagen's interview question: Create an asynchronous request queue that manages the execution of tasks, ensuring that no more than three tasks run simultaneously.
+This exercise is a [ThePrimeagen's interview question](https://www.youtube.com/watch?v=3v_oXH3y5uM&t=304): Create an asynchronous request queue that manages the execution of tasks, ensuring that no more than three tasks run simultaneously.
 
 Design a queue system that accepts promise factories (functions that return promises) and manages their execution. The queue should execute these promise factories but must limit the number of concurrently running tasks to three. When one task is completed, the next task in the queue should start.
 
