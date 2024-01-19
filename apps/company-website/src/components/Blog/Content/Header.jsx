@@ -5,7 +5,7 @@ import ResponsiveImage from '../../ResponsiveImage';
 import Section from '../../Section';
 
 const Header = ({
-  image, title, author, lastUpdatedAt,
+  image, title, author, lastUpdatedAt, hideHeaderImage,
 }) => {
   const formatDate = (date) => {
     const d = new Date(date);
@@ -23,7 +23,9 @@ const Header = ({
 
   return (
     <Section blog as="header" className={styles.header}>
-      <ResponsiveImage src={image} alt={title} width={640} height={340} loading="eager" />
+      {!hideHeaderImage ? (
+        <ResponsiveImage src={image} alt={title} width={640} height={340} loading="eager" />
+      ) : null}
       <Typography
         element="h1"
         fontSize={50}

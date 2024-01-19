@@ -122,6 +122,7 @@ const BlogLayout = ({
       <DefaultLayout stickyFooter>
         <article>
           <Header
+            hideHeaderImage={meta.hideHeaderImage}
             author={author}
             image={meta.image}
             title={meta.title}
