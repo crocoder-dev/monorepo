@@ -1,0 +1,21 @@
+
+import blogHeader from "../../content/images/blogs/misusing-agile-is-holding-your-team-back.png?preset=responsive"
+import BlogLayout from "../../Layouts/BlogLayout";
+
+export const meta = {
+    id: "the-hidden-dangers-of-simple-architectures",
+    title: "The Hidden Dangers of Simple Architectures",
+    description: "",
+    category: "After work talks",
+    image: blogHeader,
+    date: 1708732921438,
+    updatedAt: 1708732921438,
+    author: "davidabram",
+    editor: "velimirujevic",
+    abstract: "",
+    pageType: "blog-posting"
+};
+
+
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
