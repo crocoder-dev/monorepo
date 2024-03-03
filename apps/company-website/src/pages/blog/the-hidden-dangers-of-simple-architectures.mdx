@@ -18,7 +18,11 @@ export const meta = {
     hideHeaderImage: true
 };
 
+I am 100% certian you have already have seen this architecture. You probably have worked on it while working in that scrappy startup or maybe when you have created a sideproject that you decided not to deploy on Vercel.
+
 <ResponsiveImage src={simpleArch} alt="Simple Architecture" />
+
+The architecture is a classic web service model that leverages several services and design principles for scalable, secure, and maintainable web applications. Uses Cloudfront as CDN to cache your SPA's static files (js, css, html) and deploy your compiled binaries or Docker container on the EC2 behind an API Gateway.
 
 Designing software systems with a simple initial architecture might seem economical and easy at first, but as the system grows and changes, it can lead to substantial complications. This article explores the unforeseen risks of such architectures and provides guidelines for creating systems that are naturally scalable from the start, ensuring the project's success regardless of its size.
 
