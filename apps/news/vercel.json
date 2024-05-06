@@ -1,6 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/feed.xml", "destination": "/feed" },
-    { "source": "/sitemap.xml", "destination": "/sitemap" }
-  ]
-}
