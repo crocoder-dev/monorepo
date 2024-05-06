@@ -1,0 +1,53 @@
+import blogHeader from "../../content/images/blogs/misusing-agile-is-holding-your-team-back.png?preset=responsive"
+import BlogLayout from "../../Layouts/BlogLayout";
+import simpleArch from "../../content/images/blogs/simple-architectures/simple-arch.png?preset=responsive";
+import ResponsiveImage from "../../components/ResponsiveImage";
+
+export const meta = {
+    id: "the-hidden-dangers-of-simple-architectures",
+    title: "The Hidden Dangers of Simple Architectures",
+    description: "",
+    category: "After work talks",
+    image: blogHeader,
+    date: 1708732921438,
+    updatedAt: 1708732921438,
+    author: "davidabram",
+    editor: "velimirujevic",
+    abstract: "",
+    pageType: "blog-posting",
+    hideHeaderImage: true
+};
+
+I am 100% certian you have already have seen this architecture. You probably have worked on it while working in that scrappy startup or maybe when you have created a sideproject that you decided not to deploy on Vercel.
+
+<ResponsiveImage src={simpleArch} alt="Simple Architecture" />
+<br />
+
+The architecture is a classic web service model that leverages several services and design principles for scalable, secure, and maintainable web applications. Uses Cloudfront as CDN to cache your SPA's static files (js, css, html) and deploys your compiled binaries or Docker container on the EC2 behind an API Gateway.
+
+Designing software systems with a simple initial architecture might seem economical and easy at first, but as the system grows and changes, it can lead to substantial complications. This article explores the unforeseen risks of such architectures and provides guidelines for creating systems that are naturally scalable from the start, ensuring the project's success regardless of its size.
+
+Initially, a setup involving manual management of development and deployment processes may seem cost-effective due to minimal upfront investment. Developers may work on their local machines and manually transfer built files to a server for deployment. However, this method has limitations. It's suitable for small applications or prototypes but faces scalability and reliability challenges as the application grows in users and features.
+
+Manually managed systems often lack automated build and deployment processes, limiting scalability options to upgrading cloud instances to larger sizes, which has its limits. Additionally, manual deployments increase the risk of human error and potential downtime, particularly during updates to the system.
+
+As applications become more complex and widely used, the need for robust scalability solutions becomes more apparent. Manually increasing server capacity to manage increased traffic or usage is not an efficient or cost-effective approach. Moreover, the absence of automation in deployment processes leads to system downtime with every update or bug fix, causing inconvenience to users.
+
+Developers should keep in mind the following techniques from the project's outset to avoid straightforward system architecture: 
+
+Automate Immediately: From the start, put money into continuous integration and continuous development (CI/CD) pipelines. Consistent application of builds, tests, and deployments is guaranteed by automation, which lessens the likelihood of problems and downtime.
+
+Design for Scalability: When creating an application, consider future growth and design it to be scalable. Avoid stateful designs that limit distribution across multiple servers. Embrace practices that allow effortless resource expansion to handle increasing demand.
+
+Embrace Cloud services: Utilize the managed cloud services for various tasks like databases, storage, and computation to reduce manual intervention and optimize performance. These services come equipped with inherent features for scalability and reliability, allowing effortless adjustments based on demand.
+
+Monitor and Optimize: Ensure continuous performance and adaptability by implementing monitoring tools to observe performance and usage dynamics. Leverage this data to continuously improve infrastructure and application architecture for optimal efficiency and scalability.
+
+System outages not only negatively impact user satisfaction but also can cause substantial business consequences such as lost revenue and reputational harm. In today's digital age, users expect applications to be consistently accessible and responsive. Any disruption in service can lead to frustration and erode user confidence.
+
+Prioritizing scalability and reliability in your system architecture is key to reducing risks, improving competitiveness, and ensuring resilience in the face of growth. This approach helps your application adapt to changing demands, tolerate failures, and maintain stability even as it scales up.
+
+Beginning with a basic architecture can be tempting, but it can lead to higher long-term costs and scalability issues that can hamper the success of an application. Developers can create systems that are scalable, reliable, and efficient by adopting a forward-thinking approach to system design, automating deployment processes, and utilizing cloud services. Preparing for scalability is not only about accommodating growth but also ensuring the application's sustainability and quality from the outset.
+
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
