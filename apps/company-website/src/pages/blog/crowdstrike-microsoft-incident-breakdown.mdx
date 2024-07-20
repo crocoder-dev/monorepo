@@ -31,6 +31,8 @@ The main technical issue in this incident is a [NULL pointer dereference](https:
 
 <ResponsiveImage src={bsod} alt="screenshot of a Windows Blue Screen of Death (BSOD) error" />
 
+<br />
+
 In this case, the faulty code attempted to read from memory address 0x9C, an invalid and protected memory region. This problem occurred in a system driver, which has privileged access to the computer’s resources. As a result, the operating system, out of an abundance of caution, crashed immediately to prevent potential damage, resulting in the BSOD.
 
 Null pointer dereference errors are one of the most common mistakes when coding in C++. Usually, errors like this are caught by automated code sanitization tools. These tools detect and fix common coding errors during development, providing immediate feedback to developers and helping them catch errors early and thoroughly analyze the code.
