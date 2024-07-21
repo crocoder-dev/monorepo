@@ -1,22 +1,19 @@
 import blogHeader from "../../content/images/blogs/crowdstrike-microsoft-incident-breakdown.jpg?preset=responsive";
 import BlogLayout from "../../Layouts/BlogLayout";
-import ContentTable from "../../components/Blog/ContentTable";
-import ResponsiveImage from "../../components/ResponsiveImage";
-import bsod from "../../content/images/blogs/crowdstrike-microsoft-incident-breakdown/bsod.png?preset=responsive";
 
 export const meta = {
   id: "crowdstrike-microsoft-incident-breakdown",
   title:
     "The Crowdstrike and Microsoft Incident",
   description:
-    'CrowdStrike\'s Falcon Sensor update caused "blue screens of death" on millions of Windows systems due to a NULL pointer dereference in the C++ code.',
+    'CrowdStrike\'s Falcon Sensor update caused "blue screens of death" on millions of Windows systems.',
   category: "After work talks",
   image: blogHeader,
   date: 1721473493000,
-  updatedAt: 1721473493000,
+  updatedAt: 1721554208034,
   author: "davidabram",
   editor: "velimirujevic",
-  abstract: "On July 19, 2024, CrowdStrike's Falcon Sensor update caused widespread disruptions on millions of Windows systems, leading to \"blue screens of death\" and boot loops. The issue, a NULL pointer dereference in the C++ code of a system driver, impacted aviation, media, banking, and healthcare sectors, grounding flights and disrupting emergency services. This incident highlights a failure in CrowdStrike's development and deployment processes, as such errors should be caught by automated code sanitization tools. It underscores the importance of rigorous testing, CI/CD practices, and phased rollouts to prevent widespread disruptions in critical systems. Robust testing and deployment strategies are essential, even with memory-safe programming languages.",
+  abstract: "On July 19, 2024, CrowdStrike's Falcon Sensor update caused widespread disruptions on millions of Windows systems, leading to \"blue screens of death\" and boot loops. The issue, an erorr in the C++ code of a system driver, impacted aviation, media, banking, and healthcare sectors, grounding flights and disrupting emergency services. This incident highlights a failure in CrowdStrike's development and deployment processes, as such errors should be caught by automated code sanitization tools. It underscores the importance of rigorous testing, CI/CD practices, and phased rollouts to prevent widespread disruptions in critical systems. Robust testing and deployment strategies are essential, even with memory-safe programming languages.",
   pageType: "blog-posting"
 };
 
@@ -27,15 +24,9 @@ This update caused numerous Windows machines to experience "blue screens of deat
 
 ### Technical Issue
 
-The main technical issue in this incident is a [NULL pointer dereference](https://cwe.mitre.org/data/definitions/476.html) in the C++ code. A NULL pointer is a pointer that doesn't point to any valid memory address. When the program tries to dereference this pointer, it accesses an invalid memory (location 0x0), causing a crash.
+At the first look it seems there is an error related to [NULL pointer dereference](https://cwe.mitre.org/data/definitions/476.html) in the C++ code. But at further decompiling of the code you can see the NULL check before the dereference. THe rpogram was reading pointers from a table in a lopp, and some of these pointers were invalid. Probably this is an error in parsing of a configuration file, what left [https://cwe.mitre.org/data/definitions/824.html](some entries uninitialized).
 
-<ResponsiveImage src={bsod} alt="screenshot of a Windows Blue Screen of Death (BSOD) error" />
-
-<br />
-
-In this case, the faulty code attempted to read from memory address 0x9C, an invalid and protected memory region. This problem occurred in a system driver, which has privileged access to the computer's resources. As a result, the operating system, out of an abundance of caution, crashed immediately to prevent potential damage, resulting in the BSOD.
-
-Null pointer dereference errors are one of the most common mistakes when coding in C++. Usually, errors like this are caught by automated code sanitization tools. These tools detect and fix common coding errors during development, providing immediate feedback to developers and helping them catch errors early and thoroughly analyze the code.
+Usually, errors like this are caught by automated code sanitization tools. These tools detect and fix common coding errors during development, providing immediate feedback to developers and helping them catch errors early and thoroughly analyze the code.
 
 That's why it is so strange to see this kind of error pushed to production, especially in a system driver.
 
@@ -51,9 +42,10 @@ The lack of guardrails and safety nets for your developers and the butchering of
 
 ### Conclusion
 
-This incident didn't happen because of a single developer's mistake and certainly didn't happen because of using a non-memory-safe language like C++. Memory-safe programming languages like Rust can save you from NULL pointer dereference errors, but they can't compensate for poor testing and deployment strategies. This incident was a systematic failure at every layer of the company, which allowed a critical bug to slip through and cause widespread disruptions.
+This incident didn't happen because of a single developer's mistake and certainly didn't happen because of using a non-memory-safe language like C++. Memory-safe programming languages like Rust can save you from NULL pointer dereference and accessing uninitialized variables, but they can't compensate for poor testing and deployment strategies. This incident was a systematic failure at every layer of the company, which allowed a critical bug to slip through and cause widespread disruptions.
 
 At least the fact that CrowdStrike succeeded where Y2K failed is somewhat impressive.
 
 
 export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
+
