@@ -24,7 +24,7 @@ This update caused numerous Windows machines to experience "blue screens of deat
 
 ### Technical Issue
 
-At first, it looked like there was an error related to [NULL pointer dereference](https://cwe.mitre.org/data/definitions/476.html) in the C++ code. But at further decompiling of the code you can see the NULL check before the dereference. The program was reading pointers from a table in a loop, and some were invalid. Probably this is an error in parsing of a configuration file, which left [https://cwe.mitre.org/data/definitions/824.html](some entries uninitialized).
+At first, it looked like there was an error related to [NULL pointer dereference](https://cwe.mitre.org/data/definitions/476.html) in the C++ code. But at further decompiling of the code you can see the NULL check before the dereference. The program was reading pointers from a table in a loop, and some were invalid. Probably this is an error in parsing of a configuration file, which left [some entries uninitialized](https://cwe.mitre.org/data/definitions/824.html).
 
 Usually, errors like this are caught by automated code sanitization tools. These tools detect and fix common coding errors during development, providing immediate feedback to developers and helping them catch errors early and thoroughly analyze the code.
 
