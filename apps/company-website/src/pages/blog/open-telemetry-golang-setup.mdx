@@ -1,0 +1,132 @@
+import blogHeader from "../../content/images/blogs/crowdstrike-microsoft-incident-breakdown.jpg?preset=responsive";
+import BlogLayout from "../../Layouts/BlogLayout";
+
+import ContentTable from "../../components/Blog/ContentTable";
+
+export const meta = {
+  id: "open-telemetry-golang-setup",
+  title:
+    "",
+  description:
+    '',
+  category: "Learn Golang",
+  image: blogHeader,
+  date: 1726345239028,
+  updatedAt: 1726345239028,
+  author: "davidabram",
+  editor: "velimirujevic",
+  abstract: "",
+  pageType: "blog-posting"
+};
+
+<ContentTable tocData={props.toc} />
+
+## Setting Up the Basic HTTP Server
+
+First things first, we need a basic HTTP server. Go makes this really easy with its `net/http` package. 
+
+If you wanna skip this section you can take a look straight to the [example repo.](https://github.com/crocoder-dev/otel-golang/blob/179b21538399a3330596af6b18fe753de391f27b/main.go)
+
+Here's how we define our routes (aka URLs) and tell the server which function should handle each one:
+
+```go
+http.HandleFunc("/", helloHandler)
+http.HandleFunc("/error", errorHandler)
+http.HandleFunc("/facts", factsHandler)
+```
+
+We’ve got three simple routes here:
+- `/` says hi.
+- `/error` pretends something went wrong (so we can observe some errors).
+- `/facts` fetches some cool facts about Open Telemetry from our SQLite database and gives it back in JSON.
+
+### Hello, World!
+
+Let’s start with something simple: a route that returns a hello world. When someone visits it, they get a nice "Hello, OpenTelemetry" message.
+
+```go
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+    w.WriteHeader(http.StatusOK)
+    fmt.Fprintln(w, "Hello, OpenTelemetry")
+}
+```
+
+This function just sends a "200 OK" status (everything’s good!) and writes out `"Hello, OpenTelemetry"`.
+
+### Simulating Errors for Fun
+
+Now, we need to handle errors too. That’s where the `/error` route comes in. 
+
+This one intentionally throws a `500 Internal Server Error` just to see how things fail.
+
+```go
+func errorHandler(w http.ResponseWriter, r *http.Request) {
+    http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+}
+```
+
+This is just a way to simulate something going wrong. When you visit this route, it will act like something broke on the server.
+
+### Getting Data from SQLite and Returning JSON
+
+For our `/facts` route, we’ll connect to an SQLite database, pull some facts about OpenTelemetry, and return them as JSON. 
+
+Here’s what that looks like:
+
+```go
+func factsHandler(w http.ResponseWriter, r *http.Request) {
+    db, err := sql.Open("sqlite3", "./facts.db")
+    if err != nil {
+        http.Error(w, "Database connection error", http.StatusInternalServerError)
+        return
+    }
+    defer db.Close()
+
+    rows, err := db.Query("SELECT id, fact, details FROM facts")
+    if err != nil {
+        http.Error(w, "Failed to fetch facts", http.StatusInternalServerError)
+        return
+    }
+    defer rows.Close()
+
+    var facts []Fact
+    for rows.Next() {
+        var fact Fact
+        if err := rows.Scan(&fact.ID, &fact.Fact, &fact.Details); err != nil {
+            http.Error(w, "Failed to scan fact", http.StatusInternalServerError)
+            return
+        }
+        facts = append(facts, fact)
+    }
+
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(facts)
+}
+```
+
+Here’s what happens:
+- **Connect to SQLite:** The server connects to a small SQLite database where we store some fun facts.
+- **Query the Facts:** It runs a query to get the facts from the database.
+- **Return as JSON:** The data is then formatted into JSON and sent back to the user. Now you’ve got an API that gives out cool OpenTelemetry trivia!
+
+### Making your life easier with Makefile
+
+To make our lives much easier, we use a `Makefile` that automates running the server and setting up the database. If you’re not familiar with `make`, think of it like a handy task runner. 
+
+Here’s how it works:
+
+```Makefile
+run:
+    go run main.go
+
+db:
+    sqlite3 facts.db < setup.sql
+```
+
+- **`make run`:** This command starts your Go server.
+- **`make db`:** This sets up the SQLite database with all the OpenTelemetry facts using a simple SQL script.
+
+
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
+
