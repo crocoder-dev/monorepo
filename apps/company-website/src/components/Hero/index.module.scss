@@ -10,7 +10,7 @@ $twoRowBreakLine: "<=tabletPortrait";
 
 .image {
   flex-basis: 35%;
-  
+
   img{
     height: auto;
   }
@@ -72,8 +72,8 @@ $twoRowBreakLine: "<=tabletPortrait";
 
 .button {
   display: block;
-  margin-left: auto;
-  margin-right: 0;
+  margin-left: 0;
+  margin-right: auto;
   margin-top: 25px;
   min-width: 200px;
 
