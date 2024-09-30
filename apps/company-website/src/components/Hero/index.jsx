@@ -17,9 +17,9 @@ const Hero = ({
         <Typography
           className={styles.title}
           element="h1"
-          fontSize={34}
+          fontSize={44}
           dangerouslySetInnerHTML={{ __html: title }}
-          fontWeight={400}
+          fontWeight={700}
           color="gray_2"
         />
         <Typography
