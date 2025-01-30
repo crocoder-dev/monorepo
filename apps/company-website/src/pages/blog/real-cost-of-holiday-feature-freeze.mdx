@@ -1,0 +1,118 @@
+import blogHeader from "../../content/images/blogs/block-russia-using-cloudfront.jpg?preset=responsive";
+import BlogLayout from "../../Layouts/BlogLayout";
+import ResponsiveImage from "../../components/ResponsiveImage";
+import ContentTable from "../../components/Blog/ContentTable";
+
+export const meta = {
+  id: "real-cost-of-holiday-feature-freeze",
+  title:
+    "The Real Cost of Holiday Feature Freeze",
+  description:
+    "Holiday feature freezes aim to reduce deployment risk, but at what cost? This article explores the real impact of feature freezes on engineering teams, using data from Sentry’s repository. Learn how mature teams like Sentry navigate freeze-induced bottlenecks and discover alternative strategies to maintain stability without sacrificing developer efficiency.",
+  category: "DEVELOPER EXPERIENCE",
+  image: blogHeader,
+  date: 1738275977000,
+  updatedAt: 1738275977000,
+  author: "davidabram",
+  editor: "velimirujevic",
+  abstract:
+    "Feature freezes during the holiday season are a common practice aimed at reducing deployment risks and ensuring operational stability. However, while they prevent immediate disruptions, they often introduce hidden costs such as increased cycle times, deployment bottlenecks, and rushed code reviews. This article examines the real impact of holiday feature freezes using data from Sentry’s repository, showcasing how even mature engineering teams experience measurable slowdowns. While Sentry mitigates these effects through strong CI/CD processes and backlog management, the consequences are still evident in engineering metrics. We explore alternative approaches, including feature flags, gradual rollouts, and selective freeze policies, to maintain stability while minimizing post-freeze inefficiencies. Understanding these trade-offs helps teams make informed decisions about whether a feature freeze is truly the best strategy for their organization.",
+  pageType: "blog-posting"
+};
+
+
+Feature freezes during the holidays are a common practice. The idea is simple: stop deploying changes to production, reduce risk, and let people enjoy their time off. Seems reasonable, right? 
+
+But there’s a hidden cost that often gets overlooked. Let’s break down what really goes on when a company locks up its deployment pipeline—and how it keeps messing with engineering teams long after the holiday buzz fades.
+
+## The Intent Behind Feature Freezes
+
+Companies implement feature freezes for two main reasons:
+
+**Risk Reduction:** With fewer engineers around to troubleshoot, deploying new changes is seen as a liability.  
+
+**Operational Stability:** Business-critical services need to be rock solid during peak periods, especially in industries like retail and finance.
+
+This all makes sense on paper. But when you zoom out, you’ll find that the freeze isn’t a free pass to stability—it just shifts the burden elsewhere.
+
+
+## What Actually Happens During a Feature Freeze?
+
+During the freeze, work doesn’t stop. Engineers continue writing code, opening pull requests, and reviewing changes. The only difference is that nothing gets deployed. That might not seem like a big deal at first, but it starts to introduce some serious bottlenecks.
+
+All the following examples and charts are taken from the **Sentry** repository ([getsentry/sentry](https://github.com/getsentry/sentry)). 
+
+Sentry is a great example of a mature engineering team with strong CI/CD processes and best practices. Even in a well-run organization like Sentry, the effects of a feature freeze are noticeable in engineering metrics, though they are more controlled and manageable compared to less mature teams.
+
+### Work Queues Up
+Pull requests don’t stop coming in just because deployments pause. Instead, they pile up, waiting for the freeze to lift.
+
+**[Chart: Weekly Pull Requests Opened]**
+*(This should show the number of PRs opened per week in the Sentry repo, highlighting how the volume remains steady even during the freeze.)*
+
+### Cycle Times Spike
+Since PRs aren’t being merged and deployed, the time from PR creation to deployment explodes. What was once a smooth, continuous flow turns into a backlog nightmare.
+
+**[Chart: Cycle Time Trends]**
+*(This should illustrate how cycle time increases drastically during the freeze, then takes time to recover in the Sentry repo.)*
+
+### The Big Bang Deployment Effect
+Once the freeze lifts, everything hits production at once. Instead of small, iterative changes, you get a flood of deployments, increasing the risk of failures.
+
+**[Chart: Deployment Frequency]**
+*(This should show a steep drop during the freeze in Sentry, followed by a huge spike when it ends.)*
+
+### PR Reviews Get Rushed
+With so many PRs in the queue, reviewers have to move quickly to prevent further delays. This increases the chance of missing issues that would normally be caught in a more relaxed review process.
+
+**[Chart: Review Depth Per PR]**
+*(This should show how the number of reviews per PR decreases when the backlog is high in Sentry.)*
+
+### Merge Without Review Increases
+When pressure mounts, teams are more likely to merge PRs without full reviews. This is a natural reaction to large backlogs but introduces long-term quality concerns.
+
+**[Chart: PRs Merged Without Review]**
+*(This should highlight how the number of PRs merged without review spikes after the freeze in Sentry.)*
+
+## The Post-Freeze Hangover
+
+The effects of the freeze don’t disappear the moment deployments resume. There’s an adjustment period where engineering teams have to recover.
+
+**Deploy times remain high** as teams cautiously release large chunks of code.  
+**Bug reports increase** because more changes hit production simultaneously.  
+**On-call teams feel the pressure** as they deal with unexpected issues from multiple features landing at once.  
+
+**[Chart: Time to Deploy Over Time]**
+*(This should show how deploy times stay elevated for weeks after the freeze ends in Sentry.)*
+
+Even though Sentry’s mature engineering practices soften the impact, **the freeze’s effects still show up in the data**. It’s a useful case study in how even highly optimized teams must deal with the realities of engineering bottlenecks when deployment pauses.
+
+
+## What Can We Do Instead?
+
+Not all companies enforce hard feature freezes. Some mitigate risks while maintaining velocity through:
+
+**Feature Flags**: Deploy code continuously but keep new features disabled in production until they’re ready to be turned on.
+
+**Gradual Rollouts**: Deploy in stages, monitoring for issues before rolling out fully.
+
+**Selective Freeze Policies**: Allow bug fixes, security patches, and low-risk changes to continue shipping.
+
+**Stronger Automated Testing**: The more confidence you have in your tests, the less you need to rely on human intervention during a deployment.
+
+**Staggered Merging**: Instead of merging everything at once post-freeze, implement a controlled, gradual merge process.
+
+
+## The Bottom Line
+
+Feature freezes are designed to prevent production incidents, but they often just defer risk instead of eliminating it. The cost isn’t just a few weeks of delayed releases—it’s the long tail of operational and engineering inefficiencies that follow.
+
+The best teams recognize this and evolve their processes to maintain stability *without* shutting everything down. The question isn’t whether you should freeze deployments, but rather, **how can you maintain stability without sacrificing engineering efficiency?**
+
+Sentry’s engineering team demonstrates how a mature, well-structured team can manage these trade-offs effectively. But even with strong engineering discipline, the cost of a feature freeze is still present—it’s just more controlled. 
+
+The key takeaway? **Even the best teams feel the effects of a freeze, but the best teams also know how to minimize the damage.**
+
+If your company enforces a feature freeze, take a close look at your post-freeze metrics. If you’re seeing long cycle times, rushed reviews, or deployment spikes, it might be time to rethink your strategy.
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
