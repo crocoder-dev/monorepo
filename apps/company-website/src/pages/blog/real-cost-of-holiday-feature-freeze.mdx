@@ -37,7 +37,7 @@ This all makes sense on paper. But when you zoom out, you’ll find that the fre
 
 During the freeze, work doesn’t stop. Engineers continue writing code, opening pull requests, and reviewing changes. The only difference is that nothing gets deployed. That might not seem like a big deal at first, but it starts to introduce some serious bottlenecks.
 
-All the following examples and charts are based on data from the Sentry repository ([getsentry/sentry](https://github.com/getsentry/sentry)). The data includes only pull requests (PRs) created by Sentry employees, with all auto-generated and bot PRs filtered out.
+All the following examples and charts are based on data from the Sentry repository ([getsentry/sentry](https://github.com/getsentry/sentry)). The data includes only pull requests (PRs) created by Sentry employees, with all auto-generated and bot PRs filtered out. If you want to check out the metrics used and explore more, head over to [Holoday Feature Freeze](https://metrics.dxta.dev/getsentry/sentry/sentry-feature-freeze) dashboard.
 
 Sentry is a great example of a mature engineering team with strong CI/CD processes and best practices. Even in a well-run organization like Sentry, the effects of a feature freeze are noticeable in engineering metrics, though they are more controlled and manageable compared to less mature teams.
 
@@ -45,7 +45,7 @@ Sentry is a great example of a mature engineering team with strong CI/CD process
 Pull requests don’t stop coming in just because deployments pause. Instead, they pile up, waiting for the freeze to lift.
 
 <iframe 
-    src="https://metrics.dxta.dev/getsentry/sentry?chart=MRsOpened&team=1&width=1100&height=360&lines=value&theme=light&dashboard=delivery" 
+    src="https://metrics.dxta.dev/getsentry/sentry?chart=MRsOpened&team=1&width=1100&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze" 
     width="1100" 
     height="360" 
     style={{border: "none"}}>
@@ -57,7 +57,7 @@ The only significant dip occurs in Week 52 (Dec 23 – Dec 29), but activity reb
 Since PRs aren’t being merged and deployed, the time from PR creation to deployment explodes. What was once a smooth, continuous flow turns into a backlog nightmare.
 
 <iframe 
-    src="https://metrics.dxta.dev/getsentry/sentry?chart=CycleTime&team=1&width=1100&height=360&lines=median&theme=light&dashboard=delivery" 
+    src="https://metrics.dxta.dev/getsentry/sentry?chart=CycleTime&team=1&width=1100&height=360&lines=median&theme=light&dashboard=sentry-feature-freeze" 
     width="1100" 
     height="360" 
     style={{border: "none"}}>
@@ -71,7 +71,7 @@ Digging deeper into the data, my team have found that about half of the PRs from
 Once the freeze lifts, everything hits production at once. Instead of small, iterative changes, you get a flood of deployments, increasing the risk of failures.
 
 <iframe 
-    src="https://metrics.dxta.dev/getsentry/sentry?chart=DeployFreq&team=1&width=1100&height=360&lines=value&theme=light&dashboard=delivery" 
+    src="https://metrics.dxta.dev/getsentry/sentry?chart=DeployFreq&team=1&width=1100&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze" 
     width="1100" 
     height="360" 
     style={{border: "none"}}>
@@ -91,7 +91,7 @@ Now, the team is dealing with the aftermath; stabilizing, fixing issues, and get
 When pressure mounts, teams are more likely to merge PRs without full reviews. This is a natural reaction to large backlogs but introduces long-term quality concerns.
 
 <iframe 
-    src="https://metrics.dxta.dev/getsentry/sentry?chart=MRsWoReview&team=1&width=1100&height=360&lines=value&theme=light&dashboard=delivery" 
+    src="https://metrics.dxta.dev/getsentry/sentry?chart=MRsWoReview&team=1&width=1100&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze" 
     width="1100" 
     height="360" 
     style={{border: "none"}}>
