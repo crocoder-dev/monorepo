@@ -24,7 +24,7 @@ Feature freezes during the holidays are a common practice. The idea is simple: s
 
 But there’s a hidden cost that often gets overlooked. Let’s break down what really goes on when a company locks up its deployment pipeline—and how it keeps messing with engineering teams long after the holiday buzz fades.
 
-Companies implement feature freezes for two main reasons:
+Companies implement feature freezes for two main reason:
 
 **Risk Reduction** - With fewer engineers around to troubleshoot, deploying new changes is seen as a liability.  
 
@@ -47,7 +47,8 @@ Pull requests don’t stop coming in just because deployments pause. Instead, th
 <iframe 
     src="https://metrics.dxta.dev/getsentry/sentry?chart=MRsOpened&team=1&width=1100&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze" 
     height="360" 
-    style={{border: "none", width: "100%"}}>
+    style={{border: "none", width: "100%", overflowY: "hidden"}}
+>
 </iframe>
 
 The only significant dip occurs in Week 52 (Dec 23 – Dec 29), but activity rebounds the following week, more than making up for it. 
@@ -58,7 +59,8 @@ Since PRs aren’t being merged and deployed, the time from PR creation to deplo
 <iframe 
     src="https://metrics.dxta.dev/getsentry/sentry?chart=CycleTime&team=1&width=1100&height=360&lines=median&theme=light&dashboard=sentry-feature-freeze" 
     height="360" 
-    style={{border: "none", width: "100%"}}>
+    style={{border: "none", width: "100%", overflowY: "hidden"}}
+    >
 </iframe>
 
 Before Week 50 (Dec 9 - Dec 15), things were smooth, PRs got merged and deployed quickly. But once the freeze kicked in, cycle times shot up, peaking in Week 51 (Dec 16 - Dec 22). Since nothing was getting deployed, PRs just sat there, waiting.
@@ -72,7 +74,8 @@ Once the freeze lifts, everything hits production at once. Instead of small, ite
     src="https://metrics.dxta.dev/getsentry/sentry?chart=DeployFreq&team=1&width=1100&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze" 
     width="1100" 
     height="360" 
-    style={{border: "none", width: "100%"}}>
+    style={{border: "none", width: "100%", overflowY: "hidden"}}
+>
 </iframe>
 
 The deployment frequency chart perfectly illustrates the "Big Bang" effect of a feature freeze. Deployments drop sharply in Week 52 (Dec 23 - Dec 29) as the freeze takes hold, but once it lifts, everything rushes to production at once.
@@ -92,7 +95,8 @@ When pressure mounts, teams are more likely to merge PRs without full reviews. T
     src="https://metrics.dxta.dev/getsentry/sentry?chart=MRsWoReview&team=1&width=1100&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze" 
     width="1100" 
     height="360" 
-    style={{border: "none", width: "100%"}}>
+    style={{border: "none", width: "100%", overflowY: "hidden"}}
+>
 </iframe>
 
 Week 50 (Dec 9 - Dec 15) is a classic "let’s get this in before the freeze" moment. You can see the spike in PRs merged without review, some changes were probably rushed in to avoid being stuck for weeks. Totally understandable, but skipping reviews means more risk down the road.
