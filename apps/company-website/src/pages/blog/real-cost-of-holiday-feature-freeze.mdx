@@ -1,4 +1,4 @@
-import blogHeader from "../../content/images/blogs/block-russia-using-cloudfront.jpg?preset=responsive";
+import blogHeader from "../../content/images/blogs/real-cost-of-holiday-feature-freeze.png?preset=responsive";
 import BlogLayout from "../../Layouts/BlogLayout";
 import ResponsiveImage from "../../components/ResponsiveImage";
 import ContentTable from "../../components/Blog/ContentTable";
@@ -7,7 +7,7 @@ export const meta = {
   id: "real-cost-of-holiday-feature-freeze",
   title:
     "The Real Cost of Holiday Feature Freeze",
-  description: "Do holiday feature freezes reduce risk or hinder teams? Explore Sentry’s data on freeze-induced bottlenecks and discover strategies to maintain stability without slowing development.",
+  description: "Do holiday feature freezes reduce deployment risks, or do they hinder your team? Explore Sentry’s data on freeze-induced bottlenecks and discover strategies to maintain stability without slowing development.",
   category: "DEVELOPER EXPERIENCE",
   image: blogHeader,
   date: 1738275977000,
@@ -37,7 +37,7 @@ This all makes sense on paper. But when you zoom out, you’ll find that the fre
 
 During the freeze, work doesn’t stop. Engineers continue writing code, opening pull requests, and reviewing changes. The only difference is that nothing gets deployed. That might not seem like a big deal at first, but it starts to introduce some serious bottlenecks.
 
-All the following examples and charts are based on data from the Sentry repository ([getsentry/sentry](https://github.com/getsentry/sentry)). The data includes only pull requests (PRs) created by Sentry employees, with all auto-generated and bot PRs filtered out. If you want to check out the metrics used and explore more, head over to [Holoday Feature Freeze](https://metrics.dxta.dev/getsentry/sentry/sentry-feature-freeze) dashboard.
+All the following examples and charts are based on data from the Sentry repository ([getsentry/sentry](https://github.com/getsentry/sentry)). The data includes only pull requests (PRs) created by Sentry employees, with all auto-generated and bot PRs filtered out. If you want to check out the metrics used and explore more, head over to [Holiday Feature Freeze](https://metrics.dxta.dev/getsentry/sentry/sentry-feature-freeze) dashboard.
 
 Sentry is a great example of a mature engineering team with strong CI/CD processes and best practices. Even in a well-run organization like Sentry, the effects of a feature freeze are noticeable in engineering metrics, though they are more controlled and manageable compared to less mature teams.
 
