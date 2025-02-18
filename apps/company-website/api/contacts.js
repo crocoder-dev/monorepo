@@ -4,10 +4,6 @@
 import fetch from 'node-fetch';
 import { nanoid } from 'nanoid';
 import { Client } from '@notionhq/client';
-import { Ratelimit } from '@upstash/ratelimit';
-// This path has to be specified because fetch is not natively supported
-// in node v17 and earlier
-import { Redis } from '@upstash/redis/with-fetch';
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
@@ -206,32 +202,6 @@ const processContact = async (event) => {
   }
 };
 
-const allowRequest = async (request) => {
-  try {
-    const ip = request.ip ?? '127.0.0.1';
-
-    const ratelimit = new Ratelimit({
-      limiter: Ratelimit.fixedWindow(1, '30 s'),
-      /** Use fromEnv() to automatically load connection secrets from your environment
-       * variables. For instance when using the Vercel integration.
-       *
-       * This tries to load `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` from
-       * your environment using `process.env`.
-       */
-      redis: Redis.fromEnv(),
-    });
-
-    const response = await ratelimit.limit(ip);
-    return response;
-  } catch (error) {
-    throw {
-      body: {
-        message: error,
-      },
-    };
-  }
-};
-
 const contacts = async (req, res) => {
   try {
     if (!req.body) {
@@ -249,19 +219,6 @@ const contacts = async (req, res) => {
 
     const { email, name, message } = req.body;
 
-    const {
-      success, limit, reset, remaining,
-    } = await allowRequest(req);
-
-    if (!success) {
-      throw {
-        statusCode: 429,
-        body: {
-          message: 'Too many requests. Please try again in a minute',
-        },
-      };
-    }
-
     try {
       await processContact({
         id: nanoid(),
@@ -277,9 +234,6 @@ const contacts = async (req, res) => {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true,
-        'X-RateLimit-Limit': limit.toString(),
-        'X-RateLimit-Remaining': remaining.toString(),
-        'X-RateLimit-Reset': reset.toString(),
       },
     });
   } catch (error) {
