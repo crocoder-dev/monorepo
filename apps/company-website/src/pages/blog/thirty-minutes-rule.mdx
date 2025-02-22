@@ -1,0 +1,33 @@
+import blogHeader from "../../content/images/blogs/stop-bikeshedding.png?preset=responsive";
+import BlogLayout from "../../Layouts/BlogLayout";
+import ResponsiveImage from "../../components/ResponsiveImage";
+import ContentTable from "../../components/Blog/ContentTable";
+
+export const meta = {
+  id: "thirty-minute-rule",
+  title: "The old Thirty Minute Rule"
+  description: "",
+  category: "After work talks",
+  image: blogHeader,
+  date: 1683151069601,
+  updatedAt: 1683151069601,
+  author: "davidabram",
+  editor: "velimirujevic",
+  abstract: "",
+  pageType: "blog-posting"
+};
+
+Imagine you're deep into coding, and you hit a wall. You're stuck, and no matter how hard you try, you can't find a way through. Sounds familiar, right?
+
+So you lose hours trying to figure it out, but the wall is still not budging.
+
+How about a different approach?
+
+The Thrity Minute Rule: "If you're stuck on a problem for more than 30 minutes, it's time to ask for help."
+
+
+
+
+
+
+export default (props) => <BlogLayout meta={meta} {...props}>{props.children}</BlogLayout>;
